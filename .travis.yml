@@ -17,9 +17,10 @@ install:
     
 script:
     - npm run flow
-    #- npm run lint
+    - npm run lint
     #- npm run test
 
 notifications:
   email:
   - 'dmuelhau@hsr.ch'
+  - 'mmelchio@hsr.ch'
