@@ -1,15 +1,18 @@
-'use strict';
-
 import React, {
   AppRegistry,
   Component,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
-import Mapbox from 'react-native-mapbox-gl'
+import Mapbox from 'react-native-mapbox-gl';
 
-var mapRef = 'OpenStreetMap'
+const mapRef = 'OpenStreetMap';
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 class Kort extends Component {
   constructor() {
@@ -20,7 +23,7 @@ class Kort extends Component {
     return {
       center: {
         latitude: 47.223,
-        longitude: 8.817
+        longitude: 8.817,
       },
       zoom: 10,
       annotations: [{
@@ -32,10 +35,10 @@ class Kort extends Component {
         annotationImage: {
           url: 'https://cldup.com/7NLZklp8zS.png',
           height: 25,
-          width: 25
-        }
-      }]
-    }
+          width: 25,
+        },
+      }],
+    };
   }
   onUserLocationChange(location) {
     console.log(location);
@@ -56,11 +59,11 @@ class Kort extends Component {
           Go to HSR at zoom level 10
         </Text>
         <Text onPress={() => this.addAnnotations(mapRef, [{
-          coordinates: [47.2,8.8],
+          coordinates: [47.2, 8.8],
           type: 'point',
           title: 'This is a new marker',
-          id: 'foo'
-        }])}>
+          id: 'foo' }])}
+        >
           Add new marker
         </Text>
         <Text onPress={() => this.setUserTrackingMode(mapRef, this.userTrackingMode.follow)}>
@@ -72,35 +75,31 @@ class Kort extends Component {
         <Text onPress={() => this.setTilt(mapRef, 50)}>
           Set tilt to 50
         </Text>
-        <Text onPress={() => this.setVisibleCoordinateBoundsAnimated(mapRef, 40.712, -74.227, 40.774, -74.125, 100, 100, 100, 100)}>
+        <Text onPress={() => this.setVisibleCoordinateBoundsAnimated(
+            mapRef, 40.712, -74.227, 40.774, -74.125, 100, 100, 100, 100)}
+        >
           Set visible bounds to 40.7, -74.2, 40.7, -74.1
         </Text>
         <Mapbox
           annotations={this.getInitialState().annotations}
           style={styles.container}
           direction={0}
-          rotateEnabled={true}
-          scrollEnabled={true}
-          zoomEnabled={true}
-          showsUserLocation={true}
+          rotateEnabled
+          scrollEnabled
+          zoomEnabled
+          showsUserLocation
           ref={mapRef}
           accessToken={'pk.eyJ1IjoiZG9taW5pY21oIiwiYSI6ImNpbTIwbHFqbjAwbTN3MW02bWNxbjI4YmEifQ.ZkVpEGDJZXDSmG6fuO8ZZA'}
           styleURL={'https://raw.githubusercontent.com/osm2vectortiles/osm2vectortiles/gh-pages/styles/bright-v8.json'}
           centerCoordinate={this.getInitialState().center}
           zoomLevel={this.getInitialState().zoom}
-          logoIsHidden={true}
-          attributionButtonIsHidden={true}
+          logoIsHidden
+          attributionButtonIsHidden
           onOpenAnnotation={this.onOpenAnnotation}
         />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
 
 AppRegistry.registerComponent('Kort', () => Kort);
