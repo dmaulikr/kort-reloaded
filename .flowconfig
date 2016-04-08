@@ -1,5 +1,8 @@
 [ignore]
 
+# External libraries
+.*/node_modules/*
+
 # We fork some components by platform.
 .*/*.web.js
 .*/*.android.js
@@ -67,4 +70,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(2[0-1]\\|1[0-9]\\|[0-9
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 
 [version]
-0.21.0
+0.22.1
