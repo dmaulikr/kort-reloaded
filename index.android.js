@@ -16,11 +16,25 @@ const Kort = React.createClass({
   getInitialState() {
     return {
       center: {
-        latitude: 47.223,
-        longitude: 8.817,
+        latitude: 0,
+        longitude: 0,
       },
       zoom: 10,
     };
+  },
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          center: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          }
+        });
+      },
+      (error) => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
   },
   render() {
     return (
