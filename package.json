@@ -21,6 +21,7 @@
     "eslint-plugin-react-native": "^1.0.0"
   },
   "devDependencies": {
+    "babel-preset-stage-0": "^6.5.0",
     "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-react": "^4.3.0"
   }
