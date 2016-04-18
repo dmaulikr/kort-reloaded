@@ -32,22 +32,21 @@ const Kort = React.createClass({
       })
       .done();
   },
+  onOpenAnnotation(annotation) {
+    console.log(annotation);
+  },
   updateAnnotations(missions) {
+    const annotations = new Array(missions.length);
     this.removeAllAnnotations(mapRef);
-
-    var annotations = new Array(missions.length);
-    for (var i = 0; i < missions.length; i++) {
+    for (let i = 0; i < missions.length; i++) {
       annotations[i] = {
         id: missions[i].id,
         type: 'point',
         title: missions[i].title,
         coordinates: [parseFloat(missions[i].latitude), parseFloat(missions[i].longitude)],
-      }
+      };
     }
     this.addAnnotations(mapRef, annotations);
-  },
-  onOpenAnnotation(annotation) {
-    console.log(annotation);
   },
   render() {
     return (
