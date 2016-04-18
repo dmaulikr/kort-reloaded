@@ -5,36 +5,49 @@ import React, {
 } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 
+const REQUEST_URL = 'https://kort.herokuapp.com/server/webservices/mission/position/47.225,8.987';
 const mapRef = 'OpenStreetMap';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
 });
+
 const Kort = React.createClass({
   mixins: [Mapbox.Mixin],
   getInitialState() {
     return {
       center: {
-        latitude: 0,
-        longitude: 0,
+        latitude: 47.225,
+        longitude: 8.987,
       },
-      zoom: 10,
+      zoom: 14,
     };
   },
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          center: {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          }
-        });
-      },
-      (error) => alert(error.message),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
+    fetch(REQUEST_URL)
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.updateAnnotations(responseData.return);
+      })
+      .done();
+  },
+  updateAnnotations(missions) {
+    this.removeAllAnnotations(mapRef);
+
+    var annotations = new Array(missions.length);
+    for (var i = 0; i < missions.length; i++) {
+      annotations[i] = {
+        id: missions[i].id,
+        type: 'point',
+        title: missions[i].title,
+        coordinates: [parseFloat(missions[i].latitude), parseFloat(missions[i].longitude)],
+      }
+    }
+    this.addAnnotations(mapRef, annotations);
+  },
+  onOpenAnnotation(annotation) {
+    console.log(annotation);
   },
   render() {
     return (
