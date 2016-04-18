@@ -10,7 +10,8 @@
   "dependencies": {
     "babel-preset-react-native-stage-0": "^1.0.1",
     "react": "^0.14.8",
-    "react-native": "^0.22.2"
+    "react-native": "^0.24.0-rc5",
+    "react-native-mapbox-gl": "^4.0.0"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^6.2.0",
