@@ -8,7 +8,7 @@ Kort Reloaded is implemented with React Native (https://facebook.github.io/react
 ## Release
 The implementation is estimated to be finished by the end of June 2016.
 
-It might require additional time to be deployed to the app stores of the the respective platforms.
+It might require additional time for the apps to be deployed to the app stores of the the respective platforms.
 
 ## Hands On
 We gladly accept any kind of contribution if you wish to help!
@@ -17,5 +17,11 @@ Please note, that currently we are collecting issues internally, i.e. as a priva
 
 If you wish to run the current version of the app you will have to set up React Native on your machine.
 
-## Further Information
-Important information and links can be found in the Wiki.
+## Further Resources
+This is a list of links for contributing to or digging into Kort:
+
+* Website: http://www.kort.ch/
+* Help translate Kort to your language: https://www.transifex.com/odi/kort/
+* Feedback: https://kort.uservoice.com/
+* Documentation (LaTeX and German, sorry...): https://github.com/kort/kort-reloaded-docu
+* Backend documentation: https://kort.herokuapp.com/docs/Kort-backend/
