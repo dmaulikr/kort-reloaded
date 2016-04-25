@@ -3,8 +3,19 @@ import Mission from '../model/Mission';
 
 const GET_MISSIONS_REQUEST_URL = 'https://kort.herokuapp.com/server/webservices/mission/position';
 
+function castReturnArrayToMissionsArray(requestArray) {
+  const missionsArray = new Array(requestArray.length);
+  for (let i = 0; i < requestArray.length; i++) {
+    missionsArray[i] = new Mission(requestArray[i].id, requestArray[i].title,
+      requestArray[i].type, requestArray[i].description, requestArray[i].latitude,
+      requestArray[i].longitude, requestArray[i].fix_koin_count, requestArray[i].extra_coins,
+      requestArray[i].promo_id, requestArray[i].answer_placeholder, requestArray[i].view_type);
+  }
+  return missionsArray;
+}
+
 export function getMissions(latitude, longitude, limit, radius, onSuccess) {
-  var parameters = [];
+  const parameters = [];
   if (limit !== null) parameters.push(`limit=${limit}`);
   if (radius !== null) parameters.push(`radius=${radius}`);
   const requestUrl = createRequestUrl(GET_MISSIONS_REQUEST_URL, [latitude, longitude], parameters);
@@ -14,15 +25,4 @@ export function getMissions(latitude, longitude, limit, radius, onSuccess) {
       onSuccess(castReturnArrayToMissionsArray(responseData.return));
     })
     .done();
-}
-
-function castReturnArrayToMissionsArray(requestArray) {
-  const missionsArray = new Array(requestArray.length);
-  for(var i = 0; i < requestArray.length; i++) {
-    missionsArray[i] = new Mission(requestArray[i].id, requestArray[i].title,
-      requestArray[i].type, requestArray[i].description, requestArray[i].latitude,
-      requestArray[i].longitude, requestArray[i].fix_koin_count, requestArray[i].extra_coins,
-      requestArray[i].promo_id, requestArray[i].answer_placeholder, requestArray[i].view_type);
-  }
-  return missionsArray;
 }

@@ -25,7 +25,7 @@ const Kort = React.createClass({
     };
   },
   componentDidMount() {
-      getMissions(47.225, 8.987, null, null, this.updateAnnotations);
+    getMissions(47.225, 8.987, null, null, this.updateAnnotations);
   },
   onOpenAnnotation(annotation) {
     console.log(annotation);

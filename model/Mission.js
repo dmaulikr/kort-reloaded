@@ -1,5 +1,6 @@
 export default class {
-  constructor(id, title, type, description, latitude, longitude, fixKoinCount, promotionExtraKoins, promoId, answerPlaceholder, viewType) {
+  constructor(id, title, type, description, latitude, longitude, fixKoinCount, promotionExtraKoins,
+    promoId, answerPlaceholder, viewType) {
     this.id = id;
     this.title = title;
     this.type = type;
