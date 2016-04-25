@@ -4,8 +4,8 @@ import React, {
   View,
 } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
+import MissionLoader from './service/MissionLoader';
 
-const REQUEST_URL = 'https://kort.herokuapp.com/server/webservices/mission/position/47.225,8.987';
 const mapRef = 'OpenStreetMap';
 const styles = StyleSheet.create({
   container: {
@@ -25,12 +25,7 @@ const Kort = React.createClass({
     };
   },
   componentDidMount() {
-    fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.updateAnnotations(responseData.return);
-      })
-      .done();
+      MissionLoader.getMissions(47.225, 8.987, null, null, this.updateAnnotations);
   },
   onOpenAnnotation(annotation) {
     console.log(annotation);
