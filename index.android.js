@@ -4,7 +4,7 @@ import React, {
   View,
 } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
-import MissionLoader from './service/MissionLoader';
+import { getMissions } from './service/MissionLoader';
 
 const mapRef = 'OpenStreetMap';
 const styles = StyleSheet.create({
@@ -25,7 +25,7 @@ const Kort = React.createClass({
     };
   },
   componentDidMount() {
-      MissionLoader.getMissions(47.225, 8.987, null, null, this.updateAnnotations);
+      getMissions(47.225, 8.987, null, null, this.updateAnnotations);
   },
   onOpenAnnotation(annotation) {
     console.log(annotation);
