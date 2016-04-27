@@ -1,71 +1,53 @@
-import React, {
-  AppRegistry,
-  StyleSheet,
-  View,
-} from 'react-native';
-import Mapbox from 'react-native-mapbox-gl';
-import { getMissions } from './service/MissionLoader';
+import React, { AppRegistry, Navigator, StyleSheet, Text, View, } from 'react-native';
 
-const mapRef = 'OpenStreetMap';
+var Map = require('./components/Map');
+
+import { Scene, Router, TabBar, Modal, Schema, Actions, Reducer, } from 'react-native-router-flux';
+import Login from './components/Login'
+import NavigationDrawer from './components/NavigationDrawer'
+import TabView from './components/TabView'
+
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+    container: {flex:1, backgroundColor:'transparent',justifyContent: 'center',
+        alignItems: 'center',}
+
 });
 
-const Kort = React.createClass({
-  mixins: [Mapbox.Mixin],
-  getInitialState() {
-    return {
-      center: {
-        latitude: 47.225,
-        longitude: 8.987,
-      },
-      zoom: 14,
-    };
-  },
-  componentDidMount() {
-    getMissions(47.225, 8.987, null, null, this.updateAnnotations);
-  },
-  onOpenAnnotation(annotation) {
-    console.log(annotation);
-  },
-  updateAnnotations(missions) {
-    const annotations = new Array(missions.length);
-    this.removeAllAnnotations(mapRef);
-    for (let i = 0; i < missions.length; i++) {
-      annotations[i] = {
-        id: missions[i].id,
-        type: 'point',
-        title: missions[i].title,
-        coordinates: [parseFloat(missions[i].latitude), parseFloat(missions[i].longitude)],
-      };
+class TabIcon extends React.Component {
+    render(){
+        return (
+            <Text style={{color: this.props.selected ? 'red' :'black'}}>{this.props.title}</Text>
+        );
     }
-    this.addAnnotations(mapRef, annotations);
-  },
-  render() {
-    return (
-      <View style={styles.container}>
-        <Mapbox
-          annotations={this.state.annotations}
-          style={styles.container}
-          direction={0}
-          rotateEnabled
-          scrollEnabled
-          zoomEnabled
-          showsUserLocation
-          ref={mapRef}
-          accessToken={'pk.eyJ1IjoiZG9taW5pY21oIiwiYSI6ImNpbTIwbHFqbjAwbTN3MW02bWNxbjI4YmEifQ.ZkVpEGDJZXDSmG6fuO8ZZA'}
-          styleURL={'https://raw.githubusercontent.com/osm2vectortiles/osm2vectortiles/gh-pages/styles/bright-v8.json'}
-          centerCoordinate={this.state.center}
-          zoomLevel={this.state.zoom}
-          logoIsHidden
-          attributionButtonIsHidden
-          onOpenAnnotation={this.onOpenAnnotation}
-        />
-      </View>
-    );
-  },
-});
+}
 
-AppRegistry.registerComponent('Kort', () => Kort);
+const reducerCreate = params=>{
+    const defaultReducer = Reducer(params);
+    return (state, action)=>{
+        console.log("ACTION:", action);
+        return defaultReducer(state, action);
+    }
+};
+
+class App extends React.Component {
+  render() {
+    return <Router createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
+      <Scene key="modal" component={Modal} >
+        <Scene key='root' hideNavBar={true}>
+          <Scene key="login" component={Login} title="Login" initial={true} style={{flex:1, backgroundColor:'transparent'}}/>
+          <Scene key="tabbar" component={NavigationDrawer}>
+            <Scene key="main" tabs={true} >
+              <Scene key='missionsTab' component={TabView} title='Missions' hideNavBar={true} icon={TabIcon} />
+              <Scene key='profileTab' component={TabView} title='Profile' hideNavBar={true} icon={TabIcon} />
+              <Scene key='highscore' component={TabView} title='Highscore' hideNavBar={true} icon={TabIcon} />
+              <Scene key='about' component={TabView} title='About' hideNavBar={true} icon={TabIcon} />
+            </Scene>
+          </Scene>
+        </Scene>
+      </Scene>
+    </Router>;
+  }
+}
+
+AppRegistry.registerComponent('Kort', () => App);
