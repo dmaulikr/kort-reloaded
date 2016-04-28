@@ -24,21 +24,23 @@ const reducerCreate = params => {
 
 class App extends React.Component {
   render() {
-    return <Router createReducer={reducerCreate} sceneStyle={{ backgroundColor: '#F7F7F7' }}>
-      <Scene key="modal" component={Modal}>
-        <Scene key='root' hideNavBar={true}>
-          <Scene key="login" component={Login} title="Login" initial={true} style={ { flex: 1, backgroundColor: 'transparent' } } />
-          <Scene key="tabbar" component={NavigationDrawer}>
-            <Scene key="main" tabs={true}>
-              <Scene key='missionsTab' component={TabView} title='Missions' hideNavBar={true} icon={TabIcon} />
-              <Scene key='profileTab' component={TabView} title='Profile' hideNavBar={true} icon={TabIcon} />
-              <Scene key='highscore' component={TabView} title='Highscore' hideNavBar={true} icon={TabIcon} />
-              <Scene key='about' component={TabView} title='About' hideNavBar={true} icon={TabIcon} />
+    return (
+      <Router createReducer={reducerCreate} sceneStyle={{ backgroundColor: '#F7F7F7' }}>
+        <Scene key="modal" component={Modal}>
+          <Scene key="root" hideNavBar={Boolean(true)}>
+            <Scene key="login" component={Login} title="Login" initial={Boolean(true)} style={ { flex: 1, backgroundColor: 'transparent' } } />
+            <Scene key="tabbar" component={NavigationDrawer}>
+              <Scene key="main" tabs={Boolean(true)}>
+                <Scene key="missionsTab" component={TabView} title="Missions" hideNavBar={Boolean(true)} icon={TabIcon} />
+                <Scene key="profileTab" component={TabView} title="Profile" hideNavBar={Boolean(true)} icon={TabIcon} />
+                <Scene key="highscore" component={TabView} title="Highscore" hideNavBar={Boolean(true)} icon={TabIcon} />
+                <Scene key="about" component={TabView} title="About" hideNavBar={Boolean(true)} icon={TabIcon} />
+              </Scene>
             </Scene>
           </Scene>
         </Scene>
-      </Scene>
-    </Router>;
+      </Router>
+    );
   }
 }
 
