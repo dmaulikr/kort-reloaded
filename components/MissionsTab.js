@@ -12,8 +12,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
 const MissionsTab = React.createClass({
   mixins: [Mapbox.Mixin],
   getInitialState() {
