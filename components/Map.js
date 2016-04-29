@@ -4,7 +4,7 @@ import React, {
 } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { getMissions } from '../service/MissionLoader';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 
 const mapRef = 'OpenStreetMap';
 const styles = StyleSheet.create({
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-var Map = React.createClass({
+const Map = React.createClass({
   mixins: [Mapbox.Mixin],
   getInitialState() {
     return {

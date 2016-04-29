@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
   },
 });
 
-class Login extends React.Component {
+const Login = React.createClass({
+  getInitialState() { return { }; },
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +20,7 @@ class Login extends React.Component {
         <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
       </View>
     );
-  }
-}
+  },
+});
 
 module.exports = Login;

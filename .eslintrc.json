@@ -5,9 +5,11 @@
       "react-native"
   ],
   "ecmaFeatures": {
+      "classes": true,
       "jsx": true
   },
   "rules": {
+    "react/prop-types": 1,
     "max-len": [2, 100, 2, {
       "ignoreUrls": true,
       "ignoreComments": false,

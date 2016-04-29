@@ -1,6 +1,4 @@
 import React, { View, Text, StyleSheet } from 'react-native';
-import Button from 'react-native-button';
-import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,19 +20,19 @@ const styles = StyleSheet.create({
 });
 
 
-export default class TabView extends React.Component {
+const TabView = React.createClass({
+  getInitialState() { return { }; },
   render() {
-    const drawer = this.context.drawer;
     return (
       <View style={[styles.container, this.props.sceneStyle]}>
         <Text>Tab {this.props.title} </Text>
-        <Button onPress={() => {drawer.close(); Actions.missionsTab();}}>Switch to missionsTab </Button>
-        <Button onPress={() => {drawer.close(); Actions.profileTab();}}>Switch to profileTab </Button>
       </View>
     );
-  }
-}
+  },
+});
 
 TabView.contextTypes = {
   drawer: React.PropTypes.object,
 };
+
+module.exports = TabView;

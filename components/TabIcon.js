@@ -1,9 +1,12 @@
 import React, { Text } from 'react-native';
 
-export default class extends React.Component {
+const TabIcon = React.createClass({
+  getInitialState() { return { }; },
   render() {
     return (
       <Text style={{ color: this.props.selected ? 'red' : 'black' }}> {this.props.title} </Text>
     );
-  }
-}
+  },
+});
+
+module.exports = TabIcon;
