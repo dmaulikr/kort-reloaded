@@ -7,6 +7,7 @@ import { Scene, Router, Reducer } from 'react-native-router-flux';
 
 import Login from './components/Login';
 import TabView from './components/TabView';
+import MissionsTab from './components/MissionsTab';
 import TabIcon from './components/TabIcon';
 
 /*
@@ -38,7 +39,7 @@ const App = React.createClass({
           />
             <Scene key="tabbar" tabs>
               <Scene key="missions"
-                component={TabView}
+                component={MissionsTab}
                 title="Missions"
                 hideNavBar
                 icon={TabIcon}
