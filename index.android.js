@@ -1,14 +1,12 @@
 
 import React, { AppRegistry } from 'react-native';
 
-// var Map = require('./components/Map');
-
 import { Scene, Router, Reducer } from 'react-native-router-flux';
 
-import Login from './components/Login';
-import TabView from './components/TabView';
-import MissionsTab from './components/MissionsTab';
-import TabIcon from './components/TabIcon';
+import Login from './js/components/Login';
+import TabView from './js/components/TabView';
+import MissionsTab from './js/components/MissionsTab';
+import TabIcon from './js/components/TabIcon';
 
 /*
 const styles = StyleSheet.create({
@@ -18,7 +16,7 @@ const styles = StyleSheet.create({
 */
 
 const reducerCreate = params => {
-  const defaultReducer = Reducer(params); // eslint-disable-line new-cap
+  const defaultReducer = Reducer(params);
   return (state, action) => {
     console.log('ACTION:', action);
     return defaultReducer(state, action);

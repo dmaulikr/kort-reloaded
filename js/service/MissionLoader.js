@@ -1,4 +1,4 @@
-import createRequestUrl from '../util/ApiUrlBuilder';
+import createRequestUrl from '../utils/ApiUrlBuilder';
 import Mission from '../model/Mission';
 
 const GET_MISSIONS_REQUEST_URL = 'https://kort.herokuapp.com/server/webservices/mission/position';
