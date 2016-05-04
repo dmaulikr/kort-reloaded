@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 */
 
 const reducerCreate = params => {
-  const defaultReducer = Reducer(params);
+  const defaultReducer = new Reducer(params);
   return (state, action) => {
     console.log('ACTION:', action);
     return defaultReducer(state, action);

@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "repository": "https://github.com/kort/kort-reloaded",
-  "main": "js/index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "flow": "flow check .",
@@ -29,8 +28,5 @@
     "babel-preset-react": "^6.5.0",
     "eslint": "^2.7.0",
     "eslint-plugin-react-native": "^1.0.0"
-  },
-  "jest": {
-		"rootDir": "./js"
   }
 }
