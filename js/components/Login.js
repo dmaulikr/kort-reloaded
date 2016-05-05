@@ -12,18 +12,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const Login = React.createClass({
-  getInitialState() { return { }; },
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Login page </Text>
-        <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
-      </View>
-    );
-  },
-});
-
 class Login extends React.Component {
 
   constructor(props) {
