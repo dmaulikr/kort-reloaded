@@ -44,15 +44,15 @@ const App = React.createClass({
                 hideNavBar
                 icon={TabIcon}
               />
-              <Scene key="profile"
-                component={TabView}
-                title="Profile"
-                hideNavBar
-                icon={TabIcon}
-              />
               <Scene key="highscore"
                 component={TabView}
                 title="Highscore"
+                hideNavBar
+                icon={TabIcon}
+              />
+              <Scene key="profile"
+                component={TabView}
+                title="Profile"
                 hideNavBar
                 icon={TabIcon}
               />
