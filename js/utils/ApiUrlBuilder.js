@@ -23,7 +23,9 @@ export default function createRequestUrl(apiUrl, queryParameters, parameters) {
   if (!apiUrl.startsWith('/')) requestUrl += '/';
   requestUrl = requestUrl + apiUrl;
   if (!requestUrl.endsWith('/')) requestUrl += '/';
-  requestUrl += getQueryParametersString(queryParameters);
+  if (queryParameters !== null && queryParameters.length !== 0) {
+    requestUrl += getQueryParametersString(queryParameters);
+  }
   if (parameters !== null && parameters.length !== 0) {
     requestUrl += getParametersString(parameters);
   }
