@@ -6,6 +6,7 @@ import Store from './Store';
 let _userInfo = [];
 let _userBadges = [];
 let _userLogoutMessage = '';
+let _userUpdateInfo = [];
 
 class UserStore extends Store {
 
@@ -19,6 +20,10 @@ class UserStore extends Store {
 
   logoutUser() {
     return _userLogoutMessage;
+  }
+
+  updateUser() {
+    return _userUpdateInfo;
   }
 }
 
@@ -68,6 +73,19 @@ function getRawUserLogoutMessage(rawUserLogoutMessage) {
   userStore.emitChange();
 }
 
+function getRawUserUpdateInfo(rawUserUpdateInfo) {
+  _userUpdateInfo = [];
+  _userUpdateInfo.push({
+    user_id: rawUserUpdateInfo.user_id,
+    name: rawUserUpdateInfo.name,
+    username: rawUserUpdateInfo.username,
+    oauth_user_id: rawUserUpdateInfo.oauth_user_id,
+    secret: rawUserUpdateInfo.secret,
+  });
+
+  userStore.emitChange();
+}
+
 AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.USER_DATA:
@@ -82,7 +100,11 @@ AppDispatcher.register((action) => {
       UserLoader.logoutUser(
         action.id, getRawUserLogoutMessage);
       break;
-
+    case ActionTypes.USER_UPDATE:
+      UserLoader.updateUser(
+        action.id, getRawUserUpdateInfo);
+      break;
+      
     default:
       return;
   }

@@ -7,12 +7,25 @@ export default class UserActions {
       actionType: ActionTypes.USER_DATA,
       secret,
     });
+  }
+
+  static getUserBadges(id) {
     AppDispatcher.dispatch({
       actionType: ActionTypes.USER_BADGES,
       id,
     });
+  }
+
+  static logoutUser(id) {
     AppDispatcher.dispatch({
       actionType: ActionTypes.USER_LOGOUT,
+      id,
+    });
+  }
+
+  static updateUser(id) {
+    AppDispatcher.dispatch({
+      actionType: ActionTypes.USER_UPDATE,
       id,
     });
   }
