@@ -11,5 +11,9 @@ export default class UserActions {
       actionType: ActionTypes.USER_BADGES,
       id,
     });
+    AppDispatcher.dispatch({
+      actionType: ActionTypes.USER_LOGOUT,
+      id,
+    });
   }
 }

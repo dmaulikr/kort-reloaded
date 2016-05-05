@@ -5,6 +5,7 @@ import Store from './Store';
 
 let _userInfo = [];
 let _userBadges = [];
+let _userLogoutMessage = '';
 
 class UserStore extends Store {
 
@@ -14,6 +15,10 @@ class UserStore extends Store {
 
   getUserBadges() {
     return _userBadges;
+  }
+
+  logoutUser() {
+    return _userLogoutMessage;
   }
 }
 
@@ -57,6 +62,12 @@ function getRawUserBadges(rawUserBadges) {
   userStore.emitChange();
 }
 
+function getRawUserLogoutMessage(rawUserLogoutMessage) {
+  _userLogoutMessage = rawUserLogoutMessage;
+
+  userStore.emitChange();
+}
+
 AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.USER_DATA:
@@ -66,6 +77,10 @@ AppDispatcher.register((action) => {
     case ActionTypes.USER_BADGES:
       UserLoader.getUserBadges(
         action.id, getRawUserBadges);
+      break;
+    case ActionTypes.USER_LOGOUT:
+      UserLoader.logoutUser(
+        action.id, getRawUserLogoutMessage);
       break;
 
     default:
