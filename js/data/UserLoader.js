@@ -1,7 +1,7 @@
 import createRequestUrl from '../utils/ApiUrlBuilder';
 
 const GET_USER = '/user/';
-const GET_USER_BADGES = '/user/<id>/badges'
+const GET_USER_BADGES = '/user/';
 
 class UserLoader {
   static getUser(secret, onSuccess) {
