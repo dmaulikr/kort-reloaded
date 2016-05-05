@@ -3,7 +3,8 @@ import React, {
   View,
 } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
-import { getMissions } from '../service/MissionLoader';
+import MissionActions from '../actions/MissionActions';
+import missionStore from '../stores/MissionStore';
 
 const mapRef = 'OpenStreetMap';
 const styles = StyleSheet.create({
@@ -21,24 +22,34 @@ const MissionsTab = React.createClass({
         longitude: 8.81662,
       },
       zoom: 14,
+      missions: missionStore.getAll(),
     };
   },
+  componentWillMount() {
+  },
   componentDidMount() {
-    getMissions(47.22319, 8.81662, null, null, this.updateAnnotations);
+    missionStore.addChangeListener(this.onChange);
+    MissionActions.loadMissions(47.22319, 8.81662, null, null);
+  },
+  componentWillUnmount() {
+    missionStore.removeChangeListener(this.onChange);
+  },
+  onChange() {
+    this.updateAnnotations(missionStore.getAll());
   },
   onOpenAnnotation(annotation) {
     console.log(annotation);
   },
   updateAnnotations(missions) {
-    const annotations = new Array(missions.length);
+    const annotations = [];
     this.removeAllAnnotations(mapRef);
-    for (let i = 0; i < missions.length; i++) {
-      annotations[i] = {
-        id: missions[i].id,
+    for (let mission of missions) { // eslint-disable-line prefer-const
+      annotations.push({
+        id: mission.id,
         type: 'point',
-        title: missions[i].title,
-        coordinates: [parseFloat(missions[i].latitude), parseFloat(missions[i].longitude)],
-      };
+        title: mission.title,
+        coordinates: [parseFloat(mission.latitude), parseFloat(mission.longitude)],
+      });
     }
     this.addAnnotations(mapRef, annotations);
   },

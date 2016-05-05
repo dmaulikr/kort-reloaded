@@ -25,6 +25,7 @@ const reducerCreate = params => {
 
 const App = React.createClass({
   getInitialState() { return { }; },
+
   render() {
     return (
       <Router createReducer={reducerCreate} sceneStyle={{ backgroundColor: '#F7F7F7' }}>
