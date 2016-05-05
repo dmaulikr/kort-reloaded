@@ -7,5 +7,9 @@ export default class UserActions {
       actionType: ActionTypes.USER_DATA,
       secret,
     });
+    AppDispatcher.dispatch({
+      actionType: ActionTypes.USER_BADGES,
+      id,
+    });
   }
 }

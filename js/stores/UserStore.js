@@ -4,17 +4,22 @@ import UserLoader from '../data/UserLoader';
 import Store from './Store';
 
 let _userInfo = [];
+let _userBadges = [];
 
 class UserStore extends Store {
 
   getUserInfo() {
     return _userInfo;
   }
+
+  getUserBadges() {
+    return _userBadges;
+  }
 }
 
 const userStore = new UserStore();
 
-function init(rawUser) {
+function getRawUser(rawUser) {
   _userInfo = [];
   _userInfo.push({
     id: rawUser.id,
@@ -30,6 +35,25 @@ function init(rawUser) {
     pic_url: rawUser.pic_url,
     logged_in: rawUser.logged_in,
   });
+
+  userStore.emitChange();
+}
+
+function getRawUserBadges(rawUserBadges) {
+  _userBadges = [];
+  rawUserBadges.forEach((badge) => {
+    _userBadges.push({
+      id: badge.id,
+      name: badge.name,
+      title: badge.title,
+      description: badge.description,
+      color: badge.color,
+      sorting: badge.sorting,
+      won: badge.won,
+      create_date: badge.create_date,
+    });
+  }, this);
+
   userStore.emitChange();
 }
 
@@ -37,7 +61,11 @@ AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.USER_DATA:
       UserLoader.getUser(
-        action.secret, initUser);
+        action.secret, getRawUser);
+      break;
+    case ActionTypes.USER_BADGES:
+      UserLoader.getUserBadges(
+        action.id, getRawUserBadges);
       break;
 
     default:
