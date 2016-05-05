@@ -1,3 +1,5 @@
+const REQUEST_LOCATION = 'https://kort.herokuapp.com/server/webservices';
+
 function getQueryParametersString(queryParameters) {
   let queryParametersString;
   queryParametersString = queryParameters[0];
@@ -17,7 +19,9 @@ function getParametersString(parameters) {
 }
 
 export default function createRequestUrl(apiUrl, queryParameters, parameters) {
-  let requestUrl = apiUrl;
+  let requestUrl = REQUEST_LOCATION;
+  if (!apiUrl.startsWith('/')) requestUrl += '/';
+  requestUrl = requestUrl + apiUrl;
   if (!requestUrl.endsWith('/')) requestUrl += '/';
   requestUrl += getQueryParametersString(queryParameters);
   if (parameters !== null && parameters.length !== 0) {
