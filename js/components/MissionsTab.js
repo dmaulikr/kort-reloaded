@@ -25,8 +25,6 @@ const MissionsTab = React.createClass({
       missions: missionStore.getAll(),
     };
   },
-  componentWillMount() {
-  },
   componentDidMount() {
     missionStore.addChangeListener(this.onChange);
     MissionActions.loadMissions(47.22319, 8.81662, null, null);
