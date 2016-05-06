@@ -1,7 +1,6 @@
 {
   "name": "Kort",
   "version": "0.0.1",
-  "private": true,
   "repository": "https://github.com/kort/kort-reloaded",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
