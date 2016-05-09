@@ -10,11 +10,6 @@
   },
   "rules": {
     "react/prop-types": 1,
-    "max-len": [2, 100, 2, {
-      "ignoreUrls": true,
-      "ignoreComments": false,
-      "ignorePattern": "\\s*accessToken={'\\w*"
-    }],
     "react/prefer-es6-class": [0, "always"]
   }
 }
