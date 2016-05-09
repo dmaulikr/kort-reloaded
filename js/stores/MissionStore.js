@@ -1,6 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import MissionLoader from '../data/MissionLoader';
 import Store from './Store';
 
 let _missions = [];
@@ -38,8 +37,7 @@ function initMissions(rawMissions) {
 AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.MISSIONS_LOAD:
-      MissionLoader.getMissions(
-        action.latitude, action.longitude, action.limit, action.radius, initMissions);
+      initMissions(action.data);
       break;
 
     default:
