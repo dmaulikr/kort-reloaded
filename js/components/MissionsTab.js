@@ -3,11 +3,6 @@ import React, {
   View,
 } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
-import {
-  ACCESS_TOKEN,
-  STYLE_URL,
-  TRACKING_MODE_FOLLOW,
-  TRACKING_MODE_NONE} from '../constants/MapBoxConstants'
 import MissionActions from '../actions/MissionActions';
 import missionStore from '../stores/MissionStore';
 
@@ -20,10 +15,14 @@ const styles = StyleSheet.create({
 const mapRef = 'OpenStreetMap';
 const missionLimit = 30;
 const missionRadius = 5000;
+const ACCESS_TOKEN = 'pk.eyJ1IjoiZG9taW5pY21oIiwiYSI6ImNpbTIwbHFqbjAwbTN3MW02bWNxbjI4YmEifQ.ZkVpEGDJZXDSmG6fuO8ZZA'; // eslint-disable-line max-len
+const STYLE_URL = 'https://raw.githubusercontent.com/osm2vectortiles/osm2vectortiles/gh-pages/styles/bright-v8.json';
+const TRACKING_MODE_FOLLOW = 1;
 
 const MissionsTab = React.createClass({
+
   mixins: [Mapbox.Mixin],
-  locationWatchId: (null: ?number),
+
   getInitialState() {
     return {
       center: {
@@ -34,36 +33,39 @@ const MissionsTab = React.createClass({
       annotations: null,
     };
   },
+
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(this.onPositionChange);
     this.locationWatchId = navigator.geolocation.watchPosition(this.onPositionChange,
       (error) => console.log(error),
-      {enableHighAccurracy: true, distanceFilter: 100});
+      { enableHighAccurracy: true, distanceFilter: 100 });
     missionStore.addChangeListener(this.onMissionsUpdate);
   },
+
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.locationWatchId);
-    missionStore.removeChangeListener(this.onChange);
-
+    missionStore.removeChangeListener(this.onMissionsUpdate);
   },
+
   onPositionChange(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    this.setState({
-      center: {
-        latitude: latitude,
-        longitude: longitude,
-      }
-    });
+    this.setState({ center: { latitude, longitude } });
 
     MissionActions.loadMissions(latitude, longitude, missionLimit, missionRadius);
   },
+
   onMissionsUpdate() {
     this.updateAnnotations();
   },
+
   onOpenAnnotation(annotation) {
     console.log(annotation);
   },
+
+
+  locationWatchId: null,
+
   updateAnnotations() {
     const annotations = [];
     for (let mission of missionStore.getAll()) { // eslint-disable-line prefer-const
@@ -74,8 +76,9 @@ const MissionsTab = React.createClass({
         coordinates: [parseFloat(mission.latitude), parseFloat(mission.longitude)],
       });
     }
-    this.setState({ annotations: annotations });
+    this.setState({ annotations });
   },
+
   render() {
     return (
       <View style={styles.container}>
@@ -96,7 +99,7 @@ const MissionsTab = React.createClass({
           logoIsHidden
           attributionButtonIsHidden
           onOpenAnnotation={this.onOpenAnnotation}
-          userTrackingMode={TRACKING_MODE_NONE}
+          userTrackingMode={TRACKING_MODE_FOLLOW}
         />
       </View>
     );
