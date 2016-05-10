@@ -23,7 +23,7 @@ export default class UserActions {
     });
   }
 
-  static updateUser(id) {
+  static updateUser(id) { //Parameter für Änderungen
     AppDispatcher.dispatch({
       actionType: ActionTypes.USER_UPDATE,
       id,
