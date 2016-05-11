@@ -10,15 +10,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const MissionsTab = React.createClass({
-  render() {
-    return (
-      <View style={styles.container}>
-        <Map />
-      </View>
-    );
-  },
-});
+const MissionsTab = function () {
+  return (
+    <View style={styles.container}>
+      <Map />
+    </View>
+  );
+};
 
 MissionsTab.contextTypes = {
   drawer: React.PropTypes.object,

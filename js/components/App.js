@@ -20,7 +20,7 @@ const reducerCreate = params => {
   };
 };
 
-export default App = React.createClass({
+const App = React.createClass({
   getInitialState() { return { }; },
 
   render() {
@@ -64,3 +64,5 @@ export default App = React.createClass({
     );
   },
 });
+
+export default App;

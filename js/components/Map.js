@@ -1,7 +1,4 @@
-import React, {
-  StyleSheet,
-  View,
-} from 'react-native';
+import React, { StyleSheet } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import MissionActions from '../actions/MissionActions';
 import missionStore from '../stores/MissionStore';
@@ -74,8 +71,10 @@ const Map = React.createClass({
         coordinates: [parseFloat(mission.latitude), parseFloat(mission.longitude)],
       });
     }
-    if (annotations.toString() !== this.state.annotations.toString())
+    // only update annotations if changed
+    if (annotations.toString() !== this.state.annotations.toString()) {
       this.setState({ annotations });
+    }
   },
 
   render() {
