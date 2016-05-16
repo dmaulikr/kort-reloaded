@@ -21,6 +21,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+<<<<<<< HEAD
 <<<<<<< e6c6f2f15c79706b1c03c7cb4052da601b4517de
 		9E74CEC81CDBB49900DF1000 /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E74CEBF1CDBB46100DF1000 /* libRCTMapboxGL.a */; };
 		9E74CECA1CDBB57000DF1000 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E74CEC91CDBB57000DF1000 /* Mapbox.framework */; };
@@ -28,6 +29,9 @@
 =======
 		44B8E15AA77C4862A685EBAA /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0DCE9A4B9A44CB5A3C71779 /* libRCTMapboxGL.a */; };
 >>>>>>> added ProfileTab
+=======
+		44B8E15AA77C4862A685EBAA /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0DCE9A4B9A44CB5A3C71779 /* libRCTMapboxGL.a */; };
+>>>>>>> a906edb34493e3ac02e2314cf41fb0b006fd2fc7
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,7 +173,10 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = ../node_modules/react-native/Libraries/Text/RCTText.xcodeproj; sourceTree = "<group>"; };
 		A4EAE92AE0BC453598E37FF6 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; name = "RCTMapboxGL.xcodeproj"; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		A0DCE9A4B9A44CB5A3C71779 /* libRCTMapboxGL.a */ = {isa = PBXFileReference; name = "libRCTMapboxGL.a"; path = "libRCTMapboxGL.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+<<<<<<< HEAD
 >>>>>>> added ProfileTab
+=======
+>>>>>>> a906edb34493e3ac02e2314cf41fb0b006fd2fc7
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,11 +202,15 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+<<<<<<< HEAD
 <<<<<<< e6c6f2f15c79706b1c03c7cb4052da601b4517de
 				9E74CECA1CDBB57000DF1000 /* Mapbox.framework in Frameworks */,
 =======
 				44B8E15AA77C4862A685EBAA /* libRCTMapboxGL.a in Frameworks */,
 >>>>>>> added ProfileTab
+=======
+				44B8E15AA77C4862A685EBAA /* libRCTMapboxGL.a in Frameworks */,
+>>>>>>> a906edb34493e3ac02e2314cf41fb0b006fd2fc7
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

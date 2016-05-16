@@ -12,7 +12,10 @@ const styles = StyleSheet.create({
   },
 });
 
+<<<<<<< HEAD
 <<<<<<< 341e345e587c5ef8a90d7a4d2c6d31fd7ace267b
+=======
+>>>>>>> a906edb34493e3ac02e2314cf41fb0b006fd2fc7
 class Login extends React.Component {
 
   constructor(props) {
@@ -84,6 +87,7 @@ class Login extends React.Component {
     }
   }
 }
+<<<<<<< HEAD
 
 =======
 >>>>>>> removed duplicate declaration Login
@@ -157,5 +161,7 @@ class Login extends React.Component {
     }
   }
 }
+=======
+>>>>>>> a906edb34493e3ac02e2314cf41fb0b006fd2fc7
 
 module.exports = Login;
