@@ -1,13 +1,7 @@
-'use strict';
-
-import React, { View, Text, StyleSheet, PropTypes, TouchableOpacity, TouchableHighlight } from 'react-native';
+import React, { View, Text, StyleSheet } from 'react-native';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
-<<<<<<< 570c628241e56f1c0b7fdcb9aebac76b22dd3a9f
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
-=======
-import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
->>>>>>> added simplified GoogleSignIn on LoginView
 
 const styles = StyleSheet.create({
   container: {
@@ -94,7 +88,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
     };
   }
 
@@ -102,43 +96,20 @@ class Login extends React.Component {
     GoogleSignin.configure({
       scopes: ['https://www.googleapis.com/auth/calendar'],
       webClientId: '963836018928-tk23jtqent2p7s310ev8vt8q4mo97813.apps.googleusercontent.com',
-      offlineAccess: true
+      offlineAccess: true,
     });
 
     GoogleSignin.currentUserAsync().then((user) => {
       console.log('USER', user);
-      this.setState({user: user});
+      this.setState({ user: user });
     }).done();
-  }
-
-  render() {
-      if (!this.state.user) {
-        return (
-          <View style={styles.container}>
-            <GoogleSigninButton style={{width: 120, height: 44}} color={GoogleSigninButton.Color.Light} size={GoogleSigninButton.Size.Icon} onPress={() => { this._signIn(); }}/>
-          </View>
-        );
-      }
-      if (this.state.user) {
-        return (
-          <View style={styles.container}>
-            <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>Welcome {this.state.user.name}</Text>
-            <Text style={{marginBottom: 20}}>Your email is: {this.state.user.email}</Text>
-
-            <Button onPress={() => {this._signOut(); }}>Log out</Button>
-
-            <Text style={{marginTop: 20}}>Login page </Text>
-            <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
-          </View>
-        );
-      }
   }
 
   _signIn() {
     GoogleSignin.signIn()
     .then((user) => {
       console.log(user);
-      this.setState({user: user});
+      this.setState({ user: user });
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
@@ -148,10 +119,39 @@ class Login extends React.Component {
 
   _signOut() {
     GoogleSignin.revokeAccess().then(() => GoogleSignin.signOut()).then(() => {
-      this.setState({user: null});
+      this.setState({ user: null });
     })
     .done();
   }
-};
+
+  render() {
+    if (!this.state.user) {
+      return (
+        <View style={styles.container}>
+          <GoogleSigninButton style={ { width: 120, height: 44 } }
+            color={GoogleSigninButton.Color.Light}
+            size={GoogleSigninButton.Size.Icon}
+            onPress={() => { this._signIn(); }}
+          />
+        </View>
+      );
+    }
+    if (this.state.user) {
+      return (
+        <View style={styles.container}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
+            Welcome {this.state.user.name}
+          </Text>
+          <Text style={{ marginBottom: 20 }}>Your email is: {this.state.user.email}</Text>
+
+          <Button onPress={() => {this._signOut(); }}>Log out</Button>
+
+          <Text style={{ marginTop: 20 }}>Login page </Text>
+          <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
+        </View>
+      );
+    }
+  }
+}
 
 module.exports = Login;
