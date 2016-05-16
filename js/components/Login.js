@@ -12,10 +12,6 @@ const styles = StyleSheet.create({
   },
 });
 
-<<<<<<< HEAD
-<<<<<<< 341e345e587c5ef8a90d7a4d2c6d31fd7ace267b
-=======
->>>>>>> a906edb34493e3ac02e2314cf41fb0b006fd2fc7
 class Login extends React.Component {
 
   constructor(props) {
@@ -87,81 +83,5 @@ class Login extends React.Component {
     }
   }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> removed duplicate declaration Login
-class Login extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-    };
-  }
-
-  componentDidMount() {
-    GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/calendar'],
-      webClientId: '963836018928-tk23jtqent2p7s310ev8vt8q4mo97813.apps.googleusercontent.com',
-      offlineAccess: true,
-    });
-
-    GoogleSignin.currentUserAsync().then((user) => {
-      console.log('USER', user);
-      this.setState({ user: user });
-    }).done();
-  }
-
-  _signIn() {
-    GoogleSignin.signIn()
-    .then((user) => {
-      console.log(user);
-      this.setState({ user: user });
-    })
-    .catch((err) => {
-      console.log('WRONG SIGNIN', err);
-    })
-    .done();
-  }
-
-  _signOut() {
-    GoogleSignin.revokeAccess().then(() => GoogleSignin.signOut()).then(() => {
-      this.setState({ user: null });
-    })
-    .done();
-  }
-
-  render() {
-    if (!this.state.user) {
-      return (
-        <View style={styles.container}>
-          <GoogleSigninButton style={ { width: 120, height: 44 } }
-            color={GoogleSigninButton.Color.Light}
-            size={GoogleSigninButton.Size.Icon}
-            onPress={() => { this._signIn(); }}
-          />
-        </View>
-      );
-    }
-    if (this.state.user) {
-      return (
-        <View style={styles.container}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
-            Welcome {this.state.user.name}
-          </Text>
-          <Text style={{ marginBottom: 20 }}>Your email is: {this.state.user.email}</Text>
-
-          <Button onPress={() => {this._signOut(); }}>Log out</Button>
-
-          <Text style={{ marginTop: 20 }}>Login page </Text>
-          <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
-        </View>
-      );
-    }
-  }
-}
-=======
->>>>>>> a906edb34493e3ac02e2314cf41fb0b006fd2fc7
 
 module.exports = Login;
