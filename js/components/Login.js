@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
+<<<<<<< 341e345e587c5ef8a90d7a4d2c6d31fd7ace267b
 class Login extends React.Component {
 
   constructor(props) {
@@ -83,6 +84,8 @@ class Login extends React.Component {
   }
 }
 
+=======
+>>>>>>> removed duplicate declaration Login
 class Login extends React.Component {
 
   constructor(props) {
