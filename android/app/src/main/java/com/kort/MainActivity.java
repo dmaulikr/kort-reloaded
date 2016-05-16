@@ -1,6 +1,7 @@
 package com.kort;
 
 import com.facebook.react.ReactActivity;
+import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
@@ -39,6 +40,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new ReactNativeMapboxGLPackage(),
             new RNGoogleSigninPackage(this),
             new ReactNativeMapboxGLPackage()
         );
