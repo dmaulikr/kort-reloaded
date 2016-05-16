@@ -2,6 +2,7 @@
   "name": "Kort",
   "version": "0.0.1",
   "repository": "https://github.com/kort/kort-reloaded",
+	"license": "MIT",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "flow": "flow check .",
