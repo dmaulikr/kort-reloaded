@@ -39,6 +39,7 @@ class Login extends React.Component {
     .then((user) => {
       console.log(user);
       this.setState({ user: user });
+      Actions.tabbar();
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
