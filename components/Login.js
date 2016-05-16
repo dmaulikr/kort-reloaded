@@ -34,6 +34,29 @@ export default class Login extends React.Component {
     }).done();
   }
 
+  render() {
+      if (!this.state.user) {
+        return (
+          <View style={styles.container}>
+            <GoogleSigninButton style={{width: 120, height: 44}} color={GoogleSigninButton.Color.Light} size={GoogleSigninButton.Size.Icon} onPress={() => { this._signIn(); }}/>
+          </View>
+        );
+      }
+      if (this.state.user) {
+        return (
+          <View style={styles.container}>
+            <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>Welcome {this.state.user.name}</Text>
+            <Text style={{marginBottom: 20}}>Your email is: {this.state.user.email}</Text>
+
+            <Button onPress={() => {this._signOut(); }}>Log out</Button>
+
+            <Text style={{marginTop: 20}}>Login page </Text>
+            <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
+          </View>
+        );
+      }
+  }
+
   _signIn() {
     GoogleSignin.signIn()
     .then((user) => {
@@ -81,4 +104,4 @@ export default class Login extends React.Component {
       );
     }
   }
-}
+};

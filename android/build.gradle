@@ -5,18 +5,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-<<<<<<< e578f354f19c1471208cb16b6e5c629ab6c46ddf
         classpath 'com.android.tools.build:gradle:2.1.0'
-<<<<<<< 570c628241e56f1c0b7fdcb9aebac76b22dd3a9f
 	      classpath 'com.google.gms:google-services:1.5.0'
-=======
-	classpath 'com.android.tools.build:gradle:1.3.1'
-	classpath 'com.google.gms:google-services:1.5.0'
->>>>>>> added simplified GoogleSignIn on LoginView
-=======
-	classpath 'com.android.tools.build:gradle:1.3.1'
-	classpath 'com.google.gms:google-services:1.5.0'
->>>>>>> added simplified GoogleSignIn on LoginView
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
