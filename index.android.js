@@ -55,7 +55,7 @@ const App = React.createClass({
                 icon={TabIcon}
               />
               <Scene key="profile"
-                component={TabView}
+                component={ProfileTab}
                 title="Profile"
                 hideNavBar
                 icon={TabIcon}
