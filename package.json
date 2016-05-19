@@ -2,7 +2,7 @@
   "name": "Kort",
   "version": "0.0.1",
   "repository": "https://github.com/kort/kort-reloaded",
-	"license": "MIT",
+  "license": "MIT",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "flow": "flow check .",
@@ -14,7 +14,7 @@
     "flux": "^2.1.1",
     "keymirror": "^0.1.1",
     "react": "^0.14.8",
-    "react-native": "^0.24.0-rc5",
+    "react-native": "^0.25.1",
     "react-native-button": "^1.4.2",
     "react-native-drawer": "^1.16.7",
     "react-native-mapbox-gl": "^4.1.0",

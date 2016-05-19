@@ -1,5 +1,5 @@
-import React from 'react-native';
-import { Scene, Router, Reducer } from 'react-native-router-flux';
+import React from 'react';
+import { Actions, Scene, Router, Reducer } from 'react-native-router-flux';
 import Login from './Login';
 import TabView from './TabView';
 import MissionsTab from './MissionsTab';
@@ -22,6 +22,10 @@ const reducerCreate = params => {
 
 const App = React.createClass({
   getInitialState() { return { }; },
+
+  componentDidMount() {
+    //Actions.login();
+  },
 
   render() {
     return (

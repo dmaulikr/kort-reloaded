@@ -1,7 +1,5 @@
-import React, {
-  StyleSheet,
-  View,
-} from 'react-native';
+import React from 'react';
+import { StyleSheet, View, } from 'react-native';
 import Map from './missions/Map';
 
 const styles = StyleSheet.create({
