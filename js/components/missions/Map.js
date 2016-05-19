@@ -1,7 +1,7 @@
 import React, { StyleSheet } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
-import MissionActions from '../actions/MissionActions';
-import missionStore from '../stores/MissionStore';
+import MissionActions from '../../actions/MissionActions';
+import missionStore from '../../stores/MissionStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 });
 
 const mapRef = 'OpenStreetMap';
-const missionLimit = 30;
+const missionLimit = 10;
 const missionRadius = 5000;
 const ACCESS_TOKEN = 'pk.eyJ1IjoiZG9taW5pY21oIiwiYSI6ImNpbTIwbHFqbjAwbTN3MW02bWNxbjI4YmEifQ.ZkVpEGDJZXDSmG6fuO8ZZA'; // eslint-disable-line max-len
 const STYLE_URL = 'https://raw.githubusercontent.com/osm2vectortiles/osm2vectortiles/gh-pages/styles/bright-v8.json';
@@ -71,10 +71,7 @@ const Map = React.createClass({
         coordinates: [parseFloat(mission.latitude), parseFloat(mission.longitude)],
       });
     }
-    // only update annotations if changed
-    if (annotations.toString() !== this.state.annotations.toString()) {
-      this.setState({ annotations });
-    }
+    this.setState({ annotations });
   },
 
   render() {
