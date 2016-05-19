@@ -30,35 +30,35 @@ const App = React.createClass({
           <Scene key="login"
             component={Login}
             title="Login"
-            initial
+            direction="vertical"
             style={ { flex: 1, backgroundColor: 'transparent' } }
           />
-            <Scene key="tabbar" tabs>
-              <Scene key="missions"
-                component={MissionsTab}
-                title="Missions"
-                hideNavBar
-                icon={TabIcon}
-              />
-              <Scene key="profile"
-                component={TabView}
-                title="Profile"
-                hideNavBar
-                icon={TabIcon}
-              />
-              <Scene key="highscore"
-                component={TabView}
-                title="Highscore"
-                hideNavBar
-                icon={TabIcon}
-              />
-              <Scene key="about"
-                component={TabView}
-                title="About"
-                hideNavBar
-                icon={TabIcon}
-              />
-            </Scene>
+          <Scene key="tabbar" tabs initial>
+            <Scene key="missions"
+              component={MissionsTab}
+              title="Missions"
+              hideNavBar
+              icon={TabIcon}
+            />
+            <Scene key="profile"
+              component={TabView}
+              title="Profile"
+              hideNavBar
+              icon={TabIcon}
+            />
+            <Scene key="highscore"
+              component={TabView}
+              title="Highscore"
+              hideNavBar
+              icon={TabIcon}
+            />
+            <Scene key="about"
+              component={TabView}
+              title="About"
+              hideNavBar
+              icon={TabIcon}
+            />
+          </Scene>
         </Scene>
       </Router>
     );

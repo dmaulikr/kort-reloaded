@@ -14,7 +14,7 @@ class MissionStore extends Store {
 const missionStore = new MissionStore();
 
 function initMissions(rawMissions) {
-  missions = [];
+  const missions = [];
   rawMissions.forEach((mission) => {
     missions.push({
       id: mission.id,
