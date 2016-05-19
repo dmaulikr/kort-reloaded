@@ -1,5 +1,5 @@
 import React from 'react';
-import { Actions, Scene, Router, Reducer } from 'react-native-router-flux';
+import { Scene, Router, Reducer } from 'react-native-router-flux';
 import Login from './Login';
 import TabView from './TabView';
 import MissionsTab from './MissionsTab';
