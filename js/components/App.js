@@ -24,7 +24,7 @@ const App = React.createClass({
   getInitialState() { return { }; },
 
   componentDidMount() {
-    //Actions.login();
+    // Actions.login();
   },
 
   render() {
