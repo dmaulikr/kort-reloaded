@@ -20,12 +20,19 @@ function getParametersString(parameters) {
 
 export default function createRequestUrl(apiUrl, queryParameters, parameters) {
   let requestUrl = REQUEST_LOCATION;
+
   if (!apiUrl.startsWith('/')) requestUrl += '/';
   requestUrl = requestUrl + apiUrl;
+
   if (!requestUrl.endsWith('/')) requestUrl += '/';
-  requestUrl += getQueryParametersString(queryParameters);
-  if (parameters !== null && parameters.length !== 0) {
+
+  if (queryParameters !== null && queryParameters.length !== 0 && queryParameters[0] !== null) {
+    requestUrl += getQueryParametersString(queryParameters);
+  }
+
+  if (parameters !== null && parameters.length !== 0 && parameters[0] !== null) {
     requestUrl += getParametersString(parameters);
   }
+
   return requestUrl;
 }

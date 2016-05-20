@@ -1,7 +1,7 @@
 import createRequestUrl from '../utils/ApiUrlBuilder';
 import Mission from '../dto/Mission';
 
-const GET_MISSIONS_REST_PATH = '/mission/position';
+const MISSIONS_REST_PATH = '/mission/position';
 
 function initMissions(rawMissions) {
   const missions = [];
@@ -30,7 +30,7 @@ class MissionLoader {
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
     const requestUrl = createRequestUrl(
-      GET_MISSIONS_REST_PATH, [latitude, longitude], parameters);
+      MISSIONS_REST_PATH, [latitude, longitude], parameters);
     fetch(requestUrl)
       .then((response) => response.json())
       .then((responseData) => {
