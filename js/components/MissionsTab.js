@@ -1,8 +1,6 @@
-import React, {
-  StyleSheet,
-  View,
-} from 'react-native';
-import Map from './Map';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import Map from './missions/Map';
 
 const styles = StyleSheet.create({
   container: {

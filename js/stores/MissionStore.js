@@ -14,9 +14,9 @@ class MissionStore extends Store {
 const missionStore = new MissionStore();
 
 function initMissions(rawMissions) {
-  _missions = [];
+  const missions = [];
   rawMissions.forEach((mission) => {
-    _missions.push({
+    missions.push({
       id: mission.id,
       title: mission.title,
       type: mission.type,
@@ -30,8 +30,13 @@ function initMissions(rawMissions) {
       viewType: mission.viewType,
     });
   }, this);
-
-  missionStore.emitChange();
+  // only emit change if missions changed
+  // currently depends on the assumption that missions are always returned in the same order
+  // TODO: make comparison more robust
+  if (missions.toString() !== _missions.toString()) {
+    _missions = missions;
+    missionStore.emitChange();
+  }
 }
 
 AppDispatcher.register((action) => {
