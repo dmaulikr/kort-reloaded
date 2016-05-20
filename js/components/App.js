@@ -1,5 +1,5 @@
 import React from 'react-native';
-import { Scene, Router, Reducer } from 'react-native-router-flux';
+import { Actions, Scene, Router, Reducer } from 'react-native-router-flux';
 import Login from './Login';
 import TabView from './TabView';
 import MissionsTab from './MissionsTab';
@@ -30,10 +30,9 @@ const App = React.createClass({
           <Scene key="login"
             component={Login}
             title="Login"
-            initial
             style={ { flex: 1, backgroundColor: 'transparent' } }
           />
-            <Scene key="tabbar" tabs>
+            <Scene key="tabbar" tabs initial panHandlers={null}>
               <Scene key="missions"
                 component={MissionsTab}
                 title="Missions"

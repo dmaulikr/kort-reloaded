@@ -4,7 +4,6 @@ import com.facebook.react.ReactActivity;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,11 +40,10 @@ public class MainActivity extends ReactActivity {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new ReactNativeMapboxGLPackage(),
-            new RNGoogleSigninPackage(this),
-            new ReactNativeMapboxGLPackage()
+            new RNGoogleSigninPackage(this)
         );
     }
-    
+
     /**
      * Added Method for GoogleSignIn
      */

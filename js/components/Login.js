@@ -31,6 +31,7 @@ class Login extends React.Component {
     GoogleSignin.currentUserAsync().then((user) => {
       console.log('USER', user);
       this.setState({ user: user });
+      Actions.tabbar();
     }).done();
   }
 
