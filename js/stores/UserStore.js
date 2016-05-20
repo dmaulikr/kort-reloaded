@@ -10,7 +10,7 @@ let _userUpdateInfo = [];
 
 class UserStore extends Store {
 
-  getUserInfo() {
+  setUserInfo() {
     return _userInfo;
   }
 
@@ -32,18 +32,8 @@ const userStore = new UserStore();
 function getRawUser(rawUser) {
   _userInfo = [];
   _userInfo.push({
-    id: rawUser.id,
-    name: rawUser.name,
-    username: rawUser.username,
-    oauth_user_id: rawUser.oauth_user_id,
-    oauth_provider: rawUser.oauth_provider,
-    token: rawUser.token,
-    fix_count: rawUser.fix_count,
-    vote_count: rawUser.vote_count,
-    koin_count: rawUser.koin_count,
+    id: rawUser.user_id,
     secret: rawUser.secret,
-    pic_url: rawUser.pic_url,
-    logged_in: rawUser.logged_in,
   });
 
   userStore.emitChange();
@@ -104,7 +94,7 @@ AppDispatcher.register((action) => {
       UserLoader.updateUser(
         action.id, getRawUserUpdateInfo);
       break;
-      
+
     default:
       return;
   }

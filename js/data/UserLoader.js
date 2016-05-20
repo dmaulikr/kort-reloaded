@@ -1,11 +1,12 @@
 import createRequestUrl from '../utils/ApiUrlBuilder';
 
+const VERIFY_USER_REST_PATH = '/user/verify/';
 const USER_REST_PATH = '/user/';
 
 class UserLoader {
-  static getUser(secret, onSuccess) {
+  static setUser(provider, id_token, onSuccess) {
     const requestUrl = createRequestUrl(
-      USER_REST_PATH, [secret], null); //queryParameters Array kann null sein
+      VERIFY_USER_REST_PATH, [provider], id_token); // id_token Format: "id_token=xxxxx"
     fetch(requestUrl)
       .then((response) => response.json())
       .then((responseData) => {

@@ -1,12 +1,10 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import UserLoader from '../data/UserLoader';
 
 export default class UserActions {
-  static getUser(secret) {
-    AppDispatcher.dispatch({
-      actionType: ActionTypes.USER_DATA,
-      secret,
-    });
+  static setUser(id_token, provider) {
+
   }
 
   static getUserBadges(id) {
@@ -23,7 +21,7 @@ export default class UserActions {
     });
   }
 
-  static updateUser(id) { //Parameter für Änderungen
+  static updateUser(id) { // Parameter für Änderungen
     AppDispatcher.dispatch({
       actionType: ActionTypes.USER_UPDATE,
       id,

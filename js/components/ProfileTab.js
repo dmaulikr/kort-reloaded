@@ -1,4 +1,6 @@
 import React, { View, Text, StyleSheet } from 'react-native';
+import userStore from '../stores/userStore';
+import UserActions from '../actions/UserActions';
 
 const styles = StyleSheet.create({
   container: {

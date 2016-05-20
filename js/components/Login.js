@@ -2,6 +2,7 @@ import React, { View, Text, StyleSheet } from 'react-native';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+import UserActions from '../actions/UserActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,6 +19,7 @@ class Login extends React.Component {
     super(props);
     this.state = {
       user: null,
+      provider: null,
     };
   }
 
@@ -31,15 +33,25 @@ class Login extends React.Component {
     GoogleSignin.currentUserAsync().then((user) => {
       console.log('USER', user);
       this.setState({ user: user });
+      this.createUser();
       Actions.tabbar();
     }).done();
   }
 
+  componentWillUnmount() {
+  }
+
+  createUser() {
+    UserActions.setUser(this.user.id_token, this.provider);
+  }
+
   _signIn() {
+    this.setState({ provider: 'google' });
     GoogleSignin.signIn()
     .then((user) => {
       console.log(user);
       this.setState({ user: user });
+
       Actions.tabbar();
     })
     .catch((err) => {
