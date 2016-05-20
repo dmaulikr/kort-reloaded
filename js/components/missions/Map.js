@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import MissionActions from '../../actions/MissionActions';
 import missionStore from '../../stores/MissionStore';
+import ValidationActions from '../../actions/ValidationActions';
+import validationStore from '../../stores/ValidationStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +14,8 @@ const styles = StyleSheet.create({
 
 const mapRef = 'OpenStreetMap';
 const missionLimit = 10;
-const missionRadius = 5000;
+const validationLimit = 10;
+const radius = 5000;
 const ACCESS_TOKEN = 'pk.eyJ1IjoiZG9taW5pY21oIiwiYSI6ImNpbTIwbHFqbjAwbTN3MW02bWNxbjI4YmEifQ.ZkVpEGDJZXDSmG6fuO8ZZA'; // eslint-disable-line max-len
 const STYLE_URL = 'https://raw.githubusercontent.com/osm2vectortiles/osm2vectortiles/gh-pages/styles/bright-v8.json';
 
@@ -36,12 +39,16 @@ const Map = React.createClass({
     this.locationWatchId = navigator.geolocation.watchPosition(this.onPositionChange,
       (error) => console.log(error),
       { enableHighAccurracy: true, distanceFilter: 100 });
-    missionStore.addChangeListener(this.onMissionsUpdate);
+
+    missionStore.addChangeListener(this.onTasksUpdate);
+    validationStore.addChangeListener(this.onTasksUpdate);
   },
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.locationWatchId);
-    missionStore.removeChangeListener(this.onMissionsUpdate);
+
+    missionStore.removeChangeListener(this.onTasksUpdate);
+    validationStore.removeChangeListener(this.onTasksUpdate);
   },
 
   onPositionChange(position) {
@@ -49,10 +56,11 @@ const Map = React.createClass({
     const longitude = position.coords.longitude;
     this.setState({ center: { latitude, longitude } });
 
-    MissionActions.loadMissions(latitude, longitude, missionLimit, missionRadius);
+    MissionActions.loadMissions(latitude, longitude, missionLimit, radius);
+    ValidationActions.loadValidations(latitude, longitude, validationLimit, radius);
   },
 
-  onMissionsUpdate() {
+  onTasksUpdate() {
     this.updateAnnotations();
   },
 
@@ -70,6 +78,14 @@ const Map = React.createClass({
         type: 'point',
         title: mission.title,
         coordinates: [parseFloat(mission.latitude), parseFloat(mission.longitude)],
+      });
+    }
+    for (let validation of validationStore.getAll()) { // eslint-disable-line prefer-const
+      annotations.push({
+        id: validation.id,
+        type: 'point',
+        title: validation.title,
+        coordinates: [parseFloat(validation.latitude), parseFloat(validation.longitude)],
       });
     }
     this.setState({ annotations });

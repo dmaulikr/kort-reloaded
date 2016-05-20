@@ -13,25 +13,9 @@ class MissionStore extends Store {
 
 const missionStore = new MissionStore();
 
-function initMissions(rawMissions) {
-  const missions = [];
-  rawMissions.forEach((mission) => {
-    missions.push({
-      id: mission.id,
-      title: mission.title,
-      type: mission.type,
-      description: mission.description,
-      latitude: mission.latitude,
-      longitude: mission.longitude,
-      fixKoinCount: mission.fixKoinCount,
-      promotionExtraKoins: mission.promotionExtraKoins,
-      promoId: mission.promoId,
-      answerPlaceholder: mission.answerPlaceholder,
-      viewType: mission.viewType,
-    });
-  }, this);
+function updateMissions(missions) {
   // only emit change if missions changed
-  // currently depends on the assumption that missions are always returned in the same order
+  // currently depends on the assumption that missions are always retrieved in the same order
   // TODO: make comparison more robust
   if (missions.toString() !== _missions.toString()) {
     _missions = missions;
@@ -42,7 +26,7 @@ function initMissions(rawMissions) {
 AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.MISSIONS_LOAD:
-      initMissions(action.data);
+      updateMissions(action.data);
       break;
 
     default:
