@@ -5,7 +5,6 @@ import Store from './Store';
 let _missions = [];
 
 class MissionStore extends Store {
-
   getAll() {
     return _missions;
   }

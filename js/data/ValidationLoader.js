@@ -35,7 +35,7 @@ class ValidationLoader {
     fetch(requestUrl)
       .then((response) => response.json())
       .then((responseData) => {
-        onSuccess(responseData.return);
+        onSuccess(initValidations(responseData.return));
       })
       .done();
   }
