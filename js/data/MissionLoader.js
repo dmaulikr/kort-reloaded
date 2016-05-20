@@ -1,6 +1,28 @@
 import createRequestUrl from '../utils/ApiUrlBuilder';
+import Mission from '../dto/Mission';
 
 const GET_MISSIONS_REST_PATH = '/mission/position';
+
+function initMissions(rawMissions) {
+  const missions = [];
+  rawMissions.forEach((mission) => {
+    missions.push(new Mission(
+      mission.id,
+      mission.type,
+      mission.title,
+      mission.description,
+      mission.view_type,
+      mission.latitude,
+      mission.longitude,
+      mission.fix_koin_count,
+      mission.promo_id,
+      mission.extra_coins,
+      mission.answer_placeholder)
+    );
+  }, this);
+
+  return missions;
+}
 
 class MissionLoader {
   static getMissions(latitude, longitude, limit, radius, onSuccess) {
@@ -12,10 +34,10 @@ class MissionLoader {
     fetch(requestUrl)
       .then((response) => response.json())
       .then((responseData) => {
-        onSuccess(responseData.return);
+        onSuccess(initMissions(responseData.return));
       })
       .done();
   }
 }
 
-module.exports = MissionLoader;
+export default MissionLoader;

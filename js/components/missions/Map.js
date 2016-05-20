@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
-import MissionActions from '../../actions/MissionActions';
-import missionStore from '../../stores/MissionStore';
+import TaskActions from '../../actions/TaskActions';
+import taskStore from '../../stores/TaskStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,8 +11,6 @@ const styles = StyleSheet.create({
 });
 
 const mapRef = 'OpenStreetMap';
-const missionLimit = 10;
-const missionRadius = 5000;
 const ACCESS_TOKEN = 'pk.eyJ1IjoiZG9taW5pY21oIiwiYSI6ImNpbTIwbHFqbjAwbTN3MW02bWNxbjI4YmEifQ.ZkVpEGDJZXDSmG6fuO8ZZA'; // eslint-disable-line max-len
 const STYLE_URL = 'https://raw.githubusercontent.com/osm2vectortiles/osm2vectortiles/gh-pages/styles/bright-v8.json';
 
@@ -36,12 +34,14 @@ const Map = React.createClass({
     this.locationWatchId = navigator.geolocation.watchPosition(this.onPositionChange,
       (error) => console.log(error),
       { enableHighAccurracy: true, distanceFilter: 100 });
-    missionStore.addChangeListener(this.onMissionsUpdate);
+
+    taskStore.addChangeListener(this.onTasksUpdate);
   },
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.locationWatchId);
-    missionStore.removeChangeListener(this.onMissionsUpdate);
+
+    taskStore.removeChangeListener(this.onTasksUpdate);
   },
 
   onPositionChange(position) {
@@ -49,10 +49,10 @@ const Map = React.createClass({
     const longitude = position.coords.longitude;
     this.setState({ center: { latitude, longitude } });
 
-    MissionActions.loadMissions(latitude, longitude, missionLimit, missionRadius);
+    TaskActions.loadTasks(latitude, longitude);
   },
 
-  onMissionsUpdate() {
+  onTasksUpdate() {
     this.updateAnnotations();
   },
 
@@ -64,12 +64,14 @@ const Map = React.createClass({
 
   updateAnnotations() {
     const annotations = [];
-    for (let mission of missionStore.getAll()) { // eslint-disable-line prefer-const
+
+    for (let task of taskStore.getAll()) { // eslint-disable-line prefer-const
       annotations.push({
-        id: mission.id,
+        id: task.id,
         type: 'point',
-        title: mission.title,
-        coordinates: [parseFloat(mission.latitude), parseFloat(mission.longitude)],
+        title: task.title,
+        coordinates: [parseFloat(task.latitude), parseFloat(task.longitude)],
+        task,
       });
     }
     this.setState({ annotations });
