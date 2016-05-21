@@ -65,9 +65,7 @@ const App = React.createClass({
                 icon={TabIcon}
               />
             </Scene>
-            <Scene key="mission" direction="vertical"  >
-              <Scene key="missionModal" component={MissionModal} title="Mission"/>
-            </Scene>
+            <Scene key="missionModal" component={MissionModal} direction='vertical' />
           </Scene>
         </Scene>
       </Router>

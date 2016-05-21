@@ -10,14 +10,26 @@ const styles = StyleSheet.create({
   },
 });
 
-const MissionsTab = function () {
-  return (
-    <View style={styles.container}>
-      <Button onPress={()=>Actions.missionModal({data:"Custom data", title:"Custom title" })}>Open Mission Modal</Button>
-      <Map />
-    </View>
-  );
-};
+const MissionsTab = React.createClass({
+  getInitialState() { return { }; },
+  render() {
+    return (
+      <View style={styles.container}>
+        <Button onPress={()=>Actions.missionModal({data:"Custom data", title:"Custom title" })}>Open Mission Modal</Button>
+        <Map />
+      </View>
+    );
+  },
+});
+
+// const MissionsTab = function () {
+//   return (
+//     <View style={styles.container}>
+//       <Button onPress={()=>Actions.missionModal({data:"Custom data", title:"Custom title" })}>Open Mission Modal</Button>
+//       <Map />
+//     </View>
+//   );
+// };
 
 MissionsTab.contextTypes = {
   drawer: React.PropTypes.object,

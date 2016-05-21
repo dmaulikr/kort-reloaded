@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#F5FCFF",
+        backgroundColor: "transparent",
     },
     welcome: {
         fontSize: 20,
@@ -25,8 +25,6 @@ const styles = StyleSheet.create({
 const MissionsModal = () => {
   return (
     <View style={[styles.container]}>
-      <Text>Mission page: {this.props.data}</Text>
-      <Button onPress={() => Actions.refresh({title:"Changed title"})}>Change title</Button>
       <Button onPress={Actions.pop}>Back</Button>
     </View>
   );

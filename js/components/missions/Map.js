@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import MissionActions from '../../actions/MissionActions';
 import missionStore from '../../stores/MissionStore';
+import {Actions} from "react-native-router-flux";
 
 const styles = StyleSheet.create({
   container: {
@@ -58,6 +59,7 @@ const Map = React.createClass({
 
   onOpenAnnotation(annotation) {
     console.log(annotation);
+    Actions.missionModal({data:"Custom data", title:"Custom title" })
   },
 
   locationWatchId: null,
