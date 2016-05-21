@@ -13,21 +13,11 @@ const styles = StyleSheet.create({
 const mapRef = 'OpenStreetMap';
 const ACCESS_TOKEN = 'pk.eyJ1IjoiZG9taW5pY21oIiwiYSI6ImNpbTIwbHFqbjAwbTN3MW02bWNxbjI4YmEifQ.ZkVpEGDJZXDSmG6fuO8ZZA'; // eslint-disable-line max-len
 const STYLE_URL = 'https://raw.githubusercontent.com/osm2vectortiles/osm2vectortiles/gh-pages/styles/bright-v8.json';
+const ZOOM_LEVEL = 13;
 
 const Map = React.createClass({
 
   mixins: [Mapbox.Mixin],
-
-  getInitialState() {
-    return {
-      center: {
-        latitude: 0,
-        longitude: 0,
-      },
-      zoom: 13,
-      annotations: [],
-    };
-  },
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(this.onPositionChange);
@@ -47,8 +37,8 @@ const Map = React.createClass({
   onPositionChange(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    this.setState({ center: { latitude, longitude } });
 
+    this.setCenterCoordinateZoomLevelAnimated(mapRef, latitude, longitude, ZOOM_LEVEL);
     TaskActions.loadTasks(latitude, longitude);
   },
 
@@ -80,7 +70,6 @@ const Map = React.createClass({
   render() {
     return (
       <Mapbox
-        centerCoordinate={this.state.center}
         annotations={this.state.annotations}
         style={styles.container}
         direction={0}
@@ -91,7 +80,6 @@ const Map = React.createClass({
         ref={mapRef}
         accessToken={ACCESS_TOKEN}
         styleURL={STYLE_URL}
-        zoomLevel={this.state.zoom}
         logoIsHidden
         attributionButtonIsHidden
         onOpenAnnotation={this.onOpenAnnotation}
