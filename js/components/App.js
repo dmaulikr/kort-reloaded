@@ -1,9 +1,10 @@
 import React from 'react';
-import { Scene, Router, Reducer } from 'react-native-router-flux';
+import { Scene, Modal, Router, Reducer } from 'react-native-router-flux';
 import Login from './Login';
 import TabView from './TabView';
 import MissionsTab from './MissionsTab';
 import TabIcon from './TabIcon';
+import MissionModal from './missions/MissionModal';
 
 /*
 const styles = StyleSheet.create({
@@ -30,38 +31,43 @@ const App = React.createClass({
   render() {
     return (
       <Router createReducer={reducerCreate} sceneStyle={{ backgroundColor: '#F7F7F7' }}>
-        <Scene key="root" hideNavBar>
-          <Scene key="login"
-            component={Login}
-            title="Login"
-            direction="vertical"
-            style={ { flex: 1, backgroundColor: 'transparent' } }
-          />
-          <Scene key="tabbar" tabs initial>
-            <Scene key="missions"
-              component={MissionsTab}
-              title="Missions"
-              hideNavBar
-              icon={TabIcon}
+        <Scene key="modal" component={Modal} >
+          <Scene key="root" hideNavBar>
+            <Scene key="login"
+              component={Login}
+              title="Login"
+              direction="vertical"
+              style={ { flex: 1, backgroundColor: 'transparent' } }
             />
-            <Scene key="profile"
-              component={TabView}
-              title="Profile"
-              hideNavBar
-              icon={TabIcon}
-            />
-            <Scene key="highscore"
-              component={TabView}
-              title="Highscore"
-              hideNavBar
-              icon={TabIcon}
-            />
-            <Scene key="about"
-              component={TabView}
-              title="About"
-              hideNavBar
-              icon={TabIcon}
-            />
+            <Scene key="tabbar" tabs initial>
+              <Scene key="missions"
+                component={MissionsTab}
+                title="Missions"
+                hideNavBar
+                icon={TabIcon}
+              />
+              <Scene key="profile"
+                component={TabView}
+                title="Profile"
+                hideNavBar
+                icon={TabIcon}
+              />
+              <Scene key="highscore"
+                component={TabView}
+                title="Highscore"
+                hideNavBar
+                icon={TabIcon}
+              />
+              <Scene key="about"
+                component={TabView}
+                title="About"
+                hideNavBar
+                icon={TabIcon}
+              />
+            </Scene>
+            <Scene key="mission" direction="vertical"  >
+              <Scene key="missionModal" component={MissionModal} title="Mission"/>
+            </Scene>
           </Scene>
         </Scene>
       </Router>
