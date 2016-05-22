@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Item, Image, Picker } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Item, Image, Switch, Picker } from 'react-native';
 import Button from "react-native-button";
 import { Actions } from "react-native-router-flux";
 
@@ -62,6 +62,11 @@ const MissionsModal = React.createClass({
         <Image source={require('../../assets/img/poi_name_mission.png')} />
         <Text style={{ marginBottom: 20 }}>{ this.state.mission } ?</Text>
         <Text style={{ marginBottom: 20 }}>{ this.state.txtUnableToSolve }</Text>
+        <Switch
+            onValueChange={(value) => this.setState({unableToSolve: value})}
+            style={{marginBottom: 10}}
+            value={this.state.unableToSolve}
+        />
         <TextInput
           autoCapitalize="words"
           style={styles.default}
