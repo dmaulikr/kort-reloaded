@@ -39,7 +39,7 @@ const App = React.createClass({
               direction="vertical"
               style={ { flex: 1, backgroundColor: 'transparent' } }
             />
-            <Scene key="tabbar" tabs initial>
+            <Scene key="tabbar" tabs initial >
               <Scene key="missions"
                 component={MissionsTab}
                 title="Missions"

@@ -4,33 +4,36 @@ import Button from "react-native-button";
 import { Actions } from "react-native-router-flux";
 
 const styles = StyleSheet.create({
-    default: {
-      height: 26,
-      borderWidth: 0.5,
-      borderColor: '#0f0f0f',
-      flex: 1,
-      fontSize: 13,
-      padding: 4,
-    },
-    container: {
-        flex: 1,
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-        backgroundColor: "transparent",
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: "center",
-        margin: 10,
-    },
-    instructions: {
-        textAlign: "center",
-        color: "#333333",
-        marginBottom: 5,
-    },
-    picker: {
-      width: 200,
-    },
+  textTitle: {
+    textAlign: "center",
+    fontSize: 18,
+    marginTop: 7,
+  },
+  text: {
+  },
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+    backgroundColor: "transparent",
+    paddingHorizontal: 14,
+  },
+  containerSolve: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingTop: 7,
+  },
+  containerMission: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingVertical: 7,
+  },
+  picker: {
+    alignSelf: "stretch",
+  },
 });
 
 const MissionsModal = React.createClass({
@@ -44,7 +47,12 @@ const MissionsModal = React.createClass({
       answer: '',
       selected: 'key',
       btnCompleteMission: '',
+      view: '',
     };
+  },
+
+  componentDidMount() {
+
   },
 
   onValueChange (key, value) {
@@ -54,33 +62,62 @@ const MissionsModal = React.createClass({
   },
 
   render() {
-    return (
-      <View style={[styles.container]}>
-        <Text style={{ marginTop: 20 }}>{ this.props.title }</Text>
-        <Image source={require('../../assets/img/koin_no_value.png')} />
-        <Text style={{ marginBottom: 20 }}>Get the { this.state.koins } Koins!</Text>
-        <Image source={require('../../assets/img/poi_name_mission.png')} />
-        <Text style={{ marginBottom: 20 }}>{ this.state.mission } ?</Text>
-        <Text style={{ marginBottom: 20 }}>{ this.state.txtUnableToSolve }</Text>
-        <Switch
-            onValueChange={(value) => this.setState({unableToSolve: value})}
-            style={{marginBottom: 10}}
-            value={this.state.unableToSolve}
-        />
-        <TextInput
-          autoCapitalize="words"
-          style={styles.default}
-        />
-        <Picker
-          style={styles.picker}
-          selectedValue={this.state.selected}
-          onValueChange={this.onValueChange.bind(this, 'selected')}>
-          <Item label="hello" value="key0" />
-          <Item label="world" value="key1" />
-        </Picker>
-        <Button onPress={Actions.pop}>Complete Mission</Button>
-      </View>
-    );
+    if (this.state.unableToSolve) {
+      return (
+        <View style = { [styles.container] }>
+          <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
+          <View style={ [styles.containerMission] }>
+            <Image source = {require('../../assets/img/poi_name_mission.png') } />
+            <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
+          </View>
+          <View style={ [styles.containerMission] }>
+            <Image source = {require('../../assets/img/poi_name_mission.png') } />
+            <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
+          </View>
+          <View style = { [styles.containerSolve] }>
+            <Text style = { [styles.text] }>{ this.state.txtUnableToSolve }</Text>
+            <Switch
+                onValueChange={ (value) => this.setState({ unableToSolve: value }) }
+                value = { this.state.unableToSolve }
+            />
+          </View>
+          <Button onPress={ Actions.pop }>Complete Mission</Button>
+        </View>
+      );
+    } else {
+      return (
+        <View style = { [styles.container] }>
+          <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
+          <View style={ [styles.containerMission] }>
+            <Image source = {require('../../assets/img/poi_name_mission.png') } />
+            <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
+          </View>
+          <View style={ [styles.containerMission] }>
+            <Image source = {require('../../assets/img/poi_name_mission.png') } />
+            <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
+          </View>
+          <View style={ [styles.containerSolve] }>
+            <Text style = { [styles.text] }>{ this.state.txtUnableToSolve }</Text>
+            <Switch
+                onValueChange={ (value) => this.setState({ unableToSolve: value }) }
+                value = { this.state.unableToSolve }
+            />
+          </View>
+          <TextInput
+            autoCapitalize="words"
+          />
+          <Picker
+            style = { styles.picker }
+            selectedValue = { this.state.selected }
+            onValueChange = { this.onValueChange.bind(this, 'selected') }>
+            <Item label = "hello" value = "key0" />
+            <Item label = "world" value = "key1" />
+          </Picker>
+          <Button onPress={ Actions.pop }>Complete Mission</Button>
+        </View>
+      );
+    }
+
   },
 });
 
