@@ -28,6 +28,7 @@ const Map = React.createClass({
         longitude: 0,
       },
       zoom: 13,
+
       annotations: [],
     };
   },
@@ -59,7 +60,7 @@ const Map = React.createClass({
 
   onOpenAnnotation(annotation) {
     console.log(annotation);
-    Actions.missionModal({data:"Custom data", title:"Custom title" })
+    Actions.missionModal({title:annotation.title, data:"Custom data" }); // annotation Objekt - Mission übergeben
   },
 
   locationWatchId: null,
@@ -71,6 +72,7 @@ const Map = React.createClass({
         id: mission.id,
         type: 'point',
         title: mission.title,
+        subtitle: '',
         coordinates: [parseFloat(mission.latitude), parseFloat(mission.longitude)],
       });
     }

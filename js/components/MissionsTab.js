@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Button from "react-native-button";
 import Map from './missions/Map';
-import {Actions} from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
 
 const MissionsTab = React.createClass({
   getInitialState() { return { }; },
+
   render() {
     return (
       <View style={styles.container}>
