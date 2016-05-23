@@ -49,9 +49,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   containerButton: {
-
-    flexDirection: "column",
-    justifyContent: "flex-end",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
   },
   innerContainer: {
@@ -130,14 +129,18 @@ const MissionsModal = React.createClass({
                 value = { this.state.unableToSolve }
             />
           </View>
-          <Button style = { { paddingTop: 20 } } onPress = { Actions.pop }>Complete Mission</Button>
-          <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true)}>
-            Complete Mission
-          </CustomButton>
+          <View style = { [styles.containerButton] }>
+            <CustomButton style = { { paddingTop: 20 } } onPress={ Actions.pop }>
+              Cancel
+            </CustomButton>
+            <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true)}>
+              Complete Mission
+            </CustomButton>
+          </View>
         </View>
       );
     } else {
-      if (true) {
+      if (false) {
         return (
           <View style = { [styles.container] }>
             <Modal
@@ -183,7 +186,9 @@ const MissionsModal = React.createClass({
               />
             </View>
             <View style = { [styles.containerButton] }>
-              <Button style = { { marginTop: 10 } } onPress = { Actions.pop }>Complete Mission</Button>
+              <CustomButton style = { { paddingTop: 20 } } onPress={ Actions.pop }>
+                Cancel
+              </CustomButton>
               <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true)}>
                 Complete Mission
               </CustomButton>
@@ -236,7 +241,9 @@ const MissionsModal = React.createClass({
               </Picker>
             </View>
             <View style = { [styles.containerButton] }>
-              <Button onPress = { Actions.pop }>Complete Mission</Button>
+            <CustomButton style = { { paddingTop: 20 } } onPress={ Actions.pop }>
+              Cancel
+            </CustomButton>
               <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true)}>
                 Complete Mission
               </CustomButton>
