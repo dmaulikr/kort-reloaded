@@ -36,7 +36,7 @@ class Login extends React.Component {
       console.log('USER', user);
       this.setState({ user: user });
       this.createUser();
-      Actions.tabbar();
+      // Actions.tabbar();
     }).done();
   }
 
@@ -54,7 +54,7 @@ class Login extends React.Component {
       console.log(user);
       this.setState({ user: user });
 
-      Actions.tabbar();
+      // Actions.tabbar();
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
