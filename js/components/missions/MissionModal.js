@@ -99,7 +99,7 @@ const MissionsModal = React.createClass({
         </View>
       );
     } else {
-      if (false) {
+      if (true) {
         return (
           <View style = { [styles.container] }>
             <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
