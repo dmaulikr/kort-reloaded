@@ -12,11 +12,9 @@ const styles = StyleSheet.create({
   text: {
   },
   container: {
-    flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "stretch",
-    backgroundColor: "transparent",
     paddingHorizontal: 14,
   },
   containerSolve: {
@@ -31,8 +29,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 7,
   },
+  containerInput: {
+  },
+  containerPicker: {
+  },
+  textEdit: {
+    height: 45,
+    marginTop: 10,
+    backgroundColor: "#ffff",
+  },
   picker: {
-    alignSelf: "stretch",
+    flex: 1,
+    justifyContent: "flex-start",
+  },
+  containerButton: {
+
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
 });
 
@@ -77,47 +91,82 @@ const MissionsModal = React.createClass({
           <View style = { [styles.containerSolve] }>
             <Text style = { [styles.text] }>{ this.state.txtUnableToSolve }</Text>
             <Switch
-                onValueChange={ (value) => this.setState({ unableToSolve: value }) }
+                onValueChange = { (value) => this.setState({ unableToSolve: value }) }
                 value = { this.state.unableToSolve }
             />
           </View>
-          <Button onPress={ Actions.pop }>Complete Mission</Button>
+          <Button style = { { paddingTop: 20 } } onPress = { Actions.pop }>Complete Mission</Button>
         </View>
       );
     } else {
-      return (
-        <View style = { [styles.container] }>
-          <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
-          <View style={ [styles.containerMission] }>
-            <Image source = {require('../../assets/img/poi_name_mission.png') } />
-            <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
+      if (false) {
+        return (
+          <View style = { [styles.container] }>
+            <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
+            <View style = { [styles.containerMission] }>
+              <Image source = {require('../../assets/img/poi_name_mission.png') } />
+              <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
+            </View>
+            <View style = { [styles.containerMission] }>
+              <Image source = {require('../../assets/img/poi_name_mission.png') } />
+              <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
+            </View>
+            <View style = { [styles.containerSolve] }>
+              <Text style = { [styles.text] }>{ this.state.txtUnableToSolve }</Text>
+              <Switch
+                  onValueChange = { (value) => this.setState({ unableToSolve: value }) }
+                  value = { this.state.unableToSolve }
+              />
+            </View>
+            <View style = { [styles.containerInput] }>
+              <TextInput
+                style = { [styles.textEdit] }
+                autoCapitalize = "words"
+                placeholder="Mission type"
+                onChangeText = {(answer) => this.setState({ answer })}
+                value = { this.state.answer }
+              />
+            </View>
+            <View style = { [styles.containerButton] }>
+              <Button style = { { marginTop: 10 } } onPress = { Actions.pop }>Complete Mission</Button>
+            </View>
           </View>
-          <View style={ [styles.containerMission] }>
-            <Image source = {require('../../assets/img/poi_name_mission.png') } />
-            <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
+        );
+      } else {
+        return (
+          <View style = { [styles.container] }>
+            <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
+            <View style = { [styles.containerMission] }>
+              <Image source = {require('../../assets/img/poi_name_mission.png') } />
+              <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
+            </View>
+            <View style = { [styles.containerMission] }>
+              <Image source = {require('../../assets/img/poi_name_mission.png') } />
+              <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
+            </View>
+            <View style = { [styles.containerSolve] }>
+              <Text style = { [styles.text] }>{ this.state.txtUnableToSolve }</Text>
+              <Switch
+                  onValueChange = { (value) => this.setState({ unableToSolve: value }) }
+                  value = { this.state.unableToSolve }
+              />
+            </View>
+            <View style = { [styles.containerPicker] }>
+              <Picker
+                style = { styles.picker }
+                selectedValue = { this.state.selected }
+                onValueChange = { this.onValueChange.bind(this, 'selected') }>
+                <Item label = "hello" value = "key0" />
+                <Item label = "world" value = "key1" />
+              </Picker>
+            </View>
+            <View style = { [styles.containerButton] }>
+              <Button onPress = { Actions.pop }>Complete Mission</Button>
+            </View>
           </View>
-          <View style={ [styles.containerSolve] }>
-            <Text style = { [styles.text] }>{ this.state.txtUnableToSolve }</Text>
-            <Switch
-                onValueChange={ (value) => this.setState({ unableToSolve: value }) }
-                value = { this.state.unableToSolve }
-            />
-          </View>
-          <TextInput
-            autoCapitalize="words"
-          />
-          <Picker
-            style = { styles.picker }
-            selectedValue = { this.state.selected }
-            onValueChange = { this.onValueChange.bind(this, 'selected') }>
-            <Item label = "hello" value = "key0" />
-            <Item label = "world" value = "key1" />
-          </Picker>
-          <Button onPress={ Actions.pop }>Complete Mission</Button>
-        </View>
-      );
+        );
+      }
     }
-
   },
 });
 

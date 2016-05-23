@@ -59,8 +59,12 @@ const Map = React.createClass({
   },
 
   onOpenAnnotation(annotation) {
-    console.log(annotation);
+    console.log(annotation.src);
     Actions.missionModal({title:annotation.title, data:"Custom data" }); // annotation Objekt - Mission übergeben
+  },
+
+  onLongPress (location) {
+    console.log(location);
   },
 
   locationWatchId: null,
@@ -72,7 +76,7 @@ const Map = React.createClass({
         id: mission.id,
         type: 'point',
         title: mission.title,
-        subtitle: '',
+        subtitle: 'this is a mission',
         coordinates: [parseFloat(mission.latitude), parseFloat(mission.longitude)],
       });
     }
@@ -97,7 +101,9 @@ const Map = React.createClass({
         logoIsHidden
         attributionButtonIsHidden
         onOpenAnnotation={this.onOpenAnnotation}
+        onLongPress={this.onLongPress}
         userTrackingMode={this.userTrackingMode.follow}
+        annotations={this.state.annotations}
       />
     );
   },
