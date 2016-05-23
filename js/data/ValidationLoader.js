@@ -1,9 +1,9 @@
-import createRequestUrl from '../utils/ApiUrlBuilder';
+import DataLoader from './DataLoader';
 import Validation from '../dto/Validation';
 
 const GET_VALIDATIONS_REST_PATH = '/validation/position';
 
-function initValidations(rawValidations) {
+function _initValidations(rawValidations) {
   const validations = [];
   rawValidations.forEach((validation) => {
     validations.push(new Validation(
@@ -25,19 +25,14 @@ function initValidations(rawValidations) {
   return validations;
 }
 
-class ValidationLoader {
+class ValidationLoader extends DataLoader {
   static getValidations(latitude, longitude, limit, radius, onSuccess) {
     const parameters = [];
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
-    const requestUrl = createRequestUrl(
+    const requestUrl = super.createRequestUrl(
       GET_VALIDATIONS_REST_PATH, [latitude, longitude], parameters);
-    fetch(requestUrl)
-      .then((response) => response.json())
-      .then((responseData) => {
-        onSuccess(initValidations(responseData.return));
-      })
-      .done();
+    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initValidations);
   }
 }
 
