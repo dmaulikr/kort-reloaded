@@ -1,9 +1,9 @@
-import createRequestUrl from '../utils/ApiUrlBuilder';
+import DataLoader from './DataLoader';
 import Mission from '../dto/Mission';
 
 const MISSIONS_REST_PATH = '/mission/position';
 
-function initMissions(rawMissions) {
+function _initMissions(rawMissions) {
   const missions = [];
   rawMissions.forEach((mission) => {
     missions.push(new Mission(
@@ -24,19 +24,14 @@ function initMissions(rawMissions) {
   return missions;
 }
 
-class MissionLoader {
+class MissionLoader extends DataLoader {
   static getMissions(latitude, longitude, limit, radius, onSuccess) {
     const parameters = [];
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
-    const requestUrl = createRequestUrl(
+    const requestUrl = super.createRequestUrl(
       MISSIONS_REST_PATH, [latitude, longitude], parameters);
-    fetch(requestUrl)
-      .then((response) => response.json())
-      .then((responseData) => {
-        onSuccess(initMissions(responseData.return));
-      })
-      .done();
+    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initMissions);
   }
 }
 

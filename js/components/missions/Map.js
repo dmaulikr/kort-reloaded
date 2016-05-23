@@ -19,6 +19,12 @@ const Map = React.createClass({
 
   mixins: [Mapbox.Mixin],
 
+  getInitialState() {
+    return {
+      annotations: [],
+    };
+  },
+
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(this.onPositionChange);
     this.locationWatchId = navigator.geolocation.watchPosition(this.onPositionChange,
@@ -47,7 +53,7 @@ const Map = React.createClass({
   },
 
   onOpenAnnotation(annotation) {
-    console.log(annotation);
+    console.log(annotation.task);
   },
 
   locationWatchId: null,
