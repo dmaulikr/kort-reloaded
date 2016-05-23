@@ -55,7 +55,7 @@ class DataLoader {
 
   static makeAuthenticatedRequest(requestUrl, onSuccess, onError, initializer) {
     const userId = '4131';
-    const secret = '50620fc147de3e2a28624216be76ab5f60222dc4';
+    const secret = '680ebf81e9b139e894769b42cd57e077e35859c5';
     const hash = new Buffer(`${userId}:${secret}`).toString('base64');
 
     fetch(requestUrl, {
