@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Item, Image, Switch, Picker } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Item, Image, Switch, Picker, Modal } from 'react-native';
 import Button from "react-native-button";
+import CustomButton from '../ui-components/CustomButton';
 import { Actions } from "react-native-router-flux";
 
 const styles = StyleSheet.create({
@@ -16,6 +17,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "stretch",
     paddingHorizontal: 14,
+  },
+  containerMissionComplete: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
   },
   containerSolve: {
     flexDirection: "row",
@@ -48,6 +54,13 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
+  innerContainer: {
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalButton: {
+    marginTop: 10,
+  },
 });
 
 const MissionsModal = React.createClass({
@@ -62,11 +75,16 @@ const MissionsModal = React.createClass({
       selected: 'key',
       btnCompleteMission: '',
       view: '',
+      modalVisible: false,
     };
   },
 
   componentDidMount() {
 
+  },
+
+  _setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   },
 
   onValueChange (key, value) {
@@ -79,6 +97,23 @@ const MissionsModal = React.createClass({
     if (this.state.unableToSolve) {
       return (
         <View style = { [styles.container] }>
+          <Modal
+            animationType={false}
+            transparent={false}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {this._setModalVisible(false)}}
+          >
+            <View style={[styles.containerMissionComplete, 'rgba(0, 0, 0, 0.5)']}>
+              <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
+                <Text>Mission completed.</Text>
+                <CustomButton
+                  onPress={this._setModalVisible.bind(this, false)}
+                  style={styles.modalButton}>
+                  Close
+                </CustomButton>
+              </View>
+            </View>
+          </Modal>
           <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
           <View style={ [styles.containerMission] }>
             <Image source = {require('../../assets/img/poi_name_mission.png') } />
@@ -96,12 +131,32 @@ const MissionsModal = React.createClass({
             />
           </View>
           <Button style = { { paddingTop: 20 } } onPress = { Actions.pop }>Complete Mission</Button>
+          <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true)}>
+            Complete Mission
+          </CustomButton>
         </View>
       );
     } else {
       if (true) {
         return (
           <View style = { [styles.container] }>
+            <Modal
+              animationType={false}
+              transparent={false}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {this._setModalVisible(false)}}
+            >
+              <View style={[styles.containerMissionComplete, 'rgba(0, 0, 0, 0.5)']}>
+                <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
+                  <Text>Mission completed.</Text>
+                  <CustomButton
+                    onPress={this._setModalVisible.bind(this, false)}
+                    style={styles.modalButton}>
+                    Close
+                  </CustomButton>
+                </View>
+              </View>
+            </Modal>
             <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
             <View style = { [styles.containerMission] }>
               <Image source = {require('../../assets/img/poi_name_mission.png') } />
@@ -129,12 +184,32 @@ const MissionsModal = React.createClass({
             </View>
             <View style = { [styles.containerButton] }>
               <Button style = { { marginTop: 10 } } onPress = { Actions.pop }>Complete Mission</Button>
+              <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true)}>
+                Complete Mission
+              </CustomButton>
             </View>
           </View>
         );
       } else {
         return (
           <View style = { [styles.container] }>
+            <Modal
+              animationType={false}
+              transparent={false}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {this._setModalVisible(false)}}
+            >
+              <View style={[styles.containerMissionComplete, 'rgba(0, 0, 0, 0.5)']}>
+                <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
+                  <Text>Mission completed.</Text>
+                  <CustomButton
+                    onPress={this._setModalVisible.bind(this, false)}
+                    style={styles.modalButton}>
+                    Close
+                  </CustomButton>
+                </View>
+              </View>
+            </Modal>
             <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
             <View style = { [styles.containerMission] }>
               <Image source = {require('../../assets/img/poi_name_mission.png') } />
@@ -162,6 +237,9 @@ const MissionsModal = React.createClass({
             </View>
             <View style = { [styles.containerButton] }>
               <Button onPress = { Actions.pop }>Complete Mission</Button>
+              <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true)}>
+                Complete Mission
+              </CustomButton>
             </View>
           </View>
         );
