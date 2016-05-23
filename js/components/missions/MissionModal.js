@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   containerSolve: {
     flexDirection: "row",
@@ -102,7 +103,7 @@ const MissionsModal = React.createClass({
             visible={this.state.modalVisible}
             onRequestClose={() => {this._setModalVisible(false)}}
           >
-            <View style={[styles.containerMissionComplete, 'rgba(0, 0, 0, 0.5)']}>
+            <View style={[styles.containerMissionComplete]}>
               <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
                 <Text>Mission completed.</Text>
                 <CustomButton
@@ -149,7 +150,7 @@ const MissionsModal = React.createClass({
               visible={this.state.modalVisible}
               onRequestClose={() => {this._setModalVisible(false)}}
             >
-              <View style={[styles.containerMissionComplete, 'rgba(0, 0, 0, 0.5)']}>
+              <View style={[styles.containerMissionComplete]}>
                 <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
                   <Text>Mission completed.</Text>
                   <CustomButton
@@ -204,7 +205,7 @@ const MissionsModal = React.createClass({
               visible={this.state.modalVisible}
               onRequestClose={() => {this._setModalVisible(false)}}
             >
-              <View style={[styles.containerMissionComplete, 'rgba(0, 0, 0, 0.5)']}>
+              <View style={[styles.containerMissionComplete]}>
                 <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
                   <Text>Mission completed.</Text>
                   <CustomButton
