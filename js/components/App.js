@@ -4,6 +4,7 @@ import Login from './Login';
 import TabView from './TabView';
 import MissionsTab from './MissionsTab';
 import ProfileTab from './ProfileTab';
+import HighscoreTab from './HighscoreTab';
 import TabIcon from './TabIcon';
 import MissionModal from './missions/MissionModal';
 
@@ -55,7 +56,7 @@ const App = React.createClass({
                 icon={TabIcon}
               />
               <Scene key="highscore"
-                component={TabView}
+                component={HighscoreTab}
                 title="Highscore"
                 hideNavBar
                 icon={TabIcon}

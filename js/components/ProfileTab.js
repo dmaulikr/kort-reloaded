@@ -79,8 +79,6 @@ const ProfileTab = React.createClass({
     };
   },
 
-  _pressData: ({}: {[key: number]: boolean}),
-
   componentWillMount() {
     this._pressData = {};
   },
