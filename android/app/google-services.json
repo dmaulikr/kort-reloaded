@@ -42,6 +42,45 @@
           "status": 1
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963836018928:android:607d5005d86f115e",
+        "android_client_info": {
+          "package_name": "ch.hsr.kort"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963836018928-q7jn7g0njvv03a0ip3bnh6f4h7i0n2t9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.hsr.kort",
+            "certificate_hash": "029A7B0FBA731A2FCF16DA669922ACFB09ADE395"
+          }
+        },
+        {
+          "client_id": "963836018928-tk23jtqent2p7s310ev8vt8q4mo97813.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC68_X8HP57rsPU3X-wVmLX4-pXiefBZCQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
     }
   ],
   "configuration_version": "1"
