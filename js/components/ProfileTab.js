@@ -3,24 +3,46 @@ import React, { View, Text, Image, StyleSheet, ListView, TouchableHighlight, Rec
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  containerInfo: {
+    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     backgroundColor: '#F5FCFF',
   },
+  containerProfile: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  containerProfileDescription: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  containerKoins: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  containerKoinsDescription: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
   containerListView: {
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    backgroundColor: '#F5FCFF',
   },
   textTitle: {
     textAlign: "center",
+    fontSize: 18,
+    marginTop: 7,
+  },
+  textSubTitle: {
     fontSize: 18,
     marginTop: 7,
   },
@@ -104,24 +126,37 @@ const ProfileTab = React.createClass({
 
   render() {
     return (
-      <View style={styles.container}>
-        <Image source = { require('../assets/img/poi_name_mission.png') } />
-        <Text style = { [styles.textTitle] }>Username</Text>
-        <Text style = { [styles.textTitle] }>{ this.state.username }</Text>
-        <Text style = { [styles.textTitle] }>Login via</Text>
-        <Text style = { [styles.textTitle] }>{ this.state.provider }</Text>
-        <Text style = { [styles.textTitle] }>Completed Missions</Text>
-        <Text style = { [styles.textTitle] }>{ this.state.completedMissions }</Text>
-        <Text style = { [styles.textTitle] }>Collected Koins</Text>
-        <Image source = { require('../assets/img/poi_name_mission.png') } />
-        <Text style = { [styles.textTitle] }>{ this.state.collectedKoins } Koins</Text>
-        <Image source = { require('../assets/img/poi_name_mission.png') } />
-        <Text style = { [styles.textTitle] }>{ this.state.place } Place</Text>
-        <Text style = { [styles.textTitle] }>Won Badges</Text>
-        <View style={styles.containerListView}>
+      <View style={ styles.container }>
+        <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
+        <View style={ styles.containerInfo }>
+          <View style={ styles.containerProfile }>
+            <Image source = { require('../assets/img/poi_name_mission.png') } />
+            <View style={ styles.containerProfileDescription }>
+              <Text style = { [styles.textSubTitle] }>Username</Text>
+              <Text style = { [styles.textSubTitle] }>{ this.state.username } username</Text>
+              <Text style = { [styles.textSubTitle] }>Login via</Text>
+              <Text style = { [styles.textSubTitle] }>{ this.state.provider } provider </Text>
+              <Text style = { [styles.textSubTitle] }>Completed Missions</Text>
+              <Text style = { [styles.textSubTitle] }>{ this.state.completedMissions }</Text>
+            </View>
+          </View>
+          <Text style = { [styles.textSubTitle] }>Collected Koins</Text>
+          <View style={ styles.containerKoins }>
+            <View style={ styles.containerKoinsDescription }>
+              <Image source = { require('../assets/img/poi_name_mission.png') } />
+              <Text style = { [styles.textSubTitle] }>{ this.state.collectedKoins } Koins</Text>
+            </View>
+            <View style={ styles.containerKoinsDescription }>
+              <Image source = { require('../assets/img/poi_name_mission.png') } />
+              <Text style = { [styles.textSubTitle] }>{ this.state.place } Place</Text>
+            </View>
+          </View>
+        </View>
+        <View style={ styles.containerListView }>
+          <Text style = { [styles.textSubTitle] }>Won Badges</Text>
           <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this._renderRow}
+            dataSource={ this.state.dataSource }
+            renderRow={ this._renderRow }
             renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
           />
         </View>
