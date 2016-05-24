@@ -26,7 +26,7 @@ class Login extends React.Component {
 
   componentDidMount() {
     GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/calendar'],
+      //scopes: ['https://www.googleapis.com/auth/calendar'],
       webClientId: '963836018928-tk23jtqent2p7s310ev8vt8q4mo97813.apps.googleusercontent.com',
       offlineAccess: true,
     });
@@ -34,16 +34,10 @@ class Login extends React.Component {
     GoogleSignin.currentUserAsync().then((user) => {
       console.log('USER', user);
       this.setState({ user: user });
-      this.createUser();
-      Actions.tabbar();
     }).done();
   }
 
   componentWillUnmount() {
-  }
-
-  createUser() {
-    UserActions.setUser(this.user.id_token, this.provider);
   }
 
   _signIn() {
@@ -52,8 +46,6 @@ class Login extends React.Component {
     .then((user) => {
       console.log(user);
       this.setState({ user: user });
-
-      Actions.tabbar();
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);

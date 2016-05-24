@@ -28,6 +28,11 @@ ios/Kort/AppDelegate.m
 .idea
 .gradle
 local.properties
+# Different ApplicationId / Package Name for Google Auth
+android/app/build.gradle
+android/app/src/main/AndroidManifest.xml
+android/app/src/main/java/ch/hsr/kort/MainActivity.java
+android/app/src/main/java/com/kort/MainActivity.java
 
 # node.js
 #
