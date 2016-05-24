@@ -3,9 +3,11 @@ import React, { View, Text, Image, StyleSheet, ListView, TouchableHighlight, Rec
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  containerListView: {
   },
   welcome: {
     fontSize: 20,
@@ -116,11 +118,13 @@ const ProfileTab = React.createClass({
         <Image source = { require('../assets/img/poi_name_mission.png') } />
         <Text style = { [styles.textTitle] }>{ this.state.place } Place</Text>
         <Text style = { [styles.textTitle] }>Won Badges</Text>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
-          renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
-        />
+        <View style={styles.containerListView}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderRow}
+            renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
+          />
+        </View>
       </View>
     );
   },
