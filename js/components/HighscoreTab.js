@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet, ListView, TouchableHighlight, RecyclerVi
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 20,
     marginBottom: 45,
   },
   containerListView: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   textTitle: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 18,
     marginTop: 7,
   },
@@ -96,7 +96,7 @@ const HighscoreTab = React.createClass({
 
   render() {
     return (
-      <View style={ [styles.container, this.props.sceneStyle] }>
+      <View style={ styles.container }>
         <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
         <View style={ styles.containerListView }>
           <ListView

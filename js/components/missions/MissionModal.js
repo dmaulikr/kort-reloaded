@@ -1,21 +1,21 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, Item, Image, Switch, Picker, Modal } from 'react-native';
-import Button from "react-native-button";
+import Button from 'react-native-button';
 import CustomButton from '../ui-components/CustomButton';
-import { Actions } from "react-native-router-flux";
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   textTitle: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 18,
     marginTop: 7,
   },
   text: {
   },
   container: {
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "stretch",
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
     paddingHorizontal: 14,
   },
   containerMissionComplete: {
@@ -25,15 +25,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   containerSolve: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingTop: 7,
   },
   containerMission: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     paddingVertical: 7,
   },
   containerInput: {
@@ -43,16 +43,16 @@ const styles = StyleSheet.create({
   textEdit: {
     height: 45,
     marginTop: 10,
-    backgroundColor: "#ffff",
+    backgroundColor: '#ffff',
   },
   picker: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: 'flex-start',
   },
   containerButton: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   innerContainer: {
     borderRadius: 10,
@@ -183,8 +183,8 @@ const MissionsModal = React.createClass({
             <View style = { [styles.containerInput] }>
               <TextInput
                 style = { [styles.textEdit] }
-                autoCapitalize = "words"
-                placeholder="Mission type"
+                autoCapitalize = 'words'
+                placeholder='Mission type'
                 onChangeText = {(answer) => this.setState({ answer })}
                 value = { this.state.answer }
               />
@@ -240,8 +240,8 @@ const MissionsModal = React.createClass({
                 style = { styles.picker }
                 selectedValue = { this.state.selected }
                 onValueChange = { this.onValueChange.bind(this, 'selected') }>
-                <Item label = "hello" value = "key0" />
-                <Item label = "world" value = "key1" />
+                <Item label = 'hello' value = 'key0' />
+                <Item label = 'world' value = 'key1' />
               </Picker>
             </View>
             <View style = { [styles.containerButton] }>
