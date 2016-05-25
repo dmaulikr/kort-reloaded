@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
 
 class Login extends React.Component {
 
+  // set user initial state from AsyncStorage
   constructor(props) {
     super(props);
     this.state = {
@@ -36,8 +37,9 @@ class Login extends React.Component {
       console.log('USER', user);
       this.setState({ user: user });
       this.createUser();
-      // Actions.tabbar();
+      Actions.tabbar();
       console.log(user);
+      // save user initial state to AsyncStorage
     }).done();
   }
 
@@ -55,7 +57,7 @@ class Login extends React.Component {
       console.log(user);
       this.setState({ user: user });
 
-      // Actions.tabbar();
+      Actions.tabbar();
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);

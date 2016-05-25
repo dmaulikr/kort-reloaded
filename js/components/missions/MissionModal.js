@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
   textEdit: {
     height: 45,
     marginTop: 10,
-    backgroundColor: '#ffff',
   },
   picker: {
     flex: 1,
@@ -106,30 +105,30 @@ const MissionsModal = React.createClass({
     if (this.state.unableToSolve) {
       return (
         <View style = { [styles.container] }>
-          <Modal
-            animationType={false}
-            transparent={false}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {this._setModalVisible(false)}}
-          >
-            <View style={[styles.containerMissionComplete]}>
-              <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
-                <Text>Mission completed.</Text>
-                <CustomButton
-                  onPress={this._setModalVisible.bind(this, false)}
-                  style={styles.modalButton}>
-                  Close
-                </CustomButton>
+            <Modal
+              animationType = { false }
+              transparent = { true }
+              visible = { this.state.modalVisible }
+              onRequestClose = { () => { this._setModalVisible(false) } }
+            >
+              <View style = { [styles.containerMissionComplete] }>
+                <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 } ] }>
+                  <Text>Mission completed.</Text>
+                  <CustomButton
+                    onPress = { this._setModalVisible.bind(this, false) }
+                    style = { styles.modalButton }>
+                    Close
+                  </CustomButton>
+                </View>
               </View>
-            </View>
-          </Modal>
+            </Modal>
           <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
           <View style={ [styles.containerMission] }>
-            <Image style = { styles.icon } source = {require('../../assets/img/koin_no_value.png') } />
+            <Image style = { styles.icon } source = { require('../../assets/img/koin_no_value.png') } />
             <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
           </View>
           <View style={ [styles.containerMission] }>
-            <Image style = { styles.icon } source = {require('../../assets/img/poi_name_mission.png') } />
+            <Image style = { styles.icon } source = { require('../../assets/img/poi_name_mission.png') } />
             <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
           </View>
           <View style = { [styles.containerSolve] }>
@@ -143,7 +142,7 @@ const MissionsModal = React.createClass({
             <CustomButton style = { { paddingTop: 20 } } onPress={ Actions.pop }>
               Cancel
             </CustomButton>
-            <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true) }>
+            <CustomButton style = { { paddingTop: 20 } } onPress={ this._setModalVisible.bind(this, true) }>
               Complete Mission
             </CustomButton>
           </View>
@@ -154,17 +153,17 @@ const MissionsModal = React.createClass({
         return (
           <View style = { [styles.container] }>
             <Modal
-              animationType={ false }
-              transparent={ false }
-              visible={ this.state.modalVisible }
+              animationType = { false }
+              transparent = { true }
+              visible = { this.state.modalVisible }
               onRequestClose={ () => { this._setModalVisible(false) } }
             >
-              <View style={ [styles.containerMissionComplete] }>
-                <View style={ [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
+              <View style = { [styles.containerMissionComplete] }>
+                <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
                   <Text>Mission completed.</Text>
                   <CustomButton
-                    onPress={ this._setModalVisible.bind(this, false) }
-                    style={ styles.modalButton }>
+                    onPress = { this._setModalVisible.bind(this, false) }
+                    style = { styles.modalButton }>
                     Close
                   </CustomButton>
                 </View>
@@ -172,11 +171,11 @@ const MissionsModal = React.createClass({
             </Modal>
             <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
             <View style = { [styles.containerMission] }>
-              <Image style = { styles.icon } source = {require('../../assets/img/koin_no_value.png') } />
+              <Image style = { styles.icon } source = { require('../../assets/img/koin_no_value.png') } />
               <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
             </View>
             <View style = { [styles.containerMission] }>
-              <Image style = { styles.icon } source = {require('../../assets/img/poi_name_mission.png') } />
+              <Image style = { styles.icon } source = { require('../../assets/img/poi_name_mission.png') } />
               <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
             </View>
             <View style = { [styles.containerSolve] }>
@@ -199,7 +198,7 @@ const MissionsModal = React.createClass({
               <CustomButton style = { { paddingTop: 20 } } onPress={ Actions.pop }>
                 Cancel
               </CustomButton>
-              <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true) }>
+              <CustomButton style = { { paddingTop: 20 } } onPress={ this._setModalVisible.bind(this, true) }>
                 Complete Mission
               </CustomButton>
             </View>
@@ -209,17 +208,17 @@ const MissionsModal = React.createClass({
         return (
           <View style = { [styles.container] }>
             <Modal
-              animationType={ false }
-              transparent={ false }
-              visible={ this.state.modalVisible }
+              animationType = { false }
+              transparent = { true }
+              visible = { this.state.modalVisible }
               onRequestClose={ () => { this._setModalVisible(false) } }
             >
-              <View style={ [styles.containerMissionComplete] }>
-                <View style={ [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
+              <View style = { [styles.containerMissionComplete] }>
+                <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
                   <Text>Mission completed.</Text>
                   <CustomButton
-                    onPress={ this._setModalVisible.bind(this, false) }
-                    style={ styles.modalButton }>
+                    onPress = { this._setModalVisible.bind(this, false) }
+                    style = { styles.modalButton }>
                     Close
                   </CustomButton>
                 </View>
@@ -227,11 +226,11 @@ const MissionsModal = React.createClass({
             </Modal>
             <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
             <View style = { [styles.containerMission] }>
-              <Image style = { styles.icon } source = {require('../../assets/img/koin_no_value.png') } />
+              <Image style = { styles.icon } source = { require('../../assets/img/koin_no_value.png') } />
               <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
             </View>
             <View style = { [styles.containerMission] }>
-              <Image style = { styles.icon } source = {require('../../assets/img/poi_name_mission.png') } />
+              <Image style = { styles.icon } source = { require('../../assets/img/poi_name_mission.png') } />
               <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
             </View>
             <View style = { [styles.containerSolve] }>
@@ -254,7 +253,7 @@ const MissionsModal = React.createClass({
             <CustomButton style = { { paddingTop: 20 } } onPress={ Actions.pop }>
               Cancel
             </CustomButton>
-              <CustomButton style = { { paddingTop: 20 } } onPress={this._setModalVisible.bind(this, true) }>
+              <CustomButton style = { { paddingTop: 20 } } onPress={ this._setModalVisible.bind(this, true) }>
                 Complete Mission
               </CustomButton>
             </View>
