@@ -56,7 +56,7 @@ const AboutTab = React.createClass({
             <Text style = { [styles.textSubTitle] }>version</Text>
             <Text style = { [styles.textTitle] }>More information</Text>
             <Text style = { [styles.textSubTitle] }>Webseite</Text>
-            <Text style = { [styles.textSubTitle] }>Feedback, FAQ</Text>
+            <Text style = { [styles.textSubTitle] }>Feedback / FAQ</Text>
             <Text style = { [styles.textSubTitle] }>Report a bug</Text>
             <Text style = { [styles.textTitle] }>Developer</Text>
             <Text style = { [styles.textSubTitle] }>Dominic Mülhaupt</Text>
@@ -69,10 +69,11 @@ const AboutTab = React.createClass({
             <Text style = { [styles.textSubTitle] }>Lead: Prof. Stefan Keller</Text>
             <Image style = { styles.hsrlogo } source = { require('../assets/img/hsr_logo.png') } />
             <Text style = { [styles.textTitle] }>Credits</Text>
-            <Text style = { [styles.textSubTitle] }></Text>
-            <Text style = { [styles.textSubTitle] }></Text>
+            <Text style = { [styles.textSubTitle] }>Partner: Liip AG</Text>
+            <Text style = { [styles.textSubTitle] }>Tiles: ...</Text>
+            <Text style = { [styles.textSubTitle] }>Marker icons: ...</Text>
             <Text style = { [styles.textTitle] }>Legal note</Text>
-            <Text style = { [styles.textSubTitle] }>Please follow the guidelines of OpenStreetMap</Text>
+            <Text style = { [styles.textSubTitle] }>Please follow the guidelines of OpenStreetMap ...</Text>
           </View>
         </View>
       </ScrollView>
