@@ -20,6 +20,12 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
+    justifyContent: 'flex-start',
+    padding: 10,
+    backgroundColor: '#F6F6F6',
+  },
+  column: {
+    flexDirection: 'column',
     justifyContent: 'center',
     padding: 10,
     backgroundColor: '#F6F6F6',
@@ -42,12 +48,14 @@ const HighscoreTab = React.createClass({
   getInitialState() {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     return {
+      name: '',
       dataSource: ds.cloneWithRows(['row 1', 'row 2', 'row 3', 'row 4', 'row 5', 'row 6', 'row 7', 'row 8', 'row 9', 'row 10', 'row 11']),
     };
   },
 
   componentWillMount() {
     this._pressData = {};
+    // setState von dataSource - array aus allen usern erzeugen und an cloneWithRows übergeben
   },
 
   _renderRow: function(rowData: string, sectionID: number, rowID: number) {
@@ -56,9 +64,14 @@ const HighscoreTab = React.createClass({
           <View>
             <View style={styles.row}>
               <Image style={styles.thumb} source={ require('../assets/img/poi_name_mission.png') } />
-              <Text style={styles.text}>
-                {rowData + ' - '}
-              </Text>
+              <View style={styles.column}>
+                <Text style={styles.text}>
+                  {rowData + ' - '}
+                </Text>
+                <Text style={styles.text}>
+
+                </Text>
+              </View>
             </View>
           </View>
         </TouchableHighlight>
@@ -83,7 +96,7 @@ const HighscoreTab = React.createClass({
 
   render() {
     return (
-      <View style={[styles.container, this.props.sceneStyle]}>
+      <View style={ [styles.container, this.props.sceneStyle] }>
         <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
         <View style={ styles.containerListView }>
           <ListView
