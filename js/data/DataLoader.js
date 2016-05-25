@@ -1,6 +1,6 @@
 const Buffer = require('buffer').Buffer;
 
-const REQUEST_LOCATION = 'https://kort-dev.herokuapp.com/server/webservices';
+const REQUEST_LOCATION = 'https://kort.herokuapp.com/server/webservices';
 
 function _getQueryParametersString(queryParameters) {
   let queryParametersString;
@@ -54,7 +54,7 @@ class DataLoader {
   }
 
   static makeAuthenticatedRequest(requestUrl, onSuccess, onError, initializer) {
-    const userId = '4131';
+    const userId = '4156';
     const secret = '680ebf81e9b139e894769b42cd57e077e35859c5';
     const hash = new Buffer(`${userId}:${secret}`).toString('base64');
 

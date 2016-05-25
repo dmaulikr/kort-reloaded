@@ -85,6 +85,9 @@ const MissionsModal = React.createClass({
 
   _setModalVisible(visible) {
     this.setState({modalVisible: visible});
+    if (!this.state.modalVisible) {
+      Actions.pop();
+    }
   },
 
   onValueChange (key, value) {
