@@ -33,42 +33,42 @@ const App = React.createClass({
   render() {
     return (
       <Router createReducer={reducerCreate} sceneStyle={{ backgroundColor: '#F7F7F7' }}>
-        <Scene key="modal" component={Modal} >
-          <Scene key="root" hideNavBar>
-            <Scene key="login"
+        <Scene key='modal' component={Modal} >
+          <Scene key='root' hideNavBar>
+            <Scene key='login'
               component={Login}
-              title="Login"
-              direction="vertical"
+              title='Login'
+              direction='vertical'
               style={ { flex: 1, backgroundColor: 'transparent' } }
             />
-            <Scene key="tabbar" tabs >
-              <Scene key="missions"
+            <Scene key='tabbar' tabs >
+              <Scene key='missions'
                 component={MissionsTab}
-                title="Missions"
+                title='Missions'
                 hideNavBar
                 icon={TabIcon}
               />
-              <Scene key="profile"
+              <Scene key='profile'
                 initial
                 component={ProfileTab}
-                title="Profile"
+                title='Profile'
                 hideNavBar
                 icon={TabIcon}
               />
-              <Scene key="highscore"
+              <Scene key='highscore'
                 component={HighscoreTab}
-                title="Highscore"
+                title='Highscore'
                 hideNavBar
                 icon={TabIcon}
               />
-              <Scene key="about"
+              <Scene key='about'
                 component={AboutTab}
-                title="About"
+                title='About'
                 hideNavBar
                 icon={TabIcon}
               />
             </Scene>
-            <Scene key="missionModal" panHandlers={null} component={MissionModal} direction='vertical' />
+            <Scene key='missionModal' panHandlers={null} component={MissionModal} direction='vertical' />
           </Scene>
         </Scene>
       </Router>

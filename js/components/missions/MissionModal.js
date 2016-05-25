@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   textTitle: {
     textAlign: 'center',
     fontSize: 18,
-    marginTop: 7,
+    marginTop: 25,
   },
   text: {
   },
@@ -60,6 +60,12 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     marginTop: 10,
+  },
+  icon: {
+    marginTop: 7,
+    marginRight: 7,
+    height: 46,
+    width: 46,
   },
 });
 
@@ -119,11 +125,11 @@ const MissionsModal = React.createClass({
           </Modal>
           <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
           <View style={ [styles.containerMission] }>
-            <Image source = {require('../../assets/img/poi_name_mission.png') } />
+            <Image style = { styles.icon } source = {require('../../assets/img/koin_no_value.png') } />
             <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
           </View>
           <View style={ [styles.containerMission] }>
-            <Image source = {require('../../assets/img/poi_name_mission.png') } />
+            <Image style = { styles.icon } source = {require('../../assets/img/poi_name_mission.png') } />
             <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
           </View>
           <View style = { [styles.containerSolve] }>
@@ -166,11 +172,11 @@ const MissionsModal = React.createClass({
             </Modal>
             <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
             <View style = { [styles.containerMission] }>
-              <Image source = {require('../../assets/img/poi_name_mission.png') } />
+              <Image style = { styles.icon } source = {require('../../assets/img/koin_no_value.png') } />
               <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
             </View>
             <View style = { [styles.containerMission] }>
-              <Image source = {require('../../assets/img/poi_name_mission.png') } />
+              <Image style = { styles.icon } source = {require('../../assets/img/poi_name_mission.png') } />
               <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
             </View>
             <View style = { [styles.containerSolve] }>
@@ -221,11 +227,11 @@ const MissionsModal = React.createClass({
             </Modal>
             <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
             <View style = { [styles.containerMission] }>
-              <Image source = {require('../../assets/img/poi_name_mission.png') } />
+              <Image style = { styles.icon } source = {require('../../assets/img/koin_no_value.png') } />
               <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
             </View>
             <View style = { [styles.containerMission] }>
-              <Image source = {require('../../assets/img/poi_name_mission.png') } />
+              <Image style = { styles.icon } source = {require('../../assets/img/poi_name_mission.png') } />
               <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
             </View>
             <View style = { [styles.containerSolve] }>

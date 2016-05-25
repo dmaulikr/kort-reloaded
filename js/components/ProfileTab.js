@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     marginTop: 7,
     width: 240,
   },
-  picture: {
+  icon: {
     marginTop: 7,
     marginRight: 7,
     height: 46,
@@ -123,11 +123,11 @@ const ProfileTab = React.createClass({
             <Text style = { [styles.textSubTitle] }>Collected Koins</Text>
             <View style = { styles.containerKoins }>
               <View style = { styles.containerKoinsDescription }>
-                <Image style = { styles.picture } source = { require('../assets/img/koin_no_value.png') } />
+                <Image style = { styles.icon } source = { require('../assets/img/koin_no_value.png') } />
                 <Text style = { [styles.textSubTitle] }>{ this.state.collectedKoins } Koins</Text>
               </View>
               <View style = { styles.containerKoinsDescription }>
-                <Image style = { styles.picture } source = { require('../assets/img/highscore.png') } />
+                <Image style = { styles.icon } source = { require('../assets/img/highscore.png') } />
                 <Text style = { [styles.textSubTitle] }>{ this.state.place }. Place</Text>
               </View>
             </View>
