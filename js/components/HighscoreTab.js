@@ -4,6 +4,8 @@ import { View, Text, Image, StyleSheet, ListView, TouchableHighlight, RecyclerVi
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
+    marginBottom: 45,
   },
   containerListView: {
     flex: 1,

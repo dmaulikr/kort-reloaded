@@ -29,7 +29,7 @@ class Login extends React.Component {
       scopes: ['https://www.googleapis.com/auth/calendar'],
       iosClientId: '963836018928-8r1oggadkfjohvnmrkc744i3nkeu4av9.apps.googleusercontent.com',
       webClientId: '963836018928-tk23jtqent2p7s310ev8vt8q4mo97813.apps.googleusercontent.com',
-      offlineAccess: true,
+      offlineAccess: false,
     });
 
     GoogleSignin.currentUserAsync().then((user) => {
