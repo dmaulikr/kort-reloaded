@@ -1,10 +1,10 @@
 import React from 'react';
 import { Scene, Modal, Router, Reducer } from 'react-native-router-flux';
 import Login from './Login';
-import TabView from './TabView';
 import MissionsTab from './MissionsTab';
 import ProfileTab from './ProfileTab';
 import HighscoreTab from './HighscoreTab';
+import AboutTab from './AboutTab';
 import TabIcon from './TabIcon';
 import MissionModal from './missions/MissionModal';
 
@@ -62,7 +62,7 @@ const App = React.createClass({
                 icon={TabIcon}
               />
               <Scene key="about"
-                component={TabView}
+                component={AboutTab}
                 title="About"
                 hideNavBar
                 icon={TabIcon}
