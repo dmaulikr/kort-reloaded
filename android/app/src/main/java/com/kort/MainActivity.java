@@ -1,14 +1,14 @@
 package com.kort;
 
 import com.facebook.react.ReactActivity;
-import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
 
-import co.apptailor.googlesignin.RNGoogleSigninModule;
+import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
+
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 
 public class MainActivity extends ReactActivity {
@@ -37,21 +37,9 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected List<ReactPackage> getPackages() {
-        return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-            new ReactNativeMapboxGLPackage(),
-            new RNGoogleSigninPackage(this)
-        );
-    }
-
-    /**
-     * Added Method for GoogleSignIn
-     */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
-        if (requestCode == RNGoogleSigninModule.RC_SIGN_IN) {
-            RNGoogleSigninModule.onActivityResult(data);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+      return Arrays.<ReactPackage>asList(
+        new MainReactPackage(),
+        new RNGoogleSigninPackage(),
+        new ReactNativeMapboxGLPackage());
     }
 }

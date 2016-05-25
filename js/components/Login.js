@@ -37,6 +37,7 @@ class Login extends React.Component {
       this.setState({ user: user });
       this.createUser();
       // Actions.tabbar();
+      console.log(user);
     }).done();
   }
 
