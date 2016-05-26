@@ -18,7 +18,6 @@ const STYLE_URL = 'https://raw.githubusercontent.com/osm2vectortiles/osm2vectort
 const ZOOM_LEVEL = 13;
 
 const Map = React.createClass({
-
   mixins: [Mapbox.Mixin],
 
   getInitialState() {
@@ -57,10 +56,18 @@ const Map = React.createClass({
   },
 
   onOpenAnnotation(annotation) {
-    console.log(annotation.task);
-    Actions.missionModal(
-      { title: annotation.title, data: 'Custom data' }
-    ); // annotation Objekt - Mission übergeben
+    console.log(annotation);
+     // annotation Objekt - Mission übergeben
+    if (this.props.platform === 'android') {
+      Actions.missionModal(
+        { title: annotation.src.title, data: 'Custom data' }
+      );
+    } else {
+      Actions.missionModal(
+        { title: annotation.title, data: 'Custom data' }
+      );
+    }
+
   },
 
   // locationWatchId: null,
