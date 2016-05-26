@@ -1,51 +1,85 @@
 import DataLoader from './DataLoader';
 
+import User from '../dto/User';
+import UserBadge from '../dto/UserBadge';
+import UserCredential from '../dto/UserCredential';
+
 const VERIFY_USER_REST_PATH = '/user/verify/';
 const USER_REST_PATH = '/user/';
 
-class UserLoader {
+function _initUserCredential(rawUserCredential) {
+  return new UserCredential(rawUserCredential.id, rawUserCredential.secret);
+}
+
+function _initUser(rawUser) {
+  return new User(
+    rawUser.id,
+    rawUser.name,
+    rawUser.user_name,
+    rawUser.oauth_user_id,
+    rawUser.oauth_provider,
+    rawUser.token,
+    rawUser.fix_count,
+    rawUser.vote_count,
+    rawUser.koin_count,
+    rawUser.secret,
+    rawUser.pic_url,
+    rawUser.logged_in);
+}
+
+function _initUserWithUpdateInfo(rawUserUpdateInfo) {
+  return new User(
+    rawUserUpdateInfo.user_id,
+    rawUserUpdateInfo.name,
+    rawUserUpdateInfo.username,
+    rawUserUpdateInfo.oauth_user_id,
+    rawUserUpdateInfo.secret
+  );
+}
+
+function _initUserBadges(rawUserBadges) {
+  _userBadges = [];
+  rawUserBadges.forEach((badge) => {
+    _userBadges.push(new UserBadge(
+      badge.id,
+      badge.name,
+      badge.title,
+      badge.description,
+      badge.color,
+      badge.sorting,
+      badge.won,
+      badge.create_date
+    ));
+  }, this);
+
+  return _userBadges;
+}
+
+export default class UserLoader {
   static verifyUser(provider, idToken, onSuccess) {
     const idTokenParameter = `id_token=${idToken}`;
     const requestUrl = super.createRequestUrl(
       VERIFY_USER_REST_PATH, [provider], [idTokenParameter]);
-    super.makeRequest(requestUrl, onSuccess, null, null);
+    super.makeRequest(requestUrl, onSuccess, null, _initUserCredential);
   }
 
-  /*static getUserBadges(id, onSuccess) {
-    const userBadgesParameter = id + '/badges';
-    const requestUrl = createRequestUrl(
+  static getUserBadges(id, onSuccess) {
+    const userBadgesParameter = `${id}/badges`;
+    const requestUrl = super.createRequestUrl(
       USER_REST_PATH, [userBadgesParameter], null);
-    fetch(requestUrl)
-      .then((response) => response.json())
-      .then((responseData) => {
-        onSuccess(responseData.return);
-      })
-      .done();
+    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initUserBadges);
   }
 
   static logoutUser(id, onSuccess) {
-    const userLogoutParameter = id + '/logout';
-    const requestUrl = createRequestUrl(
+    const userLogoutParameter = `${id}/logout`;
+    const requestUrl = super.createRequestUrl(
       USER_REST_PATH, [userLogoutParameter], null);
-    fetch(requestUrl)
-      .then((response) => response.json())
-      .then((responseData) => {
-        onSuccess(responseData.return);
-      })
-      .done();
+    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, null);
   }
 
   static updateUser(id, onSuccess) {
-    const requestUrl = createRequestUrl(
+    const requestUrl = super.createRequestUrl(
       USER_REST_PATH, [id], null);
-    fetch(requestUrl)
-      .then((response) => response.json())
-      .then((responseData) => {
-        onSuccess(responseData.return);
-      })
-      .done();
-  }*/
-
+    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initUserWithUpdateInfo);
+  }
 }
-
-module.exports = UserLoader;
