@@ -32,13 +32,12 @@ const App = React.createClass({
       <Router createReducer={reducerCreate} sceneStyle={{ backgroundColor: '#F7F7F7' }}>
         <Scene key="root" hideNavBar>
           <Scene key="login"
-            inital
             component={Login}
             title="Login"
             direction="vertical"
             style={ { flex: 1, backgroundColor: 'transparent' } }
           />
-          <Scene key="tabbar" tabs >
+          <Scene key="tabbar" tabs initial>
             <Scene key="missions"
               component={MissionsTab}
               title="Missions"

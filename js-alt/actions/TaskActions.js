@@ -1,10 +1,11 @@
 import ActionTypes from '../constants/ActionTypes';
-import { MISSION_LIMIT, VALIDATION_LIMIT, RADIUS } from '../constants/Config';
-
+import AppDispatcher from '../dispatcher/AppDispatcher';
 import MissionLoader from '../data/MissionLoader';
 import ValidationLoader from '../data/ValidationLoader';
 
-import AppDispatcher from '../dispatcher/AppDispatcher';
+const missionLimit = 10;
+const validationLimit = 10;
+const radius = 5000;
 
 function _onTasksLoaded(tasks) {
   AppDispatcher.dispatch({
@@ -19,7 +20,7 @@ export default class TaskActions {
     let missionsLoaded = false;
     let validationsLoaded = false;
 
-    MissionLoader.getMissions(latitude, longitude, MISSION_LIMIT, RADIUS, (missions) => {
+    MissionLoader.getMissions(latitude, longitude, missionLimit, radius, (missions) => {
       tasks = tasks.concat(missions);
       missionsLoaded = true;
 
@@ -27,7 +28,7 @@ export default class TaskActions {
         _onTasksLoaded(tasks);
       }
     });
-    ValidationLoader.getValidations(latitude, longitude, VALIDATION_LIMIT, RADIUS, (validations) => {
+    ValidationLoader.getValidations(latitude, longitude, validationLimit, radius, (validations) => {
       tasks = tasks.concat(validations);
       validationsLoaded = true;
 
@@ -37,3 +38,5 @@ export default class TaskActions {
     });
   }
 }
+
+export default TaskActions;

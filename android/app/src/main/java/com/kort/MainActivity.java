@@ -3,13 +3,11 @@ package com.kort;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.kort.BuildConfig;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 
 import java.util.Arrays;
 import java.util.List;
 
-import ch.hsr.kort.BuildConfig;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 
 public class MainActivity extends ReactActivity {

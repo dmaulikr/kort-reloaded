@@ -3,10 +3,8 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import UserLoader from '../data/UserLoader';
 
 export default class UserActions {
-  static verifyUser(provider, idToken) {
-    UserLoader.verifyUser(provider, idToken, (user) => {
-      console.log(user);
-    });
+  static setUser(id_token, provider) {
+
   }
 
   static getUserBadges(id) {

@@ -31,7 +31,7 @@ const Map = React.createClass({
       (error) => console.log(error),
       { enableHighAccurracy: true, distanceFilter: 100 });
 
-    //taskStore.addChangeListener(this.onTasksUpdate);
+    taskStore.addChangeListener(this.onTasksUpdate);
   },
 
   componentWillUnmount() {
@@ -45,7 +45,7 @@ const Map = React.createClass({
     const longitude = position.coords.longitude;
 
     this.setCenterCoordinateZoomLevelAnimated(mapRef, latitude, longitude, ZOOM_LEVEL);
-    //TaskActions.loadTasks(latitude, longitude);
+    TaskActions.loadTasks(latitude, longitude);
   },
 
   onTasksUpdate() {
