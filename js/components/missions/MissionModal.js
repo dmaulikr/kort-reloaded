@@ -5,13 +5,6 @@ import CustomButton from '../ui-components/CustomButton';
 import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
-  textTitle: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginTop: 25,
-  },
-  text: {
-  },
   container: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -31,14 +24,23 @@ const styles = StyleSheet.create({
     paddingTop: 7,
   },
   containerMission: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  containerMissionDescription: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingVertical: 7,
   },
-  containerInput: {
+  textTitle: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop: 25,
   },
-  containerPicker: {
+  missionText: {
+    alignSelf: 'center',
+    marginTop: 5,
   },
   textEdit: {
     height: 45,
@@ -84,7 +86,6 @@ const MissionsModal = React.createClass({
     };
   },
 
-
   componentWillMount() {
     BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },
@@ -109,41 +110,43 @@ const MissionsModal = React.createClass({
   render() {
     if (this.state.unableToSolve) {
       return (
-        <View style = { [styles.container] }>
-            <Modal
-              animationType = { false }
-              transparent = { true }
-              visible = { this.state.modalVisible }
-              onRequestClose = { () => { this._setModalVisible(false) } }
-            >
-              <View style = { [styles.containerMissionComplete] }>
-                <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 } ] }>
-                  <Text>Mission completed.</Text>
-                  <CustomButton
-                    onPress = { this._setModalVisible.bind(this, false) }
-                    style = { styles.modalButton }>
-                    Close
-                  </CustomButton>
-                </View>
+        <View style = { styles.container }>
+          <Modal
+            animationType = { false }
+            transparent = { true }
+            visible = { this.state.modalVisible }
+            onRequestClose = { () => { this._setModalVisible(false) } }
+          >
+            <View style = { styles.containerMissionComplete }>
+              <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 } ] }>
+                <Text>Mission completed.</Text>
+                <CustomButton
+                  onPress = { this._setModalVisible.bind(this, false) }
+                  style = { styles.modalButton }>
+                  Close
+                </CustomButton>
               </View>
-            </Modal>
-          <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
-          <View style={ [styles.containerMission] }>
-            <Image style = { styles.icon } source = { require('../../assets/img/koin_no_value.png') } />
-            <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
+            </View>
+          </Modal>
+          <Text style = { styles.textTitle }>{ this.props.title }</Text>
+          <View style = { styles.containerMission }>
+            <View style = { styles.containerMissionDescription }>
+              <Image style = { styles.icon } source = { require('../../assets/img/koin_no_value.png') } />
+              <Text style = { styles.missionText }>Get the { this.state.koins } Koins!</Text>
+            </View>
+            <View style = { styles.containerMissionDescription }>
+              <Image style = { styles.icon } source = { require('../../assets/img/poi_name_mission.png') } />
+              <Text style = { styles.missionText }>{ this.state.mission } ?</Text>
+            </View>
           </View>
-          <View style={ [styles.containerMission] }>
-            <Image style = { styles.icon } source = { require('../../assets/img/poi_name_mission.png') } />
-            <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
-          </View>
-          <View style = { [styles.containerSolve] }>
-            <Text style = { [styles.text] }>{ this.state.txtUnableToSolve }</Text>
+          <View style = { styles.containerSolve }>
+            <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
             <Switch
                 onValueChange = { (value) => this.setState({ unableToSolve: value }) }
                 value = { this.state.unableToSolve }
             />
           </View>
-          <View style = { [styles.containerButton] }>
+          <View style = { styles.containerButton }>
             <CustomButton style = { { paddingTop: 20 } } onPress={ Actions.pop }>
               Cancel
             </CustomButton>
@@ -156,14 +159,14 @@ const MissionsModal = React.createClass({
     } else {
       if (false) {
         return (
-          <View style = { [styles.container] }>
+          <View style = { styles.container }>
             <Modal
               animationType = { false }
               transparent = { true }
               visible = { this.state.modalVisible }
               onRequestClose={ () => { this._setModalVisible(false) } }
             >
-              <View style = { [styles.containerMissionComplete] }>
+              <View style = { styles.containerMissionComplete }>
                 <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
                   <Text>Mission completed.</Text>
                   <CustomButton
@@ -174,32 +177,34 @@ const MissionsModal = React.createClass({
                 </View>
               </View>
             </Modal>
-            <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
-            <View style = { [styles.containerMission] }>
-              <Image style = { styles.icon } source = { require('../../assets/img/koin_no_value.png') } />
-              <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
-            </View>
-            <View style = { [styles.containerMission] }>
-              <Image style = { styles.icon } source = { require('../../assets/img/poi_name_mission.png') } />
-              <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
+            <Text style = { styles.textTitle }>{ this.props.title }</Text>
+            <View style = { styles.containerMission }>
+              <View style = { styles.containerMissionDescription }>
+                <Image style = { styles.icon } source = { require('../../assets/img/koin_no_value.png') } />
+                <Text style = { styles.missionText }>Get the { this.state.koins } Koins!</Text>
+              </View>
+              <View style = { styles.containerMissionDescription }>
+                <Image style = { styles.icon } source = { require('../../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.missionText }>{ this.state.mission } ?</Text>
+              </View>
             </View>
             <View style = { [styles.containerSolve] }>
-              <Text style = { [styles.text] }>{ this.state.txtUnableToSolve }</Text>
+              <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
               <Switch
                   onValueChange = { (value) => this.setState({ unableToSolve: value }) }
                   value = { this.state.unableToSolve }
               />
             </View>
-            <View style = { [styles.containerInput] }>
+            <View>
               <TextInput
-                style = { [styles.textEdit] }
+                style = { styles.textEdit }
                 autoCapitalize = 'words'
                 placeholder='Mission type'
                 onChangeText = {(answer) => this.setState({ answer })}
                 value = { this.state.answer }
               />
             </View>
-            <View style = { [styles.containerButton] }>
+            <View style = { styles.containerButton }>
               <CustomButton style = { { paddingTop: 20 } } onPress={ Actions.pop }>
                 Cancel
               </CustomButton>
@@ -211,14 +216,14 @@ const MissionsModal = React.createClass({
         );
       } else {
         return (
-          <View style = { [styles.container] }>
+          <View style = { styles.container }>
             <Modal
               animationType = { false }
               transparent = { true }
               visible = { this.state.modalVisible }
               onRequestClose={ () => { this._setModalVisible(false) } }
             >
-              <View style = { [styles.containerMissionComplete] }>
+              <View style = { styles.containerMissionComplete }>
                 <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
                   <Text>Mission completed.</Text>
                   <CustomButton
@@ -229,23 +234,25 @@ const MissionsModal = React.createClass({
                 </View>
               </View>
             </Modal>
-            <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
-            <View style = { [styles.containerMission] }>
-              <Image style = { styles.icon } source = { require('../../assets/img/koin_no_value.png') } />
-              <Text style = { [styles.text] }>Get the { this.state.koins } Koins!</Text>
-            </View>
-            <View style = { [styles.containerMission] }>
-              <Image style = { styles.icon } source = { require('../../assets/img/poi_name_mission.png') } />
-              <Text style = { [styles.text] }>{ this.state.mission } ?</Text>
+            <Text style = { styles.textTitle }>{ this.props.title }</Text>
+            <View style = { styles.containerMission }>
+              <View style = { styles.containerMissionDescription }>
+                <Image style = { styles.icon } source = { require('../../assets/img/koin_no_value.png') } />
+                <Text style = { styles.missionText }>Get the { this.state.koins } Koins!</Text>
+              </View>
+              <View style = { styles.containerMissionDescription }>
+                <Image style = { styles.icon } source = { require('../../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.missionText }>{ this.state.mission } ?</Text>
+              </View>
             </View>
             <View style = { [styles.containerSolve] }>
-              <Text style = { [styles.text] }>{ this.state.txtUnableToSolve }</Text>
+              <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
               <Switch
                   onValueChange = { (value) => this.setState({ unableToSolve: value }) }
                   value = { this.state.unableToSolve }
               />
             </View>
-            <View style = { [styles.containerPicker] }>
+            <View>
               <Picker
                 style = { styles.picker }
                 selectedValue = { this.state.selected }
@@ -254,7 +261,7 @@ const MissionsModal = React.createClass({
                 <Item label = 'world' value = 'key1' />
               </Picker>
             </View>
-            <View style = { [styles.containerButton] }>
+            <View style = { styles.containerButton }>
             <CustomButton style = { { paddingTop: 20 } } onPress={ Actions.pop }>
               Cancel
             </CustomButton>

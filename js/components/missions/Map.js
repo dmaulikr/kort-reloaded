@@ -23,13 +23,7 @@ const Map = React.createClass({
 
   getInitialState() {
     return {
-      annotations: [{
-        "id": "1",
-        "coordinates": [47.22342, 8.81697],
-        "type": "point",
-        "title": "This is marker 1",
-        "subtitle": "It has a rightCalloutAccessory too",
-      }],
+      annotations: [],
     };
   },
 

@@ -49,7 +49,6 @@ const App = React.createClass({
                 icon={TabIcon}
               />
               <Scene key='profile'
-                initial
                 component={ProfileTab}
                 title='Profile'
                 hideNavBar
@@ -68,7 +67,7 @@ const App = React.createClass({
                 icon={TabIcon}
               />
             </Scene>
-            <Scene key='missionModal' panHandlers={null} component={MissionModal} direction='vertical' />
+            <Scene key='missionModal' initial panHandlers={null} component={MissionModal} direction='vertical' />
           </Scene>
         </Scene>
       </Router>
