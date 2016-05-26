@@ -28,6 +28,7 @@ ios/Kort/AppDelegate.m
 .idea
 .gradle
 local.properties
+google-services.json
 
 # node.js
 #
