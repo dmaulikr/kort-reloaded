@@ -91,7 +91,7 @@ const ProfileTab = React.createClass({
   updateProfileText(user) {
   },
 
-  _renderRow: function(rowData: string, sectionID: number, rowID: number) {
+  _renderRow: function(rowData: string, sectionID: number, rowID: number) { // eslint-disable-line
       return (
         <TouchableHighlight onPress={() => this._pressRow(rowID)}>
           <View>

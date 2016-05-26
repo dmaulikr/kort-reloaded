@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
-import { Actions } from "react-native-router-flux";
+import { Actions } from 'react-native-router-flux';
 import TaskActions from '../../actions/TaskActions';
 import taskStore from '../../stores/TaskStore';
 
@@ -28,6 +28,7 @@ const Map = React.createClass({
   },
 
   componentDidMount() {
+    DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
     navigator.geolocation.getCurrentPosition(this.onPositionChange);
     this.locationWatchId = navigator.geolocation.watchPosition(this.onPositionChange,
       (error) => console.log(error),
@@ -37,6 +38,7 @@ const Map = React.createClass({
   },
 
   componentWillUnmount() {
+    DeviceEventEmitter.removeAllListeners();
     navigator.geolocation.clearWatch(this.locationWatchId);
 
     taskStore.removeChangeListener(this.onTasksUpdate);
@@ -56,10 +58,12 @@ const Map = React.createClass({
 
   onOpenAnnotation(annotation) {
     console.log(annotation.task);
-    Actions.missionModal({title:annotation.title, data:"Custom data" }); // annotation Objekt - Mission übergeben
+    Actions.missionModal(
+      { title: annotation.title, data: 'Custom data' }
+    ); // annotation Objekt - Mission übergeben
   },
 
-  //locationWatchId: null,
+  // locationWatchId: null,
 
   updateAnnotations() {
     const annotations = [];

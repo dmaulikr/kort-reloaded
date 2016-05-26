@@ -15,8 +15,12 @@ const MissionsTab = React.createClass({
 
   render() {
     return (
-      <View style={styles.container}>
-        <Button onPress={()=>Actions.missionModal({data:'Custom data', title:'Custom title' })}>Open Mission Modal</Button>
+      <View style = { styles.container }>
+        <Button
+          onPress = { () => Actions.missionModal({ data: 'Custom data', title: 'Custom title' }) }
+        >
+          Open Mission Modal
+        </Button>
         <Map />
       </View>
     );
@@ -26,7 +30,11 @@ const MissionsTab = React.createClass({
 // const MissionsTab = function () {
 //   return (
 //     <View style={styles.container}>
-//       <Button onPress={()=>Actions.missionModal({data:'Custom data', title:'Custom title' })}>Open Mission Modal</Button>
+//       <Button
+//         onPress = { ()=>Actions.missionModal({ data:'Custom data', title:'Custom title' }) }
+//       >
+//         Open Mission Modal
+//       </Button>
 //       <Map />
 //     </View>
 //   );

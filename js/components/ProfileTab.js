@@ -1,4 +1,4 @@
-import React, { View, Text, Image, StyleSheet, ScrollView, } from 'react-native';
+import React, { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -97,7 +97,7 @@ const ProfileTab = React.createClass({
   },
 
   render() {
-    var _scrollView: ScrollView;
+    let _scrollView = ScrollView;
     return (
       <ScrollView
         ref = { (scrollView) => { _scrollView = scrollView; } }
@@ -123,11 +123,17 @@ const ProfileTab = React.createClass({
             <Text style = { styles.textSubTitle }>Collected Koins</Text>
             <View style = { styles.containerKoins }>
               <View style = { styles.containerKoinsDescription }>
-                <Image style = { styles.icon } source = { require('../assets/img/koin_no_value.png') } />
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/koin_no_value.png') }
+                />
                 <Text style = { styles.textSubTitle }>{ this.state.collectedKoins } Koins</Text>
               </View>
               <View style = { styles.containerKoinsDescription }>
-                <Image style = { styles.icon } source = { require('../assets/img/highscore.png') } />
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/highscore.png') }
+                />
                 <Text style = { styles.textSubTitle }>{ this.state.place }. Place</Text>
               </View>
             </View>
@@ -137,7 +143,11 @@ const ProfileTab = React.createClass({
             <View style = { styles.containerBadgeGrid }>
               <View style = { styles.containerBadgeGridItem }>
                 <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description Badge description Badge description Badge description Badge description Badge description</Text>
+                <Text style = { styles.textSubTitleItem }>
+                  Badge description Badge description
+                  Badge description Badge description
+                  Badge description Badge description
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
                 <Image source = { require('../assets/img/poi_name_mission.png') } />
