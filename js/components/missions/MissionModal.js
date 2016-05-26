@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Item, Image, Switch, Picker, Modal } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Item, Image, Switch, Picker, Modal, BackAndroid } from 'react-native';
 import Button from 'react-native-button';
 import CustomButton from '../ui-components/CustomButton';
 import { Actions } from 'react-native-router-flux';
@@ -82,6 +82,11 @@ const MissionsModal = React.createClass({
       view: '',
       modalVisible: false,
     };
+  },
+
+
+  componentWillMount() {
+    BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },
 
   componentDidMount() {
