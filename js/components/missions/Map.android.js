@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { Actions } from "react-native-router-flux";
 import TaskActions from '../../actions/TaskActions';
@@ -54,12 +54,20 @@ const Map = React.createClass({
     this.updateAnnotations();
   },
 
+  componentDidMount() {
+    DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
+  },
+
+  componentWillUnmount() {
+    DeviceEventEmitter.removeAllListeners()
+  },
+
   onOpenAnnotation(annotation) {
     console.log(annotation.task);
     Actions.missionModal({title:annotation.title, data:"Custom data" }); // annotation Objekt - Mission übergeben
   },
 
-  //locationWatchId: null,
+  locationWatchId: null,
 
   updateAnnotations() {
     const annotations = [];
