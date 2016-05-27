@@ -17,23 +17,21 @@ const userStore = new UserStore();
 
 AppDispatcher.register((action) => {
   switch (action.actionType) {
-    case ActionTypes.USER_DATA:
-      UserLoader.getUser(
-        action.secret, getRawUser);
+    case ActionTypes.USER_VERIFY:
+
+      break;
+    case ActionTypes.USER_LOAD:
+
       break;
     case ActionTypes.USER_BADGES:
-      UserLoader.getUserBadges(
-        action.id, getRawUserBadges);
+
       break;
     case ActionTypes.USER_LOGOUT:
-      UserLoader.logoutUser(
-        action.id, getRawUserLogoutMessage);
+
       break;
     case ActionTypes.USER_UPDATE:
-      UserLoader.updateUser(
-        action.id, getRawUserUpdateInfo);
-      break;
 
+      break;
     default:
       return;
   }

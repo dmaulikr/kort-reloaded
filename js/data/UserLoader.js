@@ -63,6 +63,12 @@ export default class UserLoader {
     super.makeRequest(requestUrl, onSuccess, null, _initUserCredential);
   }
 
+  static getUser(id, onSuccess) {
+    const requestUrl = super.createRequestUrl(
+      USER_REST_PATH, [id], null);
+    super.makeRequest(requestUrl, onSuccess, null, _initUser);
+  }
+
   static getUserBadges(id, onSuccess) {
     const userBadgesParameter = `${id}/badges`;
     const requestUrl = super.createRequestUrl(
