@@ -32,4 +32,4 @@ export default {
 
   // Store
   CHANGE_EVENT: 'change',
-}
+};
