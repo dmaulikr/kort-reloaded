@@ -20,7 +20,6 @@ class Login extends React.Component {
     super(props);
     this.state = {
       user: null,
-      provider: null,
     };
   }
 
@@ -39,7 +38,6 @@ class Login extends React.Component {
   }
 
   _signIn() {
-    this.setState({ provider: 'google' });
     GoogleSignin.signIn()
     .then((user) => {
       console.log(user);

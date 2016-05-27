@@ -21,7 +21,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
-ios/Kort/AppDelegate.m
+AppDelegate.m
 
 # Android/IJ
 #
