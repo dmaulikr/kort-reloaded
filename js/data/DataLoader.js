@@ -44,7 +44,7 @@ class DataLoader {
     fetch(requestUrl)
       .then((response) => response.json())
       .then((responseData) => {
-        var response = responseData.return;
+        let response = responseData.return;
         if (initializer != null) {
           response = initializer(response);
         }
@@ -58,10 +58,10 @@ class DataLoader {
     const secret = '50620fc147de3e2a28624216be76ab5f60222dc4';
     const hash = new Buffer(`${userId}:${secret}`).toString('base64');
 
-    fetch(requestUrl, { headers: { 'Authorization': `Basic ${hash}` } })
+    fetch(requestUrl, { headers: { Authorization: `Basic ${hash}` } })
       .then((response) => response.json())
       .then((responseData) => {
-        var response = responseData.return;
+        let response = responseData.return;
         if (initializer != null) {
           response = initializer(response);
         }
