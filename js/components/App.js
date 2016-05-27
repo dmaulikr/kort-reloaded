@@ -36,12 +36,13 @@ const App = React.createClass({
         <Scene key='modal' component={Modal} >
           <Scene key='root' hideNavBar>
             <Scene key='login'
+              initial
               component={Login}
               title='Login'
               direction='vertical'
               style={ { flex: 1, backgroundColor: 'transparent' } }
             />
-          <Scene key='tabbar' initial panHandlers={null} tabs >
+          <Scene key='tabbar'  panHandlers={null} tabs >
               <Scene key='missions'
                 component={MissionsTab}
                 title='Missions'
