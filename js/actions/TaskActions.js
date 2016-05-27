@@ -20,7 +20,7 @@ export default class TaskActions {
     let validationsLoaded = false;
 
     MissionLoader.getMissions(latitude, longitude, Config.MISSION_LIMIT, Config.RADIUS,
-        (missions) => {
+    (missions) => {
       tasks = tasks.concat(missions);
       missionsLoaded = true;
 
@@ -29,7 +29,7 @@ export default class TaskActions {
       }
     });
     ValidationLoader.getValidations(latitude, longitude, Config.VALIDATION_LIMIT, Config.RADIUS,
-        (validations) => {
+    (validations) => {
       tasks = tasks.concat(validations);
       validationsLoaded = true;
 
