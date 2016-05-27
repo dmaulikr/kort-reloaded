@@ -26,7 +26,6 @@ const App = React.createClass({
         <Scene key="root" hideNavBar>
           <Scene key="tabbar" tabs>
             <Scene key="missions"
-              inital
               component={MissionsTab}
               title="Missions"
               hideNavBar
@@ -52,6 +51,7 @@ const App = React.createClass({
             />
           </Scene>
           <Scene key="login"
+            initial
             component={Login}
             title="Login"
             direction="vertical"

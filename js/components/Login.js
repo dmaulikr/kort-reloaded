@@ -3,7 +3,12 @@ import { View, Text, StyleSheet } from 'react-native';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+
 import UserActions from '../actions/UserActions';
+
+import Config from '../constants/Config';
+
+const webClientId = Config.GOOGLE_WEB_CLIENT_ID;
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +30,7 @@ class Login extends React.Component {
 
   componentDidMount() {
     GoogleSignin.configure({
-      webClientId: '963836018928-tk23jtqent2p7s310ev8vt8q4mo97813.apps.googleusercontent.com',
+      webClientId,
     });
 
     GoogleSignin.currentUserAsync().then((user) => {

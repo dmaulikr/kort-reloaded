@@ -1,4 +1,4 @@
-class Task {
+export default class Task {
   constructor(id, type, title, question, viewType, latitude, longitude, fixKoinCount, promoId,
       promoExtraKoins) {
     this.id = id;
@@ -13,5 +13,3 @@ class Task {
     this.promoExtraKoins = promoExtraKoins;
   }
 }
-
-export default Task;
