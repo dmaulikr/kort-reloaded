@@ -5,13 +5,6 @@ import TabView from './TabView';
 import MissionsTab from './MissionsTab';
 import TabIcon from './TabIcon';
 
-/*
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center',
-      alignItems: 'center' },
-});
-*/
-
 const reducerCreate = params => {
   const defaultReducer = new Reducer(params);
   return (state, action) => {
@@ -31,15 +24,9 @@ const App = React.createClass({
     return (
       <Router createReducer={reducerCreate} sceneStyle={{ backgroundColor: '#F7F7F7' }}>
         <Scene key="root" hideNavBar>
-          <Scene key="login"
-            inital
-            component={Login}
-            title="Login"
-            direction="vertical"
-            style={ { flex: 1, backgroundColor: 'transparent' } }
-          />
-          <Scene key="tabbar" tabs >
+          <Scene key="tabbar" tabs>
             <Scene key="missions"
+              inital
               component={MissionsTab}
               title="Missions"
               hideNavBar
@@ -64,6 +51,12 @@ const App = React.createClass({
               icon={TabIcon}
             />
           </Scene>
+          <Scene key="login"
+            component={Login}
+            title="Login"
+            direction="vertical"
+            style={ { flex: 1, backgroundColor: 'transparent' } }
+          />
         </Scene>
       </Router>
     );

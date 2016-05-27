@@ -30,7 +30,7 @@ class Login extends React.Component {
 
     GoogleSignin.currentUserAsync().then((user) => {
       console.log('USER', user);
-      this.setState({ user: user });
+      this.setState({ user });
     }).done();
   }
 
@@ -41,7 +41,7 @@ class Login extends React.Component {
     GoogleSignin.signIn()
     .then((user) => {
       console.log(user);
-      this.setState({ user: user });
+      this.setState({ user });
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
@@ -68,21 +68,20 @@ class Login extends React.Component {
         </View>
       );
     }
-    if (this.state.user) {
-      return (
-        <View style={styles.container}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
-            Welcome {this.state.user.name}
-          </Text>
-          <Text style={{ marginBottom: 20 }}>Your email is: {this.state.user.email}</Text>
 
-          <Button onPress={() => {this._signOut(); }}>Log out</Button>
+    return (
+      <View style={styles.container}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
+          Welcome {this.state.user.name}
+        </Text>
+        <Text style={{ marginBottom: 20 }}>Your email is: {this.state.user.email}</Text>
 
-          <Text style={{ marginTop: 20 }}>Login page </Text>
-          <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
-        </View>
-      );
-    }
+        <Button onPress={() => {this._signOut(); }}>Log out</Button>
+
+        <Text style={{ marginTop: 20 }}>Login page </Text>
+        <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
+      </View>
+    );
   }
 }
 
