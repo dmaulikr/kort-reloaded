@@ -34,11 +34,9 @@ class Login extends React.Component {
     });
 
     GoogleSignin.currentUserAsync().then((user) => {
-      console.log('USER', user);
       this.setState({ user: user });
       this.createUser();
-      Actions.tabbar();
-      console.log(user);
+      //Actions.tabbar();
       // save user initial state to AsyncStorage
     }).done();
   }
@@ -56,8 +54,9 @@ class Login extends React.Component {
     .then((user) => {
       console.log(user);
       this.setState({ user: user });
-
-      Actions.tabbar();
+      if (user !== null) {
+        Actions.tabbar();
+      }
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
