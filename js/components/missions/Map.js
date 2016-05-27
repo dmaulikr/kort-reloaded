@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 
 const mapRef = 'OpenStreetMap';
 const ACCESS_TOKEN = 'pk.eyJ1IjoiZG9taW5pY21oIiwiYSI6ImNpbTIwbHFqbjAwbTN3MW02bWNxbjI4YmEifQ.ZkVpEGDJZXDSmG6fuO8ZZA'; // eslint-disable-line max-len
-const STYLE_URL = 'https://raw.githubusercontent.com/osm2vectortiles/osm2vectortiles/gh-pages/styles/bright-v8.json';
+const STYLE_URL = 'https://raw.githubusercontent.com/osm2vectortiles/mapbox-gl-styles/master/styles/bright-v9-cdn.json';
 const ZOOM_LEVEL = 13;
 
 const Map = React.createClass({
@@ -58,7 +58,7 @@ const Map = React.createClass({
   onOpenAnnotation(annotation) {
     console.log(annotation);
      // annotation Objekt - Mission übergeben
-    if (this.props.platform === 'android') {
+    if (require('react-native').Platform.OS === 'android') {
       Actions.missionModal(
         { title: annotation.src.title, data: 'Custom data' }
       );
@@ -80,6 +80,7 @@ const Map = React.createClass({
         id: task.id,
         type: 'point',
         title: task.title,
+        subtitle: task.id,
         coordinates: [parseFloat(task.latitude), parseFloat(task.longitude)],
         task,
       });
@@ -90,20 +91,20 @@ const Map = React.createClass({
   render() {
     return (
       <Mapbox
-        annotations={this.state.annotations}
-        style={styles.container}
-        direction={0}
+        annotations = { this.state.annotations }
+        style = { styles.container }
+        direction = { 0 }
         rotateEnabled
         scrollEnabled
         zoomEnabled
         showsUserLocation
-        ref={mapRef}
-        accessToken={ACCESS_TOKEN}
-        styleURL={STYLE_URL}
+        ref = { mapRef }
+        accessToken = { ACCESS_TOKEN }
+        styleURL = { STYLE_URL }
         logoIsHidden
         //attributionButtonIsHidden
-        onOpenAnnotation={this.onOpenAnnotation}
-        userTrackingMode={this.userTrackingMode.follow}
+        onOpenAnnotation = { this.onOpenAnnotation }
+        userTrackingMode = { this.userTrackingMode.follow }
       />
     );
   },

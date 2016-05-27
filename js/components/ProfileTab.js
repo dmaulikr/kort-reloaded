@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-    backgroundColor: '#F5FCFF',
   },
   containerProfile: {
     flexDirection: 'row',
@@ -37,7 +36,6 @@ const styles = StyleSheet.create({
   containerBadges: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: '#F5FCFF',
   },
   containerBadgeGrid: {
     flexDirection: 'column',

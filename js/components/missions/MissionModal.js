@@ -11,7 +11,7 @@ import {
   Modal,
   BackAndroid } from 'react-native';
 import Button from 'react-native-button';
-import CustomButton from '../ui-components/CustomButton';
+import CustomButton from '../shared/CustomButton';
 import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
@@ -146,7 +146,7 @@ const MissionsModal = React.createClass({
                 style = { styles.icon }
                 source = { require('../../assets/img/koin_no_value.png') }
               />
-              <Text style = { styles.missionText }>Get the { this.state.koins } Koins!</Text>
+            <Text style = { styles.missionText }>Get the { this.state.koins } Koins!</Text>
             </View>
             <View style = { styles.containerMissionDescription }>
               <Image

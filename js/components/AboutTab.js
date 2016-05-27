@@ -7,17 +7,17 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 45,
   },
-  containerLogo: {
-  },
   containerAbout: {
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    backgroundColor: '#F5FCFF',
   },
   textTitle: {
     textAlign: 'center',
     fontSize: 18,
     marginTop: 7,
+  },
+  textSubTitle: {
+    marginTop: 5,
   },
   kortlogo: {
     alignSelf: 'center',
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     width: 64,
   },
   hsrlogo: {
+    marginTop: 5,
     height: 23,
     width: 87,
   },
@@ -77,7 +78,8 @@ const AboutTab = React.createClass({
             <Text style = { styles.textSubTitle }>Marker icons: ...</Text>
             <Text style = { styles.textTitle }>Legal note</Text>
             <Text style = { styles.textSubTitle }>
-              Please follow the guidelines of OpenStreetMap ...
+              Please follow the guidelines of OpenStreetMap
+              and don't use copyright protected sources without permissions.
             </Text>
           </View>
         </View>
