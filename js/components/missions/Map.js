@@ -70,8 +70,6 @@ const Map = React.createClass({
 
   },
 
-  // locationWatchId: null,
-
   updateAnnotations() {
     const annotations = [];
 
