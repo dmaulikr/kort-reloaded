@@ -1,11 +1,13 @@
+import Config from '../constants/Config';
+
 import DataLoader from './DataLoader';
 
 import User from '../dto/User';
 import UserBadge from '../dto/UserBadge';
 import UserCredential from '../dto/UserCredential';
 
-const VERIFY_USER_REST_PATH = '/user/verify/';
-const USER_REST_PATH = '/user/';
+const userRestPath = Config.USER_PATH;
+const verifyUserRestPath = Config.USER_VERIFY_PATH;
 
 function _initUserCredential(rawUserCredential) {
   return new UserCredential(rawUserCredential.id, rawUserCredential.secret);
@@ -59,33 +61,33 @@ export default class UserLoader extends DataLoader {
   static verifyUser(provider, idToken, onSuccess) {
     const idTokenParameter = `id_token=${idToken}`;
     const requestUrl = super.createRequestUrl(
-      VERIFY_USER_REST_PATH, [provider], [idTokenParameter]);
+      verifyUserRestPath, [provider], [idTokenParameter]);
     super.makeRequest(requestUrl, onSuccess, null, _initUserCredential);
   }
 
   static getUser(id, onSuccess) {
     const requestUrl = super.createRequestUrl(
-      USER_REST_PATH, [id], null);
+      userRestPath, [id], null);
     super.makeRequest(requestUrl, onSuccess, null, _initUser);
   }
 
   static getUserBadges(id, onSuccess) {
     const userBadgesParameter = `${id}/badges`;
     const requestUrl = super.createRequestUrl(
-      USER_REST_PATH, [userBadgesParameter], null);
+      userRestPath, [userBadgesParameter], null);
     super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initUserBadges);
   }
 
   static logoutUser(id, onSuccess) {
     const userLogoutParameter = `${id}/logout`;
     const requestUrl = super.createRequestUrl(
-      USER_REST_PATH, [userLogoutParameter], null);
+      userRestPath, [userLogoutParameter], null);
     super.makeAuthenticatedRequest(requestUrl, onSuccess, null, null);
   }
 
   static updateUser(id, onSuccess) {
     const requestUrl = super.createRequestUrl(
-      USER_REST_PATH, [id], null);
+      userRestPath, [id], null);
     super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initUserWithUpdateInfo);
   }
 }

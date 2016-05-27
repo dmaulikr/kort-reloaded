@@ -1,7 +1,8 @@
 import DataLoader from './DataLoader';
+import Config from '../constants/Config';
 import Mission from '../dto/Mission';
 
-const MISSIONS_REST_PATH = '/mission/position';
+const missionsGetRestPath = Config.MISSIONS_GET_PATH;
 
 function _initMissions(rawMissions) {
   const missions = [];
@@ -30,7 +31,7 @@ class MissionLoader extends DataLoader {
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
     const requestUrl = super.createRequestUrl(
-      MISSIONS_REST_PATH, [latitude, longitude], parameters);
+      missionsGetRestPath, [latitude, longitude], parameters);
     super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initMissions);
   }
 }

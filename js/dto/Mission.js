@@ -1,6 +1,6 @@
 import Task from './Task';
 
-class Mission extends Task {
+export default class Mission extends Task {
   constructor(id, type, title, question, viewType, latitude, longitude, fixKoinCount, promoId,
       promoExtraKoins, answerPlaceholder) {
     super(id, type, title, question, viewType, latitude, longitude, fixKoinCount, promoId,
@@ -8,5 +8,3 @@ class Mission extends Task {
     this.answerPlaceholder = answerPlaceholder;
   }
 }
-
-export default Mission;

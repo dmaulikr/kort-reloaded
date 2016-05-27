@@ -1,6 +1,6 @@
 import Task from './Task';
 
-class Validation extends Task {
+export default class Validation extends Task {
   constructor(id, type, title, question, viewType, latitude, longitude, fixKoinCount, promoId,
       promoExtraKoins, fixUserId, fixMessage) {
     super(id, type, title, question, viewType, latitude, longitude, fixKoinCount, promoId,
@@ -9,5 +9,3 @@ class Validation extends Task {
     this.fixMessage = fixMessage;
   }
 }
-
-export default Validation;

@@ -1,6 +1,8 @@
+import Config from '../constants/Config';
+
 const Buffer = require('buffer').Buffer;
 
-const REQUEST_LOCATION = 'https://kort-dev.herokuapp.com/server/webservices';
+const requestLocation = `${Config.SERVER}${Config.API_PATH}`;
 
 function _getQueryParametersString(queryParameters) {
   let queryParametersString;
@@ -22,7 +24,7 @@ function _getParametersString(parameters) {
 
 class DataLoader {
   static createRequestUrl(apiUrl, queryParameters, parameters) {
-    let requestUrl = REQUEST_LOCATION;
+    let requestUrl = requestLocation;
 
     if (!apiUrl.startsWith('/')) requestUrl += '/';
     requestUrl = requestUrl + apiUrl;
@@ -54,8 +56,8 @@ class DataLoader {
   }
 
   static makeAuthenticatedRequest(requestUrl, onSuccess, onError, initializer) {
-    const userId = '4131';
-    const secret = '50620fc147de3e2a28624216be76ab5f60222dc4';
+    const userId = Config.TEST_USER_ID;
+    const secret = Config.TEST_SECRET;
     const hash = new Buffer(`${userId}:${secret}`).toString('base64');
 
     fetch(requestUrl, { headers: { Authorization: `Basic ${hash}` } })

@@ -34,3 +34,7 @@ google-services.json
 #
 node_modules/
 npm-debug.log
+
+# js
+#
+SecretConfig.js
