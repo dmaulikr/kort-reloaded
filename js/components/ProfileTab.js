@@ -42,7 +42,7 @@ const ProfileTab = React.createClass({
     this.updateProfileText(userStore.getUserInfo());
   },
   updateProfileText(user) {
-    this.setState({ user: user });
+    this.setState({ user });
   },
   render() {
     return (

@@ -38,7 +38,7 @@ function _initUserWithUpdateInfo(rawUserUpdateInfo) {
 }
 
 function _initUserBadges(rawUserBadges) {
-  _userBadges = [];
+  const _userBadges = [];
   rawUserBadges.forEach((badge) => {
     _userBadges.push(new UserBadge(
       badge.id,
@@ -55,7 +55,7 @@ function _initUserBadges(rawUserBadges) {
   return _userBadges;
 }
 
-export default class UserLoader {
+export default class UserLoader extends DataLoader {
   static verifyUser(provider, idToken, onSuccess) {
     const idTokenParameter = `id_token=${idToken}`;
     const requestUrl = super.createRequestUrl(

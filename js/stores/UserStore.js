@@ -4,7 +4,7 @@ import UserLoader from '../data/UserLoader';
 import Store from './Store';
 
 let _user;
-let _userBadges = [];
+let _userBadges;
 let _userLoggedIn;
 
 class UserStore extends Store {
