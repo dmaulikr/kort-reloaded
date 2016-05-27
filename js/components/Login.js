@@ -25,7 +25,7 @@ class Login extends React.Component {
 
   componentDidMount() {
     GoogleSignin.configure({
-      webClientId: '963836018928-tk23jtqent2p7s310ev8vt8q4mo97813.apps.googleusercontent.com',
+      webClientId: '653755350671-48ubkjfs48paep2f67bd7io8of12bt31.apps.googleusercontent.com',
     });
 
     GoogleSignin.currentUserAsync().then((user) => {
