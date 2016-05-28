@@ -29,6 +29,13 @@ const App = React.createClass({
       <Router createReducer = { reducerCreate } sceneStyle = { { backgroundColor: '#F7F7F7' } }>
         <Scene key = 'modal' component = { Modal } >
           <Scene key = 'root' hideNavBar>
+          <Scene key="login"
+            initial
+            component={Login}
+            title="Login"
+            direction="vertical"
+            style={ { flex: 1, backgroundColor: 'transparent' } }
+          />
             <Scene key = 'tabbar'  panHandlers = { null } tabs >
               <Scene key = 'missions'
                 component = { MissionsTab }
@@ -43,7 +50,6 @@ const App = React.createClass({
                 icon = { TabIcon }
               />
               <Scene key = 'highscore'
-                initial
                 component = { HighscoreTab }
                 title = 'Highscore'
                 hideNavBar
@@ -75,12 +81,6 @@ const App = React.createClass({
               direction = 'vertical'
             />
           </Scene>
-          <Scene key="login"
-            component={Login}
-            title="Login"
-            direction="vertical"
-            style={ { flex: 1, backgroundColor: 'transparent' } }
-          />
         </Scene>
       </Router>
     );
