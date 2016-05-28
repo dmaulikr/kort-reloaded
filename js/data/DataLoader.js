@@ -25,7 +25,7 @@ function _getParametersString(parameters) {
 function _createAuthorizationHeader() {
   const userLoggedIn = true;
   if (!userLoggedIn) {
-    return null
+    return null;
   }
 
   const userId = Config.TEST_USER_ID;
@@ -55,10 +55,10 @@ class DataLoader {
   }
 
   static makeRequest(requestUrl, onSuccess, onError, initializer) {
-    let authorizationHeader = _createAuthorizationHeader();
+    const authorizationHeader = _createAuthorizationHeader();
     fetch(requestUrl, { headers: authorizationHeader })
-      .then((response) => { return response.json() })
-      .then((responseData) => { return responseData })
+      .then((response) => response.json())
+      .then((responseData) => responseData)
       .then((data) => {
         let response = data.return;
         if (initializer != null) {

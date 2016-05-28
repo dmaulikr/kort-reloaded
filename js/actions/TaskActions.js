@@ -16,7 +16,7 @@ export default class TaskActions {
   static loadTasks(latitude, longitude) {
     let tasks = [];
     let missionsLoaded = false;
-    let validationsLoaded = false;
+    // let validationsLoaded = false;
 
     MissionLoader.getMissions(latitude, longitude, (missions) => {
       tasks = tasks.concat(missions);
@@ -25,7 +25,7 @@ export default class TaskActions {
 // Don't load validations until API works again
       _onTasksLoaded(tasks);
     });
-      /*if (validationsLoaded) {
+      /* if (validationsLoaded) {
         _onTasksLoaded(tasks);
       }
     });
