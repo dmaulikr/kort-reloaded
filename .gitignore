@@ -37,4 +37,4 @@ npm-debug.log
 
 # js
 #
-js/constants/SecretConfig.js
+SecretConfig.js
