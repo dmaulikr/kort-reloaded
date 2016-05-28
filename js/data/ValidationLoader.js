@@ -35,7 +35,7 @@ class ValidationLoader extends DataLoader {
     if (radius !== null) parameters.push(`radius=${radius}`);
     const requestUrl = super.createRequestUrl(
       validationsGetRestPath, [latitude, longitude], parameters);
-    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initValidations);
+    super.makeRequest(requestUrl, onSuccess, null, _initValidations);
   }
 }
 
