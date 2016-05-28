@@ -9,18 +9,13 @@ const radius = Config.RADIUS;
 function _initMissions(rawMissions) {
   const missions = [];
   rawMissions.forEach((mission) => {
-    missions.push(new Mission(
-      mission.id,
-      mission.type,
-      mission.title,
-      mission.description,
-      mission.view_type,
-      mission.latitude,
-      mission.longitude,
-      mission.fix_koin_count,
-      mission.promo_id,
-      mission.extra_coins,
-      mission.answer_placeholder)
+    missions.push(
+      new Mission(mission.id, mission.type, mission.title, mission.description,
+        mission.view_type, mission.latitude, mission.longitude, mission.fix_koin_count,
+        mission.promo_id, mission.extra_coins, mission.answer_placeholder, mission.osm_id,
+        mission.osm_type, mission.schema, mission.geom, mission.txt1, mission.txt2, mission.txt3,
+        mission.txt4, mission.txt5
+      )
     );
   }, this);
 
