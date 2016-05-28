@@ -33,3 +33,7 @@ local.properties
 #
 node_modules/
 npm-debug.log
+
+# React-Native
+# Config
+js/constants/SecretConfig.js
