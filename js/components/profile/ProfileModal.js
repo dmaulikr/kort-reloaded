@@ -1,4 +1,5 @@
-import React, { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import React, { View, Text, Image, StyleSheet, ScrollView, BackAndroid } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -74,16 +75,17 @@ const styles = StyleSheet.create({
 const ProfileTab = React.createClass({
   getInitialState() {
     return {
-      username: '',
+      username: this.props.data.username,
       provider: '',
-      completedMissions: 0,
-      collectedKoins: 0,
-      place: '',
+      completedMissions: this.props.data.fix_count,
+      collectedKoins: this.props.data.koin_count,
+      place: this.props.data.ranking,
     };
   },
 
   componentWillMount() {
     this._pressData = {};
+    BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },
   componentDidMount() {
   },
@@ -108,10 +110,10 @@ const ProfileTab = React.createClass({
           <Text style = { styles.textTitle }>{ this.props.title }</Text>
           <View style = { styles.containerInfo }>
             <View style = { styles.containerProfile }>
-              <Image style = { { height: 64, padding: 64 } } source = { require('../assets/img/poi_name_mission.png') } />
+              <Image style = { { height: 64, padding: 64 } } source = { require('../../assets/img/poi_name_mission.png') } />
               <View style = { styles.containerProfileDescription }>
                 <Text style = { styles.textSubTitle }>Username</Text>
-                <Text style = { styles.textSubTitle }>{ this.state.username } username</Text>
+                <Text style = { styles.textSubTitle }>{ this.state.username }</Text>
                 <Text style = { styles.textSubTitle }>Login via</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.provider } provider </Text>
                 <Text style = { styles.textSubTitle }>Completed Missions</Text>
@@ -123,14 +125,14 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerKoinsDescription }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/koin_no_value.png') }
+                  source = { require('../../assets/img/koin_no_value.png') }
                 />
                 <Text style = { styles.textSubTitle }>{ this.state.collectedKoins } Koins</Text>
               </View>
               <View style = { styles.containerKoinsDescription }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/highscore.png') }
+                  source = { require('../../assets/img/highscore.png') }
                 />
                 <Text style = { styles.textSubTitle }>{ this.state.place }. Place</Text>
               </View>
@@ -140,7 +142,7 @@ const ProfileTab = React.createClass({
             <Text style = { styles.textSubTitle }>Won Badges</Text>
             <View style = { styles.containerBadgeGrid }>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>
                   Badge description Badge description
                   Badge description Badge description
@@ -148,43 +150,43 @@ const ProfileTab = React.createClass({
                 </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image source = { require('../../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>Badge description</Text>
               </View>
             </View>

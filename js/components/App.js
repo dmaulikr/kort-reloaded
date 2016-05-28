@@ -7,6 +7,7 @@ import HighscoreTab from './HighscoreTab';
 import AboutTab from './AboutTab';
 import TabIcon from './TabIcon';
 import MissionModal from './missions/MissionModal';
+import ProfileModal from './profile/ProfileModal';
 
 /*
 const styles = StyleSheet.create({
@@ -32,47 +33,53 @@ const App = React.createClass({
 
   render() {
     return (
-      <Router createReducer={reducerCreate} sceneStyle={{ backgroundColor: '#F7F7F7' }}>
-        <Scene key='modal' component={Modal} >
-          <Scene key='root' hideNavBar>
-            <Scene key='login'
-              initial
-              component={Login}
-              title='Login'
-              direction='vertical'
-              style={ { flex: 1, backgroundColor: 'transparent' } }
-            />
-          <Scene key='tabbar'  panHandlers={null} tabs >
-              <Scene key='missions'
-                component={MissionsTab}
-                title='Missions'
+      <Router createReducer = { reducerCreate } sceneStyle = { { backgroundColor: '#F7F7F7' } }>
+        <Scene key = 'modal' component = { Modal } >
+          <Scene key = 'root' hideNavBar>
+            <Scene key = 'tabbar'  panHandlers = { null } tabs >
+              <Scene key = 'missions'
+                component = { MissionsTab }
+                title = 'Missions'
                 hideNavBar
-                icon={TabIcon}
+                icon = { TabIcon }
               />
-              <Scene key='profile'
-                component={ProfileTab}
-                title='Profile'
+              <Scene key = 'profile'
+                component = { ProfileTab }
+                title = 'Profile'
                 hideNavBar
-                icon={TabIcon}
+                icon = { TabIcon }
               />
-              <Scene key='highscore'
-                component={HighscoreTab}
-                title='Highscore'
+              <Scene key = 'highscore'
+                initial
+                component = { HighscoreTab }
+                title = 'Highscore'
                 hideNavBar
-                icon={TabIcon}
+                icon = { TabIcon }
               />
-              <Scene key='about'
-                component={AboutTab}
-                title='About'
+              <Scene key = 'about'
+                component = { AboutTab }
+                title = 'About'
                 hideNavBar
-                icon={TabIcon}
+                icon = { TabIcon }
               />
             </Scene>
+            <Scene key = 'login'
+              component = { Login }
+              title = 'Login'
+              direction = 'vertical'
+              style = { { flex: 1, backgroundColor: 'transparent' } }
+            />
             <Scene
-              key='missionModal'
-              panHandlers={null}
-              component={MissionModal}
-              direction='vertical'
+              key = 'missionModal'
+              panHandlers = { null }
+              component = { MissionModal }
+              direction = 'vertical'
+            />
+            <Scene
+              key = 'profileModal'
+              panHandlers = { null }
+              component = { ProfileModal }
+              direction = 'vertical'
             />
           </Scene>
         </Scene>

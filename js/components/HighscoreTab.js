@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ListView, TouchableHighlight, RecyclerViewBackedScrollView, } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +12,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: '#F5FCFF',
   },
   textTitle: {
     textAlign: 'center',
@@ -22,6 +22,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     padding: 10,
+    backgroundColor: '#F6F6F6',
+  },
+  rowDescription: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    paddingTop: 10,
     backgroundColor: '#F6F6F6',
   },
   column: {
@@ -48,8 +54,8 @@ const HighscoreTab = React.createClass({
   getInitialState() {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     return {
-      name: '',
-      dataSource: ds.cloneWithRows(['row 1', 'row 2', 'row 3', 'row 4', 'row 5', 'row 6', 'row 7', 'row 8', 'row 9', 'row 10', 'row 11']),
+      dataSource: ds.cloneWithRows([{ user_id:'3', username:'tschortsch', koin_count:'140', fix_count:'12', vote_count:'4', ranking:'1', you:true },
+        { user_id:'4', username:'mmelchio', koin_count:'110', fix_count:'1', vote_count:'23', ranking:'3', you:false }]),
     };
   },
 
@@ -60,17 +66,25 @@ const HighscoreTab = React.createClass({
 
   _renderRow: function(rowData: string, sectionID: number, rowID: number) {
       return (
-        <TouchableHighlight onPress={() => this._pressRow(rowID)}>
+        <TouchableHighlight onPress = { () => this._pressRow(rowData) }>
           <View>
-            <View style={styles.row}>
-              <Image style={styles.thumb} source={ require('../assets/img/poi_name_mission.png') } />
-              <View style={styles.column}>
-                <Text style={styles.text}>
-                  {rowData + ' - '}
+            <View style = { styles.row }>
+              <Image style = { styles.thumb } source = { require('../assets/img/poi_name_mission.png') } />
+              <View style = { styles.column }>
+                <Text style = { styles.text }>
+                  { rowData.username }
                 </Text>
-                <Text style={styles.text}>
-
-                </Text>
+                <View style = { styles.rowDescription }>
+                  <Text style = { styles.text }>
+                    { 'Koins: ' + rowData.koin_count + ' ' }
+                  </Text>
+                  <Text style = { styles.text }>
+                    { 'Missions: ' + rowData.fix_count +  ' ' }
+                  </Text>
+                  <Text style = { styles.text }>
+                    { 'Checks: ' + rowData.vote_count }
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -78,31 +92,24 @@ const HighscoreTab = React.createClass({
       );
   },
 
-  _genRows: function(pressData: {[key: number]: boolean}): Array<string> {
-    var dataBlob = [];
-    for (var ii = 0; ii < 11; ii++) { // magic number!
-      var pressedText = pressData[ii] ? ' (pressed)' : '';
-      dataBlob.push('Row ' + ii + pressedText);
+  _pressRow: function(rowData: string) {
+    console.log(rowData);
+    if (!rowData.you) {
+      Actions.profileModal( { data: rowData } );
+    } else {
+      Actions.profile();
     }
-    return dataBlob;
-  },
-
-  _pressRow: function(rowID: number) {
-    this._pressData[rowID] = !this._pressData[rowID];
-    this.setState({dataSource: this.state.dataSource.cloneWithRows(
-      this._genRows(this._pressData)
-    )});
   },
 
   render() {
     return (
-      <View style={ styles.container }>
+      <View style = { styles.container }>
         <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
-        <View style={ styles.containerListView }>
+        <View style = { styles.containerListView }>
           <ListView
-            dataSource={ this.state.dataSource }
-            renderRow={ this._renderRow }
-            renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
+            dataSource = { this.state.dataSource }
+            renderRow = { this._renderRow }
+            renderSeparator = { (sectionID, rowID) => <View key = { `${sectionID}-${rowID}` } style = { styles.separator } />}
           />
         </View>
       </View>

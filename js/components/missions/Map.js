@@ -59,6 +59,7 @@ const Map = React.createClass({
     console.log(annotation);
      // annotation Objekt - Mission übergeben
     if (require('react-native').Platform.OS === 'android') {
+      // Subtitle von Annotation im taskStore suchen und mit Actions übergeben
       Actions.missionModal(
         { title: annotation.src.title, data: 'Custom data' }
       );
