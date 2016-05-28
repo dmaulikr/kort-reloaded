@@ -56,7 +56,7 @@ class DataLoader {
 
   static makeRequest(requestUrl, onSuccess, onError, initializer) {
     let authorizationHeader = _createAuthorizationHeader();
-    fetch(requestUrl, { headers: authorizationHeader }) //{ Authorization: `Basic ${hash}` } })
+    fetch(requestUrl, { headers: authorizationHeader })
       .then((response) => { return response.json() })
       .then((responseData) => { return responseData })
       .then((data) => {
