@@ -3,6 +3,8 @@ import Config from '../constants/Config';
 import Mission from '../dto/Mission';
 
 const missionsGetRestPath = Config.MISSIONS_GET_PATH;
+const limit = Config.MISSIONS_LIMIT;
+const radius = Config.RADIUS;
 
 function _initMissions(rawMissions) {
   const missions = [];
@@ -26,13 +28,13 @@ function _initMissions(rawMissions) {
 }
 
 class MissionLoader extends DataLoader {
-  static getMissions(latitude, longitude, limit, radius, onSuccess) {
+  static getMissions(latitude, longitude, onSuccess) {
     const parameters = [];
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
     const requestUrl = super.createRequestUrl(
       missionsGetRestPath, [latitude, longitude], parameters);
-    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initMissions);
+    super.makeRequest(requestUrl, onSuccess, null, _initMissions);
   }
 }
 

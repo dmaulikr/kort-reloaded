@@ -29,12 +29,12 @@ const App = React.createClass({
       <Router createReducer = { reducerCreate } sceneStyle = { { backgroundColor: '#F7F7F7' } }>
         <Scene key = 'modal' component = { Modal } >
           <Scene key = 'root' hideNavBar>
-          <Scene key="login"
+          <Scene key = 'login'
             initial
-            component={Login}
-            title="Login"
-            direction="vertical"
-            style={ { flex: 1, backgroundColor: 'transparent' } }
+            component = { Login }
+            title = 'Login'
+            direction = 'vertical'
+            style = { { flex: 1, backgroundColor: 'transparent' } }
           />
             <Scene key = 'tabbar'  panHandlers = { null } tabs >
               <Scene key = 'missions'
@@ -62,12 +62,6 @@ const App = React.createClass({
                 icon = { TabIcon }
               />
             </Scene>
-            <Scene key = 'login'
-              component = { Login }
-              title = 'Login'
-              direction = 'vertical'
-              style = { { flex: 1, backgroundColor: 'transparent' } }
-            />
             <Scene
               key = 'missionModal'
               panHandlers = { null }

@@ -75,19 +75,19 @@ export default class UserLoader extends DataLoader {
     const userBadgesParameter = `${id}/badges`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userBadgesParameter], null);
-    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initUserBadges);
+    super.makeRequest(requestUrl, onSuccess, null, _initUserBadges);
   }
 
   static logoutUser(id, onSuccess) {
     const userLogoutParameter = `${id}/logout`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userLogoutParameter], null);
-    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, null);
+    super.makeRequest(requestUrl, onSuccess, null, null);
   }
 
   static updateUser(id, onSuccess) {
     const requestUrl = super.createRequestUrl(
       userRestPath, [id], null);
-    super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initUserWithUpdateInfo);
+    super.makeRequest(requestUrl, onSuccess, null, _initUserWithUpdateInfo);
   }
 }

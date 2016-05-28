@@ -35,6 +35,6 @@ google-services.json
 node_modules/
 npm-debug.log
 
-# React-Native
-# Config
-js/constants/SecretConfig.js
+# js
+#
+SecretConfig.js
