@@ -76,7 +76,6 @@ const App = React.createClass({
             />
           </Scene>
           <Scene key="login"
-            initial
             component={Login}
             title="Login"
             direction="vertical"
