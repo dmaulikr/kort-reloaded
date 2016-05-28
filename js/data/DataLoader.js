@@ -22,6 +22,18 @@ function _getParametersString(parameters) {
   return parametersString;
 }
 
+function _createAuthorizationHeader() {
+  const userLoggedIn = true;
+  if (!userLoggedIn) {
+    return null
+  }
+
+  const userId = Config.TEST_USER_ID;
+  const secret = Config.TEST_SECRET;
+  const hash = new Buffer(`${userId}:${secret}`).toString('base64');
+  return { Authorization: `Basic ${hash}` };
+}
+
 class DataLoader {
   static createRequestUrl(apiUrl, queryParameters, parameters) {
     let requestUrl = requestLocation;
@@ -43,31 +55,23 @@ class DataLoader {
   }
 
   static makeRequest(requestUrl, onSuccess, onError, initializer) {
-    fetch(requestUrl)
-      .then((response) => response.json())
-      .then((responseData) => {
-        let response = responseData.return;
+    let authorizationHeader = _createAuthorizationHeader();
+    fetch(requestUrl, { headers: authorizationHeader })
+      .then((response) => { return response.json() })
+      .then((responseData) => { return responseData })
+      .then((data) => {
+        let response = data.return;
         if (initializer != null) {
           response = initializer(response);
         }
         onSuccess(response);
       })
-      .done();
-  }
-
-  static makeAuthenticatedRequest(requestUrl, onSuccess, onError, initializer) {
-    const userId = Config.TEST_USER_ID;
-    const secret = Config.TEST_SECRET;
-    const hash = new Buffer(`${userId}:${secret}`).toString('base64');
-
-    fetch(requestUrl, { headers: { Authorization: `Basic ${hash}` } })
-      .then((response) => response.json())
-      .then((responseData) => {
-        let response = responseData.return;
-        if (initializer != null) {
-          response = initializer(response);
+      .catch((error) => {
+        if (onError != null) {
+          onError(error);
+        } else {
+          console.log(error);
         }
-        onSuccess(response);
       })
       .done();
   }

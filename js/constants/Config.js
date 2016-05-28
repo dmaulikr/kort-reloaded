@@ -2,7 +2,7 @@ import SecretConfig from './SecretConfig';
 
 export default {
   // Kort API
-  SERVER: 'https://kort.herokuapp.com',
+  SERVER: 'https://kort-dev.herokuapp.com',
   PROD_SERVER: 'https://kort.herokuapp.com',
   DEV_SERVER: 'https://kort-dev.herokuapp.com',
   API_PATH: '/server/webservices',
@@ -20,8 +20,8 @@ export default {
   MAPBOX_ACCESS_TOKEN: SecretConfig.MAPBOX_ACCESS_TOKEN,
 
   // Tasks
-  MISSION_LIMIT: 10,
-  VALIDATION_LIMIT: 10,
+  MISSIONS_LIMIT: 10,
+  VALIDATIONS_LIMIT: 10,
   RADIUS: 5000,
 
   // Auth
