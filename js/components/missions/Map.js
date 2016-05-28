@@ -3,6 +3,9 @@ import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { Actions } from 'react-native-router-flux';
 import TaskActions from '../../actions/TaskActions';
+
+import Config from '../../constants/Config';
+
 import taskStore from '../../stores/TaskStore';
 
 const styles = StyleSheet.create({
@@ -12,10 +15,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapRef = 'OpenStreetMap';
-const ACCESS_TOKEN = 'pk.eyJ1IjoiZG9taW5pY21oIiwiYSI6ImNpbTIwbHFqbjAwbTN3MW02bWNxbjI4YmEifQ.ZkVpEGDJZXDSmG6fuO8ZZA'; // eslint-disable-line max-len
-const STYLE_URL = 'https://raw.githubusercontent.com/osm2vectortiles/mapbox-gl-styles/master/styles/bright-v9-cdn.json';
-const ZOOM_LEVEL = 13;
+const mapRef = Config.MAP_REF;
+const accessToken = Config.MAPBOX_ACCESS_TOKEN;
+const styleUrl = Config.STYLE_URL;
+const zoomLevel = Config.ZOOM_LEVEL;
 
 const Map = React.createClass({
   mixins: [Mapbox.Mixin],
@@ -47,7 +50,7 @@ const Map = React.createClass({
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
 
-    this.setCenterCoordinateZoomLevelAnimated(mapRef, latitude, longitude, ZOOM_LEVEL);
+    this.setCenterCoordinateZoomLevelAnimated(mapRef, latitude, longitude, zoomLevel);
     TaskActions.loadTasks(latitude, longitude);
   },
 
@@ -98,8 +101,8 @@ const Map = React.createClass({
         zoomEnabled
         showsUserLocation
         ref = { mapRef }
-        accessToken = { ACCESS_TOKEN }
-        styleURL = { STYLE_URL }
+        accessToken = { accessToken }
+        styleURL = { styleUrl }
         logoIsHidden
         //attributionButtonIsHidden
         onOpenAnnotation = { this.onOpenAnnotation }

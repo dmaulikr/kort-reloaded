@@ -3,7 +3,12 @@ import { View, Text, StyleSheet } from 'react-native';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+
 import UserActions from '../actions/UserActions';
+
+import Config from '../constants/Config';
+
+const webClientId = Config.GOOGLE_WEB_CLIENT_ID;
 
 const styles = StyleSheet.create({
   container: {
@@ -21,23 +26,17 @@ class Login extends React.Component {
     super(props);
     this.state = {
       user: null,
-      provider: null,
     };
   }
 
   componentDidMount() {
     GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/calendar'],
-      iosClientId: '963836018928-8r1oggadkfjohvnmrkc744i3nkeu4av9.apps.googleusercontent.com',
-      webClientId: '963836018928-tk23jtqent2p7s310ev8vt8q4mo97813.apps.googleusercontent.com',
-      offlineAccess: false,
+      webClientId,
     });
 
     GoogleSignin.currentUserAsync().then((user) => {
-      this.setState({ user: user });
-      this.createUser();
-      //Actions.tabbar();
-      // save user initial state to AsyncStorage
+      console.log('USER', user);
+      this.setState({ user });
     }).done();
   }
 
@@ -49,7 +48,6 @@ class Login extends React.Component {
   }
 
   _signIn() {
-    this.setState({ provider: 'google' });
     GoogleSignin.signIn()
     .then((user) => {
       console.log(user);
@@ -83,21 +81,20 @@ class Login extends React.Component {
         </View>
       );
     }
-    if (this.state.user) {
-      return (
-        <View style={styles.container}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
-            Welcome {this.state.user.name}
-          </Text>
-          <Text style={{ marginBottom: 20 }}>Your email is: {this.state.user.email}</Text>
 
-          <Button onPress={() => {this._signOut(); }}>Log out</Button>
+    return (
+      <View style={styles.container}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
+          Welcome {this.state.user.name}
+        </Text>
+        <Text style={{ marginBottom: 20 }}>Your email is: {this.state.user.email}</Text>
 
-          <Text style={{ marginTop: 20 }}>Login page </Text>
-          <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
-        </View>
-      );
-    }
+        <Button onPress={() => {this._signOut(); }}>Log out</Button>
+
+        <Text style={{ marginTop: 20 }}>Login page </Text>
+        <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
+      </View>
+    );
   }
 }
 

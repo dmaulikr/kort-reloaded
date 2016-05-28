@@ -92,6 +92,7 @@ const ProfileTab = React.createClass({
   onChange() {
   },
   updateProfileText(user) {
+    this.setState({ user });
   },
 
   render() {

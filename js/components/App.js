@@ -9,13 +9,6 @@ import TabIcon from './TabIcon';
 import MissionModal from './missions/MissionModal';
 import ProfileModal from './profile/ProfileModal';
 
-/*
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center',
-      alignItems: 'center' },
-});
-*/
-
 const reducerCreate = params => {
   const defaultReducer = new Reducer(params);
   return (state, action) => {
@@ -82,6 +75,13 @@ const App = React.createClass({
               direction = 'vertical'
             />
           </Scene>
+          <Scene key="login"
+            initial
+            component={Login}
+            title="Login"
+            direction="vertical"
+            style={ { flex: 1, backgroundColor: 'transparent' } }
+          />
         </Scene>
       </Router>
     );

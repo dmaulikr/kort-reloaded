@@ -1,6 +1,8 @@
+import Config from '../constants/Config';
+
 const Buffer = require('buffer').Buffer;
 
-const REQUEST_LOCATION = 'https://kort.herokuapp.com/server/webservices';
+const requestLocation = `${Config.SERVER}${Config.API_PATH}`;
 
 function _getQueryParametersString(queryParameters) {
   let queryParametersString;
@@ -22,7 +24,7 @@ function _getParametersString(parameters) {
 
 class DataLoader {
   static createRequestUrl(apiUrl, queryParameters, parameters) {
-    let requestUrl = REQUEST_LOCATION;
+    let requestUrl = requestLocation;
 
     if (!apiUrl.startsWith('/')) requestUrl += '/';
     requestUrl = requestUrl + apiUrl;
@@ -44,7 +46,7 @@ class DataLoader {
     fetch(requestUrl)
       .then((response) => response.json())
       .then((responseData) => {
-        var response = responseData.return;
+        let response = responseData.return;
         if (initializer != null) {
           response = initializer(response);
         }
@@ -54,18 +56,14 @@ class DataLoader {
   }
 
   static makeAuthenticatedRequest(requestUrl, onSuccess, onError, initializer) {
-    const userId = '4156';
-    const secret = '680ebf81e9b139e894769b42cd57e077e35859c5';
+    const userId = Config.TEST_USER_ID;
+    const secret = Config.TEST_SECRET;
     const hash = new Buffer(`${userId}:${secret}`).toString('base64');
 
-    fetch(requestUrl, {
-      headers: {
-        'Authorization': `Basic ${hash}`
-      }
-    })
+    fetch(requestUrl, { headers: { Authorization: `Basic ${hash}` } })
       .then((response) => response.json())
       .then((responseData) => {
-        var response = responseData.return;
+        let response = responseData.return;
         if (initializer != null) {
           response = initializer(response);
         }

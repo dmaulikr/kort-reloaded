@@ -1,7 +1,8 @@
+import Config from '../constants/Config';
 import DataLoader from './DataLoader';
 import Validation from '../dto/Validation';
 
-const GET_VALIDATIONS_REST_PATH = '/validation/position';
+const validationsGetRestPath = Config.VALIDATIONS_GET_PATH;
 
 function _initValidations(rawValidations) {
   const validations = [];
@@ -31,7 +32,7 @@ class ValidationLoader extends DataLoader {
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
     const requestUrl = super.createRequestUrl(
-      GET_VALIDATIONS_REST_PATH, [latitude, longitude], parameters);
+      validationsGetRestPath, [latitude, longitude], parameters);
     super.makeAuthenticatedRequest(requestUrl, onSuccess, null, _initValidations);
   }
 }
