@@ -1,14 +1,9 @@
 import ActionTypes from '../constants/ActionTypes';
-import Config from '../constants/Config';
 
 import MissionLoader from '../data/MissionLoader';
 import ValidationLoader from '../data/ValidationLoader';
 
 import AppDispatcher from '../dispatcher/AppDispatcher';
-
-const missionLimit = Config.MISSION_LIMIT;
-const validationLimit = Config.VALIDATION_LIMIT;
-const radius = Config.RADIUS;
 
 function _onTasksLoaded(tasks) {
   AppDispatcher.dispatch({
@@ -23,23 +18,24 @@ export default class TaskActions {
     let missionsLoaded = false;
     let validationsLoaded = false;
 
-    MissionLoader.getMissions(latitude, longitude, missionLimit, radius,
-    (missions) => {
+    MissionLoader.getMissions(latitude, longitude, (missions) => {
       tasks = tasks.concat(missions);
       missionsLoaded = true;
 
-      if (validationsLoaded) {
+// Don't load validations until API works again
+      _onTasksLoaded(tasks);
+    });
+      /*if (validationsLoaded) {
         _onTasksLoaded(tasks);
       }
     });
-    ValidationLoader.getValidations(latitude, longitude, validationLimit, radius,
-    (validations) => {
+    ValidationLoader.getValidations(latitude, longitude, (validations) => {
       tasks = tasks.concat(validations);
       validationsLoaded = true;
 
       if (missionsLoaded) {
         _onTasksLoaded(tasks);
       }
-    });
+    });*/
   }
 }

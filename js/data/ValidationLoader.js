@@ -3,6 +3,8 @@ import DataLoader from './DataLoader';
 import Validation from '../dto/Validation';
 
 const validationsGetRestPath = Config.VALIDATIONS_GET_PATH;
+const limit = Config.VALIDATIONS_LIMIT;
+const radius = Config.RADIUS;
 
 function _initValidations(rawValidations) {
   const validations = [];
@@ -27,7 +29,7 @@ function _initValidations(rawValidations) {
 }
 
 class ValidationLoader extends DataLoader {
-  static getValidations(latitude, longitude, limit, radius, onSuccess) {
+  static getValidations(latitude, longitude, onSuccess) {
     const parameters = [];
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
