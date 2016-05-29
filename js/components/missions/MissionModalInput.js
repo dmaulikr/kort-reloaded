@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
+  View,
   TextInput,
   Item,
   Picker } from 'react-native';
@@ -17,13 +18,11 @@ const styles = StyleSheet.create({
 });
 
 const MissionModalInput = React.createClass({
-  propTypes() {
-    inputType: React.PropTypes.any.isRequired,
-  },
 
   getInitialState() {
     return {
       unableToSolve: false,
+      inputType: this.props.inputType,
       selected: 'key0',
       answer: ' ',
     };
@@ -41,8 +40,8 @@ const MissionModalInput = React.createClass({
   render() {
     let inputField;
     if (this.state.unableToSolve) inputField = null;
-    switch (this.props.inputType) {
-      case: 'select':
+    switch (this.state.inputType) {
+      case 'select':
         inputField = (
           <Picker
             style = { styles.picker }
@@ -54,7 +53,7 @@ const MissionModalInput = React.createClass({
           </Picker>
         );
         break;
-      case: 'input':
+      case 'input':
         inputField = (
           <TextInput
             style = { styles.textInput }
@@ -70,7 +69,11 @@ const MissionModalInput = React.createClass({
         return;
     }
     return (
-      { inputField }
+      <View>
+        { inputField }
+      </View>
     );
   }
 });
+
+module.exports = MissionModalInput;
