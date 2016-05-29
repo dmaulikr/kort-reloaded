@@ -21,14 +21,14 @@ const reducerCreate = params => {
 const scenes = Actions.create(
   <Scene key = 'modal' component = { Modal } >
     <Scene key = 'root' hideNavBar>
-    <Scene key = 'login'
-      initial
-      component = { Login }
-      title = 'Login'
-      direction = 'vertical'
-      style = { { flex: 1, backgroundColor: 'transparent' } }
-    />
-  <Scene key = 'tabbar'  panHandlers = { null } tabs type = 'replace'>
+      <Scene key = 'login'
+        initial
+        component = { Login }
+        title = 'Login'
+        direction = 'vertical'
+        style = { { flex: 1, backgroundColor: 'transparent' } }
+      />
+      <Scene key = 'tabbar'  panHandlers = { null } tabs type = 'replace'>
         <Scene key = 'missions'
           component = { MissionsTab }
           title = 'Missions'
