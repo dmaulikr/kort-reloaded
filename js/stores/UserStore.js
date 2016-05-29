@@ -1,21 +1,23 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import UserLoader from '../data/UserLoader';
 import Store from './Store';
 
-let _user;
-let _userBadges;
-let _userLoggedIn;
-
 class UserStore extends Store {
+  constructor() {
+    super();
+    this._user = null;
+    this._userBadges = null;
+    this._userLoggedIn = null;
+  }
+
   getUserBadges() {
-    return _userBadges;
+    return this._userBadges;
   }
 }
 
 const userStore = new UserStore();
 
-AppDispatcher.register((action) => {
+userStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.USER_VERIFY:
 

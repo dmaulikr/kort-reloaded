@@ -1,33 +1,14 @@
 import ActionTypes from '../constants/ActionTypes';
-import AnswerActions from '../actions/AnswerActions';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 
-let _allAnswers = [];
-let _answers = [];
-let _taskType;
-
 class AnswerStore extends Store {
   constructor() {
-    this._registerWithDispatcher();
-  }
-  _onAnswersLoaded(answers) {
-    if (answers.toString() !== _answers.toString()) {
-      _allAnswers = answers;
-      super.emitChange();
-    }
-  }
-
-  _onAnswersLoadedForType(answers, taskType) {
-    if ((taskType !== _taskType) && (answers.toString() !== _answers.toString())) {
-      _taskType = taskType;
-      _answers = answers;
-      super.emitChange();
-    }
-  }
-
-  _registerWithDispatcher() {
-    AppDispatcher.register((action) => {
+    super();
+    this._allAnswers = null;
+    this._answers = null;
+    this._taskType = null;
+    this.dispatchToken = AppDispatcher.register((action) => {
       switch (action.actionType) {
         case ActionTypes.ANSWERS_LOAD:
           this.onAnswersLoaded(action.data);
@@ -39,5 +20,18 @@ class AnswerStore extends Store {
           return;
       }
     });
+  }
+
+  _onAnswersLoaded(answers) {
+    this._allAnswers = answers;
+    super.emitChange();
+  }
+
+  _onAnswersLoadedForType(answers, taskType) {
+    if (taskType !== this._taskType) {
+      this._taskType = taskType;
+      this._answers = answers;
+      super.emitChange();
+    }
   }
 }
