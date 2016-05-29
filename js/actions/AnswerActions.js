@@ -15,7 +15,7 @@ export default class AnswerActions {
     );
   }
 
-  static loadAnswers(taskType) {
+  static loadAnswersForType(taskType) {
     AnswerLoader.getAnswersForType(
       taskType,
       (answers) => {
