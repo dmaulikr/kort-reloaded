@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ListView, TouchableHighlight, RecyclerViewBackedScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import HighscoreCell from './highscore/HighscoreCell';
 
 const styles = StyleSheet.create({
   container: {
@@ -92,9 +93,6 @@ const HighscoreTab = React.createClass({
                     <Text style = { styles.text }>
                       { 'Missions: ' + rowData.fix_count +  ' ' }
                     </Text>
-                    <Text style = { styles.text }>
-                      { 'Checks: ' + rowData.vote_count }
-                    </Text>
                   </View>
                 </View>
               </View>
@@ -103,29 +101,10 @@ const HighscoreTab = React.createClass({
         );
       }
       return (
-        <TouchableHighlight onPress = { () => this._pressRow(rowData) }>
-          <View>
-            <View style = { styles.row }>
-              <Image style = { styles.thumb } source = { require('../assets/img/poi_name_mission.png') } />
-              <View style = { styles.column }>
-                <Text style = { styles.text }>
-                  { rowData.username }
-                </Text>
-                <View style = { styles.rowDescription }>
-                  <Text style = { styles.text }>
-                    { 'Koins: ' + rowData.koin_count + ' ' }
-                  </Text>
-                  <Text style = { styles.text }>
-                    { 'Missions: ' + rowData.fix_count +  ' ' }
-                  </Text>
-                  <Text style = { styles.text }>
-                    { 'Checks: ' + rowData.vote_count }
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
+        <HighscoreCell
+          onSelectRow = { () => this._pressRow(rowData) }
+          highscoreList = { rowData }
+        />
       );
   },
 

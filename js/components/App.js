@@ -8,7 +8,7 @@ import HighscoreTab from './HighscoreTab';
 import AboutTab from './AboutTab';
 import TabIcon from './shared/TabIcon';
 import MissionModal from './missions/MissionModal';
-import ProfileModal from './profile/ProfileModal';
+import ProfileModal from './highscore/ProfileModal';
 
 const reducerCreate = params => {
   const defaultReducer = new Reducer(params);
