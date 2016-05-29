@@ -87,12 +87,16 @@ const ProfileTab = React.createClass({
     this._pressData = {};
     // BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },
+
   componentDidMount() {
   },
+
   componentWillUnmount() {
   },
+
   onChange() {
   },
+  
   updateProfileText(user) {
   },
 
