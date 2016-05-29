@@ -10,5 +10,8 @@ export default class User {
     this.fixCount = fixCount;
     this.voteCount = voteCount;
     this.koinCount = koinCount;
+    this.secret = secret;
+    this.picUrl = picUrl;
+    this.loggedIn = loggedIn;
   }
 }
