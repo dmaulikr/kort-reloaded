@@ -48,11 +48,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 25,
   },
-  missionText: {
+  textMission: {
     alignSelf: 'center',
     marginTop: 5,
   },
-  textEdit: {
+  textInput: {
     height: 45,
     marginTop: 10,
   },
@@ -89,7 +89,7 @@ const MissionsModal = React.createClass({
       txtUnableToSolve: 'Unable to solve',
       unableToSolve: false,
       answer: '',
-      selected: 'key',
+      selected: 'key0',
       btnCompleteMission: '',
       view: '',
       modalVisible: false,
@@ -105,7 +105,7 @@ const MissionsModal = React.createClass({
   },
 
   /*
-  * Switch
+  * Picker
   */
   onValueChange(key, value) {
     const newState = {};
@@ -152,14 +152,14 @@ const MissionsModal = React.createClass({
                 style = { styles.icon }
                 source = { require('../../assets/img/koin_no_value.png') }
               />
-            <Text style = { styles.missionText }>Get the { this.state.koins } Koins!</Text>
+            <Text style = { styles.textMission }>Get the { this.state.koins } Koins!</Text>
             </View>
             <View style = { styles.containerMissionDescription }>
               <Image
                 style = { styles.icon }
                 source = { require('../../assets/img/poi_name_mission.png') }
               />
-              <Text style = { styles.missionText }>{ this.state.mission } ?</Text>
+              <Text style = { styles.textMission }>{ this.state.mission } ?</Text>
             </View>
           </View>
           <View style = { styles.containerSolve }>
@@ -208,17 +208,17 @@ const MissionsModal = React.createClass({
                   style = { styles.icon }
                   source = { require('../../assets/img/koin_no_value.png') }
                 />
-                <Text style = { styles.missionText }>Get the { this.state.koins } Koins!</Text>
+                <Text style = { styles.textMission }>Get the { this.state.koins } Koins!</Text>
               </View>
               <View style = { styles.containerMissionDescription }>
                 <Image
                   style = { styles.icon }
                   source = { require('../../assets/img/poi_name_mission.png') }
                 />
-                <Text style = { styles.missionText }>{ this.state.mission } ?</Text>
+                <Text style = { styles.textMission }>{ this.state.mission } ?</Text>
               </View>
             </View>
-            <View style = { [styles.containerSolve] }>
+            <View style = { styles.containerSolve }>
               <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
               <Switch
                 onValueChange = { (value) => this.setState({ unableToSolve: value }) }
@@ -227,10 +227,10 @@ const MissionsModal = React.createClass({
             </View>
             <View>
               <TextInput
-                style = { styles.textEdit }
+                style = { styles.textInput }
                 autoCapitalize = 'words'
                 placeholder = 'Mission type'
-                onChangeText = {(answer) => this.setState({ answer })}
+                onChangeText = { (answer) => this.setState({ answer })}
                 value = { this.state.answer }
               />
             </View>
@@ -275,17 +275,17 @@ const MissionsModal = React.createClass({
                   style = { styles.icon }
                   source = { require('../../assets/img/koin_no_value.png') }
                 />
-                <Text style = { styles.missionText }>Get the { this.state.koins } Koins!</Text>
+                <Text style = { styles.textMission }>Get the { this.state.koins } Koins!</Text>
               </View>
               <View style = { styles.containerMissionDescription }>
                 <Image
                   style = { styles.icon }
                   source = { require('../../assets/img/poi_name_mission.png') }
                 />
-                <Text style = { styles.missionText }>{ this.state.mission } ?</Text>
+                <Text style = { styles.textMission }>{ this.state.mission } ?</Text>
               </View>
             </View>
-            <View style = { [styles.containerSolve] }>
+            <View style = { styles.containerSolve }>
               <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
               <Switch
                 onValueChange = { (value) => this.setState({ unableToSolve: value }) }

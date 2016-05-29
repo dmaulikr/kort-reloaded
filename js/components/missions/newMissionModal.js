@@ -13,6 +13,7 @@ import {
 import Button from 'react-native-button';
 import CustomButton from '../shared/CustomButton';
 import { Actions } from 'react-native-router-flux';
+import MissionModalInput from './MissionModalInput';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,17 +49,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 25,
   },
-  missionText: {
+  textMission: {
     alignSelf: 'center',
     marginTop: 5,
-  },
-  textEdit: {
-    height: 45,
-    marginTop: 10,
-  },
-  picker: {
-    flex: 1,
-    justifyContent: 'flex-start',
   },
   containerButton: {
     flexDirection: 'row',
@@ -80,16 +73,28 @@ const styles = StyleSheet.create({
   },
 });
 
-const UnableToSolveMissionModal = React.createClass({
-  getInitialState() {
+const MissionsModal = React.createClass({
+  getInitialState() { // this.props.task....
     return {
-      modalVisible: this.props.modalVisible,
-      title: this.props.title,
-      koins: this.props.koins,
-      mission: this.props.mission,
-      txtUnableToSolve: this.props.txtUnableToSolve,
-      unableToSolve: this.props.unableToSolve
+      title: '',
+      koins: 0,
+      mission: '',
+      txtUnableToSolve: 'Unable to solve',
+      unableToSolve: false,
+      answer: '',
+      selected: 'key',
+      btnCompleteMission: '',
+      view: '',
+      modalVisible: false,
     };
+  },
+
+  componentWillMount() {
+    // BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+  },
+
+  componentDidMount() {
+
   },
 
   /*
@@ -123,28 +128,33 @@ const UnableToSolveMissionModal = React.createClass({
             </View>
           </View>
         </Modal>
-        <Text style = { styles.textTitle }>{ this.state.title }</Text>
+        <Text style = { styles.textTitle }>{ this.props.title }</Text>
         <View style = { styles.containerMission }>
           <View style = { styles.containerMissionDescription }>
             <Image
               style = { styles.icon }
               source = { require('../../assets/img/koin_no_value.png') }
             />
-          <Text style = { styles.missionText }>Get the { this.state.koins } Koins!</Text>
+          <Text style = { styles.textMission }>Get the { this.state.koins } Koins!</Text>
           </View>
           <View style = { styles.containerMissionDescription }>
             <Image
               style = { styles.icon }
               source = { require('../../assets/img/poi_name_mission.png') }
             />
-            <Text style = { styles.missionText }>{ this.state.mission } ?</Text>
+          <Text style = { styles.textMission }>{ this.state.mission } ?</Text>
           </View>
         </View>
         <View style = { styles.containerSolve }>
           <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
           <Switch
-            onValueChange = { this.props.onSwitchValueChange }
+            onValueChange = { (value) => this.setState({ unableToSolve: value }) }
             value = { this.state.unableToSolve }
+          />
+        </View>
+        <View>
+          <MissionModalInput
+            inputType = 'select'
           />
         </View>
         <View style = { styles.containerButton }>
@@ -160,4 +170,4 @@ const UnableToSolveMissionModal = React.createClass({
   },
 });
 
-module.exports = UnableToSolveMissionModal;
+module.exports = MissionsModal;
