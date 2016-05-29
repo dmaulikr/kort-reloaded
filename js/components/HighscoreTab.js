@@ -75,40 +75,16 @@ const HighscoreTab = React.createClass({
     // setState von dataSource - array aus allen usern erzeugen und an cloneWithRows übergeben
   },
 
-  _renderRow: function(rowData: string, sectionID: number, rowID: number) {
-      if (rowData.you) {
-        return (
-          <TouchableHighlight onPress = { () => this._pressRow(rowData) }>
-            <View>
-              <View style = { styles.row }>
-                <Image style = { styles.thumb } source = { require('../assets/img/poi_name_mission.png') } />
-                <View style = { styles.column }>
-                  <Text style = { styles.text }>
-                    { rowData.username + ' This is you!' }
-                  </Text>
-                  <View style = { styles.rowDescription }>
-                    <Text style = { styles.text }>
-                      { 'Koins: ' + rowData.koin_count + ' ' }
-                    </Text>
-                    <Text style = { styles.text }>
-                      { 'Missions: ' + rowData.fix_count +  ' ' }
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </TouchableHighlight>
-        );
-      }
-      return (
-        <HighscoreCell
-          onSelectRow = { () => this._pressRow(rowData) }
-          highscoreList = { rowData }
-        />
-      );
+  _renderRow(rowData, sectionID, rowID) {
+    return (
+      <HighscoreCell
+        onSelectRow = { () => this._pressRow(rowData) }
+        highscoreList = { rowData }
+      />
+    );
   },
 
-  _pressRow: function(rowData: string) {
+  _pressRow(rowData) {
     console.log(rowData);
     if (!rowData.you) {
       Actions.profileModal( { data: rowData } );

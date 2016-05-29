@@ -33,10 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
   },
-  separator: {
-    height: 1,
-    backgroundColor: '#CCCCCC',
-  },
   thumb: {
     width: 64,
     height: 64,
@@ -50,6 +46,7 @@ const CollectionCell = React.createClass({
   getInitialState() {
     return {
       username: this.props.highscoreList.username,
+      you: this.props.highscoreList.you,
       fix_count: this.props.highscoreList.fix_count,
       vote_count: this.props.highscoreList.vote_count,
       koin_count: this.props.highscoreList.koin_count,
@@ -57,6 +54,9 @@ const CollectionCell = React.createClass({
   },
 
   componentDidMount() {
+    if (this.state.you) {
+      this.setState({ username: this.state.username + '  This is you!' });
+    }
   },
 
   render() {
