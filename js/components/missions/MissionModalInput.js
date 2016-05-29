@@ -84,7 +84,7 @@ const MissionModalInput = React.createClass({
             <View>
             </View>
           );
-          return;
+          break;
       }
     }
 
