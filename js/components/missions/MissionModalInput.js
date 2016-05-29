@@ -4,9 +4,17 @@ import {
   View,
   TextInput,
   Item,
+  Text,
+  Switch,
   Picker } from 'react-native';
 
 const styles = StyleSheet.create({
+  containerSolve: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 7,
+  },
   textInput: {
     height: 45,
     marginTop: 10,
@@ -21,7 +29,8 @@ const MissionModalInput = React.createClass({
 
   getInitialState() {
     return {
-      unableToSolve: false,
+      unableToSolve: this.props.unableToSolve,
+      txtUnableToSolve: 'Unable to solve',
       inputType: this.props.inputType,
       selected: 'key0',
       answer: ' ',
@@ -39,38 +48,58 @@ const MissionModalInput = React.createClass({
 
   render() {
     let inputField;
-    if (this.state.unableToSolve) inputField = null;
-    switch (this.state.inputType) {
-      case 'select':
-        inputField = (
-          <Picker
-            style = { styles.picker }
-            selectedValue = { this.state.selected }
-            onValueChange = { this.onValueChange.bind(this, 'selected') }
-          >
-            <Item label = 'hello' value = 'key0' />
-            <Item label = 'world' value = 'key1' />
-          </Picker>
-        );
-        break;
-      case 'input':
-        inputField = (
-          <TextInput
-            style = { styles.textInput }
-            autoCapitalize = 'words'
-            placeholder = 'Mission type'
-            onChangeText = { (answer) => this.setState({ answer }) }
-            value = { this.state.answer }
-          />
-        );
-        break;
-      default:
-        inputField = null;
-        return;
+
+    if (this.state.unableToSolve) {
+      inputField = (
+        <View>
+        </View>
+      );
+    } else {
+      switch (this.state.inputType) {
+        case 'select':
+          inputField = (
+            <Picker
+              style = { styles.picker }
+              selectedValue = { this.state.selected }
+              onValueChange = { this.onValueChange.bind(this, 'selected') }
+            >
+              <Item label = 'hello' value = 'key0' />
+              <Item label = 'world' value = 'key1' />
+            </Picker>
+          );
+          break;
+        case 'input':
+          inputField = (
+            <TextInput
+              style = { styles.textInput }
+              autoCapitalize = 'words'
+              placeholder = 'Mission type'
+              onChangeText = { (answer) => this.setState({ answer }) }
+              value = { this.state.answer }
+            />
+          );
+          break;
+        default:
+          inputField = (
+            <View>
+            </View>
+          );
+          return;
+      }
     }
+
     return (
       <View>
-        { inputField }
+        <View style = { styles.containerSolve }>
+          <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
+          <Switch
+            onValueChange = { (value) => this.setState({ unableToSolve: value }) }
+            value = { this.state.unableToSolve }
+          />
+        </View>
+        <View>
+          { inputField }
+        </View>
       </View>
     );
   }

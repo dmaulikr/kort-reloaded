@@ -28,12 +28,6 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
-  containerSolve: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: 7,
-  },
   containerMission: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -145,15 +139,9 @@ const MissionsModal = React.createClass({
           <Text style = { styles.textMission }>{ this.state.mission } ?</Text>
           </View>
         </View>
-        <View style = { styles.containerSolve }>
-          <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
-          <Switch
-            onValueChange = { (value) => this.setState({ unableToSolve: value }) }
-            value = { this.state.unableToSolve }
-          />
-        </View>
         <MissionModalInput
           inputType = 'select'
+          unableToSolve = { this.state.unableToSolve }
         />
         <View style = { styles.containerButton }>
           <CustomButton style = { { paddingTop: 20 } } onPress = { Actions.pop }>
