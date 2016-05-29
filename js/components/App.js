@@ -28,7 +28,7 @@ const scenes = Actions.create(
         direction = 'vertical'
         style = { { flex: 1, backgroundColor: 'transparent' } }
       />
-      <Scene key = 'tabbar'  panHandlers = { null } tabs type = 'replace'>
+      <Scene key = 'tabbar' panHandlers = { null } tabs type = 'replace'>
         <Scene key = 'missions'
           component = { MissionsTab }
           title = 'Missions'
@@ -56,12 +56,14 @@ const scenes = Actions.create(
       </Scene>
       <Scene
         key = 'missionModal'
+        hideNavBar = { false }
         panHandlers = { null }
         component = { MissionModal }
         direction = 'vertical'
       />
       <Scene
         key = 'profileModal'
+        hideNavBar = { false }
         panHandlers = { null }
         component = { ProfileModal }
         direction = 'vertical'
