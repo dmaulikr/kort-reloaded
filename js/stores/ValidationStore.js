@@ -2,33 +2,29 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 
-let _validations = [];
-
 class ValidationStore extends Store {
+  constructor() {
+    super();
+    this._validations = null;
+  }
 
   getAll() {
-    return _validations;
+    return this._validations;
+  }
+
+  _updateValidations(validations) {
+    this._validations = validations;
+    super.emitChange();
   }
 }
 
 const validationStore = new ValidationStore();
 
-function updateValidations(validations) {
-  // only emit change if validations changed
-  // currently depends on the assumption that validations are always retrieved in the same order
-  // TODO: make comparison more robust
-  if (validations.toString() !== _validations.toString()) {
-    _validations = validations;
-    validationStore.emitChange();
-  }
-}
-
-AppDispatcher.register((action) => {
+validationStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.VALIDATIONS_LOAD:
-      updateValidations(action.data);
+      validationStore._updateValidations(action.data);
       break;
-
     default:
       return;
   }
