@@ -85,12 +85,16 @@ const ProfileTab = React.createClass({
   componentWillMount() {
     this._pressData = {};
   },
+
   componentDidMount() {
   },
+
   componentWillUnmount() {
   },
+
   onChange() {
   },
+  
   updateProfileText(user) {
     this.setState({ user });
   },

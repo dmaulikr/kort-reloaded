@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 });
 
 const MissionsModal = React.createClass({
-  getInitialState() {
+  getInitialState() { // this.props.task....
     return {
       title: '',
       koins: 0,
@@ -97,19 +97,25 @@ const MissionsModal = React.createClass({
   },
 
   componentWillMount() {
-    BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+    // BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },
 
   componentDidMount() {
 
   },
 
+  /*
+  * Switch
+  */
   onValueChange(key, value) {
     const newState = {};
     newState[key] = value;
     this.setState(newState);
   },
 
+  /*
+  * Modal for mission completion
+  */
   _setModalVisible(visible) {
     this.setState({ modalVisible: visible });
     if (!this.state.modalVisible) {

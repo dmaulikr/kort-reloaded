@@ -85,7 +85,7 @@ const ProfileTab = React.createClass({
 
   componentWillMount() {
     this._pressData = {};
-    BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+    // BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },
   componentDidMount() {
   },
