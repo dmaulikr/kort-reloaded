@@ -140,7 +140,7 @@ const MissionsModal = React.createClass({
           </View>
         </View>
         <MissionModalInput
-          inputType = 'select'
+          inputType = 'input'
           unableToSolve = { this.state.unableToSolve }
         />
         <View style = { styles.containerButton }>
