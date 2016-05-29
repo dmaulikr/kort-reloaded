@@ -28,7 +28,7 @@ const scenes = Actions.create(
       direction = 'vertical'
       style = { { flex: 1, backgroundColor: 'transparent' } }
     />
-      <Scene key = 'tabbar'  panHandlers = { null } tabs >
+  <Scene key = 'tabbar'  panHandlers = { null } tabs type = 'replace'>
         <Scene key = 'missions'
           component = { MissionsTab }
           title = 'Missions'
