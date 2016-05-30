@@ -19,6 +19,7 @@ export default {
   MISSIONS_GET_PATH: '/mission/position',
   VALIDATIONS_PATH: '/validation',
   VALIDATIONS_GET_PATH: '/validation/position',
+  PROMOTION_PATH: '/promotion',
   STATISTICS_PATH: '/statistics',
   USER_PATH: '/user',
   USER_VERIFY_PATH: '/user/verify',

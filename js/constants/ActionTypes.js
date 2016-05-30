@@ -11,6 +11,8 @@ module.exports = keyMirror({
   LOGIN_VERIFY: null,
   // Mission
   MISSIONS_LOAD: null,
+  // Promotion
+  PROMOTIONS_LOAD: null,
   // Task
   TASKS_LOAD: null,
   // User
