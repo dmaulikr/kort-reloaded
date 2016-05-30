@@ -8,5 +8,10 @@ export default class UserBadge {
     this.sorting = sorting;
     this.won = won;
     this.createDate = createDate;
+    this.pictureFile = this._getPictureFile(name);
+  }
+
+  _getPictureFile(badgeName) {
+    return null;
   }
 }

@@ -10,6 +10,7 @@ module.exports = keyMirror({
   LOGIN_LOGOUT: null,
   LOGIN_VERIFY: null,
   // Mission
+  MISSION_PUT: null,
   MISSIONS_LOAD: null,
   // Promotion
   PROMOTIONS_LOAD: null,
