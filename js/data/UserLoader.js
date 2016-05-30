@@ -42,6 +42,23 @@ export default class UserLoader extends DataLoader {
     return userBadges;
   }
 
+  static _initJsonUser(user) {
+    return JSON.stringify({
+      logged_in: user.loggedIn,
+      id: user.id,
+      username: user.userName,
+      oauth_user_id: user.oauthUserId,
+      oauth_provider: user.oauthProvider,
+      pic_url: user.picUrl,
+      name: user.name,
+      token: user.token,
+      fix_count: user.missionCount,
+      vote_count: user.validationCount,
+      koin_count: user.koinCount,
+      secret: user.secret,
+    });
+  }
+
   static verifyUser(provider, idToken, onSuccess) {
     const idTokenParameter = `id_token=${idToken}`;
     const requestUrl = super.createRequestUrl(
@@ -54,9 +71,9 @@ export default class UserLoader extends DataLoader {
     );
   }
 
-  static getUser(id, onSuccess) {
+  static getUser(userSecret, onSuccess) {
     const requestUrl = super.createRequestUrl(
-      userRestPath, [id], null);
+      userRestPath, [userSecret], null);
     super.makeGetRequest(
       requestUrl,
       true,
@@ -77,19 +94,19 @@ export default class UserLoader extends DataLoader {
     );
   }
 
-  static logoutUser(id, onSuccess) {
-    const userLogoutParameter = `${id}/logout`;
+  static logoutUser(userId, onSuccess) {
+    const userLogoutParameter = `${userId}/logout`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userLogoutParameter], null);
     super.makeGetRequest(requestUrl, true, onSuccess, null, null);
   }
 
-  static updateUser(id, onSuccess) {
+  static updateUser(user, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(
       userRestPath, [id], null);
     super.makePutRequest(
       requestUrl,
-      true,
+      UserLoader._initJsonUser(user),
       (rawUserUpdateInfo) => onSuccess(UserLoader._initAnswers(rawUserUpdateInfo)),
       null
     );

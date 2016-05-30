@@ -9,7 +9,7 @@ export default class User {
     this.token = token;
     this.missionCount = missionCount;
     this.validationCount = validationCount;
-    this.fixCount = missionCount + validationCount;
+    this.solveCount = missionCount + validationCount;
     this.koinCount = koinCount;
     this.secret = secret;
     this.picUrl = picUrl;

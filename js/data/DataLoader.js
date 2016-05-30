@@ -35,6 +35,46 @@ export default class DataLoader {
     return hash;
   }
 
+  static _makePutOrPostRequest(requestUrl, jsonBody, onSuccess, onError, method) {
+    const authorizationHash = DataLoader._createAuthorizationHash();
+    if (authorizationHash === null) {
+      const error = new Error('User needs to be logged in for this request.',
+        'js/data/DataLoader.js');
+      if (onError != null) {
+        onError(error);
+      } else {
+        console.log(error);
+      }
+      return;
+    }
+
+    const headers = {
+      Accept: 'application/json',
+      Authorization: `Basic ${authorizationHash}`,
+      'Content-Type': 'application/json',
+    };
+
+    if (method !== 'PUT' || method !== 'POST') {
+      throw new Error('Parameter method needs to be of type \'PUT\' or \'POST\'.');
+    }
+    fetch(requestUrl, {
+      headers,
+      method,
+      body: jsonBody,
+    })
+      .then((response) => response.json())
+      .then((responseData) => responseData)
+      .then((data) => onSuccess(data))
+      .catch((error) => {
+        if (onError != null) {
+          onError(error);
+        } else {
+          console.log(error);
+        }
+      })
+      .done();
+  }
+
   static createRequestUrl(apiUrl, queryParameters, parameters) {
     let requestUrl = requestLocation;
 
@@ -89,39 +129,12 @@ export default class DataLoader {
   }
 
   static makePostRequest(requestUrl, jsonBody, onSuccess, onError) {
-    const authorizationHash = DataLoader._createAuthorizationHash();
-    if (authorizationHash === null) {
-      const error = new Error('User needs to be logged in for this request.',
-        'js/data/DataLoader.js');
-      if (onError != null) {
-        onError(error);
-      } else {
-        console.log(error);
-      }
-      return;
-    }
+    const method = 'POST';
+    DataLoader._makePutOrPostRequest(requestUrl, jsonBody, onSuccess, onError, method);
+  }
 
-    const headers = {
-      Accept: 'application/json',
-      Authorization: `Basic ${authorizationHash}`,
-      'Content-Type': 'application/json',
-    };
-
-    fetch(requestUrl, {
-      headers,
-      method: 'POST',
-      body: jsonBody,
-    })
-      .then((response) => response.json())
-      .then((responseData) => responseData)
-      .then((data) => onSuccess(data))
-      .catch((error) => {
-        if (onError != null) {
-          onError(error);
-        } else {
-          console.log(error);
-        }
-      })
-      .done();
+  static makePutRequest(requestUrl, jsonBody, onSuccess, onError) {
+    const method = 'PUT';
+    DataLoader._makePutOrPostRequest(requestUrl, jsonBody, onSuccess, onError, method);
   }
 }

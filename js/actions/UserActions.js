@@ -3,8 +3,8 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import UserLoader from '../data/UserLoader';
 
 export default class UserActions {
-  static getUser(id) {
-    UserLoader.getUser(id, (user) => {
+  static getUser(userSecret) {
+    UserLoader.getUser(userSecret, (user) => {
       AppDispatcher.dispatch({
         actionType: ActionTypes.USER_LOAD,
         data: user,
@@ -12,7 +12,7 @@ export default class UserActions {
     });
   }
 
-  static getUserBadges(id) {
+  static getUserBadges(userId) {
     UserLoader.getUserBadges(id, (userBadges) => {
       AppDispatcher.dispatch({
         actionType: ActionTypes.USER_BADGES,
@@ -21,7 +21,7 @@ export default class UserActions {
     });
   }
 
-  static updateUser(id) {
+  static updateUser(user) {
     UserLoader.updateUser(id, (userWithUpdateInfo) => {
       AppDispatcher.dispatch({
         actionType: ActionTypes.USER_UPDATE,
