@@ -17,6 +17,8 @@ module.exports = keyMirror({
   USER_LOAD: null,
   USER_BADGES: null,
   USER_UPDATE: null,
+  // Statistics
+  STATISTICS_LOAD: null,
   // Validation
   VALIDATIONS_LOAD: null,
 });
