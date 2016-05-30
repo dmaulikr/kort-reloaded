@@ -64,14 +64,14 @@ export default class MissionLoader extends DataLoader {
   }
 
   static postMission(mission, onSuccess, onError) {
-    const requestUrl(missionPostRestPath, null, null);
+    const requestUrl = super.createRequestUrl(missionPostRestPath, null, null);
     super.makePostRequest(
       requestUrl,
-      MissionLoader._initJsonMission(mission);
+      MissionLoader._initJsonMission(mission),
       (rawMissions) => onSuccess(MissionLoader._initMissions(rawMissions)),
       onError
-    )
+    );
   }
 
-  
+
 }
