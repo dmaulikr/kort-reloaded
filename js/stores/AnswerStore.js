@@ -2,7 +2,7 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 
-class AnswerStore extends Store {
+export default class AnswerStore extends Store {
   constructor() {
     super();
     this._allAnswers = null;
@@ -11,10 +11,10 @@ class AnswerStore extends Store {
     this.dispatchToken = AppDispatcher.register((action) => {
       switch (action.actionType) {
         case ActionTypes.ANSWERS_LOAD:
-          this.onAnswersLoaded(action.data);
+          this._onAnswersLoaded(action.data);
           break;
         case ActionTypes.ANSWERS_LOAD_FOR_TYPE:
-          this.onAnswersLoadedForType(action.data, action.taskType);
+          this._onAnswersLoadedForType(action.data, action.taskType);
           break;
         default:
           return;
@@ -28,10 +28,8 @@ class AnswerStore extends Store {
   }
 
   _onAnswersLoadedForType(answers, taskType) {
-    if (taskType !== this._taskType) {
-      this._taskType = taskType;
-      this._answers = answers;
-      super.emitChange();
-    }
+    this._taskType = taskType;
+    this._answers = answers;
+    super.emitChange();
   }
 }

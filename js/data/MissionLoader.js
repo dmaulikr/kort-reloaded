@@ -21,7 +21,7 @@ class MissionLoader extends DataLoader {
     }, this);
 
     return missions;
-}
+  }
 
   static getMissions(latitude, longitude, onSuccess) {
     const parameters = [];

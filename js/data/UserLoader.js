@@ -41,21 +41,21 @@ export default class UserLoader extends DataLoader {
   }
 
   static _initUserBadges(rawUserBadges) {
-    const _userBadges = [];
-    rawUserBadges.forEach((badge) => {
-      _userBadges.push(new UserBadge(
-        badge.id,
-        badge.name,
-        badge.title,
-        badge.description,
-        badge.color,
-        badge.sorting,
-        badge.won,
-        badge.create_date
+    const userBadges = [];
+    rawUserBadges.forEach((rawBadge) => {
+      userBadges.push(new UserBadge(
+        rawBadge.id,
+        rawBadge.name,
+        rawBadge.title,
+        rawBadge.description,
+        rawBadge.color,
+        rawBadge.sorting,
+        rawBadge.won,
+        rawBadge.create_date
       ));
     }, this);
 
-    return _userBadges;
+    return userBadges;
   }
 
   static verifyUser(provider, idToken, onSuccess) {
