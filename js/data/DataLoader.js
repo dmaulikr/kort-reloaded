@@ -23,7 +23,7 @@ class DataLoader {
     return parametersString;
   }
 
-  static _createAuthorizationKey() {
+  static _createAuthorizationHash() {
     const userLoggedIn = true;
     if (!userLoggedIn) {
       return null;
@@ -54,7 +54,7 @@ class DataLoader {
     return requestUrl;
   }
 
-  static makeGetRequest(requestUrl, authorized, onSuccess, onError, initializer) {
+  static makeGetRequest(requestUrl, authorized, onSuccess, onError) {
     let authorizationHeader;
     if (authorized) {
       const authorizationHash = DataLoader._createAuthorizationHash();
@@ -79,9 +79,6 @@ class DataLoader {
       .then((responseData) => responseData)
       .then((data) => {
         let response = data.return;
-        if (initializer != null) {
-          response = initializer(response);
-        }
         onSuccess(response);
       })
       .catch((error) => {
@@ -94,7 +91,7 @@ class DataLoader {
       .done();
   }
 
-  static makePostRequest(requestUrl, jsonBody, onSuccess, onError, initializer) {
+  static makePostRequest(requestUrl, jsonBody, onSuccess, onError) {
     const authorizationHash = DataLoader._createAuthorizationHash();
     if (authorizationHash === null) {
       const error = new Error('User needs to be logged in for this request.',
@@ -122,9 +119,6 @@ class DataLoader {
       .then((responseData) => responseData)
       .then((data) => {
         let response = data.return;
-        if (initializer != null) {
-          response = initializer(response);
-        }
         onSuccess(response);
       })
       .catch((error) => {

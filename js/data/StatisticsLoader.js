@@ -21,10 +21,11 @@ class StatisticsLoader extends DataLoader {
 
   static getStatistics(onSuccess, onError) {
     const requestUrl = super.createRequestUrl(statisticsRestPath, null, null);
-    super.makeGetRequest(requestUrl,
+    super.makeGetRequest(
+      requestUrl,
       false,
       (rawStatistics) => onSuccess(StatisticsLoader._initStatistics(rawStatistics)),
-      onError,
-      null);
+      onError
+    );
   }
 }

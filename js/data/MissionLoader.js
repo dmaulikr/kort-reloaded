@@ -29,7 +29,12 @@ class MissionLoader extends DataLoader {
     if (radius !== null) parameters.push(`radius=${radius}`);
     const requestUrl = super.createRequestUrl(
       missionsGetRestPath, [latitude, longitude], parameters);
-    super.makeGetRequest(requestUrl, true, onSuccess, null, MissionLoader._initMissions);
+    super.makeGetRequest(
+      requestUrl,
+      true,
+      (rawMissions) => onSuccess(MissionLoader._initMissions(rawMissions)),
+      null
+    );
   }
 }
 

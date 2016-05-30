@@ -16,11 +16,21 @@ class AnswerLoader extends DataLoader {
 
   static getAnswers(onSuccess, onError) {
     const requestUrl = super.createRequestUrl(answerRestPath, null, null);
-    super.makeGetRequest(requestUrl, true, onSuccess, onError, AnswerLoader._initAnswers);
+    super.makeGetRequest(
+      requestUrl,
+      true,
+      (rawAnswers) => onSuccess(AnswerLoader._initAnswers(rawAnswers)),
+      onError
+    );
   }
 
   static getAnswersForType(taskType, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(answerRestPath, [taskType], null);
-    super.makeGetRequest(requestUrl, true, onSuccess, onError, AnswerLoader._initAnswers);
+    super.makeGetRequest(
+      requestUrl,
+      true,
+      (rawAnswers) => onSuccess(AnswerLoader._initAnswers(rawAnswers)),
+      onError
+    );
   }
 }

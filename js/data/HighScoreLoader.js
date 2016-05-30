@@ -28,8 +28,14 @@ export default class HighscoreLoader extends DataLoader {
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (page !== null) parameters.push(`page=${page}`);
     const requestUrl = super.createRequestUrl(absoluteHighscoreRestPath, null, parameters);
-    super.makeGetRequest(requestUrl, true, onSuccess, onError,
-      HighscoreLoader.initHighscoreEntries);
+    super.makeGetRequest(
+      requestUrl,
+      true,
+      (rawHighscoreEntries) => {
+        onSuccess(HighscoreLoader._initHighscoreEntries(rawHighscoreEntries));
+      },
+      onError
+    );
   }
 
   static getRelativeHighscore(limit, page, onSuccess, onError) {
@@ -37,7 +43,13 @@ export default class HighscoreLoader extends DataLoader {
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (page !== null) parameters.push(`page=${page}`);
     const requestUrl = super.createRequestUrl(relativeHighscoreRestPath, null, parameters);
-    super.makeGetRequest(requestUrl, true, onSuccess, onError,
-      HighscoreLoader.initHighscoreEntries);
+    super.makeGetRequest(
+      requestUrl,
+      true,
+      (rawHighscoreEntries) => {
+        onSuccess(HighscoreLoader._initHighscoreEntries(rawHighscoreEntries));
+      },
+      onError
+    );
   }
 }
