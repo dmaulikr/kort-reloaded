@@ -7,7 +7,6 @@ class UserStore extends Store {
     super();
     this._user = null;
     this._userBadges = null;
-    this._userLoggedIn = null;
   }
 
   getUserBadges() {
@@ -19,16 +18,10 @@ const userStore = new UserStore();
 
 userStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
-    case ActionTypes.USER_VERIFY:
-
-      break;
     case ActionTypes.USER_LOAD:
 
       break;
     case ActionTypes.USER_BADGES:
-
-      break;
-    case ActionTypes.USER_LOGOUT:
 
       break;
     case ActionTypes.USER_UPDATE:

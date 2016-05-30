@@ -6,6 +6,9 @@ module.exports = keyMirror({
   ANSWERS_LOAD_FOR_TYPE: null,
   // Highscore
   HIGHSCORE_LOAD: null,
+  // Login
+  LOGIN_LOGOUT: null,
+  LOGIN_VERIFY: null,
   // Mission
   MISSIONS_LOAD: null,
   // Task
@@ -13,9 +16,7 @@ module.exports = keyMirror({
   // User
   USER_LOAD: null,
   USER_BADGES: null,
-  USER_LOGOUT: null,
   USER_UPDATE: null,
-  USER_VERIFY: null,
   // Validation
   VALIDATIONS_LOAD: null,
 });
