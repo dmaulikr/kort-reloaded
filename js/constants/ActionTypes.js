@@ -4,6 +4,8 @@ module.exports = keyMirror({
   // Answer
   ANSWERS_LOAD: null,
   ANSWERS_LOAD_FOR_TYPE: null,
+  // Highscore
+  HIGHSCORE_LOAD: null,
   // Mission
   MISSIONS_LOAD: null,
   // Task
