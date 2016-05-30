@@ -9,85 +9,85 @@ import UserCredential from '../dto/UserCredential';
 const userRestPath = Config.USER_PATH;
 const verifyUserRestPath = Config.USER_VERIFY_PATH;
 
-function _initUserCredential(rawUserCredential) {
-  return new UserCredential(rawUserCredential.id, rawUserCredential.secret);
-}
-
-function _initUser(rawUser) {
-  return new User(
-    rawUser.id,
-    rawUser.name,
-    rawUser.user_name,
-    rawUser.oauth_user_id,
-    rawUser.oauth_provider,
-    rawUser.token,
-    rawUser.fix_count,
-    rawUser.vote_count,
-    rawUser.koin_count,
-    rawUser.secret,
-    rawUser.pic_url,
-    rawUser.logged_in);
-}
-
-function _initUserWithUpdateInfo(rawUserUpdateInfo) {
-  return new User(
-    rawUserUpdateInfo.user_id,
-    rawUserUpdateInfo.name,
-    rawUserUpdateInfo.username,
-    rawUserUpdateInfo.oauth_user_id,
-    rawUserUpdateInfo.secret
-  );
-}
-
-function _initUserBadges(rawUserBadges) {
-  const _userBadges = [];
-  rawUserBadges.forEach((badge) => {
-    _userBadges.push(new UserBadge(
-      badge.id,
-      badge.name,
-      badge.title,
-      badge.description,
-      badge.color,
-      badge.sorting,
-      badge.won,
-      badge.create_date
-    ));
-  }, this);
-
-  return _userBadges;
-}
-
 export default class UserLoader extends DataLoader {
+  static _initUserCredential(rawUserCredential) {
+    return new UserCredential(rawUserCredential.id, rawUserCredential.secret);
+  }
+
+  static _initUser(rawUser) {
+    return new User(
+      rawUser.id,
+      rawUser.name,
+      rawUser.user_name,
+      rawUser.oauth_user_id,
+      rawUser.oauth_provider,
+      rawUser.token,
+      rawUser.fix_count,
+      rawUser.vote_count,
+      rawUser.koin_count,
+      rawUser.secret,
+      rawUser.pic_url,
+      rawUser.logged_in);
+  }
+
+  static _initUserWithUpdateInfo(rawUserUpdateInfo) {
+    return new User(
+      rawUserUpdateInfo.user_id,
+      rawUserUpdateInfo.name,
+      rawUserUpdateInfo.username,
+      rawUserUpdateInfo.oauth_user_id,
+      rawUserUpdateInfo.secret
+    );
+  }
+
+  static _initUserBadges(rawUserBadges) {
+    const _userBadges = [];
+    rawUserBadges.forEach((badge) => {
+      _userBadges.push(new UserBadge(
+        badge.id,
+        badge.name,
+        badge.title,
+        badge.description,
+        badge.color,
+        badge.sorting,
+        badge.won,
+        badge.create_date
+      ));
+    }, this);
+
+    return _userBadges;
+  }
+
   static verifyUser(provider, idToken, onSuccess) {
     const idTokenParameter = `id_token=${idToken}`;
     const requestUrl = super.createRequestUrl(
       verifyUserRestPath, [provider], [idTokenParameter]);
-    super.makeRequest(requestUrl, onSuccess, null, _initUserCredential);
+    super.makeGetRequest(requestUrl, onSuccess, null, UserLoader._initUserCredential);
   }
 
   static getUser(id, onSuccess) {
     const requestUrl = super.createRequestUrl(
       userRestPath, [id], null);
-    super.makeRequest(requestUrl, onSuccess, null, _initUser);
+    super.makeGetRequest(requestUrl, onSuccess, null, UserLoader._initUser);
   }
 
   static getUserBadges(id, onSuccess) {
     const userBadgesParameter = `${id}/badges`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userBadgesParameter], null);
-    super.makeRequest(requestUrl, onSuccess, null, _initUserBadges);
+    super.makeGetRequest(requestUrl, onSuccess, null, UserLoader._initUserBadges);
   }
 
   static logoutUser(id, onSuccess) {
     const userLogoutParameter = `${id}/logout`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userLogoutParameter], null);
-    super.makeRequest(requestUrl, onSuccess, null, null);
+    super.makeGetRequest(requestUrl, onSuccess, null, null);
   }
 
   static updateUser(id, onSuccess) {
     const requestUrl = super.createRequestUrl(
       userRestPath, [id], null);
-    super.makeRequest(requestUrl, onSuccess, null, _initUserWithUpdateInfo);
+    super.makePutRequest(requestUrl, onSuccess, null, UserLoader._initUserWithUpdateInfo);
   }
 }
