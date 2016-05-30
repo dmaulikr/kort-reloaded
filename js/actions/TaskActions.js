@@ -30,28 +30,24 @@ export default class TaskActions {
   static loadTasks(latitude, longitude) {
     let tasks = [];
     let missionsLoaded = false;
-    // let validationsLoaded = false;
+    let validationsLoaded = false;
 
     MissionLoader.getMissions(latitude, longitude, (missions) => {
       _onMissionsLoaded(missions);
 
       tasks = tasks.concat(missions);
       missionsLoaded = true;
-// Don't load validations until API works again
-      _onTasksLoaded(tasks);
-    });
-      /* if (validationsLoaded) {
+      if (validationsLoaded) {
         _onTasksLoaded(tasks);
       }
     });
     ValidationLoader.getValidations(latitude, longitude, (validations) => {
       _onValidationsLoaded(validations);
-
       tasks = tasks.concat(validations);
       validationsLoaded = true;
       if (missionsLoaded) {
         _onTasksLoaded(tasks);
       }
-    });*/
+    });
   }
 }

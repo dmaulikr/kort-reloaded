@@ -21,7 +21,7 @@ export default {
 
   // Tasks
   MISSIONS_LIMIT: 10,
-  VALIDATIONS_LIMIT: 10,
+  VALIDATIONS_LIMIT: 100,
   RADIUS: 5000,
 
   // Auth
