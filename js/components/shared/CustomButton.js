@@ -43,7 +43,7 @@ const CustomButton = React.createClass({
         onPress = { this.props.onPress }
         onShowUnderlay = { this._onHighlight }
         style = { [styles.button, this.props.style] }
-        underlayColor="#a9d9d4"
+        underlayColor="#008000"
       >
           <Text style = { [styles.buttonText, colorStyle] }>{ this.props.children }</Text>
       </TouchableHighlight>

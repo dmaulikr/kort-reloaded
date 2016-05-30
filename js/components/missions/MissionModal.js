@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   textMission: {
     alignSelf: 'center',
     marginTop: 5,
+    width: 200,
   },
   containerButton: {
     flexDirection: 'row',
@@ -54,7 +55,10 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: 'flex-start',
+  },
+  innerContainerMissionCompleted: {
+    flexDirection: 'row',
   },
   modalButton: {
     marginTop: 10,
@@ -72,6 +76,7 @@ const MissionsModal = React.createClass({
     return {
       title: '',
       koins: 0,
+      userKoins: 0,
       mission: '',
       txtUnableToSolve: 'Unable to solve',
       unableToSolve: false,
@@ -111,12 +116,22 @@ const MissionsModal = React.createClass({
         >
           <View style = { styles.containerMissionComplete }>
             <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
-              <Text>Mission completed.</Text>
+              <Text>Mission completed. You increased your reputation!</Text>
+              <View style = { styles.innerContainerMissionCompleted }>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../../assets/img/koin_no_value.png') }
+                />
+                <Text style = { styles.textMission }>
+                  Bravo! You have won { this.state.koins } Koins!
+                  You now have a total amount of { this.state.userKoins } Koins.
+                </Text>
+              </View>
               <CustomButton
                 onPress = { this._setModalVisible.bind(this, false) }
                 style = { styles.modalButton }
               >
-                Close
+                Ok
               </CustomButton>
             </View>
           </View>
@@ -128,14 +143,14 @@ const MissionsModal = React.createClass({
               style = { styles.icon }
               source = { require('../../assets/img/koin_no_value.png') }
             />
-          <Text style = { styles.textMission }>Get the { this.state.koins } Koins!</Text>
+            <Text style = { styles.textMission }>Get the { this.state.koins } Koins!</Text>
           </View>
           <View style = { styles.containerMissionDescription }>
             <Image
               style = { styles.icon }
               source = { require('../../assets/img/poi_name_mission.png') }
             />
-          <Text style = { styles.textMission }>{ this.state.mission } ?</Text>
+            <Text style = { styles.textMission }>{ this.state.mission } ?</Text>
           </View>
         </View>
         <MissionModalInput
