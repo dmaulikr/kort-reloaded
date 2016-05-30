@@ -62,32 +62,32 @@ export default class UserLoader extends DataLoader {
     const idTokenParameter = `id_token=${idToken}`;
     const requestUrl = super.createRequestUrl(
       verifyUserRestPath, [provider], [idTokenParameter]);
-    super.makeGetRequest(requestUrl, onSuccess, null, UserLoader._initUserCredential);
+    super.makeGetRequest(requestUrl, false, onSuccess, null, UserLoader._initUserCredential);
   }
 
   static getUser(id, onSuccess) {
     const requestUrl = super.createRequestUrl(
       userRestPath, [id], null);
-    super.makeGetRequest(requestUrl, onSuccess, null, UserLoader._initUser);
+    super.makeGetRequest(requestUrl, true, onSuccess, null, UserLoader._initUser);
   }
 
   static getUserBadges(id, onSuccess) {
     const userBadgesParameter = `${id}/badges`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userBadgesParameter], null);
-    super.makeGetRequest(requestUrl, onSuccess, null, UserLoader._initUserBadges);
+    super.makeGetRequest(requestUrl, true, onSuccess, null, UserLoader._initUserBadges);
   }
 
   static logoutUser(id, onSuccess) {
     const userLogoutParameter = `${id}/logout`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userLogoutParameter], null);
-    super.makeGetRequest(requestUrl, onSuccess, null, null);
+    super.makeGetRequest(requestUrl, true, onSuccess, null, null);
   }
 
   static updateUser(id, onSuccess) {
     const requestUrl = super.createRequestUrl(
       userRestPath, [id], null);
-    super.makePutRequest(requestUrl, onSuccess, null, UserLoader._initUserWithUpdateInfo);
+    super.makePutRequest(requestUrl, true, onSuccess, null, UserLoader._initUserWithUpdateInfo);
   }
 }
