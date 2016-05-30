@@ -23,7 +23,7 @@ class DataLoader {
     return parametersString;
   }
 
-  static _createAuthorizationHeader() {
+  static _createAuthorizationKey() {
     const userLoggedIn = true;
     if (!userLoggedIn) {
       return null;
@@ -32,7 +32,7 @@ class DataLoader {
     const userId = Config.TEST_USER_ID;
     const secret = Config.TEST_SECRET;
     const hash = new Buffer(`${userId}:${secret}`).toString('base64');
-    return { Authorization: `Basic ${hash}` };
+    return hash;
   }
 
   static createRequestUrl(apiUrl, queryParameters, parameters) {
@@ -54,8 +54,26 @@ class DataLoader {
     return requestUrl;
   }
 
-  static makeGetRequest(requestUrl, onSuccess, onError, initializer) {
-    const authorizationHeader = DataLoader._createAuthorizationHeader();
+  static makeGetRequest(requestUrl, authorized, onSuccess, onError, initializer) {
+    let authorizationHeader;
+    if (authorized) {
+      const authorizationHash = DataLoader._createAuthorizationHash();
+      if (authorizationHash === null) {
+        const error = new Error('User needs to be logged in for this request.',
+          'js/data/DataLoader.js');
+        if (onError != null) {
+          onError(error);
+        } else {
+          console.log(error);
+        }
+        return;
+      }
+
+      authorizationHeader = { Authorization: `Basic ${authorizationHash}` };
+    } else {
+      authorizationHeader = {};
+    }
+
     fetch(requestUrl, { headers: authorizationHeader })
       .then((response) => response.json())
       .then((responseData) => responseData)
@@ -76,8 +94,47 @@ class DataLoader {
       .done();
   }
 
-  static makePostRequest() {
+  static makePostRequest(requestUrl, jsonBody, onSuccess, onError, initializer) {
+    const authorizationHash = DataLoader._createAuthorizationHash();
+    if (authorizationHash === null) {
+      const error = new Error('User needs to be logged in for this request.',
+        'js/data/DataLoader.js');
+      if (onError != null) {
+        onError(error);
+      } else {
+        console.log(error);
+      }
+      return;
+    }
 
+    const headers = {
+      Accept: 'application/json',
+      Authorization: `Basic ${authorizationHash}`,
+      'Content-Type': 'application/json',
+    };
+
+    fetch(requestUrl, {
+      headers,
+      method: 'POST',
+      body: jsonBody,
+    })
+      .then((response) => response.json())
+      .then((responseData) => responseData)
+      .then((data) => {
+        let response = data.return;
+        if (initializer != null) {
+          response = initializer(response);
+        }
+        onSuccess(response);
+      })
+      .catch((error) => {
+        if (onError != null) {
+          onError(error);
+        } else {
+          console.log(error);
+        }
+      })
+      .done();
   }
 }
 
