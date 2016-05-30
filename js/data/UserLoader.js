@@ -103,12 +103,12 @@ export default class UserLoader extends DataLoader {
 
   static updateUser(user, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(
-      userRestPath, [id], null);
+      userRestPath, [user.id], null);
     super.makePutRequest(
       requestUrl,
       UserLoader._initJsonUser(user),
       (rawUserUpdateInfo) => onSuccess(UserLoader._initAnswers(rawUserUpdateInfo)),
-      null
+      onError
     );
   }
 }

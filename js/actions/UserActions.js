@@ -13,7 +13,7 @@ export default class UserActions {
   }
 
   static getUserBadges(userId) {
-    UserLoader.getUserBadges(id, (userBadges) => {
+    UserLoader.getUserBadges(userId, (userBadges) => {
       AppDispatcher.dispatch({
         actionType: ActionTypes.USER_BADGES,
         data: userBadges,
@@ -22,7 +22,7 @@ export default class UserActions {
   }
 
   static updateUser(user) {
-    UserLoader.updateUser(id, (userWithUpdateInfo) => {
+    UserLoader.updateUser(user.id, (userWithUpdateInfo) => {
       AppDispatcher.dispatch({
         actionType: ActionTypes.USER_UPDATE,
         data: userWithUpdateInfo,
