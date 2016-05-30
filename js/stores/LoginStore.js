@@ -18,7 +18,7 @@ class LoginStore extends Store {
   }
 }
 
-const loginStore = new loginStore();
+const loginStore = new LoginStore();
 
 loginStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
@@ -33,4 +33,4 @@ loginStore.dispatchToken = AppDispatcher.register((action) => {
   }
 });
 
-export default loginStore
+export default loginStore;

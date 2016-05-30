@@ -1,4 +1,4 @@
-import ActionTypes from '../constants/ActionTypes
+import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import UserLoader from '../data/UserLoader';
 
