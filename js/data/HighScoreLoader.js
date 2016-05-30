@@ -12,16 +12,10 @@ export default class HighscoreLoader extends DataLoader {
 
     const highscoreEntries = [];
     rawHighscoreEntriesArray.forEach((rawHighScoreEntry) => {
-      highscoreEntries.push(new HighscoreEntry(
-        rawHighScoreEntry.user_id,
-        rawHighScoreEntry.username,
-        rawHighScoreEntry.pic_url,
-        rawHighScoreEntry.koin_count,
-        rawHighScoreEntry.fix_count,
-        rawHighScoreEntry.vote_count,
-        rawHighScoreEntry.ranking,
-        rawHighScoreEntry.rownumber,
-        rawHighScoreEntry.you
+      highscoreEntries.push(new HighscoreEntry(rawHighScoreEntry.user_id,
+        rawHighScoreEntry.username, rawHighScoreEntry.pic_url, rawHighScoreEntry.koin_count,
+        rawHighScoreEntry.fix_count, rawHighScoreEntry.vote_count, rawHighScoreEntry.ranking,
+        rawHighScoreEntry.rownumber, rawHighScoreEntry.you
       ));
     }, this);
   }
