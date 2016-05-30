@@ -4,7 +4,7 @@ const Buffer = require('buffer').Buffer;
 
 const requestLocation = `${Config.SERVER}${Config.API_PATH}`;
 
-class DataLoader {
+export default class DataLoader {
   static _getQueryParametersString(queryParameters) {
     let queryParametersString;
     queryParametersString = queryParameters[0];
@@ -125,5 +125,3 @@ class DataLoader {
       .done();
   }
 }
-
-export default DataLoader;

@@ -4,7 +4,7 @@ import Answer from '../dto/Answer';
 
 const answerRestPath = Config.ANSWER_PATH;
 
-class AnswerLoader extends DataLoader {
+export default class AnswerLoader extends DataLoader {
   static _initAnswers(rawAnswers) {
     const answers = [];
     rawAnswers.return.forEach((answer) => {

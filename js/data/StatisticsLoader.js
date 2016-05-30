@@ -4,7 +4,7 @@ import Statistics from '../dto/Statistics';
 
 const statisticsRestPath = Config.STATISTICS_PATH;
 
-class StatisticsLoader extends DataLoader {
+export default class StatisticsLoader extends DataLoader {
   static _initStatistics(rawStatistics) {
     const rawStatisticsObject = rawStatistics.return;
     return new Statistics(rawStatisticsObject.fix_count, rawStatisticsObject.validated_fix_count,

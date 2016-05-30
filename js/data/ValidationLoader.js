@@ -6,7 +6,7 @@ const validationsGetRestPath = Config.VALIDATIONS_GET_PATH;
 const limit = Config.VALIDATIONS_LIMIT;
 const radius = Config.RADIUS;
 
-class ValidationLoader extends DataLoader {
+export default class ValidationLoader extends DataLoader {
   static _initValidations(rawValidations) {
     const validations = [];
     rawValidations.return.forEach((validation) => {
@@ -38,5 +38,3 @@ class ValidationLoader extends DataLoader {
     );
   }
 }
-
-export default ValidationLoader;

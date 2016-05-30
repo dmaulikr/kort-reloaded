@@ -6,7 +6,7 @@ const missionsGetRestPath = Config.MISSIONS_GET_PATH;
 const limit = Config.MISSIONS_LIMIT;
 const radius = Config.RADIUS;
 
-class MissionLoader extends DataLoader {
+export default class MissionLoader extends DataLoader {
   static _initMissions(rawMissions) {
     const missions = [];
     rawMissions.return.forEach((mission) => {
@@ -37,5 +37,3 @@ class MissionLoader extends DataLoader {
     );
   }
 }
-
-export default MissionLoader;

@@ -4,7 +4,7 @@ import Promotion from '../dto/Promotion';
 
 const promotionRestPath = Config.PROMOTION_PATH;
 
-class PromotionLoader extends DataLoader {
+export default class PromotionLoader extends DataLoader {
   static _initPromotions(rawPromotions) {
     const promotions = [];
     rawPromotions.return.forEach((rawPromotion) => {
