@@ -84,7 +84,6 @@ const MissionsModal = React.createClass({
   },
 
   componentWillMount() {
-    // BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },
 
   componentDidMount() {

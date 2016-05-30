@@ -1,5 +1,4 @@
 import React, { View, Text, Image, StyleSheet, ScrollView, BackAndroid } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -85,7 +84,6 @@ const ProfileTab = React.createClass({
 
   componentWillMount() {
     this._pressData = {};
-    // BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },
 
   componentDidMount() {
@@ -96,7 +94,7 @@ const ProfileTab = React.createClass({
 
   onChange() {
   },
-  
+
   updateProfileText(user) {
   },
 
