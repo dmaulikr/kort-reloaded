@@ -1,8 +1,14 @@
 import Config from '../constants/Config';
+
 import DataLoader from './DataLoader';
+
+import TaskFixUpdate from '../dto/TaskFixUpdate';
+import UserBadge from '../dto/UserBadge';
 import Validation from '../dto/Validation';
 
 const validationsGetRestPath = Config.VALIDATIONS_GET_PATH;
+const validationPostRestPath = Config.VALIDATION_POST_PATH;
+
 const limit = Config.VALIDATIONS_LIMIT;
 const radius = Config.RADIUS;
 
@@ -25,6 +31,25 @@ export default class ValidationLoader extends DataLoader {
     return validations;
   }
 
+  static _initJsonValidation(validation, valid) {
+    return JSON.stringify({
+      id: validation.id,
+      fix_id: validation.id,
+      user_id: validation.userId,
+      valid,
+    });
+  }
+
+  static _initTaskFixUpdate(rawTaskFixUpdate) {
+    const badges = [];
+    rawTaskFixUpdate.badges.forEach((rawBadge) => {
+      badges.push(new UserBadge(null, rawBadge.name, null, null, null, null, null, null));
+    });
+
+    return new TaskFixUpdate(badges, rawTaskFixUpdate.koint_count_new,
+      rawTaskFixUpdate.koin_count_total);
+  }
+
   static getValidations(latitude, longitude, onSuccess) {
     const parameters = [];
     if (limit !== null) parameters.push(`limit=${limit}`);
@@ -36,6 +61,16 @@ export default class ValidationLoader extends DataLoader {
       true,
       (rawValidations) => onSuccess(ValidationLoader._initValidations(rawValidations)),
       null
+    );
+  }
+
+  static solveValidation(validation, valid, onSuccess, onError) {
+    const requestUrl = super.createRequestUrl(validationPostRestPath, null, null);
+    super.makePostRequest(
+      requestUrl,
+      ValidationLoader._initJsonValidation(validation, valid),
+      (rawTaskFixUpdate) => onSuccess(ValidationLoader._initTaskFixUpdate(rawTaskFixUpdate)),
+      onError
     );
   }
 }

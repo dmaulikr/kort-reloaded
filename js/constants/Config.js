@@ -19,6 +19,7 @@ export default {
   MISSION_PUTPATH: '/mission/fix',
   MISSIONS_GET_PATH: '/mission/position',
   VALIDATION_PATH: '/validation',
+  VALIDATION_POST_PATH: '/validation/vote',
   VALIDATIONS_GET_PATH: '/validation/position',
   PROMOTION_PATH: '/promotion',
   STATISTICS_PATH: '/statistics',
