@@ -6,9 +6,12 @@ const absoluteHighscoreRestPath = Config.HIGHSCORE_ABSOLUTE_PATH;
 const relativeHighscoreRestPath = Config.HIGHSCORE_RELATIVE_PATH;
 
 export default class HighscoreLoader extends DataLoader {
-  static initHighscoreEntries(rawHighscoreEntries) {
+  static _initHighscoreEntries(rawHighscoreEntries, hasReturn) {
+    let rawHighscoreEntriesArray = rawHighscoreEntries;
+    if (hasReturn) rawHighscoreEntriesArray = rawHighscoreEntries.return;
+
     const highscoreEntries = [];
-    rawHighscoreEntries.forEach((rawHighScoreEntry) => {
+    rawHighscoreEntriesArray.forEach((rawHighScoreEntry) => {
       highscoreEntries.push(new HighscoreEntry(
         rawHighScoreEntry.user_id,
         rawHighScoreEntry.username,

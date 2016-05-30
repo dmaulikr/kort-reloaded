@@ -9,7 +9,7 @@ const radius = Config.RADIUS;
 class ValidationLoader extends DataLoader {
   static _initValidations(rawValidations) {
     const validations = [];
-    rawValidations.forEach((validation) => {
+    rawValidations.return.forEach((validation) => {
       validations.push(
         new Validation(validation.id, validation.type, validation.title, validation.bug_question,
           validation.view_type, validation.latitude, validation.longitude,

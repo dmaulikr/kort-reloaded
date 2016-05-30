@@ -7,7 +7,7 @@ const answerRestPath = Config.ANSWER_PATH;
 class AnswerLoader extends DataLoader {
   static _initAnswers(rawAnswers) {
     const answers = [];
-    rawAnswers.forEach((answer) => {
+    rawAnswers.return.forEach((answer) => {
       answers.push(new Answer(answer.id, answer.value, answer.title, answer.sorting, answer.type));
     }, this);
 

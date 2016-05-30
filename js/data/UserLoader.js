@@ -15,44 +15,28 @@ export default class UserLoader extends DataLoader {
   }
 
   static _initUser(rawUser) {
-    return new User(
-      rawUser.id,
-      rawUser.name,
-      rawUser.user_name,
-      rawUser.oauth_user_id,
-      rawUser.oauth_provider,
-      rawUser.token,
-      rawUser.fix_count,
-      rawUser.vote_count,
-      rawUser.koin_count,
-      rawUser.secret,
-      rawUser.pic_url,
-      rawUser.logged_in);
+    const rawUserObject = rawUser.return;
+    return new User(rawUserObject.id, rawUserObject.name, rawUserObject.user_name,
+      rawUserObject.oauth_user_id, rawUserObject.oauth_provider, rawUserObject.token,
+      rawUserObject.fix_count, rawUserObject.vote_count, rawUserObject.koin_count,
+      rawUserObject.secret, rawUserObject.pic_url, rawUserObject.logged_in
+    );
   }
 
   static _initUserWithUpdateInfo(rawUserUpdateInfo) {
-    return new User(
-      rawUserUpdateInfo.user_id,
-      rawUserUpdateInfo.name,
-      rawUserUpdateInfo.username,
-      rawUserUpdateInfo.oauth_user_id,
-      rawUserUpdateInfo.secret
+    return new User(rawUserUpdateInfo.user_id, rawUserUpdateInfo.name, rawUserUpdateInfo.username,
+      rawUserUpdateInfo.oauth_user_id, rawUserUpdateInfo.secret
     );
   }
 
   static _initUserBadges(rawUserBadges) {
     const userBadges = [];
-    rawUserBadges.forEach((rawBadge) => {
-      userBadges.push(new UserBadge(
-        rawBadge.id,
-        rawBadge.name,
-        rawBadge.title,
-        rawBadge.description,
-        rawBadge.color,
-        rawBadge.sorting,
-        rawBadge.won,
-        rawBadge.create_date
-      ));
+    rawUserBadges.return.forEach((rawBadge) => {
+      userBadges.push(
+        new UserBadge(rawBadge.id, rawBadge.name, rawBadge.title, rawBadge.description,
+          rawBadge.color, rawBadge.sorting, rawBadge.won, rawBadge.create_date
+        )
+      );
     }, this);
 
     return userBadges;

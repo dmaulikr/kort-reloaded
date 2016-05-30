@@ -9,7 +9,7 @@ const radius = Config.RADIUS;
 class MissionLoader extends DataLoader {
   static _initMissions(rawMissions) {
     const missions = [];
-    rawMissions.forEach((mission) => {
+    rawMissions.return.forEach((mission) => {
       missions.push(
         new Mission(mission.id, mission.type, mission.title, mission.description,
           mission.view_type, mission.latitude, mission.longitude, mission.fix_koin_count,

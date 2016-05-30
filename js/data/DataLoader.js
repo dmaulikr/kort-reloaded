@@ -77,10 +77,7 @@ class DataLoader {
     fetch(requestUrl, { headers: authorizationHeader })
       .then((response) => response.json())
       .then((responseData) => responseData)
-      .then((data) => {
-        let response = data.return;
-        onSuccess(response);
-      })
+      .then((data) => onSuccess(data))
       .catch((error) => {
         if (onError != null) {
           onError(error);
@@ -117,10 +114,7 @@ class DataLoader {
     })
       .then((response) => response.json())
       .then((responseData) => responseData)
-      .then((data) => {
-        let response = data.return;
-        onSuccess(response);
-      })
+      .then((data) => onSuccess(data))
       .catch((error) => {
         if (onError != null) {
           onError(error);
