@@ -14,11 +14,11 @@ class PromotionStore extends Store {
 
   _updatePromotions(promotions) {
     this._promotions = promotions;
-    super.emitChange;
+    super.emitChange();
   }
 }
 
-const promotionStore = new promotionStore();
+const promotionStore = new PromotionStore();
 
 promotionStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {

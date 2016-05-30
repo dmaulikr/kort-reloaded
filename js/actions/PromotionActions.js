@@ -7,7 +7,7 @@ export default class PromotionActions {
     PromotionLoader.getPromotions((promotions) => {
       AppDispatcher.dispatch({
         actionType: ActionTypes.PROMOTIONS_LOAD,
-        data: promotions
+        data: promotions,
       });
     });
   }

@@ -9,15 +9,16 @@ const radius = Config.RADIUS;
 export default class ValidationLoader extends DataLoader {
   static _initValidations(rawValidations) {
     const validations = [];
-    rawValidations.return.forEach((validation) => {
+    rawValidations.return.forEach((rawValidation) => {
       validations.push(
-        new Validation(validation.id, validation.type, validation.title, validation.bug_question,
-          validation.view_type, validation.latitude, validation.longitude,
-          validation.vote_koin_count, validation.promo_id, validation.extra_coins,
-          validation.fix_user_id, validation.fixmessage, validation.upratings,
-          validation.downratings, validation.required_votes, validation.osm_id, validation.osm_type,
-          validation.geom, validation.txt1, validation.txt2, validation.txt3, validation.txt4,
-          validation.txt5)
+        new Validation(rawValidation.id, rawValidation.type, rawValidation.title,
+          rawValidation.bug_question, rawValidation.view_type, rawValidation.latitude,
+          rawValidation.longitude, rawValidation.vote_koin_count, rawValidation.promo_id,
+          rawValidation.extra_coins, rawValidation.fix_user_id, rawValidation.fixmessage,
+          rawValidation.upratings, rawValidation.downratings, rawValidation.required_votes,
+          rawValidation.osm_id, rawValidation.osm_type, rawValidation.geom, rawValidation.txt1,
+          rawValidation.txt2, rawValidation.txt3, rawValidation.txt4, rawValidation.txt5
+        )
       );
     }, this);
 
