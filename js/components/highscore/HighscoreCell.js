@@ -28,17 +28,20 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingTop: 10,
   },
-  column: {
+  columnRank: {
     flexDirection: 'column',
     justifyContent: 'center',
     padding: 10,
   },
-  thumb: {
-    width: 64,
-    height: 64,
+  columnText: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 10,
   },
   text: {
     flex: 1,
+  },
+  textRanking: {
   },
 });
 
@@ -46,6 +49,7 @@ const CollectionCell = React.createClass({
   getInitialState() {
     return {
       username: this.props.highscoreList.username,
+      ranking: this.props.highscoreList.ranking,
       you: this.props.highscoreList.you,
       fix_count: this.props.highscoreList.fix_count,
       vote_count: this.props.highscoreList.vote_count,
@@ -64,8 +68,12 @@ const CollectionCell = React.createClass({
       <TouchableHighlight onPress = { this.props.onSelectRow }>
         <View>
           <View style = { styles.row }>
-            <Image style = { styles.thumb } source = { require('../../assets/img/poi_name_mission.png') } />
-            <View style = { styles.column }>
+            <View style = { styles.columnRank }>
+              <Text style = { styles.textRanking }>
+                { this.state.ranking }
+              </Text>
+            </View>
+            <View style = { styles.columnText }>
               <Text style = { styles.text }>
                 { this.state.username }
               </Text>
