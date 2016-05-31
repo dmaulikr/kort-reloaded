@@ -3,21 +3,23 @@ import {
   StyleSheet,
   View,
   Text,
-  Image,
-  Modal, } from 'react-native';
+  Image } from 'react-native';
 import CustomButton from '../shared/CustomButton';
+import CompletedMissionModalBadge from './CompletedMissionModalBadge';
 import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
-  containerMissionComplete: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   innerContainer: {
     borderRadius: 10,
     alignItems: 'center',
+  },
+  innerContainerMissionComplete: {
+    flexDirection: 'row',
   },
   modalButton: {
     marginTop: 10,
@@ -28,12 +30,19 @@ const styles = StyleSheet.create({
     height: 46,
     width: 46,
   },
+  textMission: {
+    alignSelf: 'center',
+    marginTop: 5,
+    width: 200,
+  },
 });
 
 const CompletedMissionModal = React.createClass({
   getInitialState() {
     return {
       modalVisible: this.props.modalVisible,
+      koins: this.props.koins,
+      userKoins: this.props.userKoins,
     };
   },
 
@@ -41,40 +50,36 @@ const CompletedMissionModal = React.createClass({
   },
 
   componentDidMount() {
-
-  },
-
-  /*
-  * Modal for mission completion
-  */
-  _setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
-    if (!this.state.modalVisible) {
-      Actions.pop();
-    }
   },
 
   render() {
     return (
       <View>
-        <Modal
-          animationType = { false }
-          transparent = { true }
-          visible = { this.state.modalVisible }
-          onRequestClose = { () => { this._setModalVisible(false); } }
-        >
-          <View style = { styles.containerMissionComplete }>
-            <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
-              <Text>Mission completed.</Text>
-              <CustomButton
-                onPress = { this._setModalVisible.bind(this, false) }
-                style = { styles.modalButton }
-              >
-                Close
-              </CustomButton>
+        <View style = { styles.container }>
+          <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
+            <Text>Mission completed. You increased your reputation!</Text>
+            <View style = { styles.innerContainerMissionComplete }>
+              <Image
+                style = { styles.icon }
+                source = { require('../../assets/img/koin_no_value.png') }
+              />
+              <Text style = { styles.textMission }>
+                Bravo! You have won { this.state.koins } Koins!
+                You now have a total amount of { this.state.userKoins } Koins.
+              </Text>
             </View>
+            <CompletedMissionModalBadge
+              wonBadge = { true }
+              badge = 'badge1'
+            />
+            <CustomButton
+              onPress = { Actions.pop }
+              style = { styles.modalButton }
+            >
+              Ok
+            </CustomButton>
           </View>
-        </Modal>
+        </View>
       </View>
     );
   },

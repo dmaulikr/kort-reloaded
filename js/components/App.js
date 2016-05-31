@@ -8,6 +8,7 @@ import HighscoreTab from './HighscoreTab';
 import AboutTab from './AboutTab';
 import TabIcon from './shared/TabIcon';
 import MissionModal from './missions/MissionModal';
+import CompletedMissionModal from './missions/CompletedMissionModal';
 import ProfileModal from './highscore/ProfileModal';
 
 const reducerCreate = params => {
@@ -56,9 +57,14 @@ const scenes = Actions.create(
       </Scene>
       <Scene
         key = 'missionModal'
-        hideNavBar = { false }
         panHandlers = { null }
         component = { MissionModal }
+        direction = 'vertical'
+      />
+      <Scene
+        key = 'completedMissionModal'
+        panHandlers = { null }
+        component = { CompletedMissionModal }
         direction = 'vertical'
       />
       <Scene
