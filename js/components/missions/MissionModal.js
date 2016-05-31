@@ -3,14 +3,8 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
-  Item,
   Image,
-  Switch,
-  Picker,
-  Modal,
-  BackAndroid } from 'react-native';
-import Button from 'react-native-button';
+  Modal } from 'react-native';
 import CustomButton from '../shared/CustomButton';
 import { Actions } from 'react-native-router-flux';
 import MissionModalInput from './MissionModalInput';
@@ -92,7 +86,6 @@ const MissionsModal = React.createClass({
   },
 
   componentDidMount() {
-
   },
 
   /*
