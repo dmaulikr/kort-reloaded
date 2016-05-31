@@ -2,32 +2,29 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 
-let _tasks = [];
-
 class TaskStore extends Store {
+  constructor() {
+    super();
+    this._tasks = null;
+  }
+
+  _setTasks(tasks) {
+    this._tasks = tasks;
+    super.emitChange();
+  }
+
   getAll() {
-    return _tasks;
+    return this._tasks;
   }
 }
 
 const taskStore = new TaskStore();
 
-function updateTasks(tasks) {
-  // only emit change if tasks changed
-  // currently depends on the assumption that tasks are always retrieved in the same order
-  // TODO: make comparison more robust
-  if (tasks.toString() !== _tasks.toString()) {
-    _tasks = tasks;
-    taskStore.emitChange();
-  }
-}
-
-AppDispatcher.register((action) => {
+taskStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.TASKS_LOAD:
-      updateTasks(action.data);
+      taskStore._setTasks(action.data);
       break;
-
     default:
       return;
   }

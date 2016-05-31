@@ -1,42 +1,76 @@
 import Config from '../constants/Config';
+
 import DataLoader from './DataLoader';
+
+import TaskReward from '../dto/TaskReward';
+import UserBadge from '../dto/UserBadge';
 import Validation from '../dto/Validation';
 
 const validationsGetRestPath = Config.VALIDATIONS_GET_PATH;
+const validationPostRestPath = Config.VALIDATION_POST_PATH;
+
 const limit = Config.VALIDATIONS_LIMIT;
 const radius = Config.RADIUS;
 
-function _initValidations(rawValidations) {
-  const validations = [];
-  rawValidations.forEach((validation) => {
-    validations.push(new Validation(
-      validation.id,
-      validation.type,
-      validation.title,
-      validation.bug_question,
-      validation.view_type,
-      validation.latitude,
-      validation.longitude,
-      validation.vote_koin_count,
-      validation.promo_id,
-      validation.extra_coins,
-      validation.fix_user_id,
-      validation.fixmessage)
-    );
-  }, this);
+export default class ValidationLoader extends DataLoader {
+  static _initValidations(rawValidations) {
+    const validations = [];
+    rawValidations.return.forEach((rawValidation) => {
+      validations.push(
+        new Validation(rawValidation.id, rawValidation.type, rawValidation.title,
+          rawValidation.bug_question, rawValidation.view_type, rawValidation.latitude,
+          rawValidation.longitude, rawValidation.vote_koin_count, rawValidation.promo_id,
+          rawValidation.extra_coins, rawValidation.fix_user_id, rawValidation.fixmessage,
+          rawValidation.upratings, rawValidation.downratings, rawValidation.required_votes,
+          rawValidation.osm_id, rawValidation.osm_type, rawValidation.geom, rawValidation.txt1,
+          rawValidation.txt2, rawValidation.txt3, rawValidation.txt4, rawValidation.txt5
+        )
+      );
+    });
 
-  return validations;
-}
+    return validations;
+  }
 
-class ValidationLoader extends DataLoader {
+  static _initJsonValidation(validation, valid) {
+    return JSON.stringify({
+      id: validation.id,
+      fix_id: validation.id,
+      user_id: validation.userId,
+      valid,
+    });
+  }
+
+  static _initTaskReward(rawTaskReward) {
+    const badges = [];
+    rawTaskReward.badges.forEach((rawBadge) => {
+      badges.push(new UserBadge(null, rawBadge.name, null, null, null, null, null, null));
+    });
+
+    return new TaskReward(badges, rawTaskReward.koint_count_new,
+      rawTaskReward.koin_count_total);
+  }
+
   static getValidations(latitude, longitude, onSuccess) {
     const parameters = [];
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
     const requestUrl = super.createRequestUrl(
       validationsGetRestPath, [latitude, longitude], parameters);
-    super.makeRequest(requestUrl, onSuccess, null, _initValidations);
+    super.makeGetRequest(
+      requestUrl,
+      true,
+      (rawValidations) => onSuccess(ValidationLoader._initValidations(rawValidations)),
+      null
+    );
+  }
+
+  static solveValidation(validation, valid, onSuccess, onError) {
+    const requestUrl = super.createRequestUrl(validationPostRestPath, null, null);
+    super.makePostRequest(
+      requestUrl,
+      ValidationLoader._initJsonValidation(validation, valid),
+      (rawTaskReward) => onSuccess(ValidationLoader._initTaskReward(rawTaskReward)),
+      onError
+    );
   }
 }
-
-export default ValidationLoader;

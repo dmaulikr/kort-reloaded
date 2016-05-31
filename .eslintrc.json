@@ -13,5 +13,9 @@
     "react/prefer-es6-class": [0, "always"],
 	"no-unused-vars": "warn",
 	"eqeqeq": ["error", "smart"]
+  },
+  "env": {
+	  "node": true,
+	  "jest": true
   }
 }
