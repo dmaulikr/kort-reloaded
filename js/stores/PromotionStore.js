@@ -1,20 +1,26 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import PromotionActions from '../actions/PromotionActions';
 import Store from './Store';
 
 class PromotionStore extends Store {
   constructor() {
     super();
     this._promotions = null;
-  }
-
-  getAll() {
-    return this._promotions;
+    this._initializePromotions();
   }
 
   _updatePromotions(promotions) {
     this._promotions = promotions;
     super.emitChange();
+  }
+
+  _initializePromotions() {
+    PromotionActions.loadPromotions();
+  }
+
+  getAllPromotions() {
+    return this._promotions;
   }
 }
 
@@ -29,3 +35,5 @@ promotionStore.dispatchToken = AppDispatcher.register((action) => {
       return;
   }
 });
+
+export default promotionStore;

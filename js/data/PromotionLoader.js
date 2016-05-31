@@ -13,7 +13,7 @@ export default class PromotionLoader extends DataLoader {
           rawPromotion.enddate
         )
       );
-    }, this);
+    });
   }
 
   static getPromotions(onSuccess, onError) {

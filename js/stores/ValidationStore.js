@@ -8,13 +8,13 @@ class ValidationStore extends Store {
     this._validations = null;
   }
 
-  getAll() {
-    return this._validations;
-  }
-
-  _updateValidations(validations) {
+  _setValidations(validations) {
     this._validations = validations;
     super.emitChange();
+  }
+
+  getAll() {
+    return this._validations;
   }
 }
 
@@ -23,7 +23,7 @@ const validationStore = new ValidationStore();
 validationStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.VALIDATIONS_LOAD:
-      validationStore._updateValidations(action.data);
+      validationStore._setValidations(action.data);
       break;
     default:
       return;

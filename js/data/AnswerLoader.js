@@ -9,7 +9,7 @@ export default class AnswerLoader extends DataLoader {
     const answers = [];
     rawAnswers.return.forEach((answer) => {
       answers.push(new Answer(answer.id, answer.value, answer.title, answer.sorting, answer.type));
-    }, this);
+    });
 
     return answers;
   }

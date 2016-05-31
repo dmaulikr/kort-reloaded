@@ -32,8 +32,22 @@ export default {
   ZOOM_LEVEL: 13,
   MAPBOX_ACCESS_TOKEN: SecretConfig.MAPBOX_ACCESS_TOKEN,
 
+  // Storage
+  USER_CREDENTIAL_STORAGE_KEY: 'LoggedInUserCredential',
+
   // Store
   CHANGE_EVENT: 'change',
+
+  // String Definitions
+  // Task Type
+  TASK_TYPE_MOTORWAY_REF: 'motorway_ref',
+  TASK_TYPE_RELIGION: 'religion',
+  TASK_TYPE_POI_NAME: 'poi_name',
+  TASK_TYPE_MISSING_MAXSPEED: 'missing_maxspeed',
+  TASK_TYPE_LANGUGAGE_UNKNOWN: 'language_unknown',
+  TASK_TYPE_MISSING_TRACK_TYPE: 'missing_track_type',
+  TASK_TYPE_WAY_WITHOUT_TAGS: 'way_wo_tags',
+  TASK_TYPE_MISSING_CUISINE: 'missing_cuisine',
 
   // Tasks
   MISSIONS_LIMIT: 10,

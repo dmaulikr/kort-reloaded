@@ -8,13 +8,13 @@ class MissionStore extends Store {
     this._missions = null;
   }
 
-  getAll() {
-    return this._missions;
-  }
-
-  _updateMissions(missions) {
+  _setMissions(missions) {
     this._missions = missions;
     super.emitChange();
+  }
+
+  getAll() {
+    return this._missions;
   }
 }
 
@@ -23,7 +23,7 @@ const missionStore = new MissionStore();
 missionStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.MISSIONS_LOAD:
-      missionStore._updateMissions(action.data);
+      missionStore._setMissions(action.data);
       break;
     default:
       return;

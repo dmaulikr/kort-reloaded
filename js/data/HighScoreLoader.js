@@ -17,7 +17,7 @@ export default class HighscoreLoader extends DataLoader {
         rawHighScoreEntry.fix_count, rawHighScoreEntry.vote_count, rawHighScoreEntry.ranking,
         rawHighScoreEntry.rownumber, rawHighScoreEntry.you
       ));
-    }, this);
+    });
   }
 
   static getAbsoluteHighscore(limit, page, onSuccess, onError) {

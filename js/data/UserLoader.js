@@ -37,7 +37,7 @@ export default class UserLoader extends DataLoader {
           rawBadge.color, rawBadge.sorting, rawBadge.won, rawBadge.create_date
         )
       );
-    }, this);
+    });
 
     return userBadges;
   }

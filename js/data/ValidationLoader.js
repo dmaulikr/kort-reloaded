@@ -2,7 +2,7 @@ import Config from '../constants/Config';
 
 import DataLoader from './DataLoader';
 
-import TaskFixUpdate from '../dto/TaskFixUpdate';
+import TaskReward from '../dto/TaskReward';
 import UserBadge from '../dto/UserBadge';
 import Validation from '../dto/Validation';
 
@@ -26,7 +26,7 @@ export default class ValidationLoader extends DataLoader {
           rawValidation.txt2, rawValidation.txt3, rawValidation.txt4, rawValidation.txt5
         )
       );
-    }, this);
+    });
 
     return validations;
   }
@@ -40,14 +40,14 @@ export default class ValidationLoader extends DataLoader {
     });
   }
 
-  static _initTaskFixUpdate(rawTaskFixUpdate) {
+  static _initTaskReward(rawTaskReward) {
     const badges = [];
-    rawTaskFixUpdate.badges.forEach((rawBadge) => {
+    rawTaskReward.badges.forEach((rawBadge) => {
       badges.push(new UserBadge(null, rawBadge.name, null, null, null, null, null, null));
     });
 
-    return new TaskFixUpdate(badges, rawTaskFixUpdate.koint_count_new,
-      rawTaskFixUpdate.koin_count_total);
+    return new TaskReward(badges, rawTaskReward.koint_count_new,
+      rawTaskReward.koin_count_total);
   }
 
   static getValidations(latitude, longitude, onSuccess) {
@@ -69,7 +69,7 @@ export default class ValidationLoader extends DataLoader {
     super.makePostRequest(
       requestUrl,
       ValidationLoader._initJsonValidation(validation, valid),
-      (rawTaskFixUpdate) => onSuccess(ValidationLoader._initTaskFixUpdate(rawTaskFixUpdate)),
+      (rawTaskReward) => onSuccess(ValidationLoader._initTaskReward(rawTaskReward)),
       onError
     );
   }

@@ -8,13 +8,13 @@ class TaskStore extends Store {
     this._tasks = null;
   }
 
-  getAll() {
-    return this._tasks;
-  }
-
-  _updateTasks(tasks) {
+  _setTasks(tasks) {
     this._tasks = tasks;
     super.emitChange();
+  }
+
+  getAll() {
+    return this._tasks;
   }
 }
 
@@ -23,7 +23,7 @@ const taskStore = new TaskStore();
 taskStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.TASKS_LOAD:
-      taskStore._updateTasks(action.data);
+      taskStore._setTasks(action.data);
       break;
     default:
       return;

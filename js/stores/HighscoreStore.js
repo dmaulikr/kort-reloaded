@@ -2,23 +2,32 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 
-export default class HighscoreStore extends Store {
+class HighscoreStore extends Store {
   constructor() {
     super();
     this._highscore = null;
-    this.dispatchToken = AppDispatcher.register((action) => {
-      switch (action.actionType) {
-        case ActionTypes.HIGHSCORE_LOAD:
-          this._updateHighscore(action.data);
-          break;
-        default:
-          return;
-      }
-    });
   }
 
-  _updateHighscore(highscore) {
+  _setHighscore(highscore) {
     this._highscore = highscore;
     super.emitChange();
   }
+
+  getHighscore() {
+    return this._highscore;
+  }
 }
+
+const highscoreStore = new HighscoreStore();
+
+highscoreStore.dispatchToken = AppDispatcher.register((action) => {
+  switch (action.actionType) {
+    case ActionTypes.HIGHSCORE_LOAD:
+      this._setHighscore(action.data);
+      break;
+    default:
+      return;
+  }
+});
+
+export default highscoreStore;

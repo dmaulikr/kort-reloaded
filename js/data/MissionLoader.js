@@ -1,7 +1,7 @@
 import Config from '../constants/Config';
 import DataLoader from './DataLoader';
 import Mission from '../dto/Mission';
-import TaskFixUpdate from '../dto/TaskFixUpdate';
+import TaskReward from '../dto/TaskReward';
 import UserBadge from '../dto/UserBadge';
 
 const missionsGetRestPath = Config.MISSIONS_GET_PATH;
@@ -23,7 +23,7 @@ export default class MissionLoader extends DataLoader {
           rawMission.txt5
         )
       );
-    }, this);
+    });
 
     return missions;
   }
@@ -39,14 +39,14 @@ export default class MissionLoader extends DataLoader {
     });
   }
 
-  static _initTaskFixUpdate(rawTaskFixUpdate) {
+  static _initTaskReward(rawTaskReward) {
     const badges = [];
-    rawTaskFixUpdate.badges.forEach((rawBadge) => {
+    rawTaskReward.badges.forEach((rawBadge) => {
       badges.push(new UserBadge(null, rawBadge.name, null, null, null, null, null, null));
     });
 
-    return new TaskFixUpdate(badges, rawTaskFixUpdate.koint_count_new,
-      rawTaskFixUpdate.koin_count_total);
+    return new TaskReward(badges, rawTaskReward.koint_count_new,
+      rawTaskReward.koin_count_total);
   }
 
   static getMissions(latitude, longitude, onSuccess) {
@@ -68,7 +68,7 @@ export default class MissionLoader extends DataLoader {
     super.makePostRequest(
       requestUrl,
       MissionLoader._initJsonMission(mission),
-      (rawMissions) => onSuccess(MissionLoader._initMissions(rawMissions)),
+      (rawTaskReward) => onSuccess(MissionLoader._initTaskReward(rawTaskReward)),
       onError
     );
   }
