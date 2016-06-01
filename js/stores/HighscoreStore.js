@@ -23,7 +23,7 @@ const highscoreStore = new HighscoreStore();
 highscoreStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.HIGHSCORE_LOAD:
-      this._setHighscore(action.data);
+      highscoreStore._setHighscore(action.data);
       break;
     default:
       return;

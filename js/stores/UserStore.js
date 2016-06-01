@@ -2,7 +2,7 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 
-export default class UserStore extends Store {
+class UserStore extends Store {
   constructor() {
     super();
     this._user = null;
@@ -60,13 +60,13 @@ const userStore = new UserStore();
 userStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.USER_LOAD:
-
+      userStore._setUser(action.data);
       break;
     case ActionTypes.USER_BADGES:
-
+      userStore._setUserBadges(action.data);
       break;
     case ActionTypes.USER_UPDATE:
-
+      userStore._updateUser(action.data);
       break;
     default:
       return;
