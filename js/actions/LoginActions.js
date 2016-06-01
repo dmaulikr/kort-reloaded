@@ -12,8 +12,9 @@ export default class LoginActions {
     });
   }
 
-  static logoutUser(id) {
-    UserLoader.logoutUser(id, (logoutInfo) => {
+  static logOutUser(userId) {
+    console.log('logout invoked');
+    UserLoader.logoutUser(userId, (logoutInfo) => {
       AppDispatcher.dispatch({
         actionType: ActionTypes.LOGIN_LOGOUT,
         logoutInfo,
