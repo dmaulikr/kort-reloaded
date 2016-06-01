@@ -8,6 +8,7 @@ import {
 import CustomButton from '../shared/CustomButton';
 import { Actions } from 'react-native-router-flux';
 import MissionModalInput from './MissionModalInput';
+import CompletedMissionModal from './CompletedMissionModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -103,31 +104,11 @@ const MissionsModal = React.createClass({
       <View style = { styles.container }>
         <Modal
           animationType = { false }
-          transparent = { true }
+          transparent
           visible = { this.state.modalVisible }
           onRequestClose = { () => { this._setModalVisible(false); } }
         >
-          <View style = { styles.containerMissionComplete }>
-            <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
-              <Text>Mission completed. You increased your reputation!</Text>
-              <View style = { styles.innerContainerMissionCompleted }>
-                <Image
-                  style = { styles.icon }
-                  source = { require('../../assets/img/koin_no_value.png') }
-                />
-                <Text style = { styles.textMission }>
-                  Bravo! You have won { this.state.koins } Koins!
-                  You now have a total amount of { this.state.userKoins } Koins.
-                </Text>
-              </View>
-              <CustomButton
-                onPress = { this._setModalVisible.bind(this, false) }
-                style = { styles.modalButton }
-              >
-                Ok
-              </CustomButton>
-            </View>
-          </View>
+          <CompletedMissionModal />
         </Modal>
         <Text style = { styles.textTitle }>{ this.props.title }</Text>
         <View style = { styles.containerMission }>
@@ -147,14 +128,17 @@ const MissionsModal = React.createClass({
           </View>
         </View>
         <MissionModalInput
-          inputType = 'input'
+          inputType = "input"
           unableToSolve = { this.state.unableToSolve }
         />
         <View style = { styles.containerButton }>
           <CustomButton style = { { paddingTop: 20 } } onPress = { Actions.pop }>
             Cancel
           </CustomButton>
-          <CustomButton style = { { paddingTop: 20 } } onPress = { this._setModalVisible.bind(this, true) }>
+          <CustomButton
+            style = { { paddingTop: 20 } }
+            onPress = { this._setModalVisible.bind(this, true) }
+          >
             Complete Mission
           </CustomButton>
         </View>

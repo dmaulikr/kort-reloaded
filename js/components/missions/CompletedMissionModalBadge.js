@@ -38,8 +38,7 @@ const CompletedMissionModalBadge = React.createClass({
 
     if (!this.state.wonBadge) {
       badgeField = (
-        <View>
-        </View>
+        <View />
       );
     } else { // ToDo: If two badges are won at the same time.
       switch (this.state.badge) {
@@ -71,8 +70,7 @@ const CompletedMissionModalBadge = React.createClass({
           break;
         default:
           badgeField = (
-            <View>
-            </View>
+            <View />
           );
           break;
       }
@@ -85,7 +83,7 @@ const CompletedMissionModalBadge = React.createClass({
         </View>
       </View>
     );
-  }
+  },
 });
 
 module.exports = CompletedMissionModalBadge;

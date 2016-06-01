@@ -41,7 +41,7 @@ const AboutTab = React.createClass({
   },
 
   render() {
-    var _scrollView = ScrollView;
+    let _scrollView = ScrollView;
     return (
       <ScrollView
         ref = { (scrollView) => { _scrollView = scrollView; } }

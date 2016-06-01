@@ -10,6 +10,7 @@
     "flow": "flow check ."
   },
   "dependencies": {
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "buffer": "^4.6.0",
     "events": "^1.1.0",
     "flux": "^2.1.1",

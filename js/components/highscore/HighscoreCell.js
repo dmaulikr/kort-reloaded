@@ -54,7 +54,7 @@ const CollectionCell = React.createClass({
       fix_count: this.props.highscoreList.fix_count,
       vote_count: this.props.highscoreList.vote_count,
       koin_count: this.props.highscoreList.koin_count,
-    }
+    };
   },
 
   componentDidMount() {
@@ -82,7 +82,7 @@ const CollectionCell = React.createClass({
                   { 'Koins: ' + this.state.koin_count + ' ' }
                 </Text>
                 <Text style = { styles.text }>
-                  { 'Missions: ' + this.state.fix_count +  ' ' }
+                  { 'Missions: ' + this.state.fix_count + ' ' }
                 </Text>
               </View>
             </View>
@@ -91,6 +91,6 @@ const CollectionCell = React.createClass({
       </TouchableHighlight>
     );
   },
-})
+});
 
 module.exports = CollectionCell;

@@ -69,8 +69,8 @@ const CompletedMissionModal = React.createClass({
               </Text>
             </View>
             <CompletedMissionModalBadge
-              wonBadge = { true }
-              badge = 'badge1'
+              wonBadge
+              badge = "badge1"
             />
             <CustomButton
               onPress = { Actions.pop }

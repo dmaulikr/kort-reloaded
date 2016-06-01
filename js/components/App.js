@@ -20,59 +20,59 @@ const reducerCreate = params => {
 };
 
 const scenes = Actions.create(
-  <Scene key = 'modal' component = { Modal } >
-    <Scene key = 'root' hideNavBar>
-      <Scene key = 'login'
+  <Scene key = "modal" component = { Modal } >
+    <Scene key = "root" hideNavBar>
+      <Scene key = "login"
         initial
         component = { Login }
-        title = 'Login'
-        direction = 'vertical'
+        title = "Login"
+        direction = "vertical"
         style = { { flex: 1, backgroundColor: 'transparent' } }
       />
-      <Scene key = 'tabbar' panHandlers = { null } tabs type = 'replace'>
-        <Scene key = 'missions'
+      <Scene key = "tabbar" panHandlers = { null } tabs type = "replace">
+        <Scene key = "missions"
           component = { MissionsTab }
-          title = 'Missions'
+          title = "Missions"
           hideNavBar
           icon = { TabIcon }
         />
-        <Scene key = 'profile'
+        <Scene key = "profile"
           component = { ProfileTab }
-          title = 'Profile'
+          title = "Profile"
           hideNavBar
           icon = { TabIcon }
         />
-        <Scene key = 'highscore'
+        <Scene key = "highscore"
           component = { HighscoreTab }
-          title = 'Highscore'
+          title = "Highscore"
           hideNavBar
           icon = { TabIcon }
         />
-        <Scene key = 'about'
+        <Scene key = "about"
           component = { AboutTab }
-          title = 'About'
+          title = "About"
           hideNavBar
           icon = { TabIcon }
         />
       </Scene>
       <Scene
-        key = 'missionModal'
+        key = "missionModal"
         panHandlers = { null }
         component = { MissionModal }
-        direction = 'vertical'
+        direction = "vertical"
       />
       <Scene
-        key = 'completedMissionModal'
+        key = "completedMissionModal"
         panHandlers = { null }
         component = { CompletedMissionModal }
-        direction = 'vertical'
+        direction = "vertical"
       />
       <Scene
-        key = 'profileModal'
-        hideNavBar = { false }
+        key = "profileModal"
+        hideNavBar = {false }
         panHandlers = { null }
         component = { ProfileModal }
-        direction = 'vertical'
+        direction = "vertical"
       />
     </Scene>
   </Scene>

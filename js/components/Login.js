@@ -95,6 +95,7 @@ class Login extends React.Component {
   }
 
   render() {
+    let _scrollView = ScrollView;
     if (!this.state.user) {
       return (
         <ScrollView

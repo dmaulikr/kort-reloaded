@@ -51,8 +51,7 @@ const MissionModalInput = React.createClass({
 
     if (this.state.unableToSolve) {
       inputField = (
-        <View>
-        </View>
+        <View />
       );
     } else {
       switch (this.state.inputType) {
@@ -63,8 +62,8 @@ const MissionModalInput = React.createClass({
               selectedValue = { this.state.selected }
               onValueChange = { this.onValueChange.bind(this, 'selected') }
             >
-              <Item label = 'hello' value = 'key0' />
-              <Item label = 'world' value = 'key1' />
+              <Item label = "hello" value = "key0" />
+              <Item label = "world" value = "key1" />
             </Picker>
           );
           break;
@@ -72,8 +71,8 @@ const MissionModalInput = React.createClass({
           inputField = (
             <TextInput
               style = { styles.textInput }
-              autoCapitalize = 'words'
-              placeholder = 'Mission type'
+              autoCapitalize = "words"
+              placeholder = "Mission type"
               onChangeText = { (answer) => this.setState({ answer }) }
               value = { this.state.answer }
             />
@@ -81,8 +80,7 @@ const MissionModalInput = React.createClass({
           break;
         default:
           inputField = (
-            <View>
-            </View>
+            <View />
           );
           break;
       }
@@ -102,7 +100,7 @@ const MissionModalInput = React.createClass({
         </View>
       </View>
     );
-  }
+  },
 });
 
 module.exports = MissionModalInput;
