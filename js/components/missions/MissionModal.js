@@ -67,18 +67,18 @@ const styles = StyleSheet.create({
 });
 
 const MissionsModal = React.createClass({
-  getInitialState() { // this.props.task....
+  getInitialState() { // this.props.data....
     return {
-      title: '',
-      koins: 0,
+      type: this.props.data.type,
+      title: this.props.data.title,
+      question: this.props.data.question,
+      viewType: this.props.data.viewType,
+      fixKoinCount: this.props.data.fixKoinCount,
       userKoins: 0,
-      mission: '',
       txtUnableToSolve: 'Unable to solve',
       unableToSolve: false,
       answer: '',
-      selected: 'key',
       btnCompleteMission: '',
-      view: '',
       modalVisible: false,
     };
   },
@@ -89,46 +89,28 @@ const MissionsModal = React.createClass({
   componentDidMount() {
   },
 
-  /*
-  * Modal for mission completion
-  */
-  _setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
-    if (!this.state.modalVisible) {
-      Actions.pop();
-    }
-  },
-
   render() {
     return (
       <View style = { styles.container }>
-        <Modal
-          animationType = { false }
-          transparent
-          visible = { this.state.modalVisible }
-          onRequestClose = { () => { this._setModalVisible(false); } }
-        >
-          <CompletedMissionModal />
-        </Modal>
-        <Text style = { styles.textTitle }>{ this.props.title }</Text>
+        <Text style = { styles.textTitle }>{ this.state.title }</Text>
         <View style = { styles.containerMission }>
           <View style = { styles.containerMissionDescription }>
             <Image
               style = { styles.icon }
               source = { require('../../assets/img/koin_no_value.png') }
             />
-            <Text style = { styles.textMission }>Get the { this.state.koins } Koins!</Text>
+            <Text style = { styles.textMission }>Get the { this.state.fixKoinCount } Koins!</Text>
           </View>
           <View style = { styles.containerMissionDescription }>
             <Image
               style = { styles.icon }
               source = { require('../../assets/img/poi_name_mission.png') }
             />
-            <Text style = { styles.textMission }>{ this.state.mission } ?</Text>
+          <Text style = { styles.textMission }>{ this.state.question }</Text>
           </View>
         </View>
         <MissionModalInput
-          inputType = "input"
+          viewType = { this.state.viewType }
           unableToSolve = { this.state.unableToSolve }
         />
         <View style = { styles.containerButton }>

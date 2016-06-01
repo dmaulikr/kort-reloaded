@@ -51,6 +51,6 @@ export default {
 
   // Tasks
   MISSIONS_LIMIT: 10,
-  VALIDATIONS_LIMIT: 100,
+  VALIDATIONS_LIMIT: 1000,
   RADIUS: 5000,
 };

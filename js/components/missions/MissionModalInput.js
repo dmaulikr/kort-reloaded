@@ -31,7 +31,7 @@ const MissionModalInput = React.createClass({
     return {
       unableToSolve: this.props.unableToSolve,
       txtUnableToSolve: 'Unable to solve',
-      inputType: this.props.inputType,
+      viewType: this.props.viewType,
       selected: 'key0',
       answer: ' ',
     };
@@ -54,7 +54,7 @@ const MissionModalInput = React.createClass({
         <View />
       );
     } else {
-      switch (this.state.inputType) {
+      switch (this.state.viewType) {
         case 'select':
           inputField = (
             <Picker
@@ -67,7 +67,7 @@ const MissionModalInput = React.createClass({
             </Picker>
           );
           break;
-        case 'input':
+        case 'text':
           inputField = (
             <TextInput
               style = { styles.textInput }

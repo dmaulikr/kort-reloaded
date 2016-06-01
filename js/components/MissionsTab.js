@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Modal } from 'react-native';
 import Map from './missions/Map';
 import { Actions } from 'react-native-router-flux';
+import CompletedMissionModal from './missions/CompletedMissionModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,11 +11,33 @@ const styles = StyleSheet.create({
 });
 
 const MissionsTab = React.createClass({
-  getInitialState() { return { }; },
+  getInitialState() {
+    return {
+      modalVisible: false,
+    };
+  },
+
+  /*
+  * Modal for mission completion
+  */
+  _setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+    if (!this.state.modalVisible) {
+      Actions.pop();
+    }
+  },
 
   render() {
     return (
       <View style = { styles.container }>
+        <Modal
+          animationType = { false }
+          transparent
+          visible = { this.state.modalVisible }
+          onRequestClose = { () => { this._setModalVisible(false); } }
+        >
+          <CompletedMissionModal />
+        </Modal>
         <Map />
       </View>
     );
