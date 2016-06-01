@@ -4,7 +4,7 @@ import Config from '../constants/Config';
 
 const changeEvent = Config.CHANGE_EVENT;
 
-class Store extends EventEmitter {
+export default class Store extends EventEmitter {
 
   emitChange() {
     this.emit(changeEvent);
@@ -20,5 +20,3 @@ class Store extends EventEmitter {
 }
 
 Store.dispatchToken = null;
-
-export default Store;
