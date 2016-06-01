@@ -35,7 +35,8 @@ export default {
   MAPBOX_ACCESS_TOKEN: SecretConfig.MAPBOX_ACCESS_TOKEN,
 
   // Storage
-  USER_CREDENTIAL_STORAGE_KEY: 'LoggedInUserCredential',
+  STORAGE_KEY_USER_ID: 'LoggedInUserId',
+  STORAGE_KEY_SECRET: 'LoggedInSecret',
 
   // Store
   CHANGE_EVENT: 'change',
