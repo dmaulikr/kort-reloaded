@@ -12,14 +12,16 @@ const storageKey = Config.USER_CREDENTIAL_STORAGE_KEY;
 class LoginStore extends Store {
   constructor() {
     super();
+    this._removeUserCredential();
     this._userCredential = this._loadUserCredential();
     this._loggedIn = this._userCredential !== null;
   }
 
-  _loadUserCredential() {
+  async _loadUserCredential() {
     try {
-      const stringifiedUserCredential = AsyncStorage.getItem(storageKey);
+      const stringifiedUserCredential = await AsyncStorage.getItem(storageKey);
       const userCredential = JSON.parse(stringifiedUserCredential);
+
       return userCredential;
     } catch (error) {
       console.log(error);
@@ -28,18 +30,18 @@ class LoginStore extends Store {
     return null;
   }
 
-  _saveUserCredential(userCredential) {
+  async _saveUserCredential(userCredential) {
     try {
       const stringifiedUserCredential = JSON.stringify(userCredential);
-      AsyncStorage.setItem(storageKey, stringifiedUserCredential);
+      await AsyncStorage.setItem(storageKey, stringifiedUserCredential);
     } catch (error) {
       console.log(error);
     }
   }
 
-  _removeUserCredential() {
+  async _removeUserCredential() {
     try {
-      AsyncStorage.removeItem(storageKey);
+      await AsyncStorage.removeItem(storageKey);
     } catch (error) {
       console.log(error);
     }
@@ -72,11 +74,11 @@ const loginStore = new LoginStore();
 
 loginStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
-    case ActionTypes.USER_VERIFY:
-      this._logInUser(action.data);
+    case ActionTypes.LOGIN_VERIFY:
+      loginStore._logInUser(action.data);
       break;
-    case ActionTypes.USER_LOGOUT:
-      this._logOutUser();
+    case ActionTypes.LOGIN_LOGOUT:
+      loginStore._logOutUser();
       break;
     default:
       return;

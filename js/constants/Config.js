@@ -5,6 +5,8 @@ export default {
   TEST_USER_ID: SecretConfig.TEST_USER_ID,
   TEST_SECRET: SecretConfig.TEST_SECRET,
   // Google
+  GOOGLE: 'google',
+  GOOGLE_IOS_CLIENT_ID: SecretConfig.GOOGLE_IOS_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID: SecretConfig.GOOGLE_WEB_CLIENT_ID,
 
   // Kort API

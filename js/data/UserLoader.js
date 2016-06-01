@@ -11,7 +11,7 @@ const verifyUserRestPath = Config.USER_VERIFY_PATH;
 
 export default class UserLoader extends DataLoader {
   static _initUserCredential(rawUserCredential) {
-    return new UserCredential(rawUserCredential.id, rawUserCredential.secret);
+    return new UserCredential(rawUserCredential.user_id, rawUserCredential.secret);
   }
 
   static _initUser(rawUser) {

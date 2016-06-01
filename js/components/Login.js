@@ -4,11 +4,13 @@ import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
-import UserActions from '../actions/UserActions';
-
+import LoginActions from '../actions/LoginActions';
+import loginStore from '../stores/LoginStore';
 import Config from '../constants/Config';
 
-const webClientId = Config.GOOGLE_WEB_CLIENT_ID;
+const google = Config.GOOGLE;
+const googleWebClientId = Config.GOOGLE_WEB_CLIENT_ID;
+const googleIosClientId = Config.IOS_GOOGLE_CLIENT_ID;
 
 const styles = StyleSheet.create({
   container: {
@@ -19,75 +21,51 @@ const styles = StyleSheet.create({
   },
 });
 
-class Login extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-    };
-  }
-
+export default class Login extends React.Component {
   componentDidMount() {
-    GoogleSignin.configure({
-      webClientId,
-    });
+    this.goToTabView();
 
-    GoogleSignin.currentUserAsync().then((user) => {
-      console.log('USER', user);
-      this.setState({ user });
-    }).done();
+    loginStore.addChangeListener(this.onUserVerified);
+
+    this.configureGoogleSignIn();
   }
 
   componentWillUnmount() {
   }
 
-  _signIn() {
+  onUserVerified() {
+    this.goToTabView();
+  }
+
+  goToTabView() {
+    if (loginStore.isLoggedIn()) Actions.tabbar();
+  }
+
+  configureGoogleSignIn() {
+    GoogleSignin.configure({
+      webClientId: googleWebClientId,
+      iosClientId: googleIosClientId,
+    });
+  }
+
+  signInGoogle() {
     GoogleSignin.signIn()
-    .then((user) => {
-      console.log(user);
-      this.setState({ user });
-    })
+    .then((user) => LoginActions.verifyUser(google, user.idToken))
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
     })
     .done();
   }
 
-  _signOut() {
-    GoogleSignin.revokeAccess().then(() => GoogleSignin.signOut()).then(() => {
-      this.setState({ user: null });
-    })
-    .done();
-  }
-
   render() {
-    if (!this.state.user) {
-      return (
-        <View style={styles.container}>
-          <GoogleSigninButton style={ { width: 120, height: 44 } }
-            color={GoogleSigninButton.Color.Light}
-            size={GoogleSigninButton.Size.Icon}
-            onPress={() => { this._signIn(); }}
-          />
-        </View>
-      );
-    }
-
     return (
       <View style={styles.container}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 20 }}>
-          Welcome {this.state.user.name}
-        </Text>
-        <Text style={{ marginBottom: 20 }}>Your email is: {this.state.user.email}</Text>
-
-        <Button onPress={() => {this._signOut(); }}>Log out</Button>
-
-        <Text style={{ marginTop: 20 }}>Login page </Text>
-        <Button onPress={Actions.tabbar}>Go to TabBar page </Button>
+        <GoogleSigninButton style={ { width: 120, height: 44 } }
+          color={GoogleSigninButton.Color.Light}
+          size={GoogleSigninButton.Size.Icon}
+          onPress={() => { this.signInGoogle(); }}
+        />
       </View>
     );
   }
 }
-
-module.exports = Login;
