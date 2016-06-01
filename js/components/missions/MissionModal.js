@@ -119,7 +119,7 @@ const MissionsModal = React.createClass({
           </CustomButton>
           <CustomButton
             style = { { paddingTop: 20 } }
-            onPress = { this._setModalVisible.bind(this, true) }
+            onPress = { Actions.pop }
           >
             Complete Mission
           </CustomButton>

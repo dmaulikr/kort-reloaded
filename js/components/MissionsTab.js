@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 const MissionsTab = React.createClass({
   getInitialState() {
     return {
-      modalVisible: false,
+      modalVisible: true,
     };
   },
 
@@ -22,9 +22,6 @@ const MissionsTab = React.createClass({
   */
   _setModalVisible(visible) {
     this.setState({ modalVisible: visible });
-    if (!this.state.modalVisible) {
-      Actions.pop();
-    }
   },
 
   render() {
