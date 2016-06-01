@@ -68,7 +68,7 @@ const Map = React.createClass({
           annotationTask = task;
         }
       }
-      Actions.completedMissionModal(
+      Actions.missionModal(
         { title: annotation.src.title, data: annotationTask }
       );
     } else {
