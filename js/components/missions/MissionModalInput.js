@@ -71,6 +71,13 @@ const MissionModalInput = React.createClass({
     const newState = {};
     newState[key] = value;
     this.setState(newState);
+
+    for (let answer of answerStore.getAnswersForType(this.props.missionType)) {
+      if (answer.id === value) {
+        this.setState({ answer: answer.title });
+        console.log('ANSWER-PICKER: ' + this.state.answer);
+      }
+    }
   },
 
   render() {
@@ -83,11 +90,11 @@ const MissionModalInput = React.createClass({
         <View />
       );
     } else {
-      switch (this.state.viewType) {
+      switch (this.props.viewType) {
         case select:
-          const selectableAnswers = [];
+          const selectableTypeAnswers = [];
           for (let answer of answerStore.getAnswersForType(this.props.missionType)) {
-            selectableAnswers.push(<Item label = { answer.title } value = { answer.id } />);
+            selectableTypeAnswers.push(<Item label = { answer.title } value = { answer.id } />);
           }
           inputField = (
             <Picker
@@ -95,7 +102,7 @@ const MissionModalInput = React.createClass({
               selectedValue = { this.state.selected }
               onValueChange = { this.onValueChange.bind(this, 'selected') }
             >
-              { selectableAnswers }
+              { selectableTypeAnswers }
             </Picker>
           );
           break;
@@ -109,6 +116,7 @@ const MissionModalInput = React.createClass({
               value = { this.state.answer }
             />
           );
+          console.log('ANSWER-TEXT-INPUT: ' + this.state.answer);
           break;
         default:
           inputField = (
@@ -123,7 +131,7 @@ const MissionModalInput = React.createClass({
         <View style = { styles.containerSolve }>
           <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
           <Switch
-            onValueChange = { (value) => this.setState({ unableToSolve: value }) }
+            onValueChange = { (value) => this.setState({ unableToSolve: value, answer: '' }) }
             value = { this.state.unableToSolve }
           />
         </View>

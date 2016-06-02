@@ -83,9 +83,8 @@ export default class DataLoader {
     if (!apiUrl.startsWith('/')) requestUrl += '/';
     requestUrl = requestUrl + apiUrl;
 
-    if (!requestUrl.endsWith('/')) requestUrl += '/';
-
     if (queryParameters !== null && queryParameters.length !== 0 && queryParameters[0] !== null) {
+      if (!requestUrl.endsWith('/')) requestUrl += '/';
       requestUrl += DataLoader._getQueryParametersString(queryParameters);
     }
 
@@ -115,7 +114,7 @@ export default class DataLoader {
     } else {
       authorizationHeader = {};
     }
-
+    console.log(requestUrl);
     fetch(requestUrl, { headers: authorizationHeader })
       .then((response) => response.json())
       .then((responseData) => responseData)

@@ -8,6 +8,8 @@ import { View,
   RecyclerViewBackedScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import HighscoreCell from './highscore/HighscoreCell';
+import highscoreStore from '../stores/HighscoreStore';
+import HighscoreActions from '../actions/HighscoreActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -93,6 +95,21 @@ const HighscoreTab = React.createClass({
   componentWillMount() {
     this._pressData = {};
     // setState von dataSource - array aus allen usern erzeugen und an cloneWithRows übergeben
+  },
+
+  componentDidMount() {
+    highscoreStore.addChangeListener(this._getHighscore);
+
+    this._getHighscore();
+  },
+
+  componentWillUnmount() {
+    highscoreStore.removeChangeListener(this._getHighscore);
+  },
+
+  _getHighscore() {
+    HighscoreActions.loadAbsoluteHighscore('10', '1');
+    console.log('HIGHSCORE-STORE: ' + highscoreStore.getHighscore());
   },
 
   _renderRow(rowData, sectionID, rowID) {
