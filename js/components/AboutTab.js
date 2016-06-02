@@ -6,10 +6,12 @@ import { View,
   Image } from 'react-native';
 
 const styles = StyleSheet.create({
+  scrollView: {
+    marginBottom: 46,
+  },
   container: {
     flex: 1,
     padding: 20,
-    marginBottom: 45,
   },
   containerAbout: {
     justifyContent: 'flex-start',

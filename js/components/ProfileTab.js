@@ -9,10 +9,12 @@ import userStore from '../stores/UserStore';
 import Config from '../constants/Config';
 
 const styles = StyleSheet.create({
+  scrollView: {
+    marginBottom: 46,
+  },
   container: {
     flex: 1,
     padding: 20,
-    marginBottom: 45,
   },
   containerInfo: {
     flex: 1,
@@ -30,6 +32,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    padding: 10,
   },
   containerKoins: {
     flexDirection: 'column',
@@ -88,9 +91,19 @@ const ProfileTab = React.createClass({
       solveCount: 0,
       koinCount: 0,
       picUrl: '',
-      oauthProvider: '',
+      authProvider: '',
       place: '',
-      userBadges: [],
+      userBadges: [{ title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
+        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'}],
     };
   },
 
@@ -110,7 +123,6 @@ const ProfileTab = React.createClass({
 
   _onUserUpdate() {
     let user = userStore.getUser();
-    let badges = userStore.getUserBadges();
 
     // UserActions.updateUser(user);
 
@@ -119,15 +131,19 @@ const ProfileTab = React.createClass({
       solveCount: user.solveCount,
       koinCount: user.koinCount,
       picUrl: user.picUrl,
-      oauthProvider: user.authProvider,
-      userBadges: badges,
+      authProvider: user.authProvider,
     });
-    console.log(user.userName);
-    console.log(this.state.userName);
+
+    this._onUserBadgesUpdate();
   },
 
-  updateProfileText(user) {
-    this.setState({ user });
+  _onUserBadgesUpdate() {
+    let badges = userStore.getUserBadges();
+    console.log(badges);
+
+    // ToDo:
+    // for each
+    // if won === false - set default badge pic_url
   },
 
   render() {
@@ -152,7 +168,7 @@ const ProfileTab = React.createClass({
                 <Text style = { styles.textSubTitle }>Username</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.userName }</Text>
                 <Text style = { styles.textSubTitle }>Login via</Text>
-                <Text style = { styles.textSubTitle }>{ this.state.oauthProvider }</Text>
+                <Text style = { styles.textSubTitle }>{ this.state.authProvider }</Text>
                 <Text style = { styles.textSubTitle }>Completed Missions</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.solveCount }</Text>
               </View>
@@ -179,52 +195,92 @@ const ProfileTab = React.createClass({
             <Text style = { styles.textSubTitle }>Won Badges</Text>
             <View style = { styles.containerBadgeGrid }>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
                 <Text style = { styles.textSubTitleItem }>
-                  Badge description Badge description
-                  Badge description Badge description
-                  Badge description Badge description
+                  { this.state.userBadges[0].title }: { this.state.userBadges[0].description }
                 </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[1].title }: { this.state.userBadges[1].description }
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[2].title }: { this.state.userBadges[2].description }
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[3].title }: { this.state.userBadges[3].description }
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[4].title }: { this.state.userBadges[4].description }
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[5].title }: { this.state.userBadges[5].description }
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[6].title }: { this.state.userBadges[6].description }
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[7].title }: { this.state.userBadges[7].description }
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[8].title }: { this.state.userBadges[8].description }
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[9].title }: { this.state.userBadges[9].description }
+                </Text>
               </View>
               <View style = { styles.containerBadgeGridItem }>
-                <Image source = { require('../assets/img/poi_name_mission.png') } />
-                <Text style = { styles.textSubTitleItem }>Badge description</Text>
+                <Image
+                  style = { styles.icon }
+                  source = { require('../assets/img/poi_name_mission.png') } />
+                <Text style = { styles.textSubTitleItem }>
+                  { this.state.userBadges[10].title }: { this.state.userBadges[10].description }
+                </Text>
               </View>
             </View>
           </View>
