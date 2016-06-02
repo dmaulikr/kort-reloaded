@@ -22,13 +22,6 @@ class LoginStore extends Store {
     this._loadUserCredential();
   }
 
-  async exampleStorage() {
-    //await AsyncStorage.setItem(userIdStorageKey, '123');
-    let userId = await AsyncStorage.getItem(userIdStorageKey);
-    await AsyncStorage.removeItem(userIdStorageKey);
-    userId = await AsyncStorage.getItem(userIdStorageKey);
-  }
-
   async _loadUserCredential() {
     this._loadingFromLocalStorage = true;
     try {
