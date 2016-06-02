@@ -1,6 +1,10 @@
 import React from 'react';
 import { BackAndroid } from 'react-native';
-import { Scene, Modal, Router, Reducer, Actions } from 'react-native-router-flux';
+import { Scene,
+  Modal,
+  Router,
+  Reducer,
+  Actions } from 'react-native-router-flux';
 import Login from './Login';
 import MissionsTab from './MissionsTab';
 import ProfileTab from './ProfileTab';

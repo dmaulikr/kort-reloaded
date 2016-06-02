@@ -1,4 +1,11 @@
-import React, { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import React from 'react';
+import { View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView } from 'react-native';
+import UserActions from '../actions/UserActions';
+import userStore from '../../stores/TaskStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -74,25 +81,37 @@ const styles = StyleSheet.create({
 const ProfileTab = React.createClass({
   getInitialState() {
     return {
-      username: '',
-      provider: '',
-      completedMissions: 0,
-      collectedKoins: 0,
+      userName: '',
+      solveCount: 0,
+      koinCount: 0,
+      picUrl: '',
+      oauthProvider: '',
       place: '',
+      userBadges: [],
     };
   },
 
   componentWillMount() {
-    this._pressData = {};
   },
 
   componentDidMount() {
+    userStore.addChangeListener(this._onUserUpdate);
   },
 
   componentWillUnmount() {
+    userStore.removeChangeListener(this._onUserUpdate);
   },
 
-  onChange() {
+  _onUserUpdate() {
+    let user = userStore.getUser();
+    let badges = userStore.getUserBadges();
+
+    this.userName = user.userName;
+    this.solveCount = user.solveCount;
+    this.koinCount = user.koinCount;
+    this.picUrl = user.picUrl;
+    this.authProvider = user.authProvider;
+    this.userBadges = badges;
   },
 
   updateProfileText(user) {
@@ -119,11 +138,11 @@ const ProfileTab = React.createClass({
               />
               <View style = { styles.containerProfileDescription }>
                 <Text style = { styles.textSubTitle }>Username</Text>
-                <Text style = { styles.textSubTitle }>{ this.state.username } username</Text>
+                <Text style = { styles.textSubTitle }>{ this.state.userName }</Text>
                 <Text style = { styles.textSubTitle }>Login via</Text>
-                <Text style = { styles.textSubTitle }>{ this.state.provider } provider </Text>
+                <Text style = { styles.textSubTitle }>{ this.state.oauthProvider }</Text>
                 <Text style = { styles.textSubTitle }>Completed Missions</Text>
-                <Text style = { styles.textSubTitle }>{ this.state.completedMissions }</Text>
+                <Text style = { styles.textSubTitle }>{ this.state.solveCount }</Text>
               </View>
             </View>
             <Text style = { styles.textSubTitle }>Collected Koins</Text>
@@ -133,7 +152,7 @@ const ProfileTab = React.createClass({
                   style = { styles.icon }
                   source = { require('../assets/img/koin_no_value.png') }
                 />
-                <Text style = { styles.textSubTitle }>{ this.state.collectedKoins } Koins</Text>
+                <Text style = { styles.textSubTitle }>{ this.state.koinCount } Koins</Text>
               </View>
               <View style = { styles.containerKoinsDescription }>
                 <Image

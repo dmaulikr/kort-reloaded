@@ -1,5 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
