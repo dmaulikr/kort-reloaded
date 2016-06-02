@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import LoginActions from '../actions/LoginActions';
 import loginStore from '../stores/LoginStore';
 
 const styles = StyleSheet.create({
@@ -11,13 +10,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ff0000',
-  }
+  },
 });
 
 
 const StartUp = React.createClass({
   componentDidMount() {
-    //Actions.missions();
     loginStore.addChangeListener(this._onCredentialLoaded);
   },
 
@@ -27,7 +25,6 @@ const StartUp = React.createClass({
 
   _onCredentialLoaded() {
     if (loginStore.isLoggedIn()) {
-      console.log(loginStore.getUserCredential());
       Actions.tabbar();
     } else {
       Actions.login();
@@ -36,8 +33,7 @@ const StartUp = React.createClass({
 
   render() {
     return (
-      <View style={styles.container}>
-      </View>
+      <View style={styles.container} />
     );
   },
 });

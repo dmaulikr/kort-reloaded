@@ -44,7 +44,7 @@ export default class DataLoader {
 
     if (requestMethod === 'GET') {
       return { Authorization: `Basic ${authorizationHash}` };
-    } else if (requestMethod === 'POST' || requestMethod === 'PUT'){
+    } else if (requestMethod === 'POST' || requestMethod === 'PUT') {
       return {
         Authorization: `Basic ${authorizationHash}`,
         Accept: 'application/json',

@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Button from 'react-native-button';
+import { View, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
@@ -27,8 +26,6 @@ export default class Login extends React.Component {
     this.onUserLoggedIn = this.onUserLoggedIn.bind(this);
   }
   componentDidMount() {
-    //this.goToTabView();
-
     loginStore.addChangeListener(this.onUserLoggedIn);
 
     this.configureGoogleSignIn();

@@ -8,8 +8,6 @@ import ProfileTab from './ProfileTab';
 import TabIcon from './TabIcon';
 import StartUp from './StartUp';
 
-import loginStore from '../stores/LoginStore';
-
 const scenes = Actions.create(
   <Scene key="root" hideNavBar>
     <Scene key="startup" component={StartUp} initial hideNavBar />
@@ -19,8 +17,7 @@ const scenes = Actions.create(
       <Scene key="highscore" component={TabView} title="Highscore" hideNavBar icon={TabIcon} />
       <Scene key="about" component={TabView} title="About" hideNavBar icon={TabIcon} />
     </Scene>
-    <Scene key="login" component={Login} title="Login" direction="vertical"
-      style={ { flex: 1, backgroundColor: 'transparent' } } />
+    <Scene key="login" component={Login} title="Login" direction="vertical" />
   </Scene>
 );
 
@@ -32,12 +29,8 @@ const reducerCreate = params => {
   };
 };
 
-const App = React.createClass({
-  render() {
-    return (
-      <Router scenes={scenes} createReducer={reducerCreate} />
-    );
-  },
-});
+const App = function (props) {
+  return <Router scenes={scenes} createReducer={reducerCreate} />;
+};
 
 export default App;

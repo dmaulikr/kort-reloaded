@@ -27,9 +27,6 @@ class LoginStore extends Store {
     try {
       const userId = await AsyncStorage.getItem(userIdStorageKey);
       const secret = await AsyncStorage.getItem(secretStorageKey);
-      console.log(`userId: ${userId}`);
-      console.log(`secret: ${secret}`);
-      console.log((userId != null && secret != null));
       if (userId != null && secret != null) {
         const userCredential = new UserCredential(userId, secret);
         this._logInUser(userCredential);
@@ -60,7 +57,6 @@ class LoginStore extends Store {
   }
 
   _logInUser(userCredential) {
-    console.log(`userCredential: ${userCredential}`);
     this._userCredential = userCredential;
     this._loggedIn = true;
     super.emitChange();
@@ -91,9 +87,8 @@ const loginStore = new LoginStore();
 loginStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.LOGIN_VERIFY:
-      const userCredential = action.data;
-      loginStore._saveUserCredential(userCredential)
-      loginStore._logInUser(userCredential);
+      loginStore._saveUserCredential(action.data);
+      loginStore._logInUser(action.data);
       break;
     case ActionTypes.LOGIN_LOGOUT:
       loginStore._logOutUser();
