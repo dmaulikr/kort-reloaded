@@ -94,11 +94,24 @@ export default class UserLoader extends DataLoader {
     );
   }
 
-  static logoutUser(userId, onSuccess) {
+  static logoutUser(userId, onSuccess, onError) {
     const userLogoutParameter = `${userId}/logout`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userLogoutParameter], null);
-    super.makeGetRequest(requestUrl, true, onSuccess, null);
+    const authorizationHeader = super._createHeaders('GET');
+
+    fetch(requestUrl, { headers: authorizationHeader })
+      .then((response) => response)
+      .then((responseData) => responseData)
+      .then((data) => onSuccess(data))
+      .catch((error) => {
+        if (onError != null) {
+          onError(error);
+        } else {
+          console.log(error);
+        }
+      })
+      .done();
   }
 
   static updateUser(user, onSuccess, onError) {

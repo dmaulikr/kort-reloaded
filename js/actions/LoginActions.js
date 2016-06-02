@@ -14,11 +14,15 @@ export default class LoginActions {
 
   static logOutUser(userId) {
     console.log('logout invoked');
-    UserLoader.logoutUser(userId, (logoutInfo) => {
-      AppDispatcher.dispatch({
-        actionType: ActionTypes.LOGIN_LOGOUT,
-        logoutInfo,
-      });
-    });
+    UserLoader.logoutUser(
+      userId,
+      (logoutInfo) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.LOGIN_LOGOUT,
+          logoutInfo,
+        });
+      },
+      null
+    );
   }
 }
