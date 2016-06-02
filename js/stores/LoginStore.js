@@ -17,9 +17,9 @@ class LoginStore extends Store {
     super();
     this._userCredential = null;
     this._loggedIn = false;
+    this._loadingFromLocalStorage = true;
 
-    const storedUserCredential = this._loadUserCredential();
-    if (storedUserCredential) this._logInUser(storedUserCredential);
+    this._loadUserCredential();
   }
 
   async exampleStorage() {
@@ -30,17 +30,22 @@ class LoginStore extends Store {
   }
 
   async _loadUserCredential() {
+    this._loadingFromLocalStorage = true;
     try {
       const userId = await AsyncStorage.getItem(userIdStorageKey);
       const secret = await AsyncStorage.getItem(secretStorageKey);
+      console.log(`userId: ${userId}`);
+      console.log(`secret: ${secret}`);
+      console.log((userId != null && secret != null));
       if (userId != null && secret != null) {
         const userCredential = new UserCredential(userId, secret);
-        return userCredential;
+        this._logInUser(userCredential);
       }
     } catch (error) {
       console.log(error);
     }
-    return null;
+    this._loadingFromLocalStorage = false;
+    super.emitChange();
   }
 
   async _saveUserCredential(userCredential) {
@@ -62,6 +67,7 @@ class LoginStore extends Store {
   }
 
   _logInUser(userCredential) {
+    console.log(`userCredential: ${userCredential}`);
     this._userCredential = userCredential;
     this._loggedIn = true;
     super.emitChange();
@@ -80,6 +86,10 @@ class LoginStore extends Store {
 
   isLoggedIn() {
     return this._loggedIn;
+  }
+
+  isLoadingFromLocalStorage() {
+    return this._loadingFromLocalStorages;
   }
 }
 
