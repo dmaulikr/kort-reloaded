@@ -22,10 +22,14 @@ const styles = StyleSheet.create({
 });
 
 export default class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onUserLoggedIn = this.onUserLoggedIn.bind(this);
+  }
   componentDidMount() {
-    this.goToTabView();
+    //this.goToTabView();
 
-    loginStore.addChangeListener(this.onUserVerified);
+    loginStore.addChangeListener(this.onUserLoggedIn);
 
     this.configureGoogleSignIn();
   }
@@ -33,7 +37,7 @@ export default class Login extends React.Component {
   componentWillUnmount() {
   }
 
-  onUserVerified() {
+  onUserLoggedIn() {
     this.goToTabView();
   }
 
