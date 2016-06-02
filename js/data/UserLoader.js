@@ -98,7 +98,7 @@ export default class UserLoader extends DataLoader {
     const userLogoutParameter = `${userId}/logout`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userLogoutParameter], null);
-    super.makeGetRequest(requestUrl, true, onSuccess, null, null);
+    super.makeGetRequest(requestUrl, true, onSuccess, null);
   }
 
   static updateUser(user, onSuccess, onError) {
