@@ -67,13 +67,13 @@ const Map = React.createClass({
           annotationTask = task;
         }
       }
-      
+
       Actions.missionModal(
-        { title: annotation.src.title, data: annotationTask }
+        { title: annotation.src.title, task: annotationTask }
       );
     } else {
       Actions.missionModal(
-        { title: annotation.title, data: 'Custom data' }
+        { title: annotation.title, task: 'Custom data' }
       );
     }
   },

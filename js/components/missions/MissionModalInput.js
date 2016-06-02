@@ -7,6 +7,7 @@ import {
   Text,
   Switch,
   Picker } from 'react-native';
+import Config from '../../constants/Config';
 
 const styles = StyleSheet.create({
   containerSolve: {
@@ -24,6 +25,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
 });
+
+const select = Config.SELECT;
+const text = Config.TEXT;
 
 const MissionModalInput = React.createClass({
 
@@ -55,7 +59,7 @@ const MissionModalInput = React.createClass({
       );
     } else {
       switch (this.state.viewType) {
-        case 'select':
+        case select:
           inputField = (
             <Picker
               style = { styles.picker }
@@ -67,7 +71,7 @@ const MissionModalInput = React.createClass({
             </Picker>
           );
           break;
-        case 'text':
+        case text:
           inputField = (
             <TextInput
               style = { styles.textInput }

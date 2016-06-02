@@ -53,4 +53,8 @@ export default {
   MISSIONS_LIMIT: 10,
   VALIDATIONS_LIMIT: 1000,
   RADIUS: 5000,
+
+  // Modal View taskTypes
+  SELECT: 'select',
+  TEXT: 'text',
 };
