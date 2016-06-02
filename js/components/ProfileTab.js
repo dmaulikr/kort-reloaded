@@ -1,4 +1,5 @@
-import React, { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import LoginActions from '../actions/LoginActions';
@@ -28,7 +29,7 @@ const ProfileTab = React.createClass({
     console.log(userId);
     return (
       <View style={styles.container}>
-        <Text onClick={() => LoginActions.logOutUser(userId)}>Log out</Text>
+        <Text onPress={() => LoginActions.logOutUser(userId)}>Log out {userId}</Text>
       </View>
     );
   },
