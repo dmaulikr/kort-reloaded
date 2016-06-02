@@ -77,7 +77,7 @@ export default class UserLoader extends DataLoader {
     super.makeGetRequest(
       requestUrl,
       true,
-      (rawUser) => onSuccess(UserLoader._initAnswers(rawUser)),
+      (rawUser) => onSuccess(UserLoader._initUser(rawUser)),
       null
     );
   }
@@ -89,7 +89,7 @@ export default class UserLoader extends DataLoader {
     super.makeGetRequest(
       requestUrl,
       true,
-      (rawUserBadges) => onSuccess(UserLoader._initAnswers(rawUserBadges)),
+      (rawUserBadges) => onSuccess(UserLoader._initUserBadges(rawUserBadges)),
       null
     );
   }
@@ -107,7 +107,7 @@ export default class UserLoader extends DataLoader {
     super.makePutRequest(
       requestUrl,
       UserLoader._initJsonUser(user),
-      (rawUserUpdateInfo) => onSuccess(UserLoader._initAnswers(rawUserUpdateInfo)),
+      (rawUserUpdateInfo) => onSuccess(UserLoader._initUserWithUpdateInfo(rawUserUpdateInfo)),
       onError
     );
   }

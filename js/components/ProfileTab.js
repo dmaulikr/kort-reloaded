@@ -5,7 +5,8 @@ import { View,
   StyleSheet,
   ScrollView } from 'react-native';
 import UserActions from '../actions/UserActions';
-import userStore from '../../stores/TaskStore';
+import userStore from '../stores/UserStore';
+import Config from '../constants/Config';
 
 const styles = StyleSheet.create({
   container: {
@@ -77,6 +78,8 @@ const styles = StyleSheet.create({
   },
 });
 
+const userId = Config.TEST_USER_ID;
+const userSecret = Config.TEST_SECRET;
 
 const ProfileTab = React.createClass({
   getInitialState() {
@@ -95,6 +98,9 @@ const ProfileTab = React.createClass({
   },
 
   componentDidMount() {
+    UserActions.getUser(userSecret);
+    UserActions.getUserBadges(userId);
+
     userStore.addChangeListener(this._onUserUpdate);
   },
 
@@ -106,12 +112,18 @@ const ProfileTab = React.createClass({
     let user = userStore.getUser();
     let badges = userStore.getUserBadges();
 
-    this.userName = user.userName;
-    this.solveCount = user.solveCount;
-    this.koinCount = user.koinCount;
-    this.picUrl = user.picUrl;
-    this.authProvider = user.authProvider;
-    this.userBadges = badges;
+    // UserActions.updateUser(user);
+
+    this.setState({
+      userName: user.userName,
+      solveCount: user.solveCount,
+      koinCount: user.koinCount,
+      picUrl: user.picUrl,
+      oauthProvider: user.authProvider,
+      userBadges: badges,
+    });
+    console.log(user.userName);
+    console.log(this.state.userName);
   },
 
   updateProfileText(user) {
@@ -134,7 +146,7 @@ const ProfileTab = React.createClass({
             <View style = { styles.containerProfile }>
               <Image
                 style = { { height: 64, padding: 64 } }
-                source = { require('../assets/img/poi_name_mission.png') }
+                source = { {uri: this.state.picUrl } }
               />
               <View style = { styles.containerProfileDescription }>
                 <Text style = { styles.textSubTitle }>Username</Text>

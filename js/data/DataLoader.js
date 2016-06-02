@@ -54,7 +54,9 @@ export default class DataLoader {
       'Content-Type': 'application/json',
     };
 
-    if (method !== 'PUT' || method !== 'POST') {
+    if (method !== 'PUT' && method !== 'POST') {
+      console.log(requestUrl);
+      console.log(method);
       throw new Error('Parameter method needs to be of type \'PUT\' or \'POST\'.');
     }
     fetch(requestUrl, {
