@@ -12,6 +12,7 @@ export default {
   PROD_SERVER: 'https://kort.herokuapp.com',
   DEV_SERVER: 'https://kort-dev.herokuapp.com',
   API_PATH: '/server/webservices',
+  ANSWER_PATH: '/answer',
   HIGHSCORE_PATH: '/highscore',
   HIGHSCORE_ABSOLUTE_PATH: '/highscore/absolute',
   HIGHSCORE_RELATIVE_PATH: '/highscore/relative',

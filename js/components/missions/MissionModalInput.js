@@ -8,6 +8,8 @@ import {
   Switch,
   Picker } from 'react-native';
 import Config from '../../constants/Config';
+import answerStore from '../../stores/AnswerStore';
+import AnswerActions from '../../actions/AnswerActions';
 
 const styles = StyleSheet.create({
   containerSolve: {
@@ -37,8 +39,29 @@ const MissionModalInput = React.createClass({
       txtUnableToSolve: 'Unable to solve',
       viewType: this.props.viewType,
       selected: 'key0',
-      answer: ' ',
+      selectableAnswers: null,
+      answer: '',
     };
+  },
+
+  componentDidMount() {
+    if (this.props.viewType === select) {
+      answerStore.addChangeListener(this._getAnswerSelection);
+
+      this._getAnswerSelection();
+    }
+  },
+
+  componentWillUnmount() {
+    if (this.props.viewType === select) {
+      answerStore.removeChangeListener(this._getAnswerSelection);
+    }
+  },
+
+  _getAnswerSelection() {
+    const answers = answerStore.getAnswersForType(this.props.missionType);
+
+    if (answers) this.setState({ selectableAnswers: answers });
   },
 
   /*
@@ -51,6 +74,8 @@ const MissionModalInput = React.createClass({
   },
 
   render() {
+    console.log(this.props.selectableAnswers);
+
     let inputField;
 
     if (this.state.unableToSolve) {
@@ -60,14 +85,17 @@ const MissionModalInput = React.createClass({
     } else {
       switch (this.state.viewType) {
         case select:
+          const selectableAnswers = [];
+          for (let answer of answerStore.getAnswersForType(this.props.missionType)) {
+            selectableAnswers.push(<Item label = { answer.title } value = { answer.id } />);
+          }
           inputField = (
             <Picker
               style = { styles.picker }
               selectedValue = { this.state.selected }
               onValueChange = { this.onValueChange.bind(this, 'selected') }
             >
-              <Item label = "hello" value = "key0" />
-              <Item label = "world" value = "key1" />
+              { selectableAnswers }
             </Picker>
           );
           break;

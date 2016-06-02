@@ -12,8 +12,8 @@ export default class MissionActions {
     });
   }
 
-  static solveMission(mission) {
-    MissionLoader.postMission(mission, (taskFixUpdate) => {
+  static solveMission(mission, message, isUnsolvable) {
+    MissionLoader.postMission(mission, message, isUnsolvable, (taskFixUpdate) => {
       AppDispatcher.dispatch({
         actionType: ActionTypes.MISSION_PUT,
         data: taskFixUpdate,
