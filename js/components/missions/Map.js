@@ -109,7 +109,6 @@ const Map = React.createClass({
         styleURL = { styleUrl }
         logoIsHidden
         onOpenAnnotation = { this.onOpenAnnotation }
-        userTrackingMode = { this.userTrackingMode.follow }
       />
     );
   },

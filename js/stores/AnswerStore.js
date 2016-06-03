@@ -5,6 +5,7 @@ import Config from '../constants/Config';
 
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
+import loginStore from './LoginStore';
 import Store from './Store';
 
 const taskTypes = [Config.TASK_TYPE_MOTORWAY_REF, Config.TASK_TYPE_RELIGION,
@@ -17,7 +18,11 @@ class AnswerStore extends Store {
     super();
     this._answers = new Map();
     this._allAnswers = null;
-    this._initializeAnswers();
+    if (loginStore.isLoggedIn()) {
+      this._initializeAnswers();
+    } else {
+      loginStore.addChangeListener(this._initializeAnswers);
+    }
   }
 
   _setAnswersForType(answers, taskType) {
@@ -26,6 +31,8 @@ class AnswerStore extends Store {
   }
 
   _initializeAnswers() {
+    if (!loginStore.isLoggedIn()) return;
+
     taskTypes.forEach((taskType) => {
       AnswerActions.loadAnswersForType(taskType);
     });

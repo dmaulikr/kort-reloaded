@@ -24,6 +24,8 @@ const StartUp = React.createClass({
   },
 
   _onCredentialLoaded() {
+    console.log(`is logged in: ${loginStore.isLoggedIn()}`);
+    console.log(`is loading: ${loginStore.isLoadingFromLocalStorage()}`);
     if (loginStore.isLoggedIn()) {
       Actions.tabbar();
     } else {
