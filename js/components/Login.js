@@ -32,6 +32,7 @@ export default class Login extends React.Component {
   }
 
   componentWillUnmount() {
+    loginStore.removeChangeListener(this.onUserLoggedIn);
   }
 
   onUserLoggedIn() {
