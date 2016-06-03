@@ -93,8 +93,6 @@ const HighscoreTab = React.createClass({
   },
 
   componentWillMount() {
-    this._pressData = {};
-    // setState von dataSource - array aus allen usern erzeugen und an cloneWithRows übergeben
   },
 
   componentDidMount() {
