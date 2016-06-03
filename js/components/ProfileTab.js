@@ -1,6 +1,9 @@
-import React, { View, Text, StyleSheet } from 'react-native';
-import userStore from '../stores/userStore';
-import UserActions from '../actions/UserActions';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
+import LoginActions from '../actions/LoginActions';
+import loginStore from '../stores/LoginStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,45 +12,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
 
 
 const ProfileTab = React.createClass({
-  getInitialState() {
-    return {
-      user: userStore.getUserInfo(),
-    };
-  },
-  componentWillMount() {
-
-  },
   componentDidMount() {
-    userStore.addChangeListener(this.onChange);
-    UserActions.getUser();
+    loginStore.addChangeListener(this.onLogout);
   },
-  componentWillUnmount() {
-    userStore.removeChangeListener(this.onChange);
+
+  onLogout() {
+    Actions.login();
   },
-  onChange() {
-    this.updateProfileText(userStore.getUserInfo());
-  },
-  updateProfileText(user) {
-    this.setState({ user });
-  },
+
   render() {
+    const userId = loginStore.getUserCredential().userId;
+    console.log(userId);
     return (
       <View style={styles.container}>
-        <Text style={{ marginBottom: 20 }}>Your id is: {this.state.user.id}</Text>
+        <Text onPress={() => LoginActions.logOutUser(userId)}>Log out {userId}</Text>
       </View>
     );
   },
