@@ -58,12 +58,6 @@ const MissionModalInput = React.createClass({
     }
   },
 
-  _getAnswerSelection() {
-    const answers = answerStore.getAnswersForType(this.props.missionType);
-
-    if (answers) this.setState({ selectableAnswers: answers });
-  },
-
   /*
   * Picker
   */
@@ -75,9 +69,14 @@ const MissionModalInput = React.createClass({
     for (let answer of answerStore.getAnswersForType(this.props.missionType)) {
       if (answer.id === value) {
         this.setState({ answer: answer.title });
-        console.log('ANSWER-PICKER: ' + this.state.answer);
       }
     }
+  },
+
+  _getAnswerSelection() {
+    const answers = answerStore.getAnswersForType(this.props.missionType);
+
+    if (answers) this.setState({ selectableAnswers: answers });
   },
 
   render() {
@@ -116,7 +115,6 @@ const MissionModalInput = React.createClass({
               value = { this.state.answer }
             />
           );
-          console.log('ANSWER-TEXT-INPUT: ' + this.state.answer);
           break;
         default:
           inputField = (

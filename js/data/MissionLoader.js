@@ -28,8 +28,8 @@ export default class MissionLoader extends DataLoader {
     return missions;
   }
 
-  static _initJsonMission(mission, message, isUnsolvable) {
-    const falsePositive = isUnsolvable ? 1 : 0;
+  static _initJsonMission(mission, message, unsolvable) {
+    const falsePositive = unsolvable ? 1 : 0;
     return JSON.stringify({
       id: mission.id,
       user_id: mission.userId,
@@ -37,7 +37,7 @@ export default class MissionLoader extends DataLoader {
       schema: mission.schema,
       osm_id: mission.osmId,
       message,
-      falsepositive,
+      falsepositive: falsePositive,
     });
   }
 

@@ -4,13 +4,13 @@ import { View,
   Image,
   StyleSheet,
   ScrollView } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import UserActions from '../actions/UserActions';
 import userStore from '../stores/UserStore';
 import LoginActions from '../actions/LoginActions';
 import loginStore from '../stores/LoginStore';
 
 import Config from '../constants/Config';
-mport { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -85,9 +85,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const userId = Config.TEST_USER_ID;
-const userSecret = Config.TEST_SECRET;
-
 const ProfileTab = React.createClass({
   getInitialState() {
     return {
@@ -126,8 +123,8 @@ const ProfileTab = React.createClass({
   },
 
   componentDidMount() {
-    UserActions.getUser(userSecret);
-    UserActions.getUserBadges(userId);
+    // UserActions.getUser(userSecret);
+    // UserActions.getUserBadges(userId);
     loginStore.addChangeListener(this.onLogout);
 
     userStore.addChangeListener(this._onUserUpdate);
@@ -142,9 +139,7 @@ const ProfileTab = React.createClass({
   },
 
   _onUserUpdate() {
-    let user = userStore.getUser();
-
-    // UserActions.updateUser(user);
+    const user = userStore.getUser();
 
     this.setState({
       userName: user.userName,
@@ -157,8 +152,8 @@ const ProfileTab = React.createClass({
     this._onUserBadgesUpdate();
   },
 
-  _onUserBadgesUpdate(){
-    let badges = userStore.getUserBadges();
+  _onUserBadgesUpdate() {
+    const badges = userStore.getUserBadges();
     console.log(badges);
 
     // ToDo:

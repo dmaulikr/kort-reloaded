@@ -95,7 +95,7 @@ const App = React.createClass({
       <Router
         scenes = { scenes }
         createReducer = { reducerCreate }
-      />;
+      />
     );
   },
 });

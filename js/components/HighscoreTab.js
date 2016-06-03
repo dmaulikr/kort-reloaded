@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 
 const HighscoreTab = React.createClass({
   getInitialState() {
-    let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return {
       dataSource: ds.cloneWithRows([{ user_id: '3', username: 'tschortsch', koin_count: '140',
         fix_count: '12', vote_count: '4', ranking: '1', you: true },
@@ -110,7 +110,7 @@ const HighscoreTab = React.createClass({
   },
 
   _onHighscoreUpdate() {
-    console.log('HIGHSCORE-STORE: ' + highscoreStore.getHighscore());
+    // console.log('HIGHSCORE-STORE: ' + highscoreStore.getHighscore());
   },
 
   _renderRow(rowData, sectionID, rowID) {
