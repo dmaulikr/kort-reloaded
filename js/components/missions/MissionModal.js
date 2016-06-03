@@ -96,7 +96,9 @@ const MissionsModal = React.createClass({
               style = { styles.icon }
               source = { require('../../assets/img/koin_no_value.png') }
             />
-            <Text style = { styles.textMission }>Get the { this.props.task.fixKoinCount } Koins!</Text>
+            <Text style = { styles.textMission }>
+              Get the { this.props.task.fixKoinCount } Koins!
+            </Text>
           </View>
           <View style = { styles.containerMissionDescription }>
             <Image

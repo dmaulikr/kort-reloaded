@@ -53,10 +53,6 @@ const Map = React.createClass({
     TaskActions.loadTasks(latitude, longitude);
   },
 
-  _onTasksUpdate() {
-    this._updateAnnotations();
-  },
-
   onOpenAnnotation(annotation) {
     console.log(annotation);
     if (require('react-native').Platform.OS === 'android') {
@@ -76,6 +72,10 @@ const Map = React.createClass({
         { title: annotation.title, task: 'Custom data' }
       );
     }
+  },
+
+  _onTasksUpdate() {
+    this._updateAnnotations();
   },
 
   _updateAnnotations() {

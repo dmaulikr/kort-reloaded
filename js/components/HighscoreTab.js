@@ -96,17 +96,20 @@ const HighscoreTab = React.createClass({
   },
 
   componentDidMount() {
-    highscoreStore.addChangeListener(this._getHighscore);
+    highscoreStore.addChangeListener(this._onHighscoreUpdate);
 
     this._getHighscore();
   },
 
   componentWillUnmount() {
-    highscoreStore.removeChangeListener(this._getHighscore);
+    highscoreStore.removeChangeListener(this._onHighscoreUpdate);
   },
 
   _getHighscore() {
     HighscoreActions.loadAbsoluteHighscore('10', '1');
+  },
+
+  _onHighscoreUpdate() {
     console.log('HIGHSCORE-STORE: ' + highscoreStore.getHighscore());
   },
 

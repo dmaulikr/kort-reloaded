@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    padding: 10,
   },
   containerKoins: {
     flexDirection: 'column',

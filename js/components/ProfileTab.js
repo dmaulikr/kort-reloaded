@@ -93,17 +93,28 @@ const ProfileTab = React.createClass({
       picUrl: '',
       authProvider: '',
       place: '',
-      userBadges: [{ title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'},
-        { title: 'title', description: 'description', won: false, pictureFile: '../assets/img/locked.png'}],
+      userBadges: [{ title: 'title', description: 'description',
+        won: false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' },
+        { title: 'title', description: 'description', won:
+          false, pictureFile: '../assets/img/locked.png' }],
     };
   },
 
@@ -137,7 +148,7 @@ const ProfileTab = React.createClass({
     this._onUserBadgesUpdate();
   },
 
-  _onUserBadgesUpdate() {
+  _onUserBadgesUpdate(){
     let badges = userStore.getUserBadges();
     console.log(badges);
 
@@ -162,7 +173,7 @@ const ProfileTab = React.createClass({
             <View style = { styles.containerProfile }>
               <Image
                 style = { { height: 64, padding: 64 } }
-                source = { {uri: this.state.picUrl } }
+                source = { { uri: this.state.picUrl } }
               />
               <View style = { styles.containerProfileDescription }>
                 <Text style = { styles.textSubTitle }>Username</Text>
@@ -197,7 +208,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[0].title }: { this.state.userBadges[0].description }
                 </Text>
@@ -205,7 +217,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[1].title }: { this.state.userBadges[1].description }
                 </Text>
@@ -213,7 +226,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[2].title }: { this.state.userBadges[2].description }
                 </Text>
@@ -221,7 +235,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[3].title }: { this.state.userBadges[3].description }
                 </Text>
@@ -229,7 +244,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[4].title }: { this.state.userBadges[4].description }
                 </Text>
@@ -237,7 +253,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[5].title }: { this.state.userBadges[5].description }
                 </Text>
@@ -245,7 +262,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[6].title }: { this.state.userBadges[6].description }
                 </Text>
@@ -253,7 +271,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[7].title }: { this.state.userBadges[7].description }
                 </Text>
@@ -261,7 +280,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[8].title }: { this.state.userBadges[8].description }
                 </Text>
@@ -269,7 +289,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[9].title }: { this.state.userBadges[9].description }
                 </Text>
@@ -277,7 +298,8 @@ const ProfileTab = React.createClass({
               <View style = { styles.containerBadgeGridItem }>
                 <Image
                   style = { styles.icon }
-                  source = { require('../assets/img/poi_name_mission.png') } />
+                  source = { require('../assets/img/poi_name_mission.png') }
+                />
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[10].title }: { this.state.userBadges[10].description }
                 </Text>

@@ -18,6 +18,8 @@ export default class HighscoreLoader extends DataLoader {
         rawHighScoreEntry.rownumber, rawHighScoreEntry.you
       ));
     });
+
+    return highscoreEntries;
   }
 
   static getAbsoluteHighscore(limit, page, onSuccess, onError) {
@@ -25,12 +27,11 @@ export default class HighscoreLoader extends DataLoader {
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (page !== null) parameters.push(`page=${page}`);
     const requestUrl = super.createRequestUrl(absoluteHighscoreRestPath, null, parameters);
-    console.log('REQUESTED-HIGHSCORE-URL: ' + requestUrl);
     super.makeGetRequest(
       requestUrl,
       true,
       (rawHighscoreEntries) => {
-        onSuccess(HighscoreLoader._initHighscoreEntries(rawHighscoreEntries));
+        onSuccess(HighscoreLoader._initHighscoreEntries(rawHighscoreEntries, false));
       },
       onError
     );
@@ -45,7 +46,7 @@ export default class HighscoreLoader extends DataLoader {
       requestUrl,
       true,
       (rawHighscoreEntries) => {
-        onSuccess(HighscoreLoader._initHighscoreEntries(rawHighscoreEntries));
+        onSuccess(HighscoreLoader._initHighscoreEntries(rawHighscoreEntries, true));
       },
       onError
     );

@@ -65,7 +65,7 @@ export default class MissionLoader extends DataLoader {
     );
   }
 
-  static postMission(mission,  message, isUnsolvable, onSuccess, onError) {
+  static postMission(mission, message, isUnsolvable, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(missionPostRestPath, null, null);
     super.makePostRequest(
       requestUrl,
