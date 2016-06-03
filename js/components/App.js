@@ -1,10 +1,10 @@
 import React from 'react';
 import { BackAndroid } from 'react-native';
-import { Scene,
+import { Actions,
   Modal,
+  Scene,
   Router,
-  Reducer,
-  Actions } from 'react-native-router-flux';
+  Reducer } from 'react-native-router-flux';
 import Login from './Login';
 import MissionsTab from './MissionsTab';
 import ProfileTab from './ProfileTab';
@@ -14,26 +14,13 @@ import TabIcon from './shared/TabIcon';
 import MissionModal from './missions/MissionModal';
 import CompletedMissionModal from './missions/CompletedMissionModal';
 import ProfileModal from './highscore/ProfileModal';
-
-const reducerCreate = params => {
-  const defaultReducer = new Reducer(params);
-  return (state, action) => {
-    console.log('ACTION:', action);
-    return defaultReducer(state, action);
-  };
-};
+import StartUp from './StartUp';
 
 const scenes = Actions.create(
   <Scene key = "modal" component = { Modal } >
     <Scene key = "root" hideNavBar>
-      <Scene key = "login"
-        initial
-        component = { Login }
-        title = "Login"
-        direction = "vertical"
-        style = { { flex: 1, backgroundColor: 'transparent' } }
-      />
-    <Scene key = "tabbar" initial panHandlers = { null } tabs type = "replace">
+      <Scene key="startup" component={StartUp} initial hideNavBar />
+      <Scene key = "tabbar" initial panHandlers = { null } tabs type = "replace">
         <Scene key = "missions"
           component = { MissionsTab }
           title = "Missions"
@@ -60,6 +47,12 @@ const scenes = Actions.create(
         />
       </Scene>
       <Scene
+        key = "login"
+        component = { Login }
+        title = "Login"
+        direction = "vertical"
+      />
+      <Scene
         key = "missionModal"
         panHandlers = { null }
         component = { MissionModal }
@@ -82,6 +75,14 @@ const scenes = Actions.create(
   </Scene>
 );
 
+const reducerCreate = params => {
+  const defaultReducer = new Reducer(params);
+  return (state, action) => {
+    console.log('ACTION:', action);
+    return defaultReducer(state, action);
+  };
+};
+
 const App = React.createClass({
   getInitialState() { return { }; },
 
@@ -89,17 +90,12 @@ const App = React.createClass({
     BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },
 
-  componentDidMount() {
-    // Actions.login();
-  },
-
   render() {
     return (
       <Router
-        createReducer = { reducerCreate }
-        sceneStyle = { { backgroundColor: '#F7F7F7' } }
         scenes = { scenes }
-      />
+        createReducer = { reducerCreate }
+      />;
     );
   },
 });

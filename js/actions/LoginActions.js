@@ -5,7 +5,6 @@ import UserLoader from '../data/UserLoader';
 export default class LoginActions {
   static verifyUser(provider, idToken) {
     UserLoader.verifyUser(provider, idToken, (userCredential) => {
-      console.log(userCredential);
       AppDispatcher.dispatch({
         actionType: ActionTypes.LOGIN_VERIFY,
         data: userCredential,
@@ -13,12 +12,17 @@ export default class LoginActions {
     });
   }
 
-  static logoutUser(id) {
-    UserLoader.logoutUser(id, (logoutInfo) => {
-      AppDispatcher.dispatch({
-        actionType: ActionTypes.LOGIN_LOGOUT,
-        logoutInfo,
-      });
-    });
+  static logOutUser(userId) {
+    console.log('logout invoked');
+    UserLoader.logoutUser(
+      userId,
+      (logoutInfo) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.LOGIN_LOGOUT,
+          logoutInfo,
+        });
+      },
+      null
+    );
   }
 }

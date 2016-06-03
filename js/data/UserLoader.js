@@ -11,7 +11,7 @@ const verifyUserRestPath = Config.USER_VERIFY_PATH;
 
 export default class UserLoader extends DataLoader {
   static _initUserCredential(rawUserCredential) {
-    return new UserCredential(rawUserCredential.id, rawUserCredential.secret);
+    return new UserCredential(rawUserCredential.user_id, rawUserCredential.secret);
   }
 
   static _initUser(rawUser) {
@@ -94,11 +94,24 @@ export default class UserLoader extends DataLoader {
     );
   }
 
-  static logoutUser(userId, onSuccess) {
+  static logoutUser(userId, onSuccess, onError) {
     const userLogoutParameter = `${userId}/logout`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userLogoutParameter], null);
-    super.makeGetRequest(requestUrl, true, onSuccess, null, null);
+    const authorizationHeader = super._createHeaders('GET');
+
+    fetch(requestUrl, { headers: authorizationHeader })
+      .then((response) => response)
+      .then((responseData) => responseData)
+      .then((data) => onSuccess(data))
+      .catch((error) => {
+        if (onError != null) {
+          onError(error);
+        } else {
+          console.log(error);
+        }
+      })
+      .done();
   }
 
   static updateUser(user, onSuccess, onError) {

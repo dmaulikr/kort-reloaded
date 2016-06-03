@@ -5,6 +5,8 @@ export default {
   TEST_USER_ID: SecretConfig.TEST_USER_ID,
   TEST_SECRET: SecretConfig.TEST_SECRET,
   // Google
+  GOOGLE: 'google',
+  GOOGLE_IOS_CLIENT_ID: SecretConfig.GOOGLE_IOS_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID: SecretConfig.GOOGLE_WEB_CLIENT_ID,
 
   // Kort API
@@ -34,7 +36,8 @@ export default {
   MAPBOX_ACCESS_TOKEN: SecretConfig.MAPBOX_ACCESS_TOKEN,
 
   // Storage
-  USER_CREDENTIAL_STORAGE_KEY: 'LoggedInUserCredential',
+  STORAGE_KEY_USER_ID: 'LoggedInUserId',
+  STORAGE_KEY_SECRET: 'LoggedInSecret',
 
   // Store
   CHANGE_EVENT: 'change',
