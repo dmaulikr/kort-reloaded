@@ -1,5 +1,6 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import loginStore from './LoginStore';
 import Store from './Store';
 
 class ValidationStore extends Store {
@@ -8,8 +9,20 @@ class ValidationStore extends Store {
     this._validations = null;
   }
 
+  _getValidationsWithoutOwnFixes(validations) {
+    const ownUserId = loginStore.getUserCredential().userId;
+    const cleanValidations = [];
+    validations.forEach((validation) => {
+      if (validation.fixUserId === ownUserId) {
+        cleanValidations.push(validation);
+      }
+    });
+
+    return cleanValidations;
+  }
+
   _setValidations(validations) {
-    this._validations = validations;
+    this._validations = this._getValidationsWithoutOwnFixes(validations);
     super.emitChange();
   }
 
