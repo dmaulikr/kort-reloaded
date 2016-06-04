@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
 
 const HighscoreTabIcon = React.createClass({
 
-  imageUri: '',
-
   getInitialState() { return { }; },
+
+  imageUri: '',
 
   render() {
     if (Platform.OS === 'android') {

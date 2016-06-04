@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
 
 const AboutTabIcon = React.createClass({
 
-  iconUri: '',
-
   getInitialState() { return { }; },
+
+  iconUri: '',
 
   render() {
     if (Platform.OS === 'android') {

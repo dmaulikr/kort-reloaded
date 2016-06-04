@@ -10,10 +10,8 @@ const styles = StyleSheet.create({
 });
 
 
-const Loading = React.createClass({
-  render() {
-    return <ProgressBarAndroid styleAttr="Large" style={styles.spinner} />;
-  },
-});
+const Loading = function () {
+  return <ProgressBarAndroid styleAttr="Large" style={styles.spinner} />;
+};
 
 module.exports = Loading;

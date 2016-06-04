@@ -13,17 +13,15 @@ const styles = StyleSheet.create({
 });
 
 
-const Loading = React.createClass({
-  render() {
-    return (
-      <ActivityIndicatorIOS
-        animating
-        style={[styles.centering, styles.gray, {height: 80}]}
-        color="white"
-        size="large"
-      />
-    );
-  },
-});
+const Loading = function () {
+  return (
+    <ActivityIndicatorIOS
+      animating
+      style={[styles.centering, styles.gray, { height: 80 }]}
+      color="white"
+      size="large"
+    />
+  );
+};
 
 module.exports = Loading;
