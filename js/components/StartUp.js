@@ -13,10 +13,13 @@ const styles = StyleSheet.create({
   },
 });
 
-
 const StartUp = React.createClass({
   componentDidMount() {
-    loginStore.addChangeListener(this._onCredentialLoaded);
+    if (loginStore.isLoadingFromLocalStorage()) {
+      loginStore.addChangeListener(this._onCredentialLoaded);
+    } else {
+      this._onCredentialLoaded();
+    }
   },
 
   componentWillUnmount() {

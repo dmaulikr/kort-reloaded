@@ -1,23 +1,77 @@
 import React from 'react';
-import { Actions, Scene, Router, Reducer } from 'react-native-router-flux';
-
+import { BackAndroid } from 'react-native';
+import { Actions,
+  Modal,
+  Scene,
+  Router,
+  Reducer } from 'react-native-router-flux';
 import Login from './Login';
-import TabView from './TabView';
 import MissionsTab from './MissionsTab';
 import ProfileTab from './ProfileTab';
-import TabIcon from './TabIcon';
+import HighscoreTab from './HighscoreTab';
+import AboutTab from './AboutTab';
+import TabIcon from './shared/TabIcon';
+import SolveTaskModal from './missions/SolveTaskModal';
+import TaskRewardModal from './missions/TaskRewardModal';
+import ProfileModal from './highscore/ProfileModal';
 import StartUp from './StartUp';
 
 const scenes = Actions.create(
-  <Scene key="root" hideNavBar>
-    <Scene key="startup" component={StartUp} initial hideNavBar />
-    <Scene key="tabbar" tabs>
-      <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={TabIcon} />
-      <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={TabIcon} />
-      <Scene key="highscore" component={TabView} title="Highscore" hideNavBar icon={TabIcon} />
-      <Scene key="about" component={TabView} title="About" hideNavBar icon={TabIcon} />
+  <Scene key = "modal" component = { Modal } >
+    <Scene key = "root" hideNavBar>
+      <Scene key="startup" component={StartUp} initial hideNavBar />
+      <Scene key = "tabbar" initial panHandlers = { null } tabs type = "replace">
+        <Scene key = "missions"
+          component = { MissionsTab }
+          title = "Missions"
+          hideNavBar
+          icon = { TabIcon }
+        />
+        <Scene key = "profile"
+          component = { ProfileTab }
+          title = "Profile"
+          hideNavBar
+          icon = { TabIcon }
+        />
+        <Scene key = "highscore"
+          component = { HighscoreTab }
+          title = "Highscore"
+          hideNavBar
+          icon = { TabIcon }
+        />
+        <Scene key = "about"
+          component = { AboutTab }
+          title = "About"
+          hideNavBar
+          icon = { TabIcon }
+        />
+      </Scene>
+      <Scene
+        key = "login"
+        component = { Login }
+        title = "Login"
+        direction = "vertical"
+      />
+      <Scene
+        key = "solveTask"
+        panHandlers = { null }
+        component = { SolveTaskModal }
+        direction = "vertical"
+      />
+      <Scene
+        key = "taskReward"
+        panHandlers = { null }
+        component = { TaskRewardModal }
+        direction = "vertical"
+      />
+      <Scene
+        key = "profileModal"
+        hideNavBar = {false }
+        panHandlers = { null }
+        component = { ProfileModal }
+        direction = "vertical"
+      />
     </Scene>
-    <Scene key="login" component={Login} title="Login" direction="vertical" />
   </Scene>
 );
 
@@ -29,8 +83,21 @@ const reducerCreate = params => {
   };
 };
 
-const App = function (props) {
-  return <Router scenes={scenes} createReducer={reducerCreate} />;
-};
+const App = React.createClass({
+  getInitialState() { return { }; },
+
+  componentWillMount() {
+    BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+  },
+
+  render() {
+    return (
+      <Router
+        scenes = { scenes }
+        createReducer = { reducerCreate }
+      />
+    );
+  },
+});
 
 export default App;

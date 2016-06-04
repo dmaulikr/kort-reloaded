@@ -28,7 +28,8 @@ export default class MissionLoader extends DataLoader {
     return missions;
   }
 
-  static _initJsonMission(mission, message) {
+  static _initJsonMission(mission, message, unsolvable) {
+    const falsePositive = unsolvable ? 1 : 0;
     return JSON.stringify({
       id: mission.id,
       user_id: mission.userId,
@@ -36,6 +37,7 @@ export default class MissionLoader extends DataLoader {
       schema: mission.schema,
       osm_id: mission.osmId,
       message,
+      falsepositive: falsePositive,
     });
   }
 
@@ -63,11 +65,11 @@ export default class MissionLoader extends DataLoader {
     );
   }
 
-  static postMission(mission, onSuccess, onError) {
+  static postMission(mission, message, isUnsolvable, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(missionPostRestPath, null, null);
     super.makePostRequest(
       requestUrl,
-      MissionLoader._initJsonMission(mission),
+      MissionLoader._initJsonMission(mission, message, isUnsolvable),
       (rawTaskReward) => onSuccess(MissionLoader._initTaskReward(rawTaskReward)),
       onError
     );

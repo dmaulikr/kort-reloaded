@@ -14,6 +14,7 @@ export default {
   PROD_SERVER: 'https://kort.herokuapp.com',
   DEV_SERVER: 'https://kort-dev.herokuapp.com',
   API_PATH: '/server/webservices',
+  ANSWER_PATH: '/answer',
   HIGHSCORE_PATH: '/highscore',
   HIGHSCORE_ABSOLUTE_PATH: '/highscore/absolute',
   HIGHSCORE_RELATIVE_PATH: '/highscore/relative',
@@ -54,6 +55,10 @@ export default {
 
   // Tasks
   MISSIONS_LIMIT: 10,
-  VALIDATIONS_LIMIT: 100,
+  VALIDATIONS_LIMIT: 1000,
   RADIUS: 5000,
+
+  // Modal View taskTypes
+  SELECT: 'select',
+  TEXT: 'text',
 };

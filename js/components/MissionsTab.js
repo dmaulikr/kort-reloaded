@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet,
+  View } from 'react-native';
 import Map from './missions/Map';
 
 const styles = StyleSheet.create({
@@ -8,13 +9,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const MissionsTab = function () {
-  return (
-    <View style={styles.container}>
-      <Map />
-    </View>
-  );
-};
+const MissionsTab = React.createClass({
+  getInitialState() { return { }; },
+
+  render() {
+    return (
+      <View style = { styles.container }>
+        <Map />
+      </View>
+    );
+  },
+});
 
 MissionsTab.contextTypes = {
   drawer: React.PropTypes.object,
