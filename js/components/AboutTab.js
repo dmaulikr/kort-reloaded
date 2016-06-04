@@ -57,7 +57,6 @@ const AboutTab = React.createClass({
         style = { styles.scrollView }
       >
         <View style = { styles.container }>
-          <Text style = { styles.textTitle }>{ this.props.title }</Text>
           <View style = { styles.containerAbout }>
             <Image style = { styles.kortlogo }
               source = { require('../assets/img/kort-logo.png') }

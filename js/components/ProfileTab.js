@@ -62,11 +62,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  textTitle: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginTop: 7,
-  },
   textSubTitle: {
     fontSize: 18,
     marginTop: 7,
@@ -174,7 +169,6 @@ const ProfileTab = React.createClass({
         style = { styles.scrollView }
       >
         <View style = { styles.container }>
-          <Text style = { styles.textTitle }>{ this.props.title }</Text>
           <View style = { styles.containerInfo }>
             <View style = { styles.containerProfile }>
               <Image
