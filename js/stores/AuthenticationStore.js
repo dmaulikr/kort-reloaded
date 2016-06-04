@@ -23,7 +23,6 @@ class AuthenticationStore extends Store {
     try {
       const userId = await AsyncStorage.getItem(userIdStorageKey);
       const secret = await AsyncStorage.getItem(secretStorageKey);
-      console.log(userId);
       if (userId != null && secret != null) {
         const userCredential = new UserCredential(userId, secret);
         this._logInUser(userCredential);

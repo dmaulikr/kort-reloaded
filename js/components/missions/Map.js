@@ -63,13 +63,9 @@ const Map = React.createClass({
         }
       }
 
-      Actions.missionModal(
-        { title: annotation.src.title, task: annotationTask }
-      );
+      Actions.solveTask({ title: annotation.src.title, task: annotationTask });
     } else {
-      Actions.missionModal(
-        { title: annotation.title, task: 'Custom data' }
-      );
+      Actions.solveTask({ title: annotation.title, task: 'Custom data' });
     }
   },
 

@@ -9,6 +9,9 @@ export default {
   GOOGLE_IOS_CLIENT_ID: SecretConfig.GOOGLE_IOS_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID: SecretConfig.GOOGLE_WEB_CLIENT_ID,
 
+  // Highscore
+  HIGHSCORE_LIMIT: 100000,
+
   // Kort API
   SERVER: 'https://kort-dev.herokuapp.com',
   PROD_SERVER: 'https://kort.herokuapp.com',

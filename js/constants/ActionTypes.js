@@ -19,7 +19,6 @@ module.exports = keyMirror({
   TASKS_LOAD: null,
   // User
   USER_LOAD: null,
-  USER_BADGES: null,
   USER_UPDATE: null,
   // Statistics
   STATISTICS_LOAD: null,

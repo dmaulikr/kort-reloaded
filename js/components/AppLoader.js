@@ -14,7 +14,11 @@ import TaskActions from '../actions/TaskActions';
 import UserActions from '../actions/UserActions';
 import ValidationActions from '../actions/ValidationActions';
 
+import Config from '../constants/Config';
+
 import authenticationStore from '../stores/AuthenticationStore';
+
+const highscoreLimit = Config.HIGHSCORE_LIMIT;
 
 const styles = StyleSheet.create({
   container: {
@@ -42,9 +46,17 @@ export default class AppLoader extends React.Component {
     authenticationStore.removeChangeListener(this._onAuthenticationUpdate);
   }
 
+  _loadData() {
+    AnswerActions.loadAllAnswers();
+    HighscoreActions.loadRelativeHighscore(highscoreLimit, null);
+    StatisticsActions.loadStatistics();
+    UserActions.loadCurrentUser();
+  }
+
   _onAuthenticationUpdate() {
     if (authenticationStore.isLoggedIn()) {
       this._loadData();
+      Actions.tabBar();
     } else {
       Actions.login();
     }
