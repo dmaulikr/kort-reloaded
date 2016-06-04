@@ -1,10 +1,16 @@
 import React from 'react';
 import { StyleSheet,
+  Text,
   View } from 'react-native';
 import Map from './missions/Map';
+import Loading from './shared/Loading';
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  mapContainer: {
     flex: 1,
   },
 });
@@ -15,7 +21,10 @@ const MissionsTab = React.createClass({
   render() {
     return (
       <View style = { styles.container }>
-        <Map />
+        <View style = { styles.mapContainer }>
+          <Map />
+        </View>
+        <Loading />
       </View>
     );
   },
