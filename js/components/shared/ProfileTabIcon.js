@@ -1,13 +1,19 @@
 import React from 'react';
 import { Image,
+  Platform,
   StyleSheet,
-  View,
-  Platform } from 'react-native';
+  Text,
+  View } from 'react-native';
 
 const styles = StyleSheet.create({
   tabIcon: {
+    alignSelf: 'center',
     height: 30,
     width: 30,
+  },
+  tabTitle: {
+    textAlign: 'center',
+    fontSize: 8,
   },
 });
 
@@ -24,7 +30,10 @@ const ProfileTabIcon = React.createClass({
       iconUri = require('../../assets/tabIcons/ic_ios_profile.png');
     }
     return (
-      <Image style = { styles.tabIcon } source = { iconUri } />
+      <View>
+        <Image style = { styles.tabIcon } source = { iconUri } />
+        <Text style = { styles.tabTitle }>Profile</Text>
+      </View>
     );
   },
 });

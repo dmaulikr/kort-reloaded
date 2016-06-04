@@ -1,13 +1,22 @@
 import React from 'react';
 import { Image,
+  Platform,
   StyleSheet,
-  View,
-  Platform } from 'react-native';
+  Text,
+  View } from 'react-native';
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+  },
   tabIcon: {
+    alignSelf: 'center',
     height: 30,
     width: 30,
+  },
+  tabTitle: {
+    textAlign: 'center',
+    fontSize: 8,
   },
 });
 
@@ -24,7 +33,10 @@ const AboutTabIcon = React.createClass({
       iconUri = require('../../assets/tabIcons/ic_ios_about.png');
     }
     return (
-      <Image style = { styles.tabIcon } source = { iconUri } />
+      <View style = { styles.container }>
+        <Image style = { styles.tabIcon } source = { iconUri } />
+        <Text style = { styles.tabTitle }>About</Text>
+      </View>
     );
   },
 });
