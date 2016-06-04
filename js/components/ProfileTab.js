@@ -179,6 +179,7 @@ const ProfileTab = React.createClass({
             <View style = { styles.containerProfile }>
               <Image
                 style = { { height: 64, padding: 64 } }
+                defaultSource = { require('../assets/img/photo.jpg') }
                 source = { { uri: this.state.picUrl } }
               />
               <View style = { styles.containerProfileDescription }>
@@ -186,7 +187,7 @@ const ProfileTab = React.createClass({
                 <Text style = { styles.textSubTitle }>{ this.state.userName }</Text>
                 <Text style = { styles.textSubTitle }>Login via</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.authProvider }</Text>
-                <Text onPress={() => LoginActions.logOutUser(userId)}>Log out {userId}</Text>
+                <Text onPress = {() => LoginActions.logOutUser(userId)}>Log out {userId}</Text>
                 <Text style = { styles.textSubTitle }>Completed Missions</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.solveCount }</Text>
               </View>
