@@ -99,7 +99,6 @@ export default class Login extends React.Component {
       <ScrollView
         ref = { (scrollView) => { _scrollView = scrollView; } }
         automaticallyAdjustContentInsets={false}
-        onScroll = { () => { console.log('onScroll!'); } }
         scrollEventThrottle = { 200 }
         style = { styles.scrollView }
       >
@@ -113,16 +112,6 @@ export default class Login extends React.Component {
             <Text style = { styles.textIntroduction }>Improve OpenStreetMap</Text>
             <Text style = { styles.textSubTitle }>
               Kort helps to improve the data in OpenStreetMap.
-            </Text>
-            <Text style = { styles.textSubTitle }>
-              Hence you'll see your missions on a map.
-              By completing missions you get Koins and earn badges.
-            </Text>
-            <Text style = { styles.textSubTitle }>
-              Each solved mission is later checked by other players
-              for its correctness. As soon as enough positive ratings
-              are entered for a suggested solution, it is ready
-              to be sent back to OpenStreetMap
             </Text>
             <Text style = { styles.textTitle }>
               Login now to begin your mission!
