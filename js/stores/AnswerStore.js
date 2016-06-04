@@ -17,7 +17,7 @@ class AnswerStore extends Store {
     super();
     this._answers = new Map();
     this._allAnswers = null;
-    this._initializeAnswers();
+    this._answersInitialized = false;
   }
 
   _setAnswersForType(answers, taskType) {
@@ -30,6 +30,8 @@ class AnswerStore extends Store {
       AnswerActions.loadAnswersForType(taskType);
     });
     AnswerActions.loadAnswers();
+    this._answersInitialized = true;
+    super.emitChange();
   }
 
   _setAllAnswers(answers) {

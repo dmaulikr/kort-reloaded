@@ -58,6 +58,7 @@ export default class Login extends React.Component {
     super(props);
     this.onUserLoggedIn = this.onUserLoggedIn.bind(this);
   }
+
   componentDidMount() {
     loginStore.addChangeListener(this.onUserLoggedIn);
 

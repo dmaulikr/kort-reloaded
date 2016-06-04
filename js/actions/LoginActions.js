@@ -13,7 +13,6 @@ export default class LoginActions {
   }
 
   static logOutUser(userId) {
-    console.log('logout invoked');
     UserLoader.logoutUser(
       userId,
       (logoutInfo) => {

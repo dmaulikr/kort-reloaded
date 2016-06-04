@@ -5,12 +5,9 @@ import { View,
   StyleSheet,
   ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import UserActions from '../actions/UserActions';
 import userStore from '../stores/UserStore';
 import LoginActions from '../actions/LoginActions';
 import loginStore from '../stores/LoginStore';
-
-import Config from '../constants/Config';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -114,12 +111,7 @@ const ProfileTab = React.createClass({
     };
   },
 
-  componentWillMount() {
-  },
-
   componentDidMount() {
-    // UserActions.getUser(userSecret);
-    // UserActions.getUserBadges(userId);
     loginStore.addChangeListener(this.onLogout);
 
     userStore.addChangeListener(this._onUserUpdate);
@@ -148,23 +140,13 @@ const ProfileTab = React.createClass({
   },
 
   _onUserBadgesUpdate() {
-    const badges = userStore.getUserBadges();
-    console.log(badges);
-
-    // ToDo:
-    // for each
-    // if won === false - set default badge pic_url
   },
 
   render() {
     const userId = loginStore.getUserCredential().userId;
-    console.log(userId);
-    let _scrollView = ScrollView;
     return (
       <ScrollView
-        ref = { (scrollView) => { _scrollView = scrollView; } }
         automaticallyAdjustContentInsets = { false }
-        onScroll = { () => { console.log('onScroll!'); } }
         scrollEventThrottle = { 200 }
         style = { styles.scrollView }
       >
@@ -181,7 +163,7 @@ const ProfileTab = React.createClass({
                 <Text style = { styles.textSubTitle }>{ this.state.userName }</Text>
                 <Text style = { styles.textSubTitle }>Login via</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.authProvider }</Text>
-                <Text onPress = {() => LoginActions.logOutUser(userId)}>Log out {userId}</Text>
+                <Text onPress={() => LoginActions.logOutUser(userId)}>Log out</Text>
                 <Text style = { styles.textSubTitle }>Completed Missions</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.solveCount }</Text>
               </View>

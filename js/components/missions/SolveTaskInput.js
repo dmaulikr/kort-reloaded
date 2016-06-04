@@ -9,7 +9,6 @@ import {
   Picker } from 'react-native';
 import Config from '../../constants/Config';
 import answerStore from '../../stores/AnswerStore';
-import AnswerActions from '../../actions/AnswerActions';
 
 const styles = StyleSheet.create({
   containerSolve: {
@@ -32,12 +31,16 @@ const select = Config.SELECT;
 const text = Config.TEXT;
 
 const MissionModalInput = React.createClass({
+  propTypes: {
+    missionType: React.PropTypes.any.isRequired,
+    selectableAnswers: React.PropTypes.arrayOf(React.PropTypes.string),
+    viewType: React.PropTypes.any.isRequired,
+  },
 
   getInitialState() {
     return {
-      unableToSolve: this.props.unableToSolve,
+      unableToSolve: false,
       txtUnableToSolve: 'Unable to solve',
-      viewType: this.props.viewType,
       selected: 'key0',
       selectableAnswers: null,
       answer: '',
@@ -66,7 +69,7 @@ const MissionModalInput = React.createClass({
     newState[key] = value;
     this.setState(newState);
 
-    for (let answer of answerStore.getAnswersForType(this.props.missionType)) {
+    for (const answer of answerStore.getAnswersForType(this.props.missionType)) {
       if (answer.id === value) {
         this.setState({ answer: answer.title });
       }
@@ -80,61 +83,55 @@ const MissionModalInput = React.createClass({
   },
 
   render() {
-    console.log(this.props.selectableAnswers);
-
     let inputField;
 
     if (this.state.unableToSolve) {
-      inputField = (
-        <View />
-      );
+      inputField = <View />;
     } else {
+      const selectableTypeAnswers = [];
       switch (this.props.viewType) {
         case select:
-          const selectableTypeAnswers = [];
-          for (let answer of answerStore.getAnswersForType(this.props.missionType)) {
-            selectableTypeAnswers.push(<Item label = { answer.title } value = { answer.id } />);
+          for (const answer of answerStore.getAnswersForType(this.props.missionType)) {
+            selectableTypeAnswers.push(<Item label={answer.title} value={answer.id} />);
           }
           inputField = (
             <Picker
-              style = { styles.picker }
-              selectedValue = { this.state.selected }
-              onValueChange = { this.onValueChange.bind(this, 'selected') }
+              style={styles.picker}
+              selectedValue={this.state.selected}
+              onValueChange={(answer) => this.setState({ answer })}
             >
-              { selectableTypeAnswers }
+              {selectableTypeAnswers}
             </Picker>
           );
           break;
         case text:
           inputField = (
             <TextInput
-              style = { styles.textInput }
-              autoCapitalize = "words"
-              placeholder = "Mission type"
-              onChangeText = { (answer) => this.setState({ answer }) }
-              value = { this.state.answer }
+              style={styles.textInput}
+              autoCapitalize="words"
+              placeholder="Mission type"
+              onChangeText={(answer) => this.setState({ answer })}
+              value={this.state.answer}
             />
           );
           break;
         default:
-          inputField = (
-            <View />
-          );
+          inputField = <View />;
           break;
       }
     }
 
     return (
       <View>
-        <View style = { styles.containerSolve }>
-          <Text style = { styles.text }>{ this.state.txtUnableToSolve }</Text>
+        <View style={styles.containerSolve}>
+          <Text style={styles.text}>{this.state.txtUnableToSolve}</Text>
           <Switch
-            onValueChange = { (value) => this.setState({ unableToSolve: value, answer: '' }) }
-            value = { this.state.unableToSolve }
+            onValueChange={(value) => this.setState({ unableToSolve: value, answer: '' })}
+            value={this.state.unableToSolve}
           />
         </View>
         <View>
-          { inputField }
+          {inputField}
         </View>
       </View>
     );

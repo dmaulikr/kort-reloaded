@@ -47,12 +47,9 @@ const AboutTab = React.createClass({
   },
 
   render() {
-    let _scrollView = ScrollView;
     return (
       <ScrollView
-        ref = { (scrollView) => { _scrollView = scrollView; } }
         automaticallyAdjustContentInsets={false}
-        onScroll = { () => { console.log('onScroll!'); } }
         scrollEventThrottle = { 200 }
         style = { styles.scrollView }
       >

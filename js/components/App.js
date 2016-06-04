@@ -14,8 +14,8 @@ import MissionsTabIcon from './shared/MissionsTabIcon';
 import ProfileTabIcon from './shared/ProfileTabIcon';
 import HighscoreTabIcon from './shared/HighscoreTabIcon';
 import AboutTabIcon from './shared/AboutTabIcon';
-import MissionModal from './missions/MissionModal';
-import CompletedMissionModal from './missions/CompletedMissionModal';
+import SolveTaskModal from './missions/SolveTaskModal';
+import TaskRewardModal from './missions/TaskRewardModal';
 import ProfileModal from './highscore/ProfileModal';
 import StartUp from './StartUp';
 
@@ -30,8 +30,8 @@ const scenes = Actions.create(
         <Scene key="about" component={AboutTab} title="About" hideNavBar icon={AboutTabIcon} />
       </Scene>
       <Scene key="login" component={Login} title="Login" direction="vertical" />
-      <Scene key="missionModal" panHandlers={null} component={MissionModal} direction="vertical" />
-      <Scene key="completedMissionModal" panHandlers={null} component={CompletedMissionModal} direction="vertical" />
+      <Scene key="solveTask" panHandlers={null} component={SolveTaskModal} direction="vertical" />
+      <Scene key="taskReward" panHandlers={null} component={TaskRewardModal} direction="vertical" />
       <Scene key="profileModal" hideNavBar={false} panHandlers={null} component={ProfileModal} direction="vertical" />
     </Scene>
   </Scene>

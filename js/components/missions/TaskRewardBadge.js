@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Image,
-  Text } from 'react-native';
+import { StyleSheet, View, Image, Text } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,11 +21,15 @@ const styles = StyleSheet.create({
 });
 
 const CompletedMissionModalBadge = React.createClass({
+  propTypes: {
+    wonBadges: React.PropTypes.any.isRequired,
+  },
 
   getInitialState() {
+    // remove state
     return {
-      wonBadge: this.props.wonBadge,
-      badge: this.props.badge,
+      wonBadge: this.props.wonBadges,
+      badge: this.props.wonBadges,
     };
   },
 

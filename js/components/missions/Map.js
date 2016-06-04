@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet,
-  DeviceEventEmitter } from 'react-native';
+import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { Actions } from 'react-native-router-flux';
 import TaskActions from '../../actions/TaskActions';
@@ -108,8 +107,8 @@ const Map = React.createClass({
         accessToken = { accessToken }
         styleURL = { styleUrl }
         logoIsHidden
-        onOpenAnnotation = { this.onOpenAnnotation }
-        userTrackingMode = { this.userTrackingMode.follow }
+        attributionButtonIsHidden={false}
+        onOpenAnnotation={this.onOpenAnnotation}
       />
     );
   },

@@ -1,14 +1,8 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  Modal } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import CustomButton from '../shared/CustomButton';
 import { Actions } from 'react-native-router-flux';
-import MissionModalInput from './MissionModalInput';
-import CompletedMissionModal from './CompletedMissionModal';
+import SolveTaskInput from './SolveTaskInput';
 
 const styles = StyleSheet.create({
   container: {
@@ -67,6 +61,10 @@ const styles = StyleSheet.create({
 });
 
 const MissionsModal = React.createClass({
+  propTypes: {
+    task: React.PropTypes.any.isRequired,
+  },
+
   getInitialState() {
     return {
       userKoins: 0,
@@ -77,50 +75,38 @@ const MissionsModal = React.createClass({
     };
   },
 
-  componentWillMount() {
-  },
-
-  componentDidMount() {
-  },
-
-  componentWillUnmount() {
-  },
-
   render() {
     return (
-      <View style = { styles.container }>
-        <Text style = { styles.textTitle }>{ this.props.task.title }</Text>
-        <View style = { styles.containerMission }>
-          <View style = { styles.containerMissionDescription }>
+      <View style={styles.container}>
+        <Text style={styles.textTitle}>{this.props.task.title}</Text>
+        <View style={styles.containerMission}>
+          <View style={styles.containerMissionDescription}>
             <Image
-              style = { styles.icon }
-              source = { require('../../assets/img/koin_no_value.png') }
+              style={styles.icon}
+              source={require('../../assets/img/koin_no_value.png')}
             />
-            <Text style = { styles.textMission }>
-              Get the { this.props.task.fixKoinCount } Koins!
+            <Text style ={styles.textMission}>
+              Get the {this.props.task.fixKoinCount} Koins!
             </Text>
           </View>
-          <View style = { styles.containerMissionDescription }>
+          <View style={styles.containerMissionDescription}>
             <Image
-              style = { styles.icon }
-              source = { require('../../assets/img/poi_name_mission.png') }
+              style={styles.icon}
+              source={require('../../assets/img/poi_name_mission.png')}
             />
-          <Text style = { styles.textMission }>{ this.props.task.question }</Text>
+          <Text style={styles.textMission}>{this.props.task.question}</Text>
           </View>
         </View>
-        <MissionModalInput
-          viewType = { this.props.task.viewType }
-          missionType = { this.props.task.type }
-          unableToSolve = { this.state.unableToSolve }
+        <SolveTaskInput
+          viewType={this.props.task.viewType}
+          missionType={this.props.task.type}
+          unableToSolve={this.state.unableToSolve}
         />
-        <View style = { styles.containerButton }>
-          <CustomButton style = { { paddingTop: 20 } } onPress = { Actions.pop }>
+        <View style={styles.containerButton}>
+          <CustomButton style={{ paddingTop: 20 }} onPress={Actions.pop}>
             Cancel
           </CustomButton>
-          <CustomButton
-            style = { { paddingTop: 20 } }
-            onPress = { Actions.pop }
-          >
+          <CustomButton style={{ paddingTop: 20 }} onPress={Actions.pop}>
             Complete Mission
           </CustomButton>
         </View>

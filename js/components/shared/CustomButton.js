@@ -19,6 +19,12 @@ const styles = StyleSheet.create({
 
 
 const CustomButton = React.createClass({
+  propTypes: {
+    onPress: React.PropTypes.func.isRequired,
+    style: React.PropTypes.object,
+    children: React.PropTypes.any.isRequired,
+  },
+
   getInitialState() {
     return {
       active: false,
@@ -34,18 +40,17 @@ const CustomButton = React.createClass({
   },
 
   render() {
-    let colorStyle = { // eslint-disable-line prefer-const
-      color: this.state.active ? '#fff' : '#000',
-    };
+    const colorStyle = { color: this.state.active ? '#fff' : '#000' };
+
     return (
       <TouchableHighlight
-        onHideUnderlay = { this._onUnhighlight }
-        onPress = { this.props.onPress }
-        onShowUnderlay = { this._onHighlight }
-        style = { [styles.button, this.props.style] }
+        onHideUnderlay = {this._onUnhighlight}
+        onPress = {this.props.onPress}
+        onShowUnderlay = {this._onHighlight}
+        style = {[styles.button, this.props.style]}
         underlayColor="#008000"
       >
-          <Text style = { [styles.buttonText, colorStyle] }>{ this.props.children }</Text>
+          <Text style = { [styles.buttonText, colorStyle] }>{this.props.children}</Text>
       </TouchableHighlight>
     );
   },

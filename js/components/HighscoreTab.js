@@ -87,9 +87,6 @@ const HighscoreTab = React.createClass({
     };
   },
 
-  componentWillMount() {
-  },
-
   componentDidMount() {
     highscoreStore.addChangeListener(this._onHighscoreUpdate);
 
@@ -118,7 +115,6 @@ const HighscoreTab = React.createClass({
   },
 
   _pressRow(rowData) {
-    console.log(rowData);
     if (!rowData.you) {
       Actions.profileModal({ data: rowData });
     } else {

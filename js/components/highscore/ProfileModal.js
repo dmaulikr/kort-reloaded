@@ -1,4 +1,5 @@
-import React, { View, Text, Image, StyleSheet, ScrollView, BackAndroid } from 'react-native';
+import React from 'react';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -83,25 +84,10 @@ const ProfileTab = React.createClass({
     };
   },
 
-  componentDidMount() {
-  },
-
-  componentWillUnmount() {
-  },
-
-  onChange() {
-  },
-
-  updateProfileText(user) {
-  },
-
   render() {
-    let _scrollView = ScrollView;
     return (
       <ScrollView
-        ref = { (scrollView) => { _scrollView = scrollView; } }
         automaticallyAdjustContentInsets = { false }
-        onScroll = { () => { console.log('onScroll!'); } }
         scrollEventThrottle = { 200 }
         style = { styles.scrollView }
       >
