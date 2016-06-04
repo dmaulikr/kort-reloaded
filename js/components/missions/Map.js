@@ -91,9 +91,7 @@ const Map = React.createClass({
         accessToken={accessToken}
         styleURL={styleUrl}
         logoIsHidden
-        attributionButtonIsHidden
         onOpenAnnotation={this.onOpenAnnotation}
-        userTrackingMode={this.userTrackingMode.follow}
       />
     );
   },
