@@ -38,8 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CompletedMissionModal = (props) => { // eslint-disable-line arrow-body-style
-  return (
+const CompletedMissionModal = ({ rewardKoins, userKoins }) => (
     <View>
       <View style = { styles.container }>
         <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
@@ -50,8 +49,8 @@ const CompletedMissionModal = (props) => { // eslint-disable-line arrow-body-sty
               source = { require('../../assets/img/koin_no_value.png') }
             />
             <Text style = { styles.textMission }>
-              Bravo! You have won { props.rewardKoins } Koins!
-              You now have a total amount of { props.userKoins } Koins.
+              Bravo! You have won { rewardKoins } Koins!
+              You now have a total amount of { userKoins } Koins.
             </Text>
           </View>
           <TaskRewardBadge
@@ -67,8 +66,7 @@ const CompletedMissionModal = (props) => { // eslint-disable-line arrow-body-sty
         </View>
       </View>
     </View>
-  );
-};
+);
 
 CompletedMissionModal.propTypes = {
   rewardKoins: React.PropTypes.any.isRequired,
