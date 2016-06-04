@@ -83,10 +83,6 @@ const ProfileTab = React.createClass({
     };
   },
 
-  componentWillMount() {
-    this._pressData = {};
-  },
-
   componentDidMount() {
   },
 
