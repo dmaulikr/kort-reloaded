@@ -7,7 +7,6 @@ import { Image,
 
 const styles = StyleSheet.create({
   tabIcon: {
-    alignSelf: 'center',
     height: 30,
     width: 30,
   },

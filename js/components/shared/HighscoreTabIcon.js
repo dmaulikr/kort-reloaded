@@ -6,11 +6,7 @@ import { Image,
   View } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-  },
   tabIcon: {
-    alignSelf: 'center',
     height: 30,
     width: 30,
   },
@@ -33,7 +29,7 @@ const HighscoreTabIcon = React.createClass({
       iconUri = require('../../assets/tabIcons/ic_ios_highscore.png');
     }
     return (
-      <View style = { styles.container }>
+      <View>
         <Image style = { styles.tabIcon } source = { iconUri } />
         <Text style = { styles.tabTitle }>Highscore</Text>
       </View>
