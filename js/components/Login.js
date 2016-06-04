@@ -1,16 +1,12 @@
 import React from 'react';
-import { View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
-import { GoogleSignin,
-  GoogleSigninButton } from 'react-native-google-signin';
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+
 import UserActions from '../actions/UserActions';
-import LoginActions from '../actions/LoginActions';
-import loginStore from '../stores/LoginStore';
+import AuthenticationActions from '../actions/AuthenticationActions';
+import authenticationStore from '../stores/AuthenticationStore';
 import Config from '../constants/Config';
 
 const google = Config.GOOGLE;
@@ -56,25 +52,21 @@ const styles = StyleSheet.create({
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.onUserLoggedIn = this.onUserLoggedIn.bind(this);
+    this.onAuthenticationUpdate = this.onAuthenticationUpdate.bind(this);
   }
 
   componentDidMount() {
-    loginStore.addChangeListener(this.onUserLoggedIn);
+    authenticationStore.addChangeListener(this.onAuthenticationUpdate);
 
     this.configureGoogleSignIn();
   }
 
   componentWillUnmount() {
-    loginStore.removeChangeListener(this.onUserLoggedIn);
+    authenticationStore.removeChangeListener(this.onAuthenticationUpdate);
   }
 
-  onUserLoggedIn() {
-    this.goToTabView();
-  }
-
-  goToTabView() {
-    if (loginStore.isLoggedIn()) Actions.tabbar();
+  onAuthenticationUpdate() {
+    if (authenticationStore.isLoggedIn()) Actions.pop();
   }
 
   configureGoogleSignIn() {
@@ -86,7 +78,7 @@ export default class Login extends React.Component {
 
   signInGoogle() {
     GoogleSignin.signIn()
-    .then((user) => LoginActions.verifyUser(google, user.idToken))
+    .then((user) => AuthenticationActions.verifyUser(google, user.idToken))
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
     })
@@ -99,7 +91,6 @@ export default class Login extends React.Component {
       <ScrollView
         ref = { (scrollView) => { _scrollView = scrollView; } }
         automaticallyAdjustContentInsets={false}
-        onScroll = { () => { console.log('onScroll!'); } }
         scrollEventThrottle = { 200 }
         style = { styles.scrollView }
       >

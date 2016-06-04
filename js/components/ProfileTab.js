@@ -1,13 +1,10 @@
 import React from 'react';
-import { View,
-  Text,
-  Image,
-  StyleSheet,
-  ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+
 import userStore from '../stores/UserStore';
-import LoginActions from '../actions/LoginActions';
-import loginStore from '../stores/LoginStore';
+import AuthenticationActions from '../actions/AuthenticationActions';
+import authenticationStore from '../stores/AuthenticationStore';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -117,7 +114,7 @@ const ProfileTab = React.createClass({
   },
 
   componentDidMount() {
-    loginStore.addChangeListener(this.onLogout);
+    authenticationStore.addChangeListener(this.onLogout);
 
     userStore.addChangeListener(this._onUserUpdate);
   },
@@ -148,7 +145,7 @@ const ProfileTab = React.createClass({
   },
 
   render() {
-    const userId = loginStore.getUserCredential().userId;
+    const userId = authenticationStore.getUserCredential().userId;
     return (
       <ScrollView
         automaticallyAdjustContentInsets = { false }
@@ -168,7 +165,7 @@ const ProfileTab = React.createClass({
                 <Text style = { styles.textSubTitle }>{ this.state.userName }</Text>
                 <Text style = { styles.textSubTitle }>Login via</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.authProvider }</Text>
-                <Text onPress={() => LoginActions.logOutUser(userId)}>Log out</Text>
+                <Text onPress={() => AuthenticationActions.logOutUser(userId)}>Log out</Text>
                 <Text style = { styles.textSubTitle }>Completed Missions</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.solveCount }</Text>
               </View>

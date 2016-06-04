@@ -7,8 +7,9 @@ module.exports = keyMirror({
   // Highscore
   HIGHSCORE_LOAD: null,
   // Login
-  LOGIN_LOGOUT: null,
-  LOGIN_VERIFY: null,
+  AUTHENTICATION_LOGOUT: null,
+  AUTHENTICATION_LOAD_CREDENTIAL: null,
+  AUTHENTICATION_VERIFY: null,
   // Mission
   MISSION_PUT: null,
   MISSIONS_LOAD: null,
