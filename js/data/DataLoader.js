@@ -34,7 +34,6 @@ export default class DataLoader {
     const authenticatedUser = loginStore.getUserCredential();
     const userId = authenticatedUser.userId;
     const secret = authenticatedUser.secret;
-    console.log(`authenticated User: ${userId} / ${secret}`);
     const hash = new Buffer(`${userId}:${secret}`).toString('base64');
     return hash;
   }
