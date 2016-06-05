@@ -7,16 +7,17 @@ import App from './App';
 import AnswerActions from '../actions/AnswerActions';
 import AuthenticationActions from '../actions/AuthenticationActions';
 import HighscoreActions from '../actions/HighscoreActions';
-import MissionActions from '../actions/MissionActions';
-import PromotionActions from '../actions/PromotionActions';
+import LocationActions from '../actions/LocationActions';
+//import MissionActions from '../actions/MissionActions';
 import StatisticsActions from '../actions/StatisticsActions';
 import TaskActions from '../actions/TaskActions';
 import UserActions from '../actions/UserActions';
-import ValidationActions from '../actions/ValidationActions';
+//import ValidationActions from '../actions/ValidationActions';
 
 import Config from '../constants/Config';
 
 import authenticationStore from '../stores/AuthenticationStore';
+import locationStore from '../stores/LocationStore';
 
 const highscoreLimit = Config.HIGHSCORE_LIMIT;
 
@@ -34,10 +35,14 @@ export default class AppLoader extends React.Component {
     super(props);
 
     this.state = { hasLoaded: false };
+    this._loadTasks = this._loadTasks.bind(this);
+    this._onLocationUpdate = this._onLocationUpdate.bind(this);
     this._onAuthenticationUpdate = this._onAuthenticationUpdate.bind(this);
   }
 
   componentDidMount() {
+    locationStore.addChangeListener(this._onLocationUpdate);
+    LocationActions.startLocating();
     authenticationStore.addChangeListener(this._onAuthenticationUpdate);
     AuthenticationActions.loadCredential();
   }
@@ -53,10 +58,33 @@ export default class AppLoader extends React.Component {
     UserActions.loadCurrentUser();
   }
 
+  _loadTasks() {
+    const latitude = locationStore.getLatitude();
+    const longitude = locationStore.getLongitude();
+    console.log(`latitude: ${latitude}`);
+    TaskActions.loadTasks(latitude, longitude);
+  }
+
+  _onLocationUpdate() {
+    if (locationStore.isWatching === false) {
+      alert('enable location');
+      return;
+    }
+
+    if (authenticationStore.isLoggedIn()) {
+      this._loadTasks();
+      Actions.tabBar();
+    }
+  }
+
   _onAuthenticationUpdate() {
     if (authenticationStore.isLoggedIn()) {
       this._loadData();
-      Actions.tabBar();
+      if (locationStore.getPosition() !== null) {
+        this._loadTasks();
+        Actions.tabBar();
+        console.log(`latitude: ${latitude}`);
+      }
     } else {
       Actions.login();
     }

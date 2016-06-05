@@ -32,6 +32,9 @@ export default {
   USER_PATH: '/user',
   USER_VERIFY_PATH: '/user/verify',
 
+  // Location
+  LOCATION_DISTANCE_FILTER: 100,
+
   // Mapbox
   MAP_REF: 'OpenStreetMap',
   STYLE_URL: 'https://raw.githubusercontent.com/osm2vectortiles/mapbox-gl-styles/master/styles/bright-v9-cdn.json',

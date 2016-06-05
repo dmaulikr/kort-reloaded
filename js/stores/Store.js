@@ -5,7 +5,6 @@ import Config from '../constants/Config';
 const changeEvent = Config.CHANGE_EVENT;
 
 export default class Store extends EventEmitter {
-
   emitChange() {
     this.emit(changeEvent);
   }

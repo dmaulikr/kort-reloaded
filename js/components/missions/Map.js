@@ -3,6 +3,7 @@ import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { Actions } from 'react-native-router-flux';
 import TaskActions from '../../actions/TaskActions';
+import locationStore from '../../stores/LocationStore';
 import taskStore from '../../stores/TaskStore';
 import Config from '../../constants/Config';
 
@@ -29,24 +30,22 @@ const Map = React.createClass({
 
   componentDidMount() {
     DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
-    navigator.geolocation.getCurrentPosition(this.onPositionChange);
-    this.locationWatchId = navigator.geolocation.watchPosition(this.onPositionChange,
-      (error) => console.log(error),
-      { enableHighAccurracy: true, distanceFilter: 100 });
+    locationStore.addChangeListener(this.onLocationChange);
+    taskStore.addChangeListener(this.onTasksUpdate);
 
-    taskStore.addChangeListener(this._onTasksUpdate);
+    console.log('TASKS:', `taskStore.getAll !== null when Map mounted: ${taskStore.getAll() !== null}`);
+    if (taskStore.getAll() !== null) this._udpateAnnotations();
   },
 
   componentWillUnmount() {
     DeviceEventEmitter.removeAllListeners();
-    navigator.geolocation.clearWatch(this.locationWatchId);
-
-    taskStore.removeChangeListener(this._onTasksUpdate);
+    locationStore.removeChangeListener(this.onTasksUpdate);
+    taskStore.removeChangeListener(this.onTasksUpdate);
   },
 
-  onPositionChange(position) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+  onLocationChange() {
+    const latitude = locationStore.getLatitude();
+    const longitude = locationStore.getLongitude();
 
     this.setCenterCoordinateZoomLevelAnimated(mapRef, latitude, longitude, zoomLevel);
     TaskActions.loadTasks(latitude, longitude);
@@ -69,7 +68,8 @@ const Map = React.createClass({
     }
   },
 
-  _onTasksUpdate() {
+  onTasksUpdate() {
+    console.log('TASKS:', `task update in Map. begin annotations`);
     this._updateAnnotations();
   },
 
