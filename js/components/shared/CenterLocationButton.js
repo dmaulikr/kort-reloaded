@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     position: 'absolute',
-    bottom: 15 + 45,
-    left: 15,
+    top: 15 + 45,
+    right: 16,
     overflow: 'hidden',
   },
   icon: {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 });
 
 
-const LocationButton = React.createClass({
+const CenterLocationButton = React.createClass({
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
@@ -59,4 +59,4 @@ const LocationButton = React.createClass({
   },
 });
 
-module.exports = LocationButton;
+module.exports = CenterLocationButton;
