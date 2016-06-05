@@ -9,7 +9,10 @@ import MissionsTab from './MissionsTab';
 import ProfileTab from './ProfileTab';
 import HighscoreTab from './HighscoreTab';
 import AboutTab from './AboutTab';
-import TabIcon from './shared/TabIcon';
+import MissionsTabIcon from './shared/MissionsTabIcon';
+import ProfileTabIcon from './shared/ProfileTabIcon';
+import HighscoreTabIcon from './shared/HighscoreTabIcon';
+import AboutTabIcon from './shared/AboutTabIcon';
 import SolveTaskModal from './missions/SolveTaskModal';
 import TaskRewardModal from './missions/TaskRewardModal';
 import ProfileModal from './highscore/ProfileModal';
@@ -20,11 +23,11 @@ const scenes = Actions.create(
     <Scene key="root" hideNavBar>
       <Scene key="appLoader" component={AppLoader} title="Loading Data" hideNavBar panHandlers={null} />
       <Scene key="login" component={Login} title="Login" hideNavBar panHandlers={null} direction="vertical" />
-      <Scene key="tabBar" panHandlers={null} tabs type="replace">
-        <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={TabIcon} />
-        <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={TabIcon} />
-        <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={TabIcon} />
-        <Scene key="about" component={AboutTab} title="About" hideNavBar icon={TabIcon} />
+      <Scene key="tabBar" panHandlers={null} tabs type="replace" tabBarStyle={{ flex: 1, alignItems: 'flex-start' }}>
+        <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={MissionsTabIcon} />
+        <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={ProfileTabIcon} />
+        <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={HighscoreTabIcon} />
+        <Scene key="about" component={AboutTab} title="About" hideNavBar icon={AboutTabIcon} />
       </Scene>
       <Scene key="solveTask" panHandlers={null} component={SolveTaskModal} direction="vertical" />
       <Scene key="taskReward" panHandlers={null} component={TaskRewardModal} direction="vertical" />
@@ -47,12 +50,7 @@ const App = React.createClass({
   },
 
   render() {
-    return (
-      <Router
-        scenes={scenes}
-        createReducer={reducerCreate}
-      />
-    );
+    return <Router scenes={scenes} createReducer={reducerCreate} />;
   },
 });
 

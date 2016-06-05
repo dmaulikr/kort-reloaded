@@ -56,11 +56,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  textTitle: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginTop: 7,
-  },
   textSubTitle: {
     fontSize: 18,
     marginTop: 7,
@@ -153,16 +148,15 @@ const ProfileTab = React.createClass({
         style = { styles.scrollView }
       >
         <View style = { styles.container }>
-          <Text style = { styles.textTitle }>{ this.props.title }</Text>
           <View style = { styles.containerInfo }>
             <View style = { styles.containerProfile }>
               <Image
-                style = { { height: 64, padding: 64 } }
-                source = { { uri: this.state.picUrl } }
+                style = { { height: 64, width: 64, padding: 64 } }
+                source = { require('../assets/img/koin_no_value.png') }
               />
               <View style = { styles.containerProfileDescription }>
                 <Text style = { styles.textSubTitle }>Username</Text>
-                <Text style = { styles.textSubTitle }>{ this.state.userName }</Text>
+                <Text style={styles.textSubTitle }>{ this.state.userName }</Text>
                 <Text style = { styles.textSubTitle }>Login via</Text>
                 <Text style = { styles.textSubTitle }>{ this.state.authProvider }</Text>
                 <Text onPress={() => AuthenticationActions.logOutUser(userId)}>Log out</Text>
