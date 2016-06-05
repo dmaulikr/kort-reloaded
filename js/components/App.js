@@ -9,7 +9,11 @@ import MissionsTab from './missions/MissionsTab';
 import ProfileTab from './profile/ProfileTab';
 import HighscoreTab from './highscore/HighscoreTab';
 import AboutTab from './about/AboutTab';
-import TabIcon from './shared/TabIcon';
+
+import MissionsTabIcon from './shared/MissionsTabIcon';
+import ProfileTabIcon from './shared/ProfileTabIcon';
+import HighscoreTabIcon from './shared/HighscoreTabIcon';
+import AboutTabIcon from './shared/AboutTabIcon';
 import SolveTaskModal from './missions/SolveTaskModal';
 import TaskRewardModal from './missions/TaskRewardModal';
 import ProfileModal from './highscore/ProfileModal';
@@ -48,12 +52,7 @@ const App = React.createClass({
   },
 
   render() {
-    return (
-      <Router
-        scenes={scenes}
-        createReducer={reducerCreate}
-      />
-    );
+    return <Router scenes={scenes} createReducer={reducerCreate} />;
   },
 });
 

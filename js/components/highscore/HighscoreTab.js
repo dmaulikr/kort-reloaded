@@ -18,11 +18,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
   },
-  textTitle: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginTop: 7,
-  },
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -126,7 +121,6 @@ const HighscoreTab = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <Text style={[styles.textTitle]}>{this.props.title}</Text>
         <View style={styles.containerListView}>
           <ListView
             dataSource={this.state.dataSource}

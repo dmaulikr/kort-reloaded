@@ -1,8 +1,10 @@
 import React from 'react';
+<<<<<<< HEAD
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import CustomButton from '../shared/CustomButton';
+import TaskButton from '../../shared/TaskButton';
 import TaskRewardBadge from './TaskRewardBadge';
 
 const styles = StyleSheet.create({
@@ -36,6 +38,7 @@ const styles = StyleSheet.create({
 });
 
 const CompletedMissionModal = ({ rewardKoins, userKoins }) => (
+<<<<<<< HEAD
   <View>
     <View style={styles.container}>
       <View style={[styles.innerContainer, {backgroundColor: '#fff', padding: 20}]}>
@@ -46,6 +49,32 @@ const CompletedMissionModal = ({ rewardKoins, userKoins }) => (
             Bravo! You have won {rewardKoins} Koins!
             You now have a total amount of {userKoins} Koins.
           </Text>
+=======
+    <View>
+      <View style = { styles.container }>
+        <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
+          <Text>Mission completed. You increased your reputation!</Text>
+          <View style = { styles.innerContainerMissionComplete }>
+            <Image
+              style = { styles.icon }
+              source = { require('../../assets/img/koin_no_value.png') }
+            />
+            <Text style = { styles.textMission }>
+              Bravo! You have won { rewardKoins } Koins!
+              You now have a total amount of { userKoins } Koins.
+            </Text>
+          </View>
+          <TaskRewardBadge
+            wonBadge
+            badge = "badge1"
+          />
+          <TaskButton
+            onPress = { Actions.pop }
+            style = { styles.modalButton }
+          >
+            Ok
+          </TaskButton>
+>>>>>>> develop
         </View>
         <TaskRewardBadge wonBadge badge="badge1" />
         <CustomButton onPress={Actions.pop} style={styles.modalButton}>Ok</CustomButton>

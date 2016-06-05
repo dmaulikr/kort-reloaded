@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import CustomButton from '../shared/CustomButton';
+import CustomButton from '../../shared/CustomButton';
 import SolveTaskInput from './SolveTaskInput';
+import TaskButton from '../../shared/TaskButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const MissionsModal = React.createClass({
+const SolveTaskModal = React.createClass({
   propTypes: {
     task: React.PropTypes.any.isRequired,
   },
@@ -102,16 +103,16 @@ const MissionsModal = React.createClass({
           unableToSolve={this.state.unableToSolve}
         />
         <View style={styles.containerButton}>
-          <CustomButton style={{ paddingTop: 20 }} onPress={Actions.pop}>
+          <TaskButton style={{ paddingTop: 20 }} onPress={Actions.pop}>
             Cancel
-          </CustomButton>
-          <CustomButton style={{ paddingTop: 20 }} onPress={Actions.pop}>
+          </TaskButton>
+          <TaskButton style={{ paddingTop: 20 }} onPress={Actions.pop}>
             Complete Mission
-          </CustomButton>
+          </TaskButton>
         </View>
       </View>
     );
   },
 });
 
-module.exports = MissionsModal;
+module.exports = SolveTaskModal;
