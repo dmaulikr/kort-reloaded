@@ -52,7 +52,7 @@ const LocationButton = React.createClass({
         underlayColor="#008000"
       >
         <Image style = { styles.icon }
-          source = { require('../../assets/img/ic_my_location.png') }
+          source = { require('../../assets/img/location/ic_my_location.png') }
         />
       </TouchableHighlight>
     );
