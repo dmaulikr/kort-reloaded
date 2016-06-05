@@ -20,23 +20,36 @@ const googleIosClientId = Config.IOS_GOOGLE_CLIENT_ID;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    alignItems: 'stretch',
+    padding: 20,
+  },
+  containerLogin: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+  },
+  containerLogo: {
+    alignItems: 'flex-start',
+  },
+  containerLoginText: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  containerLoginDescription: {
+    borderRadius: 10,
+    backgroundColor: '#808080',
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingBottom: 5,
+  },
+  containerLoginButtons: {
+    flex: 1,
   },
   kortlogo: {
     alignSelf: 'center',
     marginTop: 7,
     height: 64,
     width: 64,
-  },
-  containerLogin: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    flexWrap: 'wrap',
   },
   textTitle: {
     textAlign: 'center',
@@ -50,6 +63,7 @@ const styles = StyleSheet.create({
   },
   textSubTitle: {
     marginTop: 5,
+    alignSelf: 'center',
   },
 });
 
@@ -94,39 +108,41 @@ export default class Login extends React.Component {
   }
 
   render() {
-    let _scrollView = ScrollView;
+    const _scrollView = ScrollView;
     return (
-      <ScrollView
-        ref = { (scrollView) => { _scrollView = scrollView; } }
-        automaticallyAdjustContentInsets={false}
-        scrollEventThrottle = { 200 }
-        style = { styles.scrollView }
-      >
-        <View style = { styles.container }>
-          <Image style = { styles.kortlogo }
-            source = { require('../assets/img/kort-logo.png') }
-          />
-          <View style = { styles.containerLogin }>
-            <Text style = { styles.textIntroduction }>Complete Missions</Text>
-            <Text style = { styles.textIntroduction }>Collect Koins</Text>
-            <Text style = { styles.textIntroduction }>Improve OpenStreetMap</Text>
-            <Text style = { styles.textSubTitle }>
+      <View style={styles.container}>
+        <View style={styles.containerLogin}>
+          <View style={styles.containerLogo}>
+            <Image style={styles.kortlogo}
+              source={require('../assets/img/kort-logo.png')}
+            />
+          </View>
+          <View style={styles.containerLoginText}>
+            <View style={styles.containerLoginDescription}>
+              <Text style={styles.textIntroduction}> • Complete Missions</Text>
+              <Text style={styles.textIntroduction}> • Collect Koins</Text>
+              <Text style={styles.textIntroduction}> • Improve OpenStreetMap</Text>
+            </View>
+            <Text style={styles.textSubTitle}>
               Kort helps to improve the data in OpenStreetMap.
             </Text>
-            <Text style = { styles.textTitle }>
+          </View>
+          <View style={styles.containerLoginButtons}>
+            <Text style={styles.textTitle}>
               Login now to begin your mission!
             </Text>
-            <GoogleSigninButton style = { { alignSelf: 'center', width: 120, height: 44 } }
-              color = { GoogleSigninButton.Color.Light }
-              size = { GoogleSigninButton.Size.Icon }
-              onPress = { () => { this.signInGoogle(); } }
-            />
-            <Text style = { styles.textTitle }>
-              Other providers will be added!
+            <Text style={styles.textSubTitle}>
+              Other providers will be added.
             </Text>
+            <GoogleSigninButton
+              style={{ alignSelf: 'center', width: 120, height: 44, marginTop: 7 }}
+              color={GoogleSigninButton.Color.Light}
+              size={GoogleSigninButton.Size.Icon}
+              onPress={() => { this.signInGoogle(); }}
+            />
           </View>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }

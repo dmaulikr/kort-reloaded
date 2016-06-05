@@ -25,7 +25,7 @@ const MissionsTab = React.createClass({
         <View style = { styles.mapContainer }>
           <Map />
         </View>
-        <LocationButton onPress={console.log()}/>
+        <LocationButton onPress={console.log()} />
       </View>
     );
   },

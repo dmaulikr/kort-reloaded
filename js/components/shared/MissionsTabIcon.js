@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
   },
-  tabTitle: {
+  tabTitle: {
     textAlign: 'center',
     fontSize: 8,
   },
