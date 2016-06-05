@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   containerLogin: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   containerLogo: {
     alignItems: 'flex-start',
@@ -34,10 +33,11 @@ const styles = StyleSheet.create({
   containerLoginText: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'stretch',
   },
   containerLoginDescription: {
     borderRadius: 10,
-    backgroundColor: '#808080',
+    backgroundColor: '#1e90ff',
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 5,
@@ -55,15 +55,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     marginTop: 7,
+    color: '#fffaf0',
   },
   textIntroduction: {
+    alignSelf: 'stretch',
     textAlign: 'left',
     fontSize: 18,
     marginTop: 7,
+    color: '#fffaf0',
   },
   textSubTitle: {
     marginTop: 5,
     alignSelf: 'center',
+    color: '#fffaf0',
   },
 });
 
@@ -123,9 +127,6 @@ export default class Login extends React.Component {
               <Text style={styles.textIntroduction}> • Collect Koins</Text>
               <Text style={styles.textIntroduction}> • Improve OpenStreetMap</Text>
             </View>
-            <Text style={styles.textSubTitle}>
-              Kort helps to improve the data in OpenStreetMap.
-            </Text>
           </View>
           <View style={styles.containerLoginButtons}>
             <Text style={styles.textTitle}>
