@@ -29,7 +29,7 @@ export default class DataLoader {
   static _createAuthorizationHash() {
     const userLoggedIn = loginStore.isLoggedIn();
     if (!userLoggedIn) {
-      // Actions.login();
+      Actions.login();
       return null;
     }
 
