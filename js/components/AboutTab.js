@@ -59,7 +59,7 @@ const AboutTab = React.createClass({
               source = { require('../assets/img/kort-logo.png') }
             />
             <Text style = { styles.textTitle }>Version</Text>
-            <Text style = { styles.textSubTitle }>version</Text>
+            <Text style = { styles.textSubTitle }>1.0.0</Text>
             <Text style = { styles.textTitle }>More information</Text>
             <Text style = { styles.textSubTitle }>Webseite</Text>
             <Text style = { styles.textSubTitle }>Feedback / FAQ</Text>
