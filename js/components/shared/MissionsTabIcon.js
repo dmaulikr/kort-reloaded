@@ -30,8 +30,8 @@ const MissionsTabIcon = React.createClass({
     }
     return (
       <View>
-        <Image style = { styles.tabIcon } source = { iconUri } />
-        <Text style = { styles.tabTitle }>Missions</Text>
+        <Image style={styles.tabIcon} source={iconUri} />
+        <Text style={styles.tabTitle}>Missions</Text>
       </View>
     );
   },

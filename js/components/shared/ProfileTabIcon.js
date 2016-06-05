@@ -30,8 +30,8 @@ const ProfileTabIcon = React.createClass({
     }
     return (
       <View>
-        <Image style = { styles.tabIcon } source = { iconUri } />
-        <Text style = { styles.tabTitle }>Profile</Text>
+        <Image style={styles.tabIcon} source={iconUri} />
+        <Text style={styles.tabTitle}>Profile</Text>
       </View>
     );
   },

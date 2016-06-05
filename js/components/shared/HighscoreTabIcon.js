@@ -30,8 +30,8 @@ const HighscoreTabIcon = React.createClass({
     }
     return (
       <View>
-        <Image style = { styles.tabIcon } source = { iconUri } />
-        <Text style = { styles.tabTitle }>Highscore</Text>
+        <Image style={styles.tabIcon} source={iconUri} />
+        <Text style={styles.tabTitle}>Highscore</Text>
       </View>
     );
   },
