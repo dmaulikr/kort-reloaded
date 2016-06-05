@@ -37,50 +37,40 @@ const CompletedMissionModalBadge = React.createClass({
     let badgeField;
 
     if (!this.state.wonBadge) {
-      badgeField = (
-        <View />
-      );
+      badgeField = <View />;
     } else { // ToDo: If two badges are won at the same time.
       switch (this.state.badge) {
         case 'badge0':
           badgeField = (
-            <View style = { styles.containerBadges }>
-              <Text>
-                Won badges:
-              </Text>
+            <View style={styles.containerBadges}>
+              <Text>Won badges:</Text>
               <Image
-                style = { styles.icon }
-                source = { require('../../assets/img/koin_no_value.png') }
+                style={styles.icon}
+                source={require('../../assets/img/koin_no_value.png')}
               />
             </View>
           );
           break;
         case 'badge1':
           badgeField = (
-            <View style = { styles.containerBadges }>
-              <Text>
-                Won badges:
-              </Text>
+            <View style={styles.containerBadges}>
+              <Text>Won badges:</Text>
               <Image
-                style = { styles.icon }
-                source = { require('../../assets/img/koin_no_value.png') }
+                style={styles.icon}
+                source={require('../../assets/img/koin_no_value.png')}
               />
             </View>
           );
           break;
         default:
-          badgeField = (
-            <View />
-          );
+          badgeField = <View />;
           break;
       }
     }
 
     return (
-      <View>
-        <View style = { styles.container }>
-          { badgeField }
-        </View>
+      <View style={styles.container}>
+        {badgeField}
       </View>
     );
   },

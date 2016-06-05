@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  Item,
-  Text,
-  Switch,
-  Picker } from 'react-native';
+import { StyleSheet, View, TextInput, Item, Text, Switch, Picker } from 'react-native';
+
 import Config from '../../constants/Config';
+
 import answerStore from '../../stores/AnswerStore';
 
 const styles = StyleSheet.create({

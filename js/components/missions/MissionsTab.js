@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet,
-  View } from 'react-native';
-import Map from './missions/Map';
+import { StyleSheet, View } from 'react-native';
+
+import Map from './Map';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +14,7 @@ const MissionsTab = React.createClass({
 
   render() {
     return (
-      <View style = { styles.container }>
+      <View style={styles.container}>
         <Map />
       </View>
     );

@@ -5,7 +5,7 @@ const TabIcon = React.createClass({
   getInitialState() { return { }; },
   render() {
     return (
-      <Text style={{ color: this.props.selected ? 'red' : 'black' }}> {this.props.title} </Text>
+      <Text style={{ color: this.props.selected ? 'red' : 'black' }}>{this.props.title}</Text>
     );
   },
 });

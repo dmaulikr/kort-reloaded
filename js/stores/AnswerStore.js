@@ -1,5 +1,4 @@
 import ActionTypes from '../constants/ActionTypes';
-import AnswerActions from '../actions/AnswerActions';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 

@@ -1,15 +1,11 @@
 import React from 'react';
-import { View,
-  Text,
-  Image,
-  StyleSheet,
-  ListView,
-  TouchableHighlight,
+import { View, Text, Image, StyleSheet, ListView, TouchableHighlight,
   RecyclerViewBackedScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import HighscoreCell from './highscore/HighscoreCell';
-import highscoreStore from '../stores/HighscoreStore';
-import HighscoreActions from '../actions/HighscoreActions';
+
+import HighscoreActions from '../../actions/HighscoreActions';
+import HighscoreCell from './HighscoreCell';
+import highscoreStore from '../../stores/HighscoreStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -129,14 +125,15 @@ const HighscoreTab = React.createClass({
 
   render() {
     return (
-      <View style = { styles.container }>
-        <Text style = { [styles.textTitle] }>{ this.props.title }</Text>
-        <View style = { styles.containerListView }>
+      <View style={styles.container}>
+        <Text style={[styles.textTitle]}>{this.props.title}</Text>
+        <View style={styles.containerListView}>
           <ListView
-            dataSource = { this.state.dataSource }
-            renderRow = { this._renderRow }
-            renderSeparator = { (sectionID, rowID) =>
-              <View key = { `${sectionID}-${rowID}` } style = { styles.separator } />}
+            dataSource={this.state.dataSource}
+            renderRow={this._renderRow}
+            renderSeparator={(sectionID, rowID) =>
+              <View key={`${sectionID}-${rowID}`} style={styles.separator} />
+            }
           />
         </View>
       </View>

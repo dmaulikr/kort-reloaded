@@ -4,7 +4,6 @@ import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
-import UserActions from '../actions/UserActions';
 import AuthenticationActions from '../actions/AuthenticationActions';
 import authenticationStore from '../stores/AuthenticationStore';
 import Config from '../constants/Config';
@@ -86,10 +85,8 @@ export default class Login extends React.Component {
   }
 
   render() {
-    let _scrollView = ScrollView;
     return (
       <ScrollView
-        ref = { (scrollView) => { _scrollView = scrollView; } }
         automaticallyAdjustContentInsets={false}
         scrollEventThrottle = { 200 }
         style = { styles.scrollView }

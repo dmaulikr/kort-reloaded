@@ -1,12 +1,9 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
 import CustomButton from '../shared/CustomButton';
 import TaskRewardBadge from './TaskRewardBadge';
-import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,33 +36,22 @@ const styles = StyleSheet.create({
 });
 
 const CompletedMissionModal = ({ rewardKoins, userKoins }) => (
-    <View>
-      <View style = { styles.container }>
-        <View style = { [styles.innerContainer, { backgroundColor: '#fff', padding: 20 }] }>
-          <Text>Mission completed. You increased your reputation!</Text>
-          <View style = { styles.innerContainerMissionComplete }>
-            <Image
-              style = { styles.icon }
-              source = { require('../../assets/img/koin_no_value.png') }
-            />
-            <Text style = { styles.textMission }>
-              Bravo! You have won { rewardKoins } Koins!
-              You now have a total amount of { userKoins } Koins.
-            </Text>
-          </View>
-          <TaskRewardBadge
-            wonBadge
-            badge = "badge1"
-          />
-          <CustomButton
-            onPress = { Actions.pop }
-            style = { styles.modalButton }
-          >
-            Ok
-          </CustomButton>
+  <View>
+    <View style={styles.container}>
+      <View style={[styles.innerContainer, {backgroundColor: '#fff', padding: 20}]}>
+        <Text>Mission completed. You increased your reputation!</Text>
+        <View style={styles.innerContainerMissionComplete}>
+          <Image style={styles.icon} source={require('../../assets/img/koin_no_value.png')} />
+          <Text style={styles.textMission}>
+            Bravo! You have won {rewardKoins} Koins!
+            You now have a total amount of {userKoins} Koins.
+          </Text>
         </View>
+        <TaskRewardBadge wonBadge badge="badge1" />
+        <CustomButton onPress={Actions.pop} style={styles.modalButton}>Ok</CustomButton>
       </View>
     </View>
+  </View>
 );
 
 CompletedMissionModal.propTypes = {

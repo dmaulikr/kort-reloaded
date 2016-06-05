@@ -5,22 +5,23 @@ import { BackAndroid } from 'react-native';
 import { Actions, Modal, Scene, Router, Reducer } from 'react-native-router-flux';
 
 import Login from './Login';
-import MissionsTab from './MissionsTab';
-import ProfileTab from './ProfileTab';
-import HighscoreTab from './HighscoreTab';
-import AboutTab from './AboutTab';
+import MissionsTab from './missions/MissionsTab';
+import ProfileTab from './profile/ProfileTab';
+import HighscoreTab from './highscore/HighscoreTab';
+import AboutTab from './about/AboutTab';
 import TabIcon from './shared/TabIcon';
 import SolveTaskModal from './missions/SolveTaskModal';
 import TaskRewardModal from './missions/TaskRewardModal';
 import ProfileModal from './highscore/ProfileModal';
 import AppLoader from './AppLoader';
 
+
 const scenes = Actions.create(
   <Scene key="modal" component={Modal}>
     <Scene key="root" hideNavBar>
       <Scene key="appLoader" component={AppLoader} title="Loading Data" hideNavBar panHandlers={null} />
       <Scene key="login" component={Login} title="Login" hideNavBar panHandlers={null} direction="vertical" />
-      <Scene key="tabBar" panHandlers={null} tabs type="replace">
+      <Scene key="tabBar" tabs panHandlers={null} type="replace">
         <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={TabIcon} />
         <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={TabIcon} />
         <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={TabIcon} />
