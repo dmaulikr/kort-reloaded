@@ -106,7 +106,7 @@ const Map = React.createClass({
         ref = { mapRef }
         accessToken = { accessToken }
         styleURL = { styleUrl }
-        logoIsHidden
+        logoIsHidden={false}
         attributionButtonIsHidden={false}
         onOpenAnnotation={this.onOpenAnnotation}
       />

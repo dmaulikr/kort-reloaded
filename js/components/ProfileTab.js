@@ -154,9 +154,8 @@ const ProfileTab = React.createClass({
           <View style = { styles.containerInfo }>
             <View style = { styles.containerProfile }>
               <Image
-                style = { { height: 64, padding: 64 } }
-                defaultSource = { require('../assets/img/photo.jpg') }
-                source = { { uri: this.state.picUrl } }
+                style = { { height: 64, width: 64, padding: 64 } }
+                source = { require('../assets/img/koin_no_value.png') }
               />
               <View style = { styles.containerProfileDescription }>
                 <Text style = { styles.textSubTitle }>Username</Text>
