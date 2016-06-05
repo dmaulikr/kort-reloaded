@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 44,
     alignSelf: 'stretch',
-    backgroundColor: '#32cd32',
+    backgroundColor: '#ff0000',
     justifyContent: 'center',
     overflow: 'hidden',
   },
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 });
 
 
-const TaskButton = React.createClass({
+const LogoutButton = React.createClass({
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
@@ -49,7 +49,7 @@ const TaskButton = React.createClass({
         onPress = {this.props.onPress}
         onShowUnderlay = {this._onHighlight}
         style = {[styles.button, this.props.style]}
-        underlayColor="#008000"
+        underlayColor="#8b0000"
       >
           <Text style = { [styles.buttonText, colorStyle] }>{this.props.children}</Text>
       </TouchableHighlight>
@@ -57,4 +57,4 @@ const TaskButton = React.createClass({
   },
 });
 
-module.exports = TaskButton;
+module.exports = LogoutButton;

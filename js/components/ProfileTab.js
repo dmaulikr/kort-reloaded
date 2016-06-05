@@ -8,6 +8,7 @@ import { Actions } from 'react-native-router-flux';
 import userStore from '../stores/UserStore';
 import LoginActions from '../actions/LoginActions';
 import loginStore from '../stores/LoginStore';
+import LogoutButton from './shared/LogoutButton';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -60,6 +61,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  containerBadgeGridLogout: {
+    marginTop: 10,
+    alignSelf: 'stretch',
+  },
   textSubTitle: {
     fontSize: 18,
     marginTop: 7,
@@ -87,8 +92,10 @@ const ProfileTab = React.createClass({
       picUrl: '',
       authProvider: '',
       place: '',
-      userBadges: [{ title: 'title', description: 'description',
-        won: false, pictureFile: '../assets/img/locked.png' },
+      userBadges: [{ id: 'id', name: 'locked',
+        title: 'title', description: 'description', color: 'color',
+        sorting: 'sorting', won: false, createDate: 'createDate',
+        pictureFile: require('../assets/img/highscore.png') },
         { title: 'title', description: 'description', won:
           false, pictureFile: '../assets/img/locked.png' },
         { title: 'title', description: 'description', won:
@@ -147,25 +154,25 @@ const ProfileTab = React.createClass({
     const userId = loginStore.getUserCredential().userId;
     return (
       <ScrollView
-        automaticallyAdjustContentInsets = { false }
-        scrollEventThrottle = { 200 }
-        style = { styles.scrollView }
+        automaticallyAdjustContentInsets={false}
+        scrollEventThrottle={200}
+        style={styles.scrollView}
       >
-        <View style = { styles.container }>
+        <View style={styles.container}>
           <View style = { styles.containerInfo }>
             <View style = { styles.containerProfile }>
               <Image
                 style = { { height: 64, width: 64, padding: 64, marginTop: 10 } }
                 source = { require('../assets/img/photo.png') }
               />
-              <View style = { styles.containerProfileDescription }>
-                <Text style = { styles.textSubTitle }>Username</Text>
-                <Text style={styles.textSubTitle }>{ this.state.userName }</Text>
-                <Text style = { styles.textSubTitle }>Login via</Text>
-                <Text style = { styles.textSubTitle }>{ this.state.authProvider }</Text>
-                <Text onPress={() => LoginActions.logOutUser(userId)}>Log out</Text>
-                <Text style = { styles.textSubTitle }>Completed Missions</Text>
-                <Text style = { styles.textSubTitle }>{ this.state.solveCount }</Text>
+              <View style={styles.containerProfileDescription}>
+                <Text style={styles.textSubTitle}>Username</Text>
+                <Text style={styles.textSubTitle}>{this.state.userName} I</Text>
+                <Text style={{ color: '#4169e1' }} onPress={console.log('Edit username clicked.')}>Edit username</Text>
+                <Text style={styles.textSubTitle}>Login via</Text>
+                <Text style={styles.textSubTitle}>{this.state.authProvider} I</Text>
+                <Text style={styles.textSubTitle}>Completed Missions</Text>
+                <Text style={styles.textSubTitle}>{this.state.solveCount}</Text>
               </View>
             </View>
             <Text style = { styles.textSubTitle }>Collected Koins</Text>
@@ -287,6 +294,11 @@ const ProfileTab = React.createClass({
                 <Text style = { styles.textSubTitleItem }>
                   { this.state.userBadges[10].title }: { this.state.userBadges[10].description }
                 </Text>
+              </View>
+              <View style = { styles.containerBadgeGridLogout }>
+                <LogoutButton onPress={() => LoginActions.logOutUser(userId)}>
+                  Log out
+                </LogoutButton>
               </View>
             </View>
           </View>
