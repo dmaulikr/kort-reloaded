@@ -3,6 +3,7 @@ import { StyleSheet,
   Text,
   View } from 'react-native';
 import Map from './missions/Map';
+import LocationButton from './shared/LocationButton';
 import Loading from './shared/Loading';
 
 const styles = StyleSheet.create({
@@ -24,7 +25,7 @@ const MissionsTab = React.createClass({
         <View style = { styles.mapContainer }>
           <Map />
         </View>
-        <Loading />
+        <LocationButton onPress={console.log()}/>
       </View>
     );
   },

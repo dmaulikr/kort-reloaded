@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 44,
     alignSelf: 'stretch',
+    backgroundColor: '#32cd32',
     justifyContent: 'center',
     overflow: 'hidden',
   },
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
 });
 
 
-const CustomButton = React.createClass({
+const TaskButton = React.createClass({
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
@@ -56,4 +57,4 @@ const CustomButton = React.createClass({
   },
 });
 
-module.exports = CustomButton;
+module.exports = TaskButton;

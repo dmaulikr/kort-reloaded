@@ -4,7 +4,7 @@ import {
   View,
   Text,
   Image } from 'react-native';
-import CustomButton from '../shared/CustomButton';
+import TaskButton from '../shared/TaskButton';
 import TaskRewardBadge from './TaskRewardBadge';
 import { Actions } from 'react-native-router-flux';
 
@@ -58,12 +58,12 @@ const CompletedMissionModal = (props) => { // eslint-disable-line arrow-body-sty
             wonBadge
             badge = "badge1"
           />
-          <CustomButton
+          <TaskButton
             onPress = { Actions.pop }
             style = { styles.modalButton }
           >
             Ok
-          </CustomButton>
+          </TaskButton>
         </View>
       </View>
     </View>
