@@ -23,15 +23,19 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     padding: 20,
   },
+  scrollView: {
+    flex: 1,
+  },
   containerLogin: {
     flex: 1,
-    justifyContent: 'center',
+    alignItems: 'stretch',
   },
   containerLogo: {
     alignItems: 'flex-start',
   },
   containerLoginText: {
     flex: 1,
+    marginTop: 80,
     justifyContent: 'center',
     alignItems: 'stretch',
   },
@@ -43,7 +47,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   containerLoginButtons: {
-    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 45,
   },
   kortlogo: {
     alignSelf: 'center',
@@ -115,33 +120,39 @@ export default class Login extends React.Component {
     const _scrollView = ScrollView;
     return (
       <View style={styles.container}>
-        <View style={styles.containerLogin}>
-          <View style={styles.containerLogo}>
-            <Image style={styles.kortlogo}
-              source={require('../assets/img/kort-logo.png')}
-            />
-          </View>
-          <View style={styles.containerLoginText}>
-            <View style={styles.containerLoginDescription}>
-              <Text style={styles.textIntroduction}> • Complete Missions</Text>
-              <Text style={styles.textIntroduction}> • Collect Koins</Text>
-              <Text style={styles.textIntroduction}> • Improve OpenStreetMap</Text>
+        <ScrollView
+          automaticallyAdjustContentInsets = { false }
+          scrollEventThrottle = { 200 }
+          style = { styles.scrollView }
+        >
+          <View style={styles.containerLogin}>
+            <View style={styles.containerLogo}>
+              <Image style={styles.kortlogo}
+                source={require('../assets/img/kort-logo.png')}
+              />
+            </View>
+            <View style={styles.containerLoginText}>
+              <View style={styles.containerLoginDescription}>
+                <Text style={styles.textIntroduction}> • Complete Missions</Text>
+                <Text style={styles.textIntroduction}> • Collect Koins</Text>
+                <Text style={styles.textIntroduction}> • Improve OpenStreetMap</Text>
+              </View>
             </View>
           </View>
-          <View style={styles.containerLoginButtons}>
-            <Text style={styles.textTitle}>
-              Login now to begin your mission!
-            </Text>
-            <Text style={styles.textSubTitle}>
-              Other providers will be added.
-            </Text>
-            <GoogleSigninButton
-              style={{ alignSelf: 'center', width: 120, height: 44, marginTop: 7 }}
-              color={GoogleSigninButton.Color.Light}
-              size={GoogleSigninButton.Size.Icon}
-              onPress={() => { this.signInGoogle(); }}
-            />
-          </View>
+        </ScrollView>
+        <View style={styles.containerLoginButtons}>
+          <Text style={styles.textTitle}>
+            Login now to begin your mission!
+          </Text>
+          <Text style={styles.textSubTitle}>
+            Other providers will be added.
+          </Text>
+          <GoogleSigninButton
+            style={{ alignSelf: 'center', width: 120, height: 44, marginTop: 7 }}
+            color={GoogleSigninButton.Color.Light}
+            size={GoogleSigninButton.Size.Icon}
+            onPress={() => { this.signInGoogle(); }}
+          />
         </View>
       </View>
     );

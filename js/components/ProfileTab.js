@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    padding: 10,
+    paddingLeft: 10,
+    paddingBottom: 10,
   },
   containerKoins: {
     flexDirection: 'column',
@@ -154,8 +155,8 @@ const ProfileTab = React.createClass({
           <View style = { styles.containerInfo }>
             <View style = { styles.containerProfile }>
               <Image
-                style = { { height: 64, width: 64, padding: 64 } }
-                source = { require('../assets/img/koin_no_value.png') }
+                style = { { height: 64, width: 64, padding: 64, marginTop: 10 } }
+                source = { require('../assets/img/photo.png') }
               />
               <View style = { styles.containerProfileDescription }>
                 <Text style = { styles.textSubTitle }>Username</Text>
