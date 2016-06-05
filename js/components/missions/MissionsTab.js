@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Map from './Map';
-import Loading from './shared/Loading';
-import LocationButton from './shared/LocationButton';
+import Loading from '../shared/Loading';
+import LocationButton from '../shared/LocationButton';
 
 const styles = StyleSheet.create({
   container: {

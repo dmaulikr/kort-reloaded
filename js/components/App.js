@@ -26,10 +26,10 @@ const scenes = Actions.create(
       <Scene key="appLoader" component={AppLoader} title="Loading Data" hideNavBar panHandlers={null} />
       <Scene key="login" component={Login} title="Login" hideNavBar panHandlers={null} direction="vertical" />
       <Scene key="tabBar" tabs panHandlers={null} type="replace">
-        <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={TabIcon} />
-        <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={TabIcon} />
-        <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={TabIcon} />
-        <Scene key="about" component={AboutTab} title="About" hideNavBar icon={TabIcon} />
+        <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={MissionsTabIcon} />
+        <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={ProfileTabIcon} />
+        <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={HighscoreTabIcon} />
+        <Scene key="about" component={AboutTab} title="About" hideNavBar icon={AboutTabIcon} />
       </Scene>
       <Scene key="solveTask" panHandlers={null} component={SolveTaskModal} direction="vertical" />
       <Scene key="taskReward" panHandlers={null} component={TaskRewardModal} direction="vertical" />

@@ -2,9 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import CustomButton from '../../shared/CustomButton';
 import SolveTaskInput from './SolveTaskInput';
-import TaskButton from '../../shared/TaskButton';
+import TaskButton from '../shared/TaskButton';
 
 const styles = StyleSheet.create({
   container: {
