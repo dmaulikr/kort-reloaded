@@ -23,7 +23,7 @@ const scenes = Actions.create(
   <Scene key="modal" component={Modal} >
     <Scene key="root" hideNavBar>
       <Scene key="startup" component={StartUp} hideNavBar />
-      <Scene key="tabbar" initial panHandlers={null} tabs type="replace" tabBarStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Scene key="tabbar" initial panHandlers={null} tabs type="replace" tabBarStyle={{ flex: 1, alignItems: 'flex-start' }}>
         <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={MissionsTabIcon} />
         <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={ProfileTabIcon} />
         <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={HighscoreTabIcon} />
