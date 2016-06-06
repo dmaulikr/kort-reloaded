@@ -25,11 +25,11 @@ const scenes = Actions.create(
       <Scene key="startup" component={StartUp} hideNavBar />
       <Scene key="tabbar" initial panHandlers={null} tabs type="replace" tabBarStyle={{ flex: 1, alignItems: 'flex-start' }}>
         <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={MissionsTabIcon} />
-        <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={ProfileTabIcon} sceneStyle={{backgroundColor:'#e0ffff'}} />
-        <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={HighscoreTabIcon} sceneStyle={{backgroundColor:'#e0ffff'}} />
-        <Scene key="about" component={AboutTab} title="About" hideNavBar icon={AboutTabIcon} sceneStyle={{backgroundColor:'#e0ffff'}} />
+        <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={ProfileTabIcon} sceneStyle={{ backgroundColor:'#e0ffff' }} />
+        <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={HighscoreTabIcon} sceneStyle={{ backgroundColor:'#e0ffff' }} />
+        <Scene key="about" component={AboutTab} title="About" hideNavBar icon={AboutTabIcon} sceneStyle={{ backgroundColor:'#e0ffff' }} />
       </Scene>
-      <Scene key="login" component={Login} title="Login" direction="vertical" sceneStyle={{backgroundColor:'#87ceeb'}} />
+      <Scene key="login" component={Login} title="Login" direction="vertical" sceneStyle={{ backgroundColor:'#87ceeb' }} />
       <Scene key="solveTask" panHandlers={null} component={SolveTaskModal} direction="vertical" />
       <Scene key="taskReward" panHandlers={null} component={TaskRewardModal} direction="vertical" />
       <Scene key="profileModal" hideNavBar={false} panHandlers={null} component={ProfileModal} direction="vertical" />

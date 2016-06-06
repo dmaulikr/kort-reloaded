@@ -168,7 +168,12 @@ const ProfileTab = React.createClass({
               <View style={styles.containerProfileDescription}>
                 <Text style={styles.textSubTitle}>Username</Text>
                 <Text style={styles.textSubTitle}>{this.state.userName} I</Text>
-                <Text style={{ color: '#4169e1' }} onPress={console.log('Edit username clicked.')}>Edit username</Text>
+                <Text
+                  style={{ color: '#4169e1' }}
+                  onPress={console.log('Edit username clicked.')}
+                >
+                  Edit username
+                </Text>
                 <Text style={styles.textSubTitle}>Login via</Text>
                 <Text style={styles.textSubTitle}>{this.state.authProvider} I</Text>
                 <Text style={styles.textSubTitle}>Completed Missions</Text>
