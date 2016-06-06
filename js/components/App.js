@@ -1,10 +1,9 @@
+/* eslint-disable max-len */
+
 import React from 'react';
 import { BackAndroid } from 'react-native';
-import { Actions,
-  Modal,
-  Scene,
-  Router,
-  Reducer } from 'react-native-router-flux';
+import { Actions, Modal, Scene, Router, Reducer } from 'react-native-router-flux';
+
 import Login from './Login';
 import MissionsTab from './MissionsTab';
 import ProfileTab from './ProfileTab';
@@ -17,13 +16,14 @@ import AboutTabIcon from './shared/AboutTabIcon';
 import SolveTaskModal from './missions/SolveTaskModal';
 import TaskRewardModal from './missions/TaskRewardModal';
 import ProfileModal from './highscore/ProfileModal';
-import StartUp from './StartUp';
+import AppLoader from './AppLoader';
 
 const scenes = Actions.create(
-  <Scene key="modal" component={Modal} >
+  <Scene key="modal" component={Modal}>
     <Scene key="root" hideNavBar>
-      <Scene key="startup" component={StartUp} hideNavBar />
-      <Scene key="tabbar" initial panHandlers={null} tabs type="replace" tabBarStyle={{ flex: 1, alignItems: 'flex-start' }}>
+      <Scene key="appLoader" component={AppLoader} title="Loading Data" hideNavBar panHandlers={null} />
+      <Scene key="login" component={Login} title="Login" hideNavBar panHandlers={null} direction="vertical" />
+      <Scene key="tabBar" panHandlers={null} tabs type="replace" tabBarStyle={{ flex: 1, alignItems: 'flex-start' }}>
         <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={MissionsTabIcon} />
         <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={ProfileTabIcon} sceneStyle={{ backgroundColor:'#e0ffff' }} />
         <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={HighscoreTabIcon} sceneStyle={{ backgroundColor:'#e0ffff' }} />
@@ -46,8 +46,6 @@ const reducerCreate = params => {
 };
 
 const App = React.createClass({
-  getInitialState() { return { }; },
-
   componentWillMount() {
     BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
   },

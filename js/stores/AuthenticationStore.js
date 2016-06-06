@@ -12,31 +12,28 @@ import Store from './Store';
 const userIdStorageKey = Config.STORAGE_KEY_USER_ID;
 const secretStorageKey = Config.STORAGE_KEY_SECRET;
 
-class LoginStore extends Store {
+class AuthenticationStore extends Store {
   constructor() {
     super();
     this._userCredential =
       new UserCredential('4156', '680ebf81e9b139e894769b42cd57e077e35859c5'); // = null;
     this._loggedIn = false;
-    this._loadingFromLocalStorage = true;
-
-    // this._loadUserCredential();
   }
 
   async _loadUserCredential() {
-    this._loadingFromLocalStorage = true;
     try {
       const userId = await AsyncStorage.getItem(userIdStorageKey);
       const secret = await AsyncStorage.getItem(secretStorageKey);
+      console.log(userId);
       if (userId != null && secret != null) {
         const userCredential = new UserCredential(userId, secret);
         this._logInUser(userCredential);
+      } else {
+        super.emitChange();
       }
     } catch (error) {
       console.log(error);
     }
-    this._loadingFromLocalStorage = false;
-    super.emitChange();
   }
 
   async _saveUserCredential(userCredential) {
@@ -83,20 +80,23 @@ class LoginStore extends Store {
   }
 }
 
-const loginStore = new LoginStore();
+const authenticationStore = new AuthenticationStore();
 
-loginStore.dispatchToken = AppDispatcher.register((action) => {
+authenticationStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
-    case ActionTypes.LOGIN_VERIFY:
-      loginStore._saveUserCredential(action.data);
-      loginStore._logInUser(action.data);
+    case ActionTypes.AUTHENTICATION_LOGOUT:
+      authenticationStore._logOutUser();
       break;
-    case ActionTypes.LOGIN_LOGOUT:
-      loginStore._logOutUser();
+    case ActionTypes.AUTHENTICATION_LOAD_CREDENTIAL:
+      authenticationStore._loadUserCredential();
+      break;
+    case ActionTypes.AUTHENTICATION_VERIFY:
+      authenticationStore._saveUserCredential(action.data);
+      authenticationStore._logInUser(action.data);
       break;
     default:
       return;
   }
 });
 
-export default loginStore;
+export default authenticationStore;

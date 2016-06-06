@@ -1,14 +1,10 @@
 import React from 'react';
-import { View,
-  Text,
-  Image,
-  StyleSheet,
-  ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+
 import userStore from '../stores/UserStore';
-import LoginActions from '../actions/LoginActions';
-import loginStore from '../stores/LoginStore';
-import LogoutButton from './shared/LogoutButton';
+import AuthenticationActions from '../actions/AuthenticationActions';
+import authenticationStore from '../stores/AuthenticationStore';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -120,7 +116,7 @@ const ProfileTab = React.createClass({
   },
 
   componentDidMount() {
-    loginStore.addChangeListener(this.onLogout);
+    authenticationStore.addChangeListener(this.onLogout);
 
     userStore.addChangeListener(this._onUserUpdate);
   },
@@ -151,7 +147,7 @@ const ProfileTab = React.createClass({
   },
 
   render() {
-    const userId = loginStore.getUserCredential().userId;
+    const userId = authenticationStore.getUserCredential().userId;
     return (
       <ScrollView
         automaticallyAdjustContentInsets={false}
@@ -301,7 +297,7 @@ const ProfileTab = React.createClass({
                 </Text>
               </View>
               <View style = { styles.containerBadgeGridLogout }>
-                <LogoutButton onPress={() => LoginActions.logOutUser(userId)}>
+                <LogoutButton onPress={() => AuthenticationActions.logOutUser(userId)}>
                   Log out
                 </LogoutButton>
               </View>

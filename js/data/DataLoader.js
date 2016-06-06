@@ -1,7 +1,7 @@
 import { Actions } from 'react-native-router-flux';
 
 import Config from '../constants/Config';
-import loginStore from '../stores/LoginStore';
+import authenticationStore from '../stores/AuthenticationStore';
 
 const Buffer = require('buffer').Buffer;
 
@@ -27,13 +27,13 @@ export default class DataLoader {
   }
 
   static _createAuthorizationHash() {
-    const userLoggedIn = loginStore.isLoggedIn();
+    const userLoggedIn = authenticationStore.isLoggedIn();
     if (!userLoggedIn) {
       // Actions.login();
       return null;
     }
 
-    const authenticatedUser = loginStore.getUserCredential();
+    const authenticatedUser = authenticationStore.getUserCredential();
     const userId = authenticatedUser.userId;
     const secret = authenticatedUser.secret;
     const hash = new Buffer(`${userId}:${secret}`).toString('base64');
