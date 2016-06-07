@@ -49,15 +49,16 @@ export default React.createClass({
   },
 
   onOpenAnnotation(annotation) {
-    if (require('react-native').Platform.OS === 'android') {
-      let annotationTask;
+    let annotationTask;
 
-      //Logik in store einbauen
-      for (const task of taskStore.getAll()) {
-        if (annotation.src.subtitle === task.id) {
-          annotationTask = task;
-        }
+    //Logik in store einbauen
+    for (const task of taskStore.getAll()) {
+      if (annotation.src.subtitle === task.id) {
+        annotationTask = task;
       }
+    }
+
+    if (require('react-native').Platform.OS === 'android') {
 
       Actions.solveTask({ title: annotation.src.title, task: annotationTask });
     } else {
