@@ -70,6 +70,14 @@ class AuthenticationStore extends Store {
     return this._userCredential;
   }
 
+  getUserId() {
+    return this._userCredential.userId;
+  }
+
+  getSecret() {
+    return this._userCredential.secret;
+  }
+
   isLoggedIn() {
     return this._loggedIn;
   }
