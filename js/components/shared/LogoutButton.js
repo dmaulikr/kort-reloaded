@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableHighlight, Image } from 'react-native';
+import { StyleSheet, TouchableHighlight, Text } from 'react-native';
 
 const styles = StyleSheet.create({
   button: {
@@ -7,23 +7,23 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 44,
     alignSelf: 'stretch',
+    backgroundColor: '#ff0000',
     justifyContent: 'center',
-    position: 'absolute',
-    bottom: 15 + 45,
-    left: 15,
     overflow: 'hidden',
   },
-  icon: {
-    width: 35,
-    height: 35,
+  buttonText: {
+    fontSize: 18,
+    margin: 5,
+    textAlign: 'center',
   },
 });
 
 
-const LocationButton = React.createClass({
+const LogoutButton = React.createClass({
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
+    children: React.PropTypes.any.isRequired,
   },
 
   getInitialState() {
@@ -41,7 +41,7 @@ const LocationButton = React.createClass({
   },
 
   render() {
-    const colorStyle = { color: this.state.active ? '#fff' : '#000' };
+    const colorStyle = { color: this.state.active ? '#fff' : '#fffaf0' };
 
     return (
       <TouchableHighlight
@@ -49,14 +49,12 @@ const LocationButton = React.createClass({
         onPress = {this.props.onPress}
         onShowUnderlay = {this._onHighlight}
         style = {[styles.button, this.props.style]}
-        underlayColor="#008000"
+        underlayColor="#8b0000"
       >
-        <Image style = { styles.icon }
-          source = { require('../../assets/location/ic_my_location.png') }
-        />
+          <Text style = { [styles.buttonText, colorStyle] }>{this.props.children}</Text>
       </TouchableHighlight>
     );
   },
 });
 
-module.exports = LocationButton;
+module.exports = LogoutButton;

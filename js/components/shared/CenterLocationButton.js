@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableHighlight, Text } from 'react-native';
+import { StyleSheet, TouchableHighlight, Image } from 'react-native';
 
 const styles = StyleSheet.create({
   button: {
@@ -7,23 +7,23 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 44,
     alignSelf: 'stretch',
-    backgroundColor: '#32cd32',
     justifyContent: 'center',
+    position: 'absolute',
+    top: 15 + 45,
+    right: 16,
     overflow: 'hidden',
   },
-  buttonText: {
-    fontSize: 18,
-    margin: 5,
-    textAlign: 'center',
+  icon: {
+    width: 35,
+    height: 35,
   },
 });
 
 
-const TaskButton = React.createClass({
+const CenterLocationButton = React.createClass({
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
-    children: React.PropTypes.any.isRequired,
   },
 
   getInitialState() {
@@ -41,20 +41,22 @@ const TaskButton = React.createClass({
   },
 
   render() {
-    const colorStyle = { color: this.state.active ? '#fff' : '#fffaf0' };
+    const colorStyle = { color: this.state.active ? '#fff' : '#000' };
 
     return (
       <TouchableHighlight
-        onHideUnderlay={this._onUnhighlight}
-        onPress={this.props.onPress}
-        onShowUnderlay={this._onHighlight}
-        style={[styles.button, this.props.style]}
+        onHideUnderlay = {this._onUnhighlight}
+        onPress = {this.props.onPress}
+        onShowUnderlay = {this._onHighlight}
+        style = {[styles.button, this.props.style]}
         underlayColor="#008000"
       >
-        <Text style={[styles.buttonText, colorStyle]}>{this.props.children}</Text>
+        <Image style = { styles.icon }
+          source = { require('../../assets/location/ic_my_location.png') }
+        />
       </TouchableHighlight>
     );
   },
 });
 
-module.exports = TaskButton;
+module.exports = CenterLocationButton;

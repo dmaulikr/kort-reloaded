@@ -8,10 +8,20 @@ export default class UserBadge {
     this.sorting = sorting;
     this.won = won;
     this.createDate = createDate;
-    this.pictureFile = this._getPictureFile(name);
+    this.pictureFile = this._setPictureFile();
   }
 
-  _getPictureFile(badgeName) {
-    return null;
+  _setPictureFile() {
+    if (!this.won) {
+      this.pictureFile = require('../assets/img/locked.png');
+      return;
+    }
+    switch (this.name) {
+      case 'highscore_place_1':
+        this.pictureFile = require('../assets/img/highscore_place_1.png');
+        break;
+      default:
+        break;
+    }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Map from './Map';
-import LocationButton from '../shared/LocationButton';
+import CenterLocationButton from '../shared/CenterLocationButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,7 +19,7 @@ const MissionsTab = () => (
     <View style={styles.mapContainer}>
       <Map />
     </View>
-    <LocationButton onPress={console.log()} />
+    <CenterLocationButton onPress={console.log()} />
   </View>
 );
 
