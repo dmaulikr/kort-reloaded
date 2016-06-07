@@ -92,15 +92,15 @@ export default class DataLoader {
   }
 
   static _makePutOrPostRequest(requestUrl, jsonBody, onSuccess, onError, requestMethod) {
-    if (requestMethod !== 'PUT' || requestMethod !== 'POST') {
+    if (requestMethod !== 'PUT' && requestMethod !== 'POST') {
       throw new Error('Request method needs to be of type \'PUT\' or \'POST\'.');
     }
 
     const headers = this._createHeaders(requestMethod);
-
+    console.log('POST MISSION', 'requestUrl', requestUrl);
     fetch(requestUrl, {
       headers,
-      requestMethod,
+      method: requestMethod,
       body: jsonBody,
     })
       .then((response) => response.json())
