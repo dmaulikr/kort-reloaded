@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Item, Text, Switch, Picker } from 'react-native';
+import { StyleSheet, View, TextInput, Text, Switch, Picker } from 'react-native';
 
 import Config from '../../constants/Config';
 
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 
 const select = Config.SELECT;
 const text = Config.TEXT;
+const Item = Picker.Item;
 
 const SolveTaskInput = React.createClass({
   propTypes: {
@@ -35,7 +36,7 @@ const SolveTaskInput = React.createClass({
     return {
       unableToSolve: false,
       selectableAnswers: null,
-      answerValue: 'penis',
+      answerValue: null,
     };
   },
 
@@ -67,7 +68,7 @@ const SolveTaskInput = React.createClass({
 
     if (this.state.selectableAnswers !== null) {
       for (const answer of this.state.selectableAnswers) {
-        answerItems.push(<Item label={answer.title} value={answer.value} />);
+        answerItems.push(<Item key={answer.id} label={answer.title} value={answer.value} />);
       }
     }
 
