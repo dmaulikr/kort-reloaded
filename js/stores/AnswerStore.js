@@ -10,6 +10,7 @@ class AnswerStore extends Store {
 
   _setAllAnswers(answers) {
     this._answers = answers;
+    super.emitChange();
   }
 
   _setAnswersForType(taskType, answers) {

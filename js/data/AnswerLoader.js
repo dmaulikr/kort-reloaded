@@ -23,7 +23,9 @@ export default class AnswerLoader extends DataLoader {
         taskType,
         (answersForType) => {
           answers.set(taskType, answersForType);
-          if (answers.length === taskTypes.length) onSuccess(answers);
+          if (answers.size === taskTypes.length) {
+            onSuccess(answers);
+          }
         },
         onError
       );

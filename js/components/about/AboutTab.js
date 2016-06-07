@@ -50,7 +50,6 @@ const AboutTab = React.createClass({
         style={styles.scrollView}
       >
         <View style={styles.container}>
-          <Text style={styles.textTitle}>{ this.props.title}</Text>
           <View style={styles.containerAbout}>
             <Image style={styles.kortlogo} source={require('../../assets/img/kort-logo.png')} />
             <Text style={styles.textTitle}>Version</Text>
@@ -68,7 +67,7 @@ const AboutTab = React.createClass({
             <Text style={styles.textSubTitle}>Bachelorarbeit FS2016</Text>
             <Text style={styles.textSubTitle}>HSR Hochschule für Technik Rapperswil</Text>
             <Text style={styles.textSubTitle}>Lead: Prof. Stefan Keller</Text>
-            <Image style={styles.hsrlogo} source={require('../../assets/img/hsr_logo.png')}/>
+            <Image style={styles.hsrlogo} source={require('../../assets/img/hsr_logo.png')} />
             <Text style={styles.textTitle}>Credits</Text>
             <Text style={styles.textSubTitle}>Partner: Liip AG</Text>
             <Text style={styles.textSubTitle}>Tiles: ...</Text>

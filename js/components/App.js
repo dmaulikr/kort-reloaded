@@ -10,15 +10,11 @@ import ProfileTab from './profile/ProfileTab';
 import HighscoreTab from './highscore/HighscoreTab';
 import AboutTab from './about/AboutTab';
 
-import MissionsTabIcon from './shared/MissionsTabIcon';
-import ProfileTabIcon from './shared/ProfileTabIcon';
-import HighscoreTabIcon from './shared/HighscoreTabIcon';
-import AboutTabIcon from './shared/AboutTabIcon';
 import SolveTaskModal from './missions/SolveTaskModal';
 import TaskRewardModal from './missions/TaskRewardModal';
 import ProfileModal from './highscore/ProfileModal';
 import AppLoader from './AppLoader';
-
+import { MissionsTabIcon, ProfileTabIcon, HighscoreTabIcon, AboutTabIcon } from './shared/TabIcon';
 
 const scenes = Actions.create(
   <Scene key="modal" component={Modal}>

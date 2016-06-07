@@ -22,12 +22,10 @@ const styles = StyleSheet.create({
 });
 
 
-const Loading = function () {
-  return (
-    <View style={styles.overlayContainer}>
-      <ProgressBarAndroid styleAttr="Large" style={styles.spinner} />
-    </View>
-  );
-};
+const Loading = () => (
+  <View style={styles.overlayContainer}>
+    <ProgressBarAndroid styleAttr="Large" style={styles.spinner} />
+  </View>
+);
 
 module.exports = Loading;

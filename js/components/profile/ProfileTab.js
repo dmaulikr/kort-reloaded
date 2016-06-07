@@ -152,8 +152,8 @@ const ProfileTab = React.createClass({
           <View style={styles.containerInfo}>
             <View style={styles.containerProfile}>
               <Image
-                style={{width: 64, height: 64, padding: 64}}
-                source={{uri: this.state.picUrl}}
+                style={{ width: 64, height: 64, padding: 64 }}
+                source={{ uri: this.state.picUrl }}
               />
               <View style={styles.containerProfileDescription}>
                 <Text style={styles.textSubTitle}>Username</Text>

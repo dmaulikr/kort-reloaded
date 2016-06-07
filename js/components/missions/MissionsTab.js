@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Map from './Map';
-import Loading from '../shared/Loading';
 import LocationButton from '../shared/LocationButton';
 
 const styles = StyleSheet.create({
@@ -15,20 +14,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const MissionsTab = React.createClass({
-  getInitialState() { return { }; },
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.mapContainer}>
-          <Map />
-        </View>
-        <LocationButton onPress={console.log()} />
-      </View>
-    );
-  },
-});
+const MissionsTab = () => (
+  <View style={styles.container}>
+    <View style={styles.mapContainer}>
+      <Map />
+    </View>
+    <LocationButton onPress={console.log()} />
+  </View>
+);
 
 MissionsTab.contextTypes = {
   drawer: React.PropTypes.object,

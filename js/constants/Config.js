@@ -10,7 +10,7 @@ export default {
   GOOGLE_WEB_CLIENT_ID: SecretConfig.GOOGLE_WEB_CLIENT_ID,
 
   // Highscore
-  HIGHSCORE_LIMIT: 100000,
+  HIGHSCORE_LIMIT: 7435885969,
 
   // Kort API
   SERVER: 'https://kort-dev.herokuapp.com',

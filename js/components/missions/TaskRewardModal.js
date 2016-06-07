@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 const CompletedMissionModal = ({ rewardKoins, userKoins }) => (
   <View>
     <View style={styles.container}>
-      <View style={[styles.innerContainer, {backgroundColor: '#fff', padding: 20}]}>
+      <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
         <Text>Mission completed. You increased your reputation!</Text>
         <View style={styles.innerContainerMissionComplete}>
           <Image style={styles.icon} source={require('../../assets/img/koin_no_value.png')} />
@@ -48,7 +48,7 @@ const CompletedMissionModal = ({ rewardKoins, userKoins }) => (
           </Text>
           </View>
           <TaskRewardBadge wonBadge badge = "badge1" />
-          <CustomButton onPress={Actions.pop} style={styles.modalButton}>OK</CustomButton>
+          <TaskButton onPress={Actions.pop} style={styles.modalButton}>OK</TaskButton>
       </View>
     </View>
   </View>
