@@ -35,7 +35,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const CompletedMissionModal = ({ rewardKoins, userKoins }) => (
+/*const TaskRewardModal = React.createClass({
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>bla</Text>
+      </View>
+    );
+  }
+});*/
+
+//needs to take badges instead of badge
+const TaskRewardModal = ({ badges, receivedKoins, newKoinsTotal }) => (
   <View>
     <View style={styles.container}>
       <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
@@ -43,8 +54,8 @@ const CompletedMissionModal = ({ rewardKoins, userKoins }) => (
         <View style={styles.innerContainerMissionComplete}>
           <Image style={styles.icon} source={require('../../assets/img/koin_no_value.png')} />
           <Text style={styles.textMission}>
-            Bravo! You have won {rewardKoins} Koins!
-            You now have a total amount of {userKoins} Koins.
+            Bravo! You have won {receivedKoins} Koins!
+            You now have a total amount of {newKoinsTotal} Koins.
           </Text>
           </View>
           <TaskRewardBadge wonBadge badge = "badge1" />
@@ -54,9 +65,10 @@ const CompletedMissionModal = ({ rewardKoins, userKoins }) => (
   </View>
 );
 
-CompletedMissionModal.propTypes = {
-  rewardKoins: React.PropTypes.any.isRequired,
-  userKoins: React.PropTypes.any.isRequired,
+TaskRewardModal.propTypes = {
+  badges: React.PropTypes.any.isRequired,
+  receivedKoins: React.PropTypes.any.isRequired,
+  newKoinsTotal: React.PropTypes.any.isRequired,
 };
 
-module.exports = CompletedMissionModal;
+module.exports = TaskRewardModal;
