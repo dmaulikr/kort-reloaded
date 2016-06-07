@@ -22,7 +22,7 @@ export default {
   HIGHSCORE_ABSOLUTE_PATH: '/highscore/absolute',
   HIGHSCORE_RELATIVE_PATH: '/highscore/relative',
   MISSION_PATH: '/mission',
-  MISSION_PUTPATH: '/mission/fix',
+  MISSION_POST_PATH: '/mission/fix',
   MISSIONS_GET_PATH: '/mission/position',
   VALIDATION_PATH: '/validation',
   VALIDATION_POST_PATH: '/validation/vote',
