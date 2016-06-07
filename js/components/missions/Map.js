@@ -2,9 +2,12 @@ import React from 'react';
 import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { Actions } from 'react-native-router-flux';
-import TaskActions from '../../actions/TaskActions';
-import taskStore from '../../stores/TaskStore';
+
 import Config from '../../constants/Config';
+import TaskActions from '../../actions/TaskActions';
+
+import locationStore from '../../stores/LocationStore';
+import taskStore from '../../stores/TaskStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,69 +21,57 @@ const accessToken = Config.MAPBOX_ACCESS_TOKEN;
 const styleUrl = Config.STYLE_URL;
 const zoomLevel = Config.ZOOM_LEVEL;
 
-const Map = React.createClass({
+export default React.createClass({
   mixins: [Mapbox.Mixin],
 
   getInitialState() {
     return {
-      annotations: [],
+      annotations: null,
     };
   },
 
   componentDidMount() {
     DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
-    navigator.geolocation.getCurrentPosition(this.onPositionChange);
-    this.locationWatchId = navigator.geolocation.watchPosition(this.onPositionChange,
-      (error) => console.log(error),
-      { enableHighAccurracy: true, distanceFilter: 100 });
+    locationStore.addChangeListener(this.onLocationChange);
+    taskStore.addChangeListener(this.onTasksUpdate);
 
-    taskStore.addChangeListener(this._onTasksUpdate);
+    if (taskStore.getAll() !== null) this._udpateAnnotations();
   },
 
   componentWillUnmount() {
     DeviceEventEmitter.removeAllListeners();
-    navigator.geolocation.clearWatch(this.locationWatchId);
-
-    taskStore.removeChangeListener(this._onTasksUpdate);
+    locationStore.removeChangeListener(this.onTasksUpdate);
+    taskStore.removeChangeListener(this.onTasksUpdate);
   },
 
-  onPositionChange(position) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-
-    this.setCenterCoordinateZoomLevelAnimated(mapRef, latitude, longitude, zoomLevel);
-    TaskActions.loadTasks(latitude, longitude);
+  onLocationChange() {
+    TaskActions.loadTasks(locationStore.getLatitude(), locationStore.getLongitude());
   },
 
   onOpenAnnotation(annotation) {
-    console.log(annotation);
     if (require('react-native').Platform.OS === 'android') {
       let annotationTask;
 
-      for (let task of taskStore.getAll()) { // eslint-disable-line prefer-const
+      for (const task of taskStore.getAll()) {
         if (annotation.src.subtitle === task.id) {
           annotationTask = task;
         }
       }
 
-      Actions.missionModal(
-        { title: annotation.src.title, task: annotationTask }
-      );
+      Actions.solveTask({ title: annotation.src.title, task: annotationTask });
     } else {
-      Actions.missionModal(
-        { title: annotation.title, task: 'Custom data' }
-      );
+      Actions.solveTask({ title: annotation.title, task: 'Custom data' });
     }
   },
 
-  _onTasksUpdate() {
+  onTasksUpdate() {
     this._updateAnnotations();
   },
 
   _updateAnnotations() {
     const annotations = [];
 
-    for (let task of taskStore.getAll()) { // eslint-disable-line prefer-const
+    for (const task of taskStore.getAll()) {
       annotations.push({
         id: task.id,
         type: 'point',
@@ -96,22 +87,20 @@ const Map = React.createClass({
   render() {
     return (
       <Mapbox
-        annotations = { this.state.annotations }
-        style = { styles.container }
-        direction = { 0 }
+        centerCoordinate={locationStore.getPosition().coords}
+        annotations={this.state.annotations}
+        style={styles.container}
+        direction={0}
         rotateEnabled
         scrollEnabled
         zoomEnabled
+        zoomLevel={zoomLevel}
         showsUserLocation
-        ref = { mapRef }
-        accessToken = { accessToken }
-        styleURL = { styleUrl }
-        logoIsHidden={false}
-        attributionButtonIsHidden={false}
+        ref={mapRef}
+        accessToken={accessToken}
+        styleURL={styleUrl}
         onOpenAnnotation={this.onOpenAnnotation}
       />
     );
   },
 });
-
-module.exports = Map;

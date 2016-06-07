@@ -9,6 +9,9 @@ export default {
   GOOGLE_IOS_CLIENT_ID: SecretConfig.GOOGLE_IOS_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID: SecretConfig.GOOGLE_WEB_CLIENT_ID,
 
+  // Highscore
+  HIGHSCORE_LIMIT: 7435885969,
+
   // Kort API
   SERVER: 'https://kort-dev.herokuapp.com',
   PROD_SERVER: 'https://kort.herokuapp.com',
@@ -28,6 +31,9 @@ export default {
   STATISTICS_PATH: '/statistics',
   USER_PATH: '/user',
   USER_VERIFY_PATH: '/user/verify',
+
+  // Location
+  LOCATION_DISTANCE_FILTER: 100,
 
   // Mapbox
   MAP_REF: 'OpenStreetMap',

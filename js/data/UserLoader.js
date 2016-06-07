@@ -23,12 +23,6 @@ export default class UserLoader extends DataLoader {
     );
   }
 
-  static _initUserWithUpdateInfo(rawUserUpdateInfo) {
-    return new User(rawUserUpdateInfo.user_id, rawUserUpdateInfo.name, rawUserUpdateInfo.username,
-      rawUserUpdateInfo.oauth_user_id, rawUserUpdateInfo.secret
-    );
-  }
-
   static _initUserBadges(rawUserBadges) {
     const userBadges = [];
     rawUserBadges.return.forEach((rawBadge) => {
@@ -40,6 +34,12 @@ export default class UserLoader extends DataLoader {
     });
 
     return userBadges;
+  }
+
+  static _initUserWithUpdateInfo(rawUserUpdateInfo) {
+    return new User(rawUserUpdateInfo.user_id, rawUserUpdateInfo.name, rawUserUpdateInfo.username,
+      rawUserUpdateInfo.oauth_user_id, rawUserUpdateInfo.secret
+    );
   }
 
   static _initJsonUser(user) {

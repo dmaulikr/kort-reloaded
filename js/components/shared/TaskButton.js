@@ -45,13 +45,13 @@ const TaskButton = React.createClass({
 
     return (
       <TouchableHighlight
-        onHideUnderlay = {this._onUnhighlight}
-        onPress = {this.props.onPress}
-        onShowUnderlay = {this._onHighlight}
-        style = {[styles.button, this.props.style]}
+        onHideUnderlay={this._onUnhighlight}
+        onPress={this.props.onPress}
+        onShowUnderlay={this._onHighlight}
+        style={[styles.button, this.props.style]}
         underlayColor="#008000"
       >
-          <Text style = { [styles.buttonText, colorStyle] }>{this.props.children}</Text>
+        <Text style={[styles.buttonText, colorStyle]}>{this.props.children}</Text>
       </TouchableHighlight>
     );
   },

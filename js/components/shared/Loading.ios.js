@@ -1,6 +1,5 @@
 import React from 'react';
-import { ActivityIndicatorIOS,
-  StyleSheet } from 'react-native';
+import { ActivityIndicatorIOS, StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
   overlayContainer: {
@@ -24,17 +23,15 @@ const styles = StyleSheet.create({
 });
 
 
-const Loading = function () {
-  return (
-    <View style={styles.overlayContainer}>
-      <ActivityIndicatorIOS
-        animating
-        style={[styles.centering, styles.gray, { height: 80 }]}
-        color="white"
-        size="large"
-      />
-    </View>
-  );
-};
+const Loading = () => (
+  <View style={styles.overlayContainer}>
+    <ActivityIndicatorIOS
+      animating
+      style={[styles.centering, styles.gray, { height: 80 }]}
+      color="white"
+      size="large"
+    />
+  </View>
+);
 
 module.exports = Loading;

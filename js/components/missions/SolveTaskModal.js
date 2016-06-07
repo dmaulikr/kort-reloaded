@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import TaskButton from '../shared/TaskButton';
 import { Actions } from 'react-native-router-flux';
+
 import SolveTaskInput from './SolveTaskInput';
+import TaskButton from '../shared/TaskButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -85,9 +86,7 @@ const SolveTaskModal = React.createClass({
               style={styles.icon}
               source={require('../../assets/img/koin_no_value.png')}
             />
-            <Text style ={styles.textMission}>
-              Get the {this.props.task.fixKoinCount} Koins!
-            </Text>
+            <Text style ={styles.textMission}>Get the {this.props.task.fixKoinCount} Koins!</Text>
           </View>
           <View style={styles.containerMissionDescription}>
             <Image

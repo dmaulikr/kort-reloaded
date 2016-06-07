@@ -1,41 +1,20 @@
-import AnswerActions from '../actions/AnswerActions';
-
 import ActionTypes from '../constants/ActionTypes';
-import Config from '../constants/Config';
-
 import AppDispatcher from '../dispatcher/AppDispatcher';
-
 import Store from './Store';
-
-const taskTypes = [Config.TASK_TYPE_MOTORWAY_REF, Config.TASK_TYPE_RELIGION,
-  Config.TASK_TYPE_POI_NAME, Config.TASK_TYPE_MISSING_MAXSPEED, Config.TASK_TYPE_LANGUGAGE_UNKNOWN,
-  Config.TASK_TYPE_MISSING_TRACK_TYPE, Config.TASK_TYPE_WAY_WITHOUT_TAGS,
-  Config.TASK_TYPE_MISSING_CUISINE];
 
 class AnswerStore extends Store {
   constructor() {
     super();
-    this._answers = new Map();
-    this._allAnswers = null;
-    this._answersInitialized = false;
-  }
-
-  _setAnswersForType(answers, taskType) {
-    this._answers.set(taskType, answers);
-    super.emitChange();
-  }
-
-  _initializeAnswers() {
-    taskTypes.forEach((taskType) => {
-      AnswerActions.loadAnswersForType(taskType);
-    });
-    AnswerActions.loadAnswers();
-    this._answersInitialized = true;
-    super.emitChange();
+    this._answers = null;
   }
 
   _setAllAnswers(answers) {
-    this._allAnswers = answers;
+    this._answers = answers;
+    super.emitChange();
+  }
+
+  _setAnswersForType(taskType, answers) {
+    this._answers.set(taskType, answers);
     super.emitChange();
   }
 
@@ -44,7 +23,7 @@ class AnswerStore extends Store {
   }
 
   getAllAnswers() {
-    return this._allAnswers;
+    return this._answers;
   }
 }
 
@@ -56,7 +35,7 @@ answerStore.dispatchToken = AppDispatcher.register((action) => {
       answerStore._setAllAnswers(action.data);
       break;
     case ActionTypes.ANSWERS_LOAD_FOR_TYPE:
-      answerStore._setAnswersForType(action.data, action.taskType);
+      answerStore._setAnswersForType(action.taskType, action.data);
       break;
     default:
       return;

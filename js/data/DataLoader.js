@@ -1,5 +1,3 @@
-import { Actions } from 'react-native-router-flux';
-
 import Config from '../constants/Config';
 import authenticationStore from '../stores/AuthenticationStore';
 
@@ -29,7 +27,6 @@ export default class DataLoader {
   static _createAuthorizationHash() {
     const userLoggedIn = authenticationStore.isLoggedIn();
     if (!userLoggedIn) {
-      // Actions.login();
       return null;
     }
 
@@ -88,7 +85,7 @@ export default class DataLoader {
         if (onError != null) {
           onError(error);
         } else {
-          console.log(error);
+          console.log(`url: ${requestUrl}, error: ${error}`);
         }
       })
       .done();

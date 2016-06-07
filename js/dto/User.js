@@ -14,5 +14,6 @@ export default class User {
     this.secret = secret;
     this.picUrl = picUrl;
     this.loggedIn = loggedIn;
+    this.badges = null;
   }
 }

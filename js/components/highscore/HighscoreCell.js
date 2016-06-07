@@ -65,26 +65,17 @@ const CollectionCell = React.createClass({
       this.setState({ username: `${this.state.username} -  This is you!` });
     }
     return (
-      <TouchableHighlight onPress = { this.props.onSelectRow }>
+      <TouchableHighlight onPress={this.props.onSelectRow}>
         <View>
-          <View style = { styles.row }>
-            <View style = { styles.columnRank }>
-              <Text style = { styles.textRanking }>
-                { this.state.ranking }
-              </Text>
+          <View style={styles.row}>
+            <View style={styles.columnRank}>
+              <Text style={styles.textRanking}>{this.state.ranking}</Text>
             </View>
-            <View style = { styles.columnText }>
-              <Text style = { styles.text }>
-                { this.state.username }
-              </Text>
-              <View style = { styles.rowDescription }>
-                <Text style = { styles.text }>
-                  { `Koins: ${this.state.koin_count}` }
-                </Text>
-                <Text style = { styles.text }>
-                  { `Missions: ${this.state.fix_count}` }
-
-                </Text>
+            <View style={styles.columnText}>
+              <Text style={styles.text}>{this.state.username}</Text>
+              <View style={styles.rowDescription}>
+                <Text style={styles.text}>{`Koins: ${this.state.koin_count}`}</Text>
+                <Text style={styles.text}>{`Missions: ${this.state.fix_count}`}</Text>
               </View>
             </View>
           </View>
