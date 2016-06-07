@@ -115,7 +115,7 @@ const SolveTaskInput = React.createClass({
         <View style={styles.containerSolve}>
           <Text style={styles.text}>Unable to solve</Text>
           <Switch
-            onValueChange={(value) => this.setState({ unableToSolve: value, answer: '' })}
+            onValueChange={(value) => this.setState({ unableToSolve: value })}
             value={this.state.unableToSolve}
           />
         </View>
