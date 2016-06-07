@@ -52,6 +52,7 @@ export default React.createClass({
     if (require('react-native').Platform.OS === 'android') {
       let annotationTask;
 
+      //Logik in store einbauen
       for (const task of taskStore.getAll()) {
         if (annotation.src.subtitle === task.id) {
           annotationTask = task;
@@ -60,7 +61,7 @@ export default React.createClass({
 
       Actions.solveTask({ title: annotation.src.title, task: annotationTask });
     } else {
-      Actions.solveTask({ title: annotation.title, task: 'Custom data' });
+      Actions.solveTask({ title: annotation.title, task: annotationTask });
     }
   },
 
