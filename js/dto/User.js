@@ -1,6 +1,6 @@
 export default class User {
   constructor(id, name, userName, oauthUserId, oauthProvider, token, missionCount, validationCount,
-      koinCount, secret, picUrl, loggedIn) {
+      koinCount, ranking, secret, picUrl, loggedIn) {
     this.id = id;
     this.name = name;
     this.userName = userName;
@@ -11,6 +11,7 @@ export default class User {
     this.validationCount = validationCount;
     this.solveCount = parseInt(missionCount, 10) + parseInt(validationCount, 10);
     this.koinCount = koinCount;
+    this.ranking = ranking;
     this.secret = secret;
     this.picUrl = picUrl;
     this.loggedIn = loggedIn;

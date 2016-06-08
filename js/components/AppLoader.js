@@ -72,7 +72,7 @@ export default class AppLoader extends React.Component {
 
     AnswerActions.loadAllAnswers();
     HighscoreActions.loadRelativeHighscore(highscoreLimit, null);
-    UserActions.loadCurrentUser();
+    UserActions.loadOwnUser();
     StatisticsActions.loadStatistics();
   }
 

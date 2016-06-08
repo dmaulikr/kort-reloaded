@@ -2,31 +2,45 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 
+import authenticationStore from './AuthenticationStore';
+
 class UserStore extends Store {
   constructor() {
     super();
-    this._user = null;
+    this._users = null;
   }
 
   _setUser(user) {
-    this._user = user;
+    if (this._users === null) this._users = new Map();
+    this._users.set(user.id, user);
     super.emitChange();
   }
 
-  _updateUser(userWithUpdateInfo) {
-    if (userWithUpdateInfo.id !== this._user.id) return;
+  _updateOwnUser(userWithUpdateInfo) {
+    if (this._users === null) return;
 
-    const newUser = this._user;
-    newUser.name = userWithUpdateInfo.name;
-    newUser.userName = userWithUpdateInfo.userName;
-    newUser.oauthUserId = userWithUpdateInfo.oauthUserId;
-    newUser.secret = userWithUpdateInfo.secret;
+    const user = this._users.get(userWithUpdateInfo.id);
+    if (user == null) return;
 
-    this._setUser(newUser);
+    const updatedUser = user;
+    updatedUser.name = userWithUpdateInfo.name;
+    updatedUser.userName = userWithUpdateInfo.userName;
+    updatedUser.oauthUserId = userWithUpdateInfo.oauthUserId;
+    updatedUser.secret = userWithUpdateInfo.secret;
+
+    this._setUser(updatedUser);
   }
 
-  getUser() {
-    return this._user;
+  getUser(userId) {
+    if (this._users === null) return null;
+
+    return this._users.get(userId);
+  }
+
+  getOwnUser() {
+    if (this._users === null) return null;
+
+    return this._users.get(authenticationStore.getUserId());
   }
 }
 
@@ -38,7 +52,7 @@ userStore.dispatchToken = AppDispatcher.register((action) => {
       userStore._setUser(action.data);
       break;
     case ActionTypes.USER_UPDATE:
-      userStore._updateUser(action.data);
+      userStore._updateOwnUser(action.data);
       break;
     default:
       return;

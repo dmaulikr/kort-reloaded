@@ -16,10 +16,10 @@ export default class UserLoader extends DataLoader {
 
   static _initUser(rawUser) {
     const rawUserObject = rawUser.return;
-    return new User(rawUserObject.id, rawUserObject.name, rawUserObject.user_name,
+    return new User(rawUserObject.id, rawUserObject.name, rawUserObject.username,
       rawUserObject.oauth_user_id, rawUserObject.oauth_provider, rawUserObject.token,
       rawUserObject.fix_count, rawUserObject.vote_count, rawUserObject.koin_count,
-      rawUserObject.secret, rawUserObject.pic_url, rawUserObject.logged_in
+      rawUserObject.ranking, rawUserObject.secret, rawUserObject.pic_url, rawUserObject.logged_in
     );
   }
 

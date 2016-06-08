@@ -3,8 +3,8 @@ import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import AuthenticationActions from '../../actions/AuthenticationActions';
+import UserActions from '../../actions/UserActions';
 
-import authenticationStore from '../../stores/AuthenticationStore';
 import userStore from '../../stores/UserStore';
 
 const styles = StyleSheet.create({
@@ -78,12 +78,7 @@ const styles = StyleSheet.create({
 const ProfileTab = React.createClass({
   getInitialState() {
     return {
-      userName: '',
-      solveCount: 0,
-      koinCount: 0,
-      picUrl: '',
-      authProvider: '',
-      place: '',
+      user: null,
       userBadges: [{ title: 'title', description: 'description',
         won: false, pictureFile: '../../assets/img/locked.png' },
         { title: 'title', description: 'description', won:
@@ -110,38 +105,51 @@ const ProfileTab = React.createClass({
   },
 
   componentDidMount() {
-    authenticationStore.addChangeListener(this.onLogout);
-
     userStore.addChangeListener(this._onUserUpdate);
+
+    if (userStore.getOwnUser() == null) {
+      UserActions.loadOwnUser();
+    } else {
+      this._updateUser();
+    }
   },
 
   componentWillUnmount() {
     userStore.removeChangeListener(this._onUserUpdate);
   },
 
-  onLogout() {
+  _onLogout() {
     Actions.login();
   },
 
-  _onUserUpdate() {
-    const user = userStore.getUser();
-
-    this.setState({
-      userName: user.userName,
-      solveCount: user.solveCount,
-      koinCount: user.koinCount,
-      picUrl: user.picUrl,
-      authProvider: user.authProvider,
-    });
-
-    this._onUserBadgesUpdate();
+  _updateUser() {
+    const user = userStore.getOwnUser();
+    console.log('USER PROFILE', 'update user:', user);
+    this.setState({ user });
   },
 
-  _onUserBadgesUpdate() {
+  _onUserUpdate() {
+    this._updateUser();
   },
 
   render() {
-    const userId = authenticationStore.getUserCredential().userId;
+    let name, oauthProvider, solveCount, collectedKoins, ranking; // eslint-disable-line one-var
+    if (this.state.user === null) {
+      name = '';
+      oauthProvider = '';
+      solveCount = '';
+      collectedKoins = '';
+      ranking = '';
+    } else {
+      name = this.state.user.name;
+      oauthProvider = this.state.user.oauthProvider;
+      solveCount = this.state.user.solveCount;
+      collectedKoins = this.state.user.koinCount;
+      ranking = this.state.user.ranking;
+    }
+
+    console.log('USER PROFILE', `name: ${name}, oauthProvider: ${oauthProvider}`);
+
     return (
       <ScrollView
         automaticallyAdjustContentInsets={false}
@@ -157,12 +165,12 @@ const ProfileTab = React.createClass({
               />
               <View style={styles.containerProfileDescription}>
                 <Text style={styles.textSubTitle}>Username</Text>
-                <Text style={styles.textSubTitle}>{this.state.userName}</Text>
+                <Text style={styles.textSubTitle}>{name}</Text>
                 <Text style={styles.textSubTitle}>Login via</Text>
-                <Text style={styles.textSubTitle}>{this.state.authProvider}</Text>
-                <Text onPress={() => AuthenticationActions.logOutUser(userId)}>Log out</Text>
+                <Text style={styles.textSubTitle}>{oauthProvider}</Text>
+                <Text onPress={() => AuthenticationActions.logOutUser()}>Log out</Text>
                 <Text style={styles.textSubTitle}>Completed Missions</Text>
-                <Text style={styles.textSubTitle}>{this.state.solveCount}</Text>
+                <Text style={styles.textSubTitle}>{solveCount}</Text>
               </View>
             </View>
             <Text style={styles.textSubTitle}>Collected Koins</Text>
@@ -172,14 +180,14 @@ const ProfileTab = React.createClass({
                   style={styles.icon}
                   source={require('../../assets/img/koin_no_value.png')}
                 />
-                <Text style={styles.textSubTitle}>{this.state.koinCount} Koins</Text>
+                <Text style={styles.textSubTitle}>{collectedKoins} Koins</Text>
               </View>
               <View style={styles.containerKoinsDescription}>
                 <Image
                   style={styles.icon}
                   source={require('../../assets/img/highscore.png')}
                 />
-                <Text style={styles.textSubTitle}>{this.state.place}. Place</Text>
+                <Text style={styles.textSubTitle}>{ranking}. Place</Text>
               </View>
             </View>
           </View>
