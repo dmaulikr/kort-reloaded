@@ -32,7 +32,7 @@ const MissionsTab = React.createClass({
     Actions.taskReward({
       badges: taskReward.badges,
       receivedKoins: taskReward.receivedKoins,
-      newKoinsTotal: taskReward.newKoinsTotal
+      newKoinsTotal: taskReward.newKoinsTotal,
     });
   },
 

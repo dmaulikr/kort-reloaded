@@ -2,9 +2,6 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 
-import Mission from '../dto/Mission';
-import Validation from '../dto/Validation';
-
 class TaskStore extends Store {
   constructor() {
     super();

@@ -78,8 +78,6 @@ export default class MissionLoader extends DataLoader {
 
   static postMission(mission, message, isUnsolvable, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(missionPostRestPath, null, null);
-    const rawTaskReward = { badges: [{ name: 'fix_count_10' }], koin_count_new: '5', koin_count_total: '135' };
-    //onSuccess(MissionLoader._initTaskReward(rawTaskReward));
     super.makePostRequest(
       requestUrl,
       MissionLoader._initJsonMission(mission, message, isUnsolvable),

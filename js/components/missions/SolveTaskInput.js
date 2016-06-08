@@ -68,14 +68,14 @@ const SolveTaskInput = React.createClass({
 
     if (this.state.selectableAnswers !== null) {
       for (const answer of this.state.selectableAnswers) {
-        answerItems.push(<Item key={answer.id} label={answer.title} value={answer.value} />);
+        answerItems.push(<Item key={answer.id} label={answer.title} value={answer.value} />);
       }
     }
 
     return (
       <Picker
         style={styles.picker}
-        selectedValue={this.state.answerValue} //funktioniert dit?
+        selectedValue={this.state.answerValue}
         onValueChange={(answer) => this.setState({ answerValue: answer })}
       >
         {answerItems}

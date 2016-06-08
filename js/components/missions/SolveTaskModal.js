@@ -89,7 +89,7 @@ const SolveTaskModal = React.createClass({
   },
 
   solveValidation() {
-    const validation = this.props.task
+    const validation = this.props.task;
     const input = this.refs.input.state;
     const missionAnswer = validation.fixMessage;
     const userAnswer = input.answerValue;

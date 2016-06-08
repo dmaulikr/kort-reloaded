@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
   },
 });
 
-//needs to take badges instead of badge
 const TaskRewardModal = ({ badges, receivedKoins, newKoinsTotal }) => (
   <View>
     <View style={styles.container}>
