@@ -6,6 +6,8 @@ import TaskReward from '../dto/TaskReward';
 import UserBadge from '../dto/UserBadge';
 import Validation from '../dto/Validation';
 
+import authenticationStore from '../stores/AuthenticationStore';
+
 const validationsGetRestPath = Config.VALIDATIONS_GET_PATH;
 const validationPostRestPath = Config.VALIDATION_POST_PATH;
 
@@ -35,7 +37,7 @@ export default class ValidationLoader extends DataLoader {
     return JSON.stringify({
       id: validation.id,
       fix_id: validation.id,
-      user_id: validation.userId,
+      user_id: authenticationStore.getUserId(),
       valid,
     });
   }
@@ -43,11 +45,10 @@ export default class ValidationLoader extends DataLoader {
   static _initTaskReward(rawTaskReward) {
     const badges = [];
     rawTaskReward.badges.forEach((rawBadge) => {
-      badges.push(new UserBadge(null, rawBadge.name, null, null, null, null, null, null));
+      badges.push(new UserBadge(null, rawBadge.name, null, null, null, null, true, Date.now()));
     });
 
-    return new TaskReward(badges, rawTaskReward.koint_count_new,
-      rawTaskReward.koin_count_total);
+    return new TaskReward(badges, rawTaskReward.koin_count_new, rawTaskReward.koin_count_total);
   }
 
   static getValidations(latitude, longitude, onSuccess) {
@@ -64,8 +65,9 @@ export default class ValidationLoader extends DataLoader {
     );
   }
 
-  static solveValidation(validation, valid, onSuccess, onError) {
+  static postValidation(validation, valid, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(validationPostRestPath, null, null);
+    //console.log('POST VALIDATION', 'json: ', ValidationLoader._initJsonValidation(validation, valid));
     super.makePostRequest(
       requestUrl,
       ValidationLoader._initJsonValidation(validation, valid),

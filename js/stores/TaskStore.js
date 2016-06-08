@@ -2,6 +2,9 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Store from './Store';
 
+import Mission from '../dto/Mission';
+import Validation from '../dto/Validation';
+
 class TaskStore extends Store {
   constructor() {
     super();
@@ -15,6 +18,18 @@ class TaskStore extends Store {
 
   getAll() {
     return this._tasks;
+  }
+
+  get(id) {
+    if (this._tasks === null) return null;
+
+    for (const task of this._tasks) {
+      if (id === task.id) {
+        return task;
+      }
+    }
+
+    return null;
   }
 }
 

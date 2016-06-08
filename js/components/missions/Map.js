@@ -9,6 +9,11 @@ import TaskActions from '../../actions/TaskActions';
 import locationStore from '../../stores/LocationStore';
 import taskStore from '../../stores/TaskStore';
 
+
+
+import Mission from '../../dto/Mission';
+import Validation from '../../dto/Validation';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -49,21 +54,14 @@ export default React.createClass({
   },
 
   onOpenAnnotation(annotation) {
-    let annotationTask;
-
-    //Logik in store einbauen
-    for (const task of taskStore.getAll()) {
-      if (annotation.src.subtitle === task.id) {
-        annotationTask = task;
-      }
-    }
-
+    let taskId;
     if (require('react-native').Platform.OS === 'android') {
-
-      Actions.solveTask({ title: annotation.src.title, task: annotationTask });
+      taskId = annotation.src.subtitle;
     } else {
-      Actions.solveTask({ title: annotation.title, task: annotationTask });
+      taskId = annotation.subtitle;
     }
+    const annotationTask = taskStore.get(taskId);
+    Actions.solveTask({ task: annotationTask });
   },
 
   onTasksUpdate() {

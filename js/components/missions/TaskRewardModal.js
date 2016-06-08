@@ -35,16 +35,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/*const TaskRewardModal = React.createClass({
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>bla</Text>
-      </View>
-    );
-  }
-});*/
-
 //needs to take badges instead of badge
 const TaskRewardModal = ({ badges, receivedKoins, newKoinsTotal }) => (
   <View>

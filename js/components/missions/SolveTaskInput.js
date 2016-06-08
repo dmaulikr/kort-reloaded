@@ -36,7 +36,7 @@ const SolveTaskInput = React.createClass({
     return {
       unableToSolve: false,
       selectableAnswers: null,
-      answerValue: null,
+      answerValue: null, //make instance variable instead of state variable
     };
   },
 
@@ -88,7 +88,6 @@ const SolveTaskInput = React.createClass({
       <TextInput
         style={styles.textInput}
         autoCapitalize="words"
-        placeholder="Mission type"
         onChangeText={(answer) => this.setState({ answerValue: answer })}
         value={this.state.answerValue}
       />

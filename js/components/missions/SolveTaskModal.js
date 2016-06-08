@@ -6,9 +6,10 @@ import SolveTaskInput from './SolveTaskInput';
 import TaskButton from '../shared/TaskButton';
 
 import MissionActions from '../../actions/MissionActions';
+import ValidationActions from '../../actions/ValidationActions';
 
 import Mission from '../../dto/Mission';
-import Validation from '../../dto/Mission';
+import Validation from '../../dto/Validation';
 
 const styles = StyleSheet.create({
   container: {
@@ -88,7 +89,14 @@ const SolveTaskModal = React.createClass({
   },
 
   solveValidation() {
+    const validation = this.props.task
+    const input = this.refs.input.state;
+    const missionAnswer = validation.fixMessage;
+    const userAnswer = input.answerValue;
+    const valid = missionAnswer === userAnswer;
 
+    ValidationActions.solveValidation(validation, valid);
+    Actions.pop();
   },
 
   solveTask() {
