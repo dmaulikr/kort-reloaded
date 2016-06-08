@@ -60,8 +60,8 @@ export default {
   TASK_TYPE_MISSING_CUISINE: 'missing_cuisine',
 
   // Tasks
-  MISSIONS_LIMIT: 10,
-  VALIDATIONS_LIMIT: 1000,
+  MISSIONS_LIMIT: 7,
+  VALIDATIONS_LIMIT: 50,
   RADIUS: 5000,
 
   // Modal View taskTypes
