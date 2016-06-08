@@ -27,7 +27,7 @@ const MissionsTab = React.createClass({
 
   _onTaskRewardUpdate() {
     TaskActions.loadTasks(locationStore.getLatitude(), locationStore.getLongitude());
-    
+
     const taskReward = taskRewardStore.getTaskReward();
     Actions.taskReward({
       badges: taskReward.badges,
@@ -47,9 +47,5 @@ const MissionsTab = React.createClass({
     );
   },
 });
-
-MissionsTab.contextTypes = {
-  drawer: React.PropTypes.object,
-};
 
 module.exports = MissionsTab;
