@@ -9,11 +9,6 @@ import TaskActions from '../../actions/TaskActions';
 import locationStore from '../../stores/LocationStore';
 import taskStore from '../../stores/TaskStore';
 
-
-
-import Mission from '../../dto/Mission';
-import Validation from '../../dto/Validation';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

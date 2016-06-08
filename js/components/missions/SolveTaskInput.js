@@ -36,7 +36,7 @@ const SolveTaskInput = React.createClass({
     return {
       unableToSolve: false,
       selectableAnswers: null,
-      answerValue: null, //make instance variable instead of state variable
+      answerValue: null, // make instance variable instead of state variable
     };
   },
 
