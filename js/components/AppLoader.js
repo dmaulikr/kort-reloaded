@@ -71,8 +71,8 @@ export default class AppLoader extends React.Component {
     this._hasStartedDataLoading = true;
 
     AnswerActions.loadAllAnswers();
-    HighscoreActions.loadRelativeHighscore(highscoreLimit, null);
     UserActions.loadOwnUser();
+    HighscoreActions.loadAbsoluteHighscore(highscoreLimit, null);
     StatisticsActions.loadStatistics();
   }
 

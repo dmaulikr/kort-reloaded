@@ -1,6 +1,6 @@
 export default class HighscoreEntry {
   constructor(userId, userName, picUrl, koinCount, missionCount, validationCount, ranking,
-      rowNumber, isLoggedInUsersEntry) {
+      rowNumber, isOwnEntry) {
     this.userId = userId;
     this.userName = userName;
     this.picUrl = picUrl;
@@ -10,6 +10,6 @@ export default class HighscoreEntry {
     this.fixCount = parseInt(missionCount, 10) + parseInt(validationCount, 10);
     this.ranking = ranking;
     this.rowNumber = rowNumber;
-    this.isLoggedInUsersEntry = isLoggedInUsersEntry;
+    this.isOwnEntry = isOwnEntry;
   }
 }

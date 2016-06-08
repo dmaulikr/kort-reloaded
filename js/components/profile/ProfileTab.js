@@ -124,7 +124,6 @@ const ProfileTab = React.createClass({
 
   _updateUser() {
     const user = userStore.getOwnUser();
-    console.log('USER PROFILE', 'update user:', user);
     this.setState({ user });
   },
 
@@ -147,8 +146,6 @@ const ProfileTab = React.createClass({
       collectedKoins = this.state.user.koinCount;
       ranking = this.state.user.ranking;
     }
-
-    console.log('USER PROFILE', `name: ${name}, oauthProvider: ${oauthProvider}`);
 
     return (
       <ScrollView
