@@ -1,5 +1,5 @@
 import Config from '../constants/Config';
-import loginStore from '../stores/LoginStore';
+import authenticationStore from '../stores/AuthenticationStore';
 
 const Buffer = require('buffer').Buffer;
 
@@ -25,16 +25,14 @@ export default class DataLoader {
   }
 
   static _createAuthorizationHash() {
-    const userLoggedIn = true;
+    const userLoggedIn = authenticationStore.isLoggedIn();
     if (!userLoggedIn) {
-      throw new Error('User needs to be logged in for this request.',
-        'js/data/DataLoader.js');
+      return null;
     }
 
-    const authenticatedUser = loginStore.getUserCredential();
+    const authenticatedUser = authenticationStore.getUserCredential();
     const userId = authenticatedUser.userId;
     const secret = authenticatedUser.secret;
-    console.log(`authenticated User: ${userId} / ${secret}`);
     const hash = new Buffer(`${userId}:${secret}`).toString('base64');
     return hash;
   }
@@ -61,9 +59,8 @@ export default class DataLoader {
     if (!apiUrl.startsWith('/')) requestUrl += '/';
     requestUrl = requestUrl + apiUrl;
 
-    if (!requestUrl.endsWith('/')) requestUrl += '/';
-
     if (queryParameters !== null && queryParameters.length !== 0 && queryParameters[0] !== null) {
+      if (!requestUrl.endsWith('/')) requestUrl += '/';
       requestUrl += DataLoader._getQueryParametersString(queryParameters);
     }
 
@@ -88,22 +85,22 @@ export default class DataLoader {
         if (onError != null) {
           onError(error);
         } else {
-          console.log(error);
+          console.log(`url: ${requestUrl}, error: ${error}`);
         }
       })
       .done();
   }
 
   static _makePutOrPostRequest(requestUrl, jsonBody, onSuccess, onError, requestMethod) {
-    if (requestMethod !== 'PUT' || requestMethod !== 'POST') {
+    if (requestMethod !== 'PUT' && requestMethod !== 'POST') {
       throw new Error('Request method needs to be of type \'PUT\' or \'POST\'.');
     }
 
     const headers = this._createHeaders(requestMethod);
-
+    console.log('POST MISSION', 'requestUrl', requestUrl);
     fetch(requestUrl, {
       headers,
-      requestMethod,
+      method: requestMethod,
       body: jsonBody,
     })
       .then((response) => response.json())

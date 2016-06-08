@@ -7,7 +7,7 @@ export default class HighscoreEntry {
     this.koinCount = koinCount;
     this.missionCount = missionCount;
     this.validationCount = validationCount;
-    this.fixCount = missionCount + validationCount;
+    this.fixCount = parseInt(missionCount, 10) + parseInt(validationCount, 10);
     this.ranking = ranking;
     this.rowNumber = rowNumber;
     this.isLoggedInUsersEntry = isLoggedInUsersEntry;

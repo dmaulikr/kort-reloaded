@@ -3,6 +3,8 @@ import DataLoader from './DataLoader';
 import Answer from '../dto/Answer';
 
 const answerRestPath = Config.ANSWER_PATH;
+const taskTypes = [Config.TASK_TYPE_RELIGION, Config.TASK_TYPE_LANGUGAGE_UNKNOWN,
+  Config.TASK_TYPE_MISSING_TRACK_TYPE, Config.TASK_TYPE_MISSING_CUISINE];
 
 export default class AnswerLoader extends DataLoader {
   static _initAnswers(rawAnswers) {
@@ -14,14 +16,20 @@ export default class AnswerLoader extends DataLoader {
     return answers;
   }
 
-  static getAnswers(onSuccess, onError) {
-    const requestUrl = super.createRequestUrl(answerRestPath, null, null);
-    super.makeGetRequest(
-      requestUrl,
-      true,
-      (rawAnswers) => onSuccess(AnswerLoader._initAnswers(rawAnswers)),
-      onError
-    );
+  static getAllAnswers(onSuccess, onError) {
+    const answers = new Map();
+    taskTypes.forEach((taskType) => {
+      AnswerLoader.getAnswersForType(
+        taskType,
+        (answersForType) => {
+          answers.set(taskType, answersForType);
+          if (answers.size === taskTypes.length) {
+            onSuccess(answers);
+          }
+        },
+        onError
+      );
+    });
   }
 
   static getAnswersForType(taskType, onSuccess, onError) {
