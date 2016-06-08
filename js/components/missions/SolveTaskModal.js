@@ -5,6 +5,12 @@ import { Actions } from 'react-native-router-flux';
 import SolveTaskInput from './SolveTaskInput';
 import TaskButton from '../shared/TaskButton';
 
+import MissionActions from '../../actions/MissionActions';
+import ValidationActions from '../../actions/ValidationActions';
+
+import Mission from '../../dto/Mission';
+import Validation from '../../dto/Validation';
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
@@ -76,6 +82,31 @@ const SolveTaskModal = React.createClass({
     };
   },
 
+  solveMission() {
+    const input = this.refs.input.state;
+    MissionActions.solveMission(this.props.task, input.answerValue, input.unableToSolve);
+    Actions.pop();
+  },
+
+  solveValidation() {
+    const validation = this.props.task;
+    const input = this.refs.input.state;
+    const missionAnswer = validation.fixMessage;
+    const userAnswer = input.answerValue;
+    const valid = missionAnswer === userAnswer;
+
+    ValidationActions.solveValidation(validation, valid);
+    Actions.pop();
+  },
+
+  solveTask() {
+    if (this.props.task instanceof Mission) {
+      this.solveMission();
+    } else if (this.props.task instanceof Validation) {
+      this.solveValidation();
+    }
+  },
+
   render() {
     return (
       <View style={styles.container}>
@@ -97,6 +128,7 @@ const SolveTaskModal = React.createClass({
           </View>
         </View>
         <SolveTaskInput
+          ref="input"
           viewType={this.props.task.viewType}
           missionType={this.props.task.type}
           unableToSolve={this.state.unableToSolve}
@@ -105,7 +137,7 @@ const SolveTaskModal = React.createClass({
           <TaskButton style={{ paddingTop: 20 }} onPress={Actions.pop}>
             Cancel
           </TaskButton>
-          <TaskButton style={{ paddingTop: 20 }} onPress={Actions.pop}>
+          <TaskButton style={{ paddingTop: 20 }} onPress={this.solveTask}>
             Complete Mission
           </TaskButton>
         </View>

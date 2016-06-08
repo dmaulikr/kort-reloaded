@@ -20,26 +20,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const CompletedMissionModalBadge = React.createClass({
+const TaskRewardBadge = React.createClass({
   propTypes: {
-    wonBadges: React.PropTypes.any.isRequired,
+    badges: React.PropTypes.any.isRequired,
   },
 
-  getInitialState() {
-    // remove state
-    return {
-      wonBadge: this.props.wonBadges,
-      badge: this.props.wonBadges,
-    };
-  },
-
-  render() {
+  _renderBadges() {
     let badgeField;
 
-    if (!this.state.wonBadge) {
+    if (!this.props.badges) {
       badgeField = <View />;
     } else { // ToDo: If two badges are won at the same time.
-      switch (this.state.badge) {
+      switch (this.props.badges) {
         case 'badge0':
           badgeField = (
             <View style={styles.containerBadges}>
@@ -68,12 +60,16 @@ const CompletedMissionModalBadge = React.createClass({
       }
     }
 
+    return badgeField;
+  },
+
+  render() {
     return (
       <View style={styles.container}>
-        {badgeField}
+        {this._renderBadges()}
       </View>
     );
   },
 });
 
-module.exports = CompletedMissionModalBadge;
+module.exports = TaskRewardBadge;

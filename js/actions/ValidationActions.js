@@ -11,4 +11,13 @@ export default class ValidationActions {
       });
     });
   }
+
+  static solveValidation(validation, valid) {
+    ValidationLoader.postValidation(validation, valid, (taskReward) => {
+      AppDispatcher.dispatch({
+        actionType: ActionTypes.VALIDATION_PUT,
+        data: taskReward,
+      });
+    });
+  }
 }

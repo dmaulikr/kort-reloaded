@@ -84,8 +84,4 @@ const AboutTab = React.createClass({
   },
 });
 
-AboutTab.contextTypes = {
-  drawer: React.PropTypes.object,
-};
-
 module.exports = AboutTab;

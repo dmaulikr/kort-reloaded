@@ -135,8 +135,4 @@ const HighscoreTab = React.createClass({
   },
 });
 
-HighscoreTab.contextTypes = {
-  drawer: React.PropTypes.object,
-};
-
 module.exports = HighscoreTab;

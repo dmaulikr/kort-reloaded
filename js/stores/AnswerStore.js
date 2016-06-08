@@ -19,6 +19,8 @@ class AnswerStore extends Store {
   }
 
   getAnswersForType(taskType) {
+    if (this._answers === null) return null;
+
     return this._answers.get(taskType);
   }
 

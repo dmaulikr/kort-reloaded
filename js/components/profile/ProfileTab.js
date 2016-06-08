@@ -293,8 +293,4 @@ const ProfileTab = React.createClass({
   },
 });
 
-ProfileTab.contextTypes = {
-  drawer: React.PropTypes.object,
-};
-
 module.exports = ProfileTab;

@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+import Loading from './shared/Loading';
+
 import AnswerActions from '../actions/AnswerActions';
 import AuthenticationActions from '../actions/AuthenticationActions';
 import HighscoreActions from '../actions/HighscoreActions';
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ff0000',
+    backgroundColor: '#2f5888',
   },
 });
 
@@ -70,8 +72,8 @@ export default class AppLoader extends React.Component {
 
     AnswerActions.loadAllAnswers();
     HighscoreActions.loadRelativeHighscore(highscoreLimit, null);
-    StatisticsActions.loadStatistics();
     UserActions.loadCurrentUser();
+    StatisticsActions.loadStatistics();
   }
 
   _loadTasks() {
@@ -148,7 +150,11 @@ export default class AppLoader extends React.Component {
   }
 
   render() {
-    return <View style={styles.container} />;
+    return (
+      <View style={styles.container}>
+        <Loading />
+      </View>
+    );
   }
 }
 

@@ -49,19 +49,14 @@ export default React.createClass({
   },
 
   onOpenAnnotation(annotation) {
+    let taskId;
     if (require('react-native').Platform.OS === 'android') {
-      let annotationTask;
-
-      for (const task of taskStore.getAll()) {
-        if (annotation.src.subtitle === task.id) {
-          annotationTask = task;
-        }
-      }
-
-      Actions.solveTask({ title: annotation.src.title, task: annotationTask });
+      taskId = annotation.src.subtitle;
     } else {
-      Actions.solveTask({ title: annotation.title, task: 'Custom data' });
+      taskId = annotation.subtitle;
     }
+    const annotationTask = taskStore.get(taskId);
+    Actions.solveTask({ task: annotationTask });
   },
 
   onTasksUpdate() {
