@@ -150,26 +150,48 @@ const Profile = React.createClass({
   },
 
   render() {
-    let name, oauthProvider, solveCount, collectedKoins, ranking; // eslint-disable-line one-var
+    let name, userName, oauthProvider, solveCount, collectedKoins, ranking; // eslint-disable-line one-var, max-len
     if (this.state.user === null) {
       name = '';
+      userName = '';
       oauthProvider = '';
       solveCount = '';
       collectedKoins = '';
       ranking = '';
     } else {
-      name = this.state.user.name;
-      oauthProvider = this.state.user.oauthProvider;
+      name = (this.state.user.name === null) ? '' : this.state.user.name;
+      userName = this.state.user.userName;
+      oauthProvider = (this.state.user.oauthProvider === null) ? '' : this.state.user.oauthProvider;
       solveCount = this.state.user.solveCount;
       collectedKoins = this.state.user.koinCount;
       ranking = this.state.user.ranking;
     }
 
     let logoutButton, editUserButton; // eslint-disable-line one-var
-    if (this.props.isViewOnly === false) {
-      logoutButton = <Text onPress={() => AuthenticationActions.logOutUser()}>Log out</Text>;
-    } else {
+    if (this.props.isViewOnly) {
       logoutButton = null;
+    } else {
+      logoutButton = <Text onPress={() => AuthenticationActions.logOutUser()}>Log out</Text>;
+    }
+
+    let nameInfo, oauthProviderInfo; // eslint-disable-line one-var
+    console.log('PRFL', this.props.isOwnProfile);
+    if (this.props.isOwnProfile) {
+      nameInfo = (
+        <View>
+          <Text style={styles.textSubTitle}>Name</Text>
+          <Text style={styles.textSubTitle}>{name}</Text>
+        </View>
+      );
+      oauthProviderInfo = (
+        <View>
+          <Text style={styles.textSubTitle}>Login via</Text>
+          <Text style={styles.textSubTitle}>{oauthProvider}</Text>
+        </View>
+      );
+    } else {
+      nameInfo = null;
+      oauthProvider = null;
     }
 
     return (
@@ -186,10 +208,10 @@ const Profile = React.createClass({
                 source={{ uri: this.state.picUrl }}
               />
               <View style={styles.containerProfileDescription}>
+                {nameInfo}
                 <Text style={styles.textSubTitle}>Username</Text>
-                <Text style={styles.textSubTitle}>{name}</Text>
-                <Text style={styles.textSubTitle}>Login via</Text>
-                <Text style={styles.textSubTitle}>{oauthProvider}</Text>
+                <Text style={styles.textSubTitle}>{userName}</Text>
+                {oauthProviderInfo}
                 {logoutButton}
                 <Text style={styles.textSubTitle}>Completed Missions</Text>
                 <Text style={styles.textSubTitle}>{solveCount}</Text>
