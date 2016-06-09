@@ -19,10 +19,9 @@ const styles = StyleSheet.create({
 });
 
 
-const TaskButton = React.createClass({
+const Button = React.createClass({
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
-    style: React.PropTypes.object,
     children: React.PropTypes.any.isRequired,
   },
 
@@ -48,7 +47,7 @@ const TaskButton = React.createClass({
         onHideUnderlay={this._onUnhighlight}
         onPress={this.props.onPress}
         onShowUnderlay={this._onHighlight}
-        style={[styles.button, this.props.style]}
+        style={styles.button}
         underlayColor="#008000"
       >
         <Text style={[styles.buttonText, colorStyle]}>{this.props.children}</Text>
@@ -57,4 +56,4 @@ const TaskButton = React.createClass({
   },
 });
 
-module.exports = TaskButton;
+module.exports = Button;
