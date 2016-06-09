@@ -11,6 +11,7 @@ export default {
 
   // Highscore
   HIGHSCORE_LIMIT: 7435885969,
+  HIGHSCORE_PREFETCH_LIMIT: 10,
 
   // Kort API
   SERVER: 'https://kort-dev.herokuapp.com',

@@ -24,6 +24,7 @@ import taskStore from '../stores/TaskStore';
 import userStore from '../stores/UserStore';
 
 const highscoreLimit = Config.HIGHSCORE_LIMIT;
+const highscorePrefetchLimit = Config.HIGHSCORE_PREFETCH_LIMIT;
 
 const styles = StyleSheet.create({
   container: {
@@ -72,6 +73,7 @@ export default class AppLoader extends React.Component {
 
     AnswerActions.loadAllAnswers();
     UserActions.loadOwnUser();
+    HighscoreActions.loadAbsoluteHighscore(highscorePrefetchLimit, null);
     HighscoreActions.loadAbsoluteHighscore(highscoreLimit, null);
     StatisticsActions.loadStatistics();
   }
