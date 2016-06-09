@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,34 +45,31 @@ const styles = StyleSheet.create({
   },
 });
 
-const CollectionCell = React.createClass({
-  render() {
-    const userData = this.props.data;
-    console.log('HGHSCR', userData);
-    const userName = userData.userName;
-    const ranking = userData.ranking;
-    const koinCount = userData.koinCount;
-    const fixCount = userData.fixCount;
+const CollectionCell = ({ onSelectRow, data }) => {
+  const userData = data;
+  const userName = userData.userName;
+  const ranking = userData.ranking;
+  const koinCount = userData.koinCount;
+  const fixCount = userData.fixCount;
 
-    return (
-      <TouchableHighlight onPress={this.props.onSelectRow}>
-        <View>
-          <View style={styles.row}>
-            <View style={styles.columnRank}>
-              <Text style={styles.textRanking}>{ranking}</Text>
-            </View>
-            <View style={styles.columnText}>
-              <Text style={styles.text}>{userName}</Text>
-              <View style={styles.rowDescription}>
-                <Text style={styles.text}>{`Koins: ${koinCount}`}</Text>
-                <Text style={styles.text}>{`Missions: ${fixCount}`}</Text>
-              </View>
+  return (
+    <TouchableHighlight onPress={onSelectRow}>
+      <View>
+        <View style={styles.row}>
+          <View style={styles.columnRank}>
+            <Text style={styles.textRanking}>{ranking}</Text>
+          </View>
+          <View style={styles.columnText}>
+            <Text style={styles.text}>{userName}</Text>
+            <View style={styles.rowDescription}>
+              <Text style={styles.text}>{`Koins: ${koinCount}`}</Text>
+              <Text style={styles.text}>{`Missions: ${fixCount}`}</Text>
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-    );
-  },
-});
+      </View>
+    </TouchableHighlight>
+  );
+};
 
 module.exports = CollectionCell;

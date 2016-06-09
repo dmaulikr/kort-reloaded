@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ListView, TouchableHighlight,
-  RecyclerViewBackedScrollView } from 'react-native';
+import { View, StyleSheet, ListView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import HighscoreActions from '../../actions/HighscoreActions';

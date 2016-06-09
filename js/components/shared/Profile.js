@@ -87,7 +87,7 @@ const Profile = React.createClass({
       user: null,
       isViewOnly: true,
       isOwnProfile: true,
-    }
+    };
   },
 
   getInitialState() {
@@ -165,7 +165,7 @@ const Profile = React.createClass({
       ranking = this.state.user.ranking;
     }
 
-    let logoutButton, editUserButton;
+    let logoutButton, editUserButton; // eslint-disable-line one-var
     if (this.props.isViewOnly === false) {
       logoutButton = <Text onPress={() => AuthenticationActions.logOutUser()}>Log out</Text>;
     } else {
