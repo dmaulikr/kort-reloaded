@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 
+import User from '../../dto/User';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -45,12 +47,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const CollectionCell = ({ onSelectRow, data }) => {
-  const userData = data;
-  const userName = userData.userName;
-  const ranking = userData.ranking;
-  const koinCount = userData.koinCount;
-  const fixCount = userData.fixCount;
+const HighscoreCell = ({ onSelectRow, user }) => {
+  const userName = user.userName;
+  const ranking = user.ranking;
+  const koinCount = user.koinCount;
+  const solveCount = user.solveCount;
 
   return (
     <TouchableHighlight onPress={onSelectRow}>
@@ -63,7 +64,7 @@ const CollectionCell = ({ onSelectRow, data }) => {
             <Text style={styles.text}>{userName}</Text>
             <View style={styles.rowDescription}>
               <Text style={styles.text}>{`Koins: ${koinCount}`}</Text>
-              <Text style={styles.text}>{`Missions: ${fixCount}`}</Text>
+              <Text style={styles.text}>{`Missions: ${solveCount}`}</Text>
             </View>
           </View>
         </View>
@@ -72,4 +73,9 @@ const CollectionCell = ({ onSelectRow, data }) => {
   );
 };
 
-module.exports = CollectionCell;
+HighscoreCell.propTypes = {
+  onSelectRow: React.PropTypes.func.isRequired,
+  user: React.PropTypes.object.isRequired,
+};
+
+module.exports = HighscoreCell;
