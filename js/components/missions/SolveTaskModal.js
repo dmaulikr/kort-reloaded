@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import SolveTaskInput from './SolveTaskInput';
-import TaskButton from '../shared/TaskButton';
+import Button from '../shared/Button';
 
 import MissionActions from '../../actions/MissionActions';
 import ValidationActions from '../../actions/ValidationActions';
@@ -91,9 +91,21 @@ const SolveTaskModal = React.createClass({
   solveValidation() {
     const validation = this.props.task;
     const input = this.refs.input.state;
+    const missionUnsolvable = validation.unsolvable;
+    const userUnsolvable = input.unableToSolve
     const missionAnswer = validation.fixMessage;
     const userAnswer = input.answerValue;
-    const valid = missionAnswer === userAnswer;
+
+    let valid;
+    if (missionUnsolvable === userUnsolvable) {
+      if (missionUnsolvable) {
+        valid = true;
+      } else {
+        const valid = missionAnswer === userAnswer;
+      }
+    } else {
+      valid = false;
+    }
 
     ValidationActions.solveValidation(validation, valid);
     Actions.pop();
@@ -108,6 +120,7 @@ const SolveTaskModal = React.createClass({
   },
 
   render() {
+    console.log('ADLER', 'fixMessage', this.props.task.fixMessage);
     return (
       <View style={styles.container}>
         <Text style={styles.textTitle}>{this.props.task.title}</Text>
@@ -134,12 +147,12 @@ const SolveTaskModal = React.createClass({
           unableToSolve={this.state.unableToSolve}
         />
         <View style={styles.containerButton}>
-          <TaskButton style={{ paddingTop: 20 }} onPress={Actions.pop}>
+          <Button onPress={Actions.pop}>
             Cancel
-          </TaskButton>
-          <TaskButton style={{ paddingTop: 20 }} onPress={this.solveTask}>
+          </Button>
+          <Button onPress={this.solveTask}>
             Complete Mission
-          </TaskButton>
+          </Button>
         </View>
       </View>
     );

@@ -23,9 +23,10 @@ export default class ValidationLoader extends DataLoader {
           rawValidation.bug_question, rawValidation.view_type, rawValidation.latitude,
           rawValidation.longitude, rawValidation.vote_koin_count, rawValidation.promo_id,
           rawValidation.extra_coins, rawValidation.fix_user_id, rawValidation.fixmessage,
-          rawValidation.upratings, rawValidation.downratings, rawValidation.required_votes,
-          rawValidation.osm_id, rawValidation.osm_type, rawValidation.geom, rawValidation.txt1,
-          rawValidation.txt2, rawValidation.txt3, rawValidation.txt4, rawValidation.txt5
+          rawValidation.falsepositive, rawValidation.upratings, rawValidation.downratings,
+          rawValidation.required_votes, rawValidation.osm_id, rawValidation.osm_type,
+          rawValidation.geom, rawValidation.txt1, rawValidation.txt2, rawValidation.txt3,
+          rawValidation.txt4, rawValidation.txt5
         )
       );
     });
@@ -67,6 +68,7 @@ export default class ValidationLoader extends DataLoader {
 
   static postValidation(validation, valid, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(validationPostRestPath, null, null);
+    console.log('ADLER', 'validation json', ValidationLoader._initJsonValidation(validation, valid));
     super.makePostRequest(
       requestUrl,
       ValidationLoader._initJsonValidation(validation, valid),
