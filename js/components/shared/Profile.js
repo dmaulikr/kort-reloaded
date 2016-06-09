@@ -1,10 +1,11 @@
-import React from 'react';
+  import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import AuthenticationActions from '../../actions/AuthenticationActions';
 import UserActions from '../../actions/UserActions';
 
+import authenticationStore from '../../stores/AuthenticationStore';
 import userStore from '../../stores/UserStore';
 
 const styles = StyleSheet.create({
@@ -43,20 +44,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  containerBadges: {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
-  containerBadgeGrid: {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-  },
-  containerBadgeGridItem: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
   textSubTitle: {
     fontSize: 18,
     marginTop: 7,
@@ -91,34 +78,11 @@ const Profile = React.createClass({
   },
 
   getInitialState() {
-    return {
-      user: null,
-      userBadges: [{ title: 'title', description: 'description',
-        won: false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' },
-        { title: 'title', description: 'description', won:
-          false, pictureFile: '../../assets/img/locked.png' }],
-    };
+    return { user: null };
   },
 
   componentDidMount() {
+    authenticationStore.addChangeListener(this._onAuthenticationUpdate);
     userStore.addChangeListener(this._onUserUpdate);
 
     this._updateUser();
@@ -128,8 +92,8 @@ const Profile = React.createClass({
     userStore.removeChangeListener(this._onUserUpdate);
   },
 
-  _onLogout() {
-    Actions.login();
+  _onAuthenticationUpdate() {
+    if (!authenticationStore.isLoggedIn()) Actions.login();
   },
 
   _updateUser() {
@@ -231,110 +195,6 @@ const Profile = React.createClass({
                   source={require('../../assets/img/highscore.png')}
                 />
                 <Text style={styles.textSubTitle}>{ranking}. Place</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.containerBadges}>
-            <Text style={styles.textSubTitle}>Won Badges</Text>
-            <View style={styles.containerBadgeGrid}>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[0].title}: {this.state.userBadges[0].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[1].title}: {this.state.userBadges[1].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[2].title}: {this.state.userBadges[2].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[3].title}: {this.state.userBadges[3].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[4].title}: {this.state.userBadges[4].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[5].title}: {this.state.userBadges[5].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[6].title}: {this.state.userBadges[6].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[7].title}: {this.state.userBadges[7].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[8].title}: {this.state.userBadges[8].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[9].title}: {this.state.userBadges[9].description}
-                </Text>
-              </View>
-              <View style={styles.containerBadgeGridItem}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../assets/img/poi_name_mission.png')}
-                />
-                <Text style={styles.textSubTitleItem}>
-                  {this.state.userBadges[10].title}: {this.state.userBadges[10].description}
-                </Text>
               </View>
             </View>
           </View>

@@ -86,10 +86,6 @@ export default class Login extends React.Component {
     authenticationStore.removeChangeListener(this.onAuthenticationUpdate);
   }
 
-  onAuthenticationUpdate() {
-    if (authenticationStore.isLoggedIn()) Actions.pop();
-  }
-
   configureGoogleSignIn() {
     GoogleSignin.configure({
       webClientId: googleWebClientId,
@@ -104,6 +100,7 @@ export default class Login extends React.Component {
       console.log('WRONG SIGNIN', err);
     })
     .done();
+    Actions.pop();
   }
 
   render() {
