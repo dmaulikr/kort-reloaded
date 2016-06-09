@@ -5,6 +5,8 @@ import { Actions } from 'react-native-router-flux';
 
 import HighscoreActions from '../../actions/HighscoreActions';
 import HighscoreCell from './HighscoreCell';
+import User from '../../dto/User';
+
 import highscoreStore from '../../stores/HighscoreStore';
 
 const styles = StyleSheet.create({
@@ -80,9 +82,14 @@ const HighscoreTab = React.createClass({
   },
 
   _renderRow(rowData) {
+    const user = new User(rowData.userId, null, rowData.userName, null, null, null,
+      rowData.missionCount, rowData.validationCount, rowData.koinCount, rowData.ranking, null,
+      rowData.picUrl, null
+    );
+
     return (
       <HighscoreCell
-        onSelectRow={() => Actions.profileModal({ data: rowData })}
+        onSelectRow={() => Actions.profileModal({ user })}
         data={rowData}
       />
     );
