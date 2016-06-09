@@ -497,7 +497,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = J5P84E4MFR;
+						DevelopmentTeam = 3YYKXVS8Q5;
 					};
 				};
 			};
@@ -911,7 +911,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ch.hsr.mmelchio.Kort;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.Kort;
 				PRODUCT_NAME = Kort;
 				PROVISIONING_PROFILE = "";
 			};
@@ -942,7 +942,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ch.hsr.mmelchio.Kort;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.Kort;
 				PRODUCT_NAME = Kort;
 				PROVISIONING_PROFILE = "";
 			};
