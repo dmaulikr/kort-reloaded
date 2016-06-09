@@ -175,7 +175,6 @@ const Profile = React.createClass({
     }
 
     let nameInfo, oauthProviderInfo; // eslint-disable-line one-var
-    console.log('PRFL', this.props.isOwnProfile);
     if (this.props.isOwnProfile) {
       nameInfo = (
         <View>
