@@ -26,7 +26,7 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      annotations: null,
+      annotations: [],
     };
   },
 

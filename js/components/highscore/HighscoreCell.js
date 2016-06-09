@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+
+import User from '../../dto/User';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,44 +47,35 @@ const styles = StyleSheet.create({
   },
 });
 
-const CollectionCell = React.createClass({
-  getInitialState() {
-    return {
-      username: this.props.highscoreList.username,
-      ranking: this.props.highscoreList.ranking,
-      you: this.props.highscoreList.you,
-      fix_count: this.props.highscoreList.fix_count,
-      vote_count: this.props.highscoreList.vote_count,
-      koin_count: this.props.highscoreList.koin_count,
-    };
-  },
+const HighscoreCell = ({ onSelectRow, user }) => {
+  const userName = user.userName;
+  const ranking = user.ranking;
+  const koinCount = user.koinCount;
+  const solveCount = user.solveCount;
 
-  componentDidMount() {
-  },
-
-  render() {
-    if (this.state.you) {
-      this.setState({ username: `${this.state.username} -  This is you!` });
-    }
-    return (
-      <TouchableHighlight onPress={this.props.onSelectRow}>
-        <View>
-          <View style={styles.row}>
-            <View style={styles.columnRank}>
-              <Text style={styles.textRanking}>{this.state.ranking}</Text>
-            </View>
-            <View style={styles.columnText}>
-              <Text style={styles.text}>{this.state.username}</Text>
-              <View style={styles.rowDescription}>
-                <Text style={styles.text}>{`Koins: ${this.state.koin_count}`}</Text>
-                <Text style={styles.text}>{`Missions: ${this.state.fix_count}`}</Text>
-              </View>
+  return (
+    <TouchableHighlight onPress={onSelectRow}>
+      <View>
+        <View style={styles.row}>
+          <View style={styles.columnRank}>
+            <Text style={styles.textRanking}>{ranking}</Text>
+          </View>
+          <View style={styles.columnText}>
+            <Text style={styles.text}>{userName}</Text>
+            <View style={styles.rowDescription}>
+              <Text style={styles.text}>{`Koins: ${koinCount}`}</Text>
+              <Text style={styles.text}>{`Missions: ${solveCount}`}</Text>
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-    );
-  },
-});
+      </View>
+    </TouchableHighlight>
+  );
+};
 
-module.exports = CollectionCell;
+HighscoreCell.propTypes = {
+  onSelectRow: React.PropTypes.func.isRequired,
+  user: React.PropTypes.object.isRequired,
+};
+
+module.exports = HighscoreCell;

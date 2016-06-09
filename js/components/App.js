@@ -29,7 +29,7 @@ const scenes = Actions.create(
       </Scene>
       <Scene key="solveTask" panHandlers={null} component={SolveTaskModal} direction="vertical" />
       <Scene key="taskReward" panHandlers={null} component={TaskRewardModal} direction="vertical" />
-      <Scene key="profileModal" hideNavBar={false} panHandlers={null} component={ProfileModal} direction="vertical" />
+      <Scene key="profileModal" hideNavBar={false} panHandlers={null} component={ProfileModal} direction="horizontal" />
     </Scene>
   </Scene>
 );
