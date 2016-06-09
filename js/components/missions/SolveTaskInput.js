@@ -36,7 +36,7 @@ const SolveTaskInput = React.createClass({
     return {
       unableToSolve: false,
       selectableAnswers: null,
-      answerValue: null, // make instance variable instead of state variable
+      answerValue: null,
     };
   },
 
@@ -97,7 +97,10 @@ const SolveTaskInput = React.createClass({
   _renderInputField() {
     const emptyInputField = <View />;
 
-    if (this.state.unableToSolve) return emptyInputField;
+    if (this.state.unableToSolve) {
+      this.state.answerValue = '-';
+      return emptyInputField;
+    }
 
     switch (this.props.viewType) {
       case select:

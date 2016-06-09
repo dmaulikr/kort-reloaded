@@ -2,8 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import TaskButton from '../shared/TaskButton';
-import TaskRewardBadge from './TaskRewardBadge';
+import Button from '../shared/Button';
 
 const styles = StyleSheet.create({
   container: {
@@ -47,8 +46,7 @@ const TaskRewardModal = ({ badges, receivedKoins, newKoinsTotal }) => (
             You now have a total amount of {newKoinsTotal} Koins.
           </Text>
           </View>
-          <TaskRewardBadge wonBadge badge = "badge1" />
-          <TaskButton onPress={Actions.pop} style={styles.modalButton}>OK</TaskButton>
+          <Button onPress={Actions.pop}>OK</Button>
       </View>
     </View>
   </View>
