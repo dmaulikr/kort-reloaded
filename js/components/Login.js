@@ -70,28 +70,24 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onAuthenticationUpdate = this.onAuthenticationUpdate.bind(this);
-  }
-
+const Login = React.createClass({
   componentDidMount() {
+    console('LOADER', this);
     authenticationStore.addChangeListener(this.onAuthenticationUpdate);
 
     this.configureGoogleSignIn();
-  }
+  },
 
   componentWillUnmount() {
     authenticationStore.removeChangeListener(this.onAuthenticationUpdate);
-  }
+  },
 
   configureGoogleSignIn() {
     GoogleSignin.configure({
       webClientId: googleWebClientId,
       iosClientId: googleIosClientId,
     });
-  }
+  },
 
   signInGoogle() {
     GoogleSignin.signIn()
@@ -101,7 +97,7 @@ export default class Login extends React.Component {
     })
     .done();
     Actions.pop();
-  }
+  },
 
   render() {
     return (
@@ -142,5 +138,7 @@ export default class Login extends React.Component {
         </View>
       </View>
     );
-  }
-}
+  },
+});
+
+export default Login;
