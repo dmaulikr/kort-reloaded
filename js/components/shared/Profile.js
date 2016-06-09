@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import I18n from 'react-native-i18n';
 import { Actions } from 'react-native-router-flux';
 
 import AuthenticationActions from '../../actions/AuthenticationActions';
@@ -7,6 +8,16 @@ import UserActions from '../../actions/UserActions';
 
 import authenticationStore from '../../stores/AuthenticationStore';
 import userStore from '../../stores/UserStore';
+
+I18n.fallbacks = true;
+I18n.translations = {
+  en: {
+    collectedKoins: 'Collected Koins'
+  },
+  de: {
+    collectedKoins: 'Gesammelte Koins'
+  }
+};
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -180,7 +191,7 @@ const Profile = React.createClass({
                 <Text style={styles.textSubTitle}>{solveCount}</Text>
               </View>
             </View>
-            <Text style={styles.textSubTitle}>Collected Koins</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('collectedKoins')}</Text>
             <View style={styles.containerKoins}>
               <View style={styles.containerKoinsDescription}>
                 <Image
