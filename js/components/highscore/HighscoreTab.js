@@ -89,7 +89,7 @@ const HighscoreTab = React.createClass({
     return (
       <HighscoreCell
         onSelectRow={() => Actions.profileModal({ user })}
-        data={rowData}
+        user={user}
       />
     );
   },
