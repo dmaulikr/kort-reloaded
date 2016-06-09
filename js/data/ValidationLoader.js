@@ -68,7 +68,6 @@ export default class ValidationLoader extends DataLoader {
 
   static postValidation(validation, valid, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(validationPostRestPath, null, null);
-    console.log('ADLER', 'validation json', ValidationLoader._initJsonValidation(validation, valid));
     super.makePostRequest(
       requestUrl,
       ValidationLoader._initJsonValidation(validation, valid),

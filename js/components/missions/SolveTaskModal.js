@@ -92,7 +92,7 @@ const SolveTaskModal = React.createClass({
     const validation = this.props.task;
     const input = this.refs.input.state;
     const missionUnsolvable = validation.unsolvable;
-    const userUnsolvable = input.unableToSolve
+    const userUnsolvable = input.unableToSolve;
     const missionAnswer = validation.fixMessage;
     const userAnswer = input.answerValue;
 
@@ -101,7 +101,7 @@ const SolveTaskModal = React.createClass({
       if (missionUnsolvable) {
         valid = true;
       } else {
-        const valid = missionAnswer === userAnswer;
+        valid = missionAnswer === userAnswer;
       }
     } else {
       valid = false;
@@ -120,7 +120,6 @@ const SolveTaskModal = React.createClass({
   },
 
   render() {
-    console.log('ADLER', 'fixMessage', this.props.task.fixMessage);
     return (
       <View style={styles.container}>
         <Text style={styles.textTitle}>{this.props.task.title}</Text>

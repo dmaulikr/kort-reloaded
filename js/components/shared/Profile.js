@@ -1,4 +1,4 @@
-  import React from 'react';
+import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
