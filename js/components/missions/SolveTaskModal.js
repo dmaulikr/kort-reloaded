@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
+import I18n from 'react-native-i18n';
 import { Actions } from 'react-native-router-flux';
 
 import SolveTaskInput from './SolveTaskInput';
@@ -129,7 +130,9 @@ const SolveTaskModal = React.createClass({
               style={styles.icon}
               source={require('../../assets/img/koin_no_value.png')}
             />
-            <Text style ={styles.textMission}>Get the {this.props.task.fixKoinCount} Koins!</Text>
+            <Text style ={styles.textMission}>
+              {I18n.t('fix_form_koins_earn', { fix_koin_count: this.props.task.fixKoinCount })}
+            </Text>
           </View>
           <View style={styles.containerMissionDescription}>
             <Image
@@ -147,10 +150,10 @@ const SolveTaskModal = React.createClass({
         />
         <View style={styles.containerButton}>
           <Button onPress={Actions.pop}>
-            Cancel
+            {I18n.t('messagebox_cancel')}
           </Button>
           <Button onPress={this.solveTask}>
-            Complete Mission
+            {I18n.t('fix_form_button_submit')}
           </Button>
         </View>
       </View>

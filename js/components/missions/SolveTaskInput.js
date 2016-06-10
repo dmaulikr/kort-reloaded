@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, Text, Switch, Picker } from 'react-native';
+import I18n from 'react-native-i18n';
 
 import Config from '../../constants/Config';
 
@@ -116,7 +117,7 @@ const SolveTaskInput = React.createClass({
     return (
       <View>
         <View style={styles.containerSolve}>
-          <Text style={styles.text}>Unable to solve</Text>
+          <Text style={styles.text}>{I18n.t('fix_form_falsepositive_toggle_label')}</Text>
           <Switch
             onValueChange={(value) => this.setState({ unableToSolve: value })}
             value={this.state.unableToSolve}
