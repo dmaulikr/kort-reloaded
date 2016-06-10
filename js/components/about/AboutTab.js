@@ -67,7 +67,9 @@ const AboutTab = React.createClass({
             <Text style={styles.textTitle}>{I18n.t('about_project_title')}</Text>
             <Text style={styles.textSubTitle}>Bachelorarbeit FS2016</Text>
             <Text style={styles.textSubTitle}>HSR Hochschule für Technik Rapperswil</Text>
-            <Text style={styles.textSubTitle}>{I18n.t('about_project_advisor')} Prof. Stefan Keller</Text>
+            <Text style={styles.textSubTitle}>
+              {I18n.t('about_project_advisor')} Prof. Stefan Keller
+            </Text>
             <Image style={styles.hsrlogo} source={require('../../assets/img/hsr_logo.png')} />
             <Text style={styles.textTitle}>{I18n.t('about_credits_title')}</Text>
             <Text style={styles.textSubTitle}>{I18n.t('about_credits_partner')} Liip AG</Text>

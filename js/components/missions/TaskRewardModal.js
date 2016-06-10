@@ -43,7 +43,7 @@ const TaskRewardModal = ({ badges, receivedKoins, newKoinsTotal }) => (
         <View style={styles.innerContainerMissionComplete}>
           <Image style={styles.icon} source={require('../../assets/img/koin_no_value.png')} />
           <Text style={styles.textMission}>
-            {I18n.t('reward_alert_koins_new', { koin_count_new: receivedKoins})}{'\n'}
+            {I18n.t('reward_alert_koins_new', { koin_count_new: receivedKoins })}{'\n'}
             {I18n.t('reward_alert_koins_total', { koin_count_total: newKoinsTotal })}
           </Text>
           </View>
@@ -54,7 +54,7 @@ const TaskRewardModal = ({ badges, receivedKoins, newKoinsTotal }) => (
 );
 
 TaskRewardModal.propTypes = {
-  badges: React.PropTypes.any.isRequired,
+  badges: React.PropTypes.array,
   receivedKoins: React.PropTypes.any.isRequired,
   newKoinsTotal: React.PropTypes.any.isRequired,
 };
