@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import I18n from 'react-native-i18n';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -52,31 +53,28 @@ const AboutTab = React.createClass({
         <View style={styles.container}>
           <View style={styles.containerAbout}>
             <Image style={styles.kortlogo} source={require('../../assets/img/kort-logo.png')} />
-            <Text style={styles.textTitle}>Version</Text>
+            <Text style={styles.textTitle}>{I18n.t('about_version_title')}</Text>
             <Text style={styles.textSubTitle}>version</Text>
-            <Text style={styles.textTitle}>More information</Text>
-            <Text style={styles.textSubTitle}>Webseite</Text>
-            <Text style={styles.textSubTitle}>Feedback / FAQ</Text>
-            <Text style={styles.textSubTitle}>Report a bug</Text>
-            <Text style={styles.textTitle}>Developer</Text>
+            <Text style={styles.textTitle}>{I18n.t('about_information_title')}</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('about_information_homepage')}</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('about_information_feedback')}</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('about_information_bugs')}</Text>
+            <Text style={styles.textTitle}>{I18n.t('about_developers_title')}</Text>
             <Text style={styles.textSubTitle}>Dominic Mülhaupt</Text>
             <Text style={styles.textSubTitle}>Marino Melchiori</Text>
             <Text style={styles.textSubTitle}>Jürg Hunziker</Text>
             <Text style={styles.textSubTitle}>Stefan Oderbolz</Text>
-            <Text style={styles.textTitle}>Projects</Text>
+            <Text style={styles.textTitle}>{I18n.t('about_project_title')}</Text>
             <Text style={styles.textSubTitle}>Bachelorarbeit FS2016</Text>
             <Text style={styles.textSubTitle}>HSR Hochschule für Technik Rapperswil</Text>
-            <Text style={styles.textSubTitle}>Lead: Prof. Stefan Keller</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('about_project_advisor')} Prof. Stefan Keller</Text>
             <Image style={styles.hsrlogo} source={require('../../assets/img/hsr_logo.png')} />
-            <Text style={styles.textTitle}>Credits</Text>
-            <Text style={styles.textSubTitle}>Partner: Liip AG</Text>
-            <Text style={styles.textSubTitle}>Tiles: ...</Text>
-            <Text style={styles.textSubTitle}>Marker icons: ...</Text>
-            <Text style={styles.textTitle}>Legal note</Text>
-            <Text style={styles.textSubTitle}>
-              Please follow the guidelines of OpenStreetMap
-              and don't use copyright protected sources without permissions.
-            </Text>
+            <Text style={styles.textTitle}>{I18n.t('about_credits_title')}</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('about_credits_partner')} Liip AG</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('about_credits_tiledata')}: ...</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('about_credits_markers')}: ...</Text>
+            <Text style={styles.textTitle}>{I18n.t('about_legal_title')}</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('about_legal_message')}</Text>
           </View>
         </View>
       </ScrollView>

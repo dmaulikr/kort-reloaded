@@ -158,7 +158,7 @@ const German = {
   about_credits_translation: 'Übersetzung\:',
   about_credits_dbhosting: 'DB Hosting\:',
   about_legal_title: 'Rechtliche Hinweise\:',
-  about_legal_message: 'Halte die Richtlinien von OpenStreetMap ein und verwende z_B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.',
+  about_legal_message: 'Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.',
 
   // PullRefresh Plugin
   pullrefresh_pullrefresh: 'Zum Aktualisieren herunterziehen',
