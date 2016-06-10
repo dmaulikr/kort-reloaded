@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
+import I18n from 'react-native-i18n';
 import { Actions } from 'react-native-router-flux';
 
 import Button from '../shared/Button';
@@ -38,15 +39,15 @@ const TaskRewardModal = ({ badges, receivedKoins, newKoinsTotal }) => (
   <View>
     <View style={styles.container}>
       <View style={[styles.innerContainer, { backgroundColor: '#fff', padding: 20 }]}>
-        <Text>Mission completed. You increased your reputation!</Text>
+        <Text>{I18n.t('reward_alert_title')}</Text>
         <View style={styles.innerContainerMissionComplete}>
           <Image style={styles.icon} source={require('../../assets/img/koin_no_value.png')} />
           <Text style={styles.textMission}>
-            Bravo! You have won {receivedKoins} Koins!
-            You now have a total amount of {newKoinsTotal} Koins.
+            {I18n.t('reward_alert_koins_new', { koin_count_new: receivedKoins})}{'\n'}
+            {I18n.t('reward_alert_koins_total', { koin_count_total: newKoinsTotal })}
           </Text>
           </View>
-          <Button onPress={Actions.pop}>OK</Button>
+          <Button onPress={Actions.pop}>{I18n.t('messagebox_ok')}</Button>
       </View>
     </View>
   </View>

@@ -85,8 +85,8 @@ const SolveTaskModal = React.createClass({
 
   solveMission() {
     const input = this.refs.input.state;
-    MissionActions.solveMission(this.props.task, input.answerValue, input.unableToSolve);
     Actions.pop();
+    MissionActions.solveMission(this.props.task, input.answerValue, input.unableToSolve);
   },
 
   solveValidation() {
@@ -108,8 +108,8 @@ const SolveTaskModal = React.createClass({
       valid = false;
     }
 
-    ValidationActions.solveValidation(validation, valid);
     Actions.pop();
+    ValidationActions.solveValidation(validation, valid);
   },
 
   solveTask() {
@@ -149,12 +149,8 @@ const SolveTaskModal = React.createClass({
           unableToSolve={this.state.unableToSolve}
         />
         <View style={styles.containerButton}>
-          <Button onPress={Actions.pop}>
-            {I18n.t('messagebox_cancel')}
-          </Button>
-          <Button onPress={this.solveTask}>
-            {I18n.t('fix_form_button_submit')}
-          </Button>
+          <Button onPress={Actions.pop}>{I18n.t('messagebox_cancel')}</Button>
+          <Button onPress={this.solveTask}>{I18n.t('fix_form_button_submit')}</Button>
         </View>
       </View>
     );
