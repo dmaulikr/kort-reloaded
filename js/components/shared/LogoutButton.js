@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
 const LogoutButton = React.createClass({
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
-    style: React.PropTypes.object,
     children: React.PropTypes.any.isRequired,
   },
 
@@ -48,7 +47,7 @@ const LogoutButton = React.createClass({
         onHideUnderlay = {this._onUnhighlight}
         onPress = {this.props.onPress}
         onShowUnderlay = {this._onHighlight}
-        style = {[styles.button, this.props.style]}
+        style = {styles.button}
         underlayColor="#8b0000"
       >
           <Text style = { [styles.buttonText, colorStyle] }>{this.props.children}</Text>

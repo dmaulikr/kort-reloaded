@@ -3,6 +3,8 @@ import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import I18n from 'react-native-i18n';
 import { Actions } from 'react-native-router-flux';
 
+import LogoutButton from './LogoutButton';
+
 import AuthenticationActions from '../../actions/AuthenticationActions';
 import UserActions from '../../actions/UserActions';
 
@@ -137,9 +139,9 @@ const Profile = React.createClass({
       logoutButton = null;
     } else {
       logoutButton = (
-        <Text onPress={() => AuthenticationActions.logOutUser()}>
+        <LogoutButton onPress={() => AuthenticationActions.logOutUser()}>
           {I18n.t('profile_button_logout')}
-        </Text>
+        </LogoutButton>
       );
     }
 
