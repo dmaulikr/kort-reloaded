@@ -4,7 +4,6 @@ import { Actions } from 'react-native-router-flux';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
 import AuthenticationActions from '../actions/AuthenticationActions';
-import authenticationStore from '../stores/AuthenticationStore';
 import Config from '../constants/Config';
 
 const google = Config.GOOGLE;
@@ -72,16 +71,8 @@ const styles = StyleSheet.create({
 
 const Login = React.createClass({
   componentDidMount() {
-    console('LOADER', this);
-    authenticationStore.addChangeListener(this.onAuthenticationUpdate);
-
     this.configureGoogleSignIn();
   },
-
-  componentWillUnmount() {
-    authenticationStore.removeChangeListener(this.onAuthenticationUpdate);
-  },
-
   configureGoogleSignIn() {
     GoogleSignin.configure({
       webClientId: googleWebClientId,
