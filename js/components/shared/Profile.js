@@ -9,16 +9,6 @@ import UserActions from '../../actions/UserActions';
 import authenticationStore from '../../stores/AuthenticationStore';
 import userStore from '../../stores/UserStore';
 
-I18n.fallbacks = true;
-I18n.translations = {
-  en: {
-    collectedKoins: 'Collected Koins'
-  },
-  de: {
-    collectedKoins: 'Gesammelte Koins'
-  }
-};
-
 const styles = StyleSheet.create({
   scrollView: {
     marginBottom: 46,
@@ -138,28 +128,26 @@ const Profile = React.createClass({
       userName = this.state.user.userName;
       oauthProvider = (this.state.user.oauthProvider === null) ? '' : this.state.user.oauthProvider;
       solveCount = this.state.user.solveCount;
-      collectedKoins = this.state.user.koinCount;
-      ranking = this.state.user.ranking;
+      collectedKoins = `${this.state.user.koinCount} ${I18n.t('profile_content_koins_title')}`;
+      ranking = `${this.state.user.ranking}. ${I18n.t('profile_content_ranking_title')}`;
     }
 
     let logoutButton, editUserButton; // eslint-disable-line one-var
     if (this.props.isViewOnly) {
       logoutButton = null;
     } else {
-      logoutButton = <Text onPress={() => AuthenticationActions.logOutUser()}>Log out</Text>;
+      logoutButton = (
+        <Text onPress={() => AuthenticationActions.logOutUser()}>
+          {I18n.t('profile_button_logout')}
+        </Text>
+      );
     }
 
     let nameInfo, oauthProviderInfo; // eslint-disable-line one-var
     if (this.props.isOwnProfile) {
-      nameInfo = (
-        <View>
-          <Text style={styles.textSubTitle}>Name</Text>
-          <Text style={styles.textSubTitle}>{name}</Text>
-        </View>
-      );
       oauthProviderInfo = (
         <View>
-          <Text style={styles.textSubTitle}>Login via</Text>
+          <Text style={styles.textSubTitle}>{I18n.t('profile_content_oauthprovider')}</Text>
           <Text style={styles.textSubTitle}>{oauthProvider}</Text>
         </View>
       );
@@ -182,30 +170,29 @@ const Profile = React.createClass({
                 source={{ uri: this.state.picUrl }}
               />
               <View style={styles.containerProfileDescription}>
-                {nameInfo}
-                <Text style={styles.textSubTitle}>Username</Text>
+                <Text style={styles.textSubTitle}>{I18n.t('profile_content_username')}</Text>
                 <Text style={styles.textSubTitle}>{userName}</Text>
                 {oauthProviderInfo}
                 {logoutButton}
-                <Text style={styles.textSubTitle}>Completed Missions</Text>
+                <Text style={styles.textSubTitle}>{I18n.t('profile_content_fixes')}</Text>
                 <Text style={styles.textSubTitle}>{solveCount}</Text>
               </View>
             </View>
-            <Text style={styles.textSubTitle}>{I18n.t('collectedKoins')}</Text>
+            <Text style={styles.textSubTitle}>{I18n.t('profile_content_koins_header')}</Text>
             <View style={styles.containerKoins}>
               <View style={styles.containerKoinsDescription}>
                 <Image
                   style={styles.icon}
                   source={require('../../assets/img/koin_no_value.png')}
                 />
-                <Text style={styles.textSubTitle}>{collectedKoins} Koins</Text>
+                <Text style={styles.textSubTitle}>{collectedKoins}</Text>
               </View>
               <View style={styles.containerKoinsDescription}>
                 <Image
                   style={styles.icon}
                   source={require('../../assets/img/highscore.png')}
                 />
-                <Text style={styles.textSubTitle}>{ranking}. Place</Text>
+                <Text style={styles.textSubTitle}>{ranking}</Text>
               </View>
             </View>
           </View>
