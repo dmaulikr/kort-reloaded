@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
-
 import React from 'react';
 import { Image, Platform, StyleSheet, Text, View } from 'react-native';
+import I18n from 'react-native-i18n';
 
 const styles = StyleSheet.create({
   tabIcon: {
@@ -27,7 +27,7 @@ TabIcon.propTypes = {
 };
 
 const MissionsTabIcon = () => {
-  const caption = 'Missions';
+  const caption = I18n.t('tab_bugmap');
   let icon;
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_missions.png');
@@ -39,7 +39,7 @@ const MissionsTabIcon = () => {
 };
 
 const ProfileTabIcon = () => {
-  const caption = 'Profile';
+  const caption = I18n.t('tab_profile');
   let icon;
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_profile.png');
@@ -51,7 +51,7 @@ const ProfileTabIcon = () => {
 };
 
 const HighscoreTabIcon = () => {
-  const caption = 'Highscore';
+  const caption = I18n.t('tab_highscore');
   let icon;
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_highscore.png');
@@ -63,7 +63,7 @@ const HighscoreTabIcon = () => {
 };
 
 const AboutTabIcon = () => {
-  const caption = 'About';
+  const caption = I18n.t('tab_about');
   let icon;
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_about.png');

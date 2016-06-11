@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import I18n from 'react-native-i18n';
 
 import User from '../../dto/User';
 
@@ -63,8 +64,8 @@ const HighscoreCell = ({ onSelectRow, user }) => {
           <View style={styles.columnText}>
             <Text style={styles.text}>{userName}</Text>
             <View style={styles.rowDescription}>
-              <Text style={styles.text}>{`Koins: ${koinCount}`}</Text>
-              <Text style={styles.text}>{`Missions: ${solveCount}`}</Text>
+              <Text style={styles.text}>{I18n.t('highscore_koins')}: {koinCount}</Text>
+              <Text style={styles.text}>{I18n.t('highscore_fixcount')} {solveCount}</Text>
             </View>
           </View>
         </View>

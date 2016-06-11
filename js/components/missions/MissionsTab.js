@@ -25,6 +25,10 @@ const MissionsTab = React.createClass({
     taskRewardStore.addChangeListener(this._onTaskRewardUpdate);
   },
 
+  componentWillUnmount() {
+    taskRewardStore.removeChangeListener(this._onTaskRewardUpdate);
+  },
+
   _onTaskRewardUpdate() {
     TaskActions.loadTasks(locationStore.getLatitude(), locationStore.getLongitude());
 

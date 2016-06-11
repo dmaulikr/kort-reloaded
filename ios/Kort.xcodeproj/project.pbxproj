@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -38,6 +37,7 @@
 		9E74CEC81CDBB49900DF1000 /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E74CEBF1CDBB46100DF1000 /* libRCTMapboxGL.a */; };
 		9E74CECA1CDBB57000DF1000 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E74CEC91CDBB57000DF1000 /* Mapbox.framework */; };
 		9E74CECB1CDBB57000DF1000 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E74CEC91CDBB57000DF1000 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BA915038F894471490730C2F /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D503CDD86886494F8C1EDC85 /* libRNI18n.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +191,8 @@
 		9E74CEB51CDBB46100DF1000 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		9E74CEC91CDBB57000DF1000 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		B0F940CE3E952F1BAF5F8B9C /* libPods-KortTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KortTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3CB0F6A846D4CAC985C7E04 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; name = "RNI18n.xcodeproj"; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D503CDD86886494F8C1EDC85 /* libRNI18n.a */ = {isa = PBXFileReference; name = "libRNI18n.a"; path = "libRNI18n.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 				9E74CECA1CDBB57000DF1000 /* Mapbox.framework in Frameworks */,
 				5C4F89EE6109341710B85F88 /* libPods-Kort.a in Frameworks */,
 				441500561CF48D2100F23C92 /* GoogleSignIn.framework in Frameworks */,
+				BA915038F894471490730C2F /* libRNI18n.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +377,7 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
+				D3CB0F6A846D4CAC985C7E04 /* RNI18n.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -855,6 +859,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -877,6 +882,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
@@ -903,6 +909,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL/**",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				INFOPLIST_FILE = Kort/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -934,6 +941,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL/**",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				INFOPLIST_FILE = Kort/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -988,6 +996,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL/**",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1029,6 +1038,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL/**",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

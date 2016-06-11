@@ -1,9 +1,19 @@
+import I18n from 'react-native-i18n';
+
+import AvailableDbLanguages from '../constants/i18n/AvailableDbLanguages';
 import Config from '../constants/Config';
 import authenticationStore from '../stores/AuthenticationStore';
 
 const Buffer = require('buffer').Buffer;
 
 const requestLocation = `${Config.SERVER}${Config.API_PATH}`;
+const languageCode = getLanguageCode();
+
+function getLanguageCode() {
+  let languageCode = I18n.currentLocale().substring(0, 2);
+  if (AvailableDbLanguages.indexOf(languageCode) == -1) languageCode = 'en';
+  return languageCode;
+}
 
 export default class DataLoader {
   static _getQueryParametersString(queryParameters) {
@@ -17,8 +27,8 @@ export default class DataLoader {
 
   static _getParametersString(parameters) {
     let parametersString;
-    parametersString = `?${parameters[0]}`;
-    for (let i = 1; i < parameters.length; i++) {
+    parametersString = `?lang=${languageCode}`;
+    for (let i = 0; i < parameters.length; i++) {
       parametersString += `&${parameters[i]}`;
     }
     return parametersString;
@@ -76,6 +86,8 @@ export default class DataLoader {
     if (authorized === true) {
       authorizationHeader = this._createHeaders('GET');
     }
+
+    console.log('dtldr', requestUrl);
 
     fetch(requestUrl, { headers: authorizationHeader })
       .then((response) => response.json())

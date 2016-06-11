@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
+import I18n from 'react-native-i18n';
 import { Actions } from 'react-native-router-flux';
 
 import SolveTaskInput from './SolveTaskInput';
@@ -84,8 +85,8 @@ const SolveTaskModal = React.createClass({
 
   solveMission() {
     const input = this.refs.input.state;
-    MissionActions.solveMission(this.props.task, input.answerValue, input.unableToSolve);
     Actions.pop();
+    MissionActions.solveMission(this.props.task, input.answerValue, input.unableToSolve);
   },
 
   solveValidation() {
@@ -107,8 +108,8 @@ const SolveTaskModal = React.createClass({
       valid = false;
     }
 
-    ValidationActions.solveValidation(validation, valid);
     Actions.pop();
+    ValidationActions.solveValidation(validation, valid);
   },
 
   solveTask() {
@@ -129,7 +130,9 @@ const SolveTaskModal = React.createClass({
               style={styles.icon}
               source={require('../../assets/img/koin_no_value.png')}
             />
-            <Text style ={styles.textMission}>Get the {this.props.task.fixKoinCount} Koins!</Text>
+            <Text style ={styles.textMission}>
+              {I18n.t('fix_form_koins_earn', { fix_koin_count: this.props.task.fixKoinCount })}
+            </Text>
           </View>
           <View style={styles.containerMissionDescription}>
             <Image
@@ -146,12 +149,8 @@ const SolveTaskModal = React.createClass({
           unableToSolve={this.state.unableToSolve}
         />
         <View style={styles.containerButton}>
-          <Button onPress={Actions.pop}>
-            Cancel
-          </Button>
-          <Button onPress={this.solveTask}>
-            Complete Mission
-          </Button>
+          <Button onPress={Actions.pop}>{I18n.t('messagebox_cancel')}</Button>
+          <Button onPress={this.solveTask}>{I18n.t('fix_form_button_submit')}</Button>
         </View>
       </View>
     );
