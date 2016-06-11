@@ -6,14 +6,14 @@ import authenticationStore from '../stores/AuthenticationStore';
 
 const Buffer = require('buffer').Buffer;
 
+function getLanguageCode() {
+  let code = I18n.currentLocale().substring(0, 2);
+  if (AvailableDbLanguages.indexOf(code) === -1) code = 'en';
+  return code;
+}
+
 const requestLocation = `${Config.SERVER}${Config.API_PATH}`;
 const languageCode = getLanguageCode();
-
-function getLanguageCode() {
-  let languageCode = I18n.currentLocale().substring(0, 2);
-  if (AvailableDbLanguages.indexOf(languageCode) == -1) languageCode = 'en';
-  return languageCode;
-}
 
 export default class DataLoader {
   static _getQueryParametersString(queryParameters) {
@@ -87,8 +87,6 @@ export default class DataLoader {
       authorizationHeader = this._createHeaders('GET');
     }
 
-    console.log('dtldr', requestUrl);
-
     fetch(requestUrl, { headers: authorizationHeader })
       .then((response) => response.json())
       .then((responseData) => responseData)
@@ -109,7 +107,6 @@ export default class DataLoader {
     }
 
     const headers = this._createHeaders(requestMethod);
-    console.log('POST MISSION', 'requestUrl', requestUrl);
     fetch(requestUrl, {
       headers,
       method: requestMethod,

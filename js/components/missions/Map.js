@@ -67,13 +67,15 @@ export default React.createClass({
     const annotations = [];
 
     for (const task of taskStore.getAll()) {
+      console.log('ANTN', 'type', task.type);
+      console.log('ANTN', 'img', task.annotationImage);
       annotations.push({
         id: task.id,
         type: 'point',
         title: task.title,
         subtitle: task.id,
         coordinates: [parseFloat(task.latitude), parseFloat(task.longitude)],
-        task,
+        annotationImage: { url: `image!${task.annotationImage}`, width: 35, height: 42 },
       });
     }
     this.setState({ annotations });
