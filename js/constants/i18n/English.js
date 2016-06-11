@@ -18,6 +18,7 @@ const English = {
   login_kort_introduction_2: 'Hence you\'ll see your missions on a map. By completing missions you get Koins and earn badges.',
   login_kort_introduction_3: 'Each solved mission is later checked by other players for its correctness. As soon as enough positive ratings are entered for a suggested solution, it is ready to be sent back to OpenStreetMap.',
   login_kort_introduction_4: 'Login now to begin your mission\!',
+  login_oauth_providers: 'More providers will be added.',
   login_button_google: 'Login with Google',
   login_button_osm: 'Login with OpenStreetMap',
   login_button_facebook: 'Login with Facebook',
