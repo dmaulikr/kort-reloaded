@@ -3,24 +3,42 @@ import DataLoader from './DataLoader';
 import Answer from '../dto/Answer';
 
 const answerRestPath = Config.ANSWER_PATH;
+const taskTypes = [Config.TASK_TYPE_RELIGION, Config.TASK_TYPE_LANGUGAGE_UNKNOWN,
+  Config.TASK_TYPE_MISSING_TRACK_TYPE, Config.TASK_TYPE_MISSING_CUISINE];
 
-function _initAnswers(rawAnswers) {
-  const answers = [];
-  rawAnswers.forEach((answer) => {
-    answers.push(new Answer(answer.id, answer.value, answer.title, answer.sorting, answer.type));
-  }, this);
+export default class AnswerLoader extends DataLoader {
+  static _initAnswers(rawAnswers) {
+    const answers = [];
+    rawAnswers.return.forEach((answer) => {
+      answers.push(new Answer(answer.id, answer.value, answer.title, answer.sorting, answer.type));
+    });
 
-  return answers;
-}
+    return answers;
+  }
 
-class AnswerLoader extends DataLoader {
-  static getAnswers(onSuccess, onError) {
-    const requestUrl = super.createRequestUrl(answerRestPath, null, null);
-    super.makeRequest(requestUrl, onSuccess, onError, _initAnswers);
+  static getAllAnswers(onSuccess, onError) {
+    const answers = new Map();
+    taskTypes.forEach((taskType) => {
+      AnswerLoader.getAnswersForType(
+        taskType,
+        (answersForType) => {
+          answers.set(taskType, answersForType);
+          if (answers.size === taskTypes.length) {
+            onSuccess(answers);
+          }
+        },
+        onError
+      );
+    });
   }
 
   static getAnswersForType(taskType, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(answerRestPath, [taskType], null);
-    super.makeRequest(requestUrl, onSuccess, onError, _initAnswers);
+    super.makeGetRequest(
+      requestUrl,
+      true,
+      (rawAnswers) => onSuccess(AnswerLoader._initAnswers(rawAnswers)),
+      onError
+    );
   }
 }

@@ -5,33 +5,43 @@ import Store from './Store';
 class AnswerStore extends Store {
   constructor() {
     super();
-    this._allAnswers = null;
     this._answers = null;
-    this._taskType = null;
-    this.dispatchToken = AppDispatcher.register((action) => {
-      switch (action.actionType) {
-        case ActionTypes.ANSWERS_LOAD:
-          this.onAnswersLoaded(action.data);
-          break;
-        case ActionTypes.ANSWERS_LOAD_FOR_TYPE:
-          this.onAnswersLoadedForType(action.data, action.taskType);
-          break;
-        default:
-          return;
-      }
-    });
   }
 
-  _onAnswersLoaded(answers) {
-    this._allAnswers = answers;
+  _setAllAnswers(answers) {
+    this._answers = answers;
     super.emitChange();
   }
 
-  _onAnswersLoadedForType(answers, taskType) {
-    if (taskType !== this._taskType) {
-      this._taskType = taskType;
-      this._answers = answers;
-      super.emitChange();
-    }
+  _setAnswersForType(taskType, answers) {
+    this._answers.set(taskType, answers);
+    super.emitChange();
+  }
+
+  getAnswersForType(taskType) {
+    if (this._answers === null) return null;
+
+    return this._answers.get(taskType);
+  }
+
+  getAllAnswers() {
+    return this._answers;
   }
 }
+
+const answerStore = new AnswerStore();
+
+answerStore.dispatchToken = AppDispatcher.register((action) => {
+  switch (action.actionType) {
+    case ActionTypes.ANSWERS_LOAD:
+      answerStore._setAllAnswers(action.data);
+      break;
+    case ActionTypes.ANSWERS_LOAD_FOR_TYPE:
+      answerStore._setAnswersForType(action.taskType, action.data);
+      break;
+    default:
+      return;
+  }
+});
+
+export default answerStore;

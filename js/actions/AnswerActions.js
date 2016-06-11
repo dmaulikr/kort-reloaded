@@ -3,8 +3,8 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import AnswerLoader from '../data/AnswerLoader';
 
 export default class AnswerActions {
-  static loadAnswers() {
-    AnswerLoader.getAnswers(
+  static loadAllAnswers() {
+    AnswerLoader.getAllAnswers(
       (answers) => {
         AppDispatcher.dispatch({
           actionType: ActionTypes.ANSWERS_LOAD,

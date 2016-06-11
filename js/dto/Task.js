@@ -19,5 +19,36 @@ export default class Task {
     this.txt3 = txt3;
     this.txt4 = txt4;
     this.txt5 = txt5;
+
+    this.annotationImage = null;
+    this._setAnnotationImage();
+  }
+
+  _setAnnotationImage() {
+    switch (this.type) {
+      case 'motorway_ref':
+        this.annotationImage = 'motorway_ref_mission';
+        break;
+      case 'religion':
+        this.annotationImage = 'religion_mission';
+        break;
+      case 'poi_name':
+        this.annotationImage = 'poi_name_mission';
+        break;
+      case 'missing_maxspeed':
+        this.annotationImage = 'missing_maxspeed_mission';
+        break;
+      case 'language_unknown':
+        this.annotationImage = 'language_unknown_mission';
+        break;
+      case 'missing_track_type':
+        this.annotationImage = 'type_of_track_unknown_mission';
+        break;
+      case 'missing_cuisine':
+        this.annotationImage = 'missing_cuisine_mission';
+        break;
+      default:
+        this.annotationImage = 'undefined_mission';
+    }
   }
 }

@@ -1,49 +1,52 @@
 import ActionTypes from '../constants/ActionTypes';
-
+import AppDispatcher from '../dispatcher/AppDispatcher';
 import UserLoader from '../data/UserLoader';
 
-import AppDispatcher from '../dispatcher/AppDispatcher';
+import authenticationStore from '../stores/AuthenticationStore';
 
 export default class UserActions {
-  static verifyUser(provider, idToken) {
-    UserLoader.verifyUser(provider, idToken, (userCredential) => {
-      console.log(userCredential);
-      AppDispatcher.dispatch({
-        actionType: ActionTypes.USER_VERIFY,
-        data: userCredential,
-      });
+  static _onUserDataLoaded(userWithoutBadges, userBadges) {
+    const user = userWithoutBadges;
+    user.badges = userBadges;
+
+    AppDispatcher.dispatch({
+      actionType: ActionTypes.USER_LOAD,
+      data: user,
     });
   }
 
-  static getUser(id) {
-    UserLoader.getUser(id, (user) => {
-      AppDispatcher.dispatch({
-        actionType: ActionTypes.USER_LOAD,
-        data: user,
-      });
+  static loadUser(userId, userSecret) {
+    let userWithoutBadges;
+    let userBadges;
+    let userLoaded = false;
+    let badgesLoaded = false;
+
+    UserLoader.getUser(userSecret, (user) => {
+      if (badgesLoaded) {
+        UserActions._onUserDataLoaded(user, userBadges);
+      } else {
+        userWithoutBadges = user;
+      }
+      userLoaded = true;
+    });
+
+    UserLoader.getUserBadges(userId, (badges) => {
+      if (userLoaded) {
+        UserActions._onUserDataLoaded(userWithoutBadges, badges);
+      } else {
+        userBadges = badges;
+      }
+      badgesLoaded = true;
     });
   }
 
-  static getUserBadges(id) {
-    UserLoader.getUserBadges(id, (userBadges) => {
-      AppDispatcher.dispatch({
-        actionType: ActionTypes.USER_BADGES,
-        data: userBadges,
-      });
-    });
+  static loadOwnUser() {
+    const userCredential = authenticationStore.getUserCredential();
+    UserActions.loadUser(userCredential.userId, userCredential.secret);
   }
 
-  static logoutUser(id) {
-    UserLoader.logoutUser(id, (logoutInfo) => {
-      AppDispatcher.dispatch({
-        actionType: ActionTypes.USER_LOGOUT,
-        logoutInfo,
-      });
-    });
-  }
-
-  static updateUser(id) {
-    UserLoader.updateUser(id, (userWithUpdateInfo) => {
+  static updateUser(user) {
+    UserLoader.updateUser(user.id, (userWithUpdateInfo) => {
       AppDispatcher.dispatch({
         actionType: ActionTypes.USER_UPDATE,
         data: userWithUpdateInfo,

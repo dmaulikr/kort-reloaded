@@ -1,12 +1,14 @@
 package com.kort;
 
 import com.facebook.react.ReactActivity;
+import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 
@@ -36,10 +38,10 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected List<ReactPackage> getPackages() {
-        return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-            new ReactNativeMapboxGLPackage(),
-            new RNGoogleSigninPackage()
-        );
+      return Arrays.<ReactPackage>asList(
+        new MainReactPackage(),
+            new ReactNativeI18n(),
+        new RNGoogleSigninPackage(),
+        new ReactNativeMapboxGLPackage());
     }
 }
