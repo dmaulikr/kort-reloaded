@@ -1,5 +1,4 @@
 jest.unmock('../HighscoreStore');
-//jest.unmock('../../dto/HighscoreEntry');
 
 describe('HighscoreStore', () => {
   const ActionTypes = require('../../constants/ActionTypes');
