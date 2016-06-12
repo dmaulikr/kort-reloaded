@@ -1,16 +1,12 @@
 jest.unmock('../LocationStore');
 
 describe('LocationStore', () => {
-  const ActionTypes = require('../../constants/ActionTypes');
-
   let AppDispatcher;
   let locationStore;
-  let callback;
 
   beforeEach(() => {
     AppDispatcher = require('../../dispatcher/AppDispatcher').default;
     locationStore = require('../LocationStore').default;
-    callback = AppDispatcher.register.mock.calls[0][0];
   });
 
   it('registers a callback with the dispatcher', () => {

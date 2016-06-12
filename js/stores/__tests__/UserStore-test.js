@@ -10,8 +10,6 @@ jest.setMock('react-native', {
 describe('UserStore', () => {
   const ActionTypes = require('../../constants/ActionTypes');
   const User = require('../../dto/User').default;
-  const ReactNative = require('react-native');
-  const { AsyncStorage } = ReactNative;
 
   let AppDispatcher;
   let userStore;
