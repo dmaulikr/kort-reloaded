@@ -20,7 +20,7 @@ class UserStore extends Store {
     if (this._users === null) return;
 
     const user = this._users.get(userWithUpdateInfo.id);
-    if (user == null) return;
+    if (user === undefined) return;
 
     const updatedUser = user;
     updatedUser.name = userWithUpdateInfo.name;
@@ -34,13 +34,15 @@ class UserStore extends Store {
   getUser(userId) {
     if (this._users === null) return null;
 
+    const users = this._users.get(userId);
+    if (users === undefined) return null;
+
     return this._users.get(userId);
   }
 
   getOwnUser() {
-    if (this._users === null) return null;
-
-    return this._users.get(authenticationStore.getUserId());
+    const ownUserId = authenticationStore.getUserId();
+    return this.getUser(ownUserId);
   }
 }
 

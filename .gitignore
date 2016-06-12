@@ -38,3 +38,8 @@ npm-debug.log
 # js
 #
 SecretConfig.js
+
+# vs code
+#
+.vscode/
+tsconfig.json

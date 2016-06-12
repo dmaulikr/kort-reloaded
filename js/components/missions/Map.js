@@ -73,7 +73,7 @@ export default React.createClass({
         title: task.title,
         subtitle: task.id,
         coordinates: [parseFloat(task.latitude), parseFloat(task.longitude)],
-        task,
+        annotationImage: { url: `image!${task.annotationImage}`, width: 35, height: 42 },
       });
     }
     this.setState({ annotations });

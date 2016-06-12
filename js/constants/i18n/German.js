@@ -18,7 +18,7 @@ const German = {
   login_kort_introduction_2: 'Dazu werden dir auf der Karte Fehler in Form von Aufträgen angezeigt. Durch das Lösen solcher Aufträge erhältst du Koins und kannst Auszeichnungen gewinnen.',
   login_kort_introduction_3: 'Gelöste Aufträge können dann wiederum von anderen Spielern überprüft werden, um deren Korrektheit zu bestätigen. Sobald ein Lösungsvorschlag genügend positive Bewertungen erhalten hat, ist er bereit, um zu OpenStreetMap zurückgeschrieben zu werden.',
   login_kort_introduction_4: 'Logge dich jetzt ein, um damit zu beginnen\!',
-  login_oauth_providers: 'Weitere Provider werden noch kommen.',
+  login_oauth_providers: 'Weitere Provider werden noch hinzugefügt.',
   login_button_google: 'Login mit Google',
   login_button_osm: 'Login mit OpenStreetMap',
   login_button_facebook: 'Login mit Facebook',
