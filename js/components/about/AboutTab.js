@@ -2,6 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import I18n from 'react-native-i18n';
 
+import Config from '../../constants/Config';
+
+const version = Config.KORT_VERSION;
+
 const styles = StyleSheet.create({
   scrollView: {
     marginBottom: 46,
@@ -54,7 +58,7 @@ const AboutTab = React.createClass({
           <View style={styles.containerAbout}>
             <Image style={styles.kortlogo} source={require('../../assets/img/kort-logo.png')} />
             <Text style={styles.textTitle}>{I18n.t('about_version_title')}</Text>
-            <Text style={styles.textSubTitle}>version</Text>
+            <Text style={styles.textSubTitle}>{version}</Text>
             <Text style={styles.textTitle}>{I18n.t('about_information_title')}</Text>
             <Text style={styles.textSubTitle}>{I18n.t('about_information_homepage')}</Text>
             <Text style={styles.textSubTitle}>{I18n.t('about_information_feedback')}</Text>
