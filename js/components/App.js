@@ -25,9 +25,9 @@ const scenes = Actions.create(
       <Scene key="login" component={Login} hideNavBar panHandlers={null} direction="vertical" sceneStyle={{ backgroundColor: '#87ceeb' }} />
       <Scene key="tabBar" panHandlers={null} tabs type="replace" tabBarStyle={{ flex: 1, alignItems: 'flex-start' }}>
         <Scene key="missions" component={MissionsTab} hideNavBar icon={MissionsTabIcon} />
-        <Scene key="profile" component={ProfileTab} hideNavBar icon={ProfileTabIcon} sceneStyle={{ backgroundColor: '#e0ffff' }} />
-        <Scene key="highscore" component={HighscoreTab} hideNavBar icon={HighscoreTabIcon} sceneStyle={{ backgroundColor: '#e0ffff' }} />
-        <Scene key="about" component={AboutTab} hideNavBar icon={AboutTabIcon} sceneStyle={{ backgroundColor: '#e0ffff' }} />
+        <Scene key="profile" component={ProfileTab} hideNavBar icon={ProfileTabIcon} sceneStyle={{ backgroundColor: '#ffffff' }} />
+        <Scene key="highscore" component={HighscoreTab} hideNavBar icon={HighscoreTabIcon} sceneStyle={{ backgroundColor: '#ffffff' }} />
+        <Scene key="about" component={AboutTab} hideNavBar icon={AboutTabIcon} sceneStyle={{ backgroundColor: '#ffffff' }} />
       </Scene>
       <Scene key="solveTask" panHandlers={null} component={SolveTaskModal} direction="vertical" />
       <Scene key="taskReward" panHandlers={null} component={TaskRewardModal} direction="vertical" />
