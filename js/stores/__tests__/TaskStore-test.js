@@ -90,12 +90,12 @@ describe('TaskStore', () => {
     expect(AppDispatcher.register.mock.calls.length).toBe(1);
   });
 
-  it('initializes with no task items', () => {
-    const all = taskStore.getAll();
-    expect(all).toBeNull();
-  });
-
   describe('getAll()', () => {
+    it('initializes with no task items', () => {
+      const all = taskStore.getAll();
+      expect(all).toBeNull();
+    });
+
     it('updates when no tasks are available', () => {
       let all = taskStore.getAll();
       expect(all).toBeNull();
@@ -121,7 +121,6 @@ describe('TaskStore', () => {
     it('updates after loading tasks', () => {
       callback(actionTasksLoaded);
       const all = taskStore.getAll();
-      expect(all.length).toBe(createTasks().length);
       expect(all).toEqual(createTasks());
     });
 
@@ -131,7 +130,6 @@ describe('TaskStore', () => {
       expect(all).toEqual(createTasks());
       callback(actionDifferentTasksLoaded);
       all = taskStore.getAll();
-      expect(all.length).toBe(createDifferentTasks().length);
       expect(all).toEqual(createDifferentTasks());
     });
   });
