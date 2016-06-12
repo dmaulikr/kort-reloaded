@@ -14,7 +14,10 @@ export default {
   HIGHSCORE_PREFETCH_LIMIT: 10,
 
   // Kort
-  KORT_VERSION: 0.2,
+  KORT_GITHUB: 'https://github.com/kort/kort-reloaded',
+  KORT_USERVOICE: 'kort.uservoice.com',
+  KORT_VERSION: '0.2',
+  KORT_WEBSITE: 'www.kort.ch',
 
   // Kort API
   SERVER: 'https://kort-dev.herokuapp.com',
