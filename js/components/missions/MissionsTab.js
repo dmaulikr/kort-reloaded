@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Map from './Map';
-import CenterLocationButton from '../shared/CenterLocationButton';
 
 import TaskActions from '../../actions/TaskActions';
 
@@ -46,7 +45,6 @@ const MissionsTab = React.createClass({
         <View style={styles.mapContainer}>
           <Map ref="map" />
         </View>
-        <CenterLocationButton onPress={() => console.log()} />
       </View>
     );
   },
