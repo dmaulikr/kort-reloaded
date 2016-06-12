@@ -15,8 +15,7 @@ const secretStorageKey = Config.STORAGE_KEY_SECRET;
 class AuthenticationStore extends Store {
   constructor() {
     super();
-    this._userCredential =
-      new UserCredential('4156', '680ebf81e9b139e894769b42cd57e077e35859c5'); // = null;
+    this._userCredential = null;
     this._loggedIn = false;
   }
 
