@@ -18,12 +18,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     paddingHorizontal: 14,
-  },
-  containerMissionComplete: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: '#ffffff',
   },
   containerMission: {
     flexDirection: 'column',
