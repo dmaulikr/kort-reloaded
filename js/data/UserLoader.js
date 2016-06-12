@@ -38,7 +38,8 @@ export default class UserLoader extends DataLoader {
 
   static _initUserWithUpdateInfo(rawUserUpdateInfo) {
     return new User(rawUserUpdateInfo.user_id, rawUserUpdateInfo.name, rawUserUpdateInfo.username,
-      rawUserUpdateInfo.oauth_user_id, rawUserUpdateInfo.secret
+      rawUserUpdateInfo.oauth_user_id, null, null, null, null, null, null, rawUserUpdateInfo.secret,
+      null, null
     );
   }
 
