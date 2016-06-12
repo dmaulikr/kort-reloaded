@@ -6,8 +6,6 @@ jest.setMock('react-native', {
 });
 
 describe('AuthenticationStore', () => {
-  const UserCredential = require('../../dto/UserCredential').default;
-
   let AppDispatcher;
   let authenticationStore;
   beforeEach(() => {
