@@ -40,11 +40,13 @@ class LocationStore extends Store {
   }
 
   getLatitude() {
-    return this._position.coords.latitude;
+    const latitude = this._position === null ? null : this._position.coords.latitude;
+    return latitude;
   }
 
   getLongitude() {
-    return this._position.coords.longitude;
+    const longitude = this._position === null ? null : this._position.coords.longitude;
+    return longitude;
   }
 
   isWatching() {
