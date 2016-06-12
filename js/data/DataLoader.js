@@ -28,8 +28,10 @@ export default class DataLoader {
   static _getParametersString(parameters) {
     let parametersString;
     parametersString = `?lang=${languageCode}`;
-    for (let i = 0; i < parameters.length; i++) {
-      parametersString += `&${parameters[i]}`;
+    if (parameters !== null && parameters.length !== 0 && parameters[0] !== null) {
+      for (let i = 0; i < parameters.length; i++) {
+        parametersString += `&${parameters[i]}`;
+      }
     }
     return parametersString;
   }
@@ -74,9 +76,7 @@ export default class DataLoader {
       requestUrl += DataLoader._getQueryParametersString(queryParameters);
     }
 
-    if (parameters !== null && parameters.length !== 0 && parameters[0] !== null) {
-      requestUrl += DataLoader._getParametersString(parameters);
-    }
+    requestUrl += DataLoader._getParametersString(parameters);
 
     return requestUrl;
   }
