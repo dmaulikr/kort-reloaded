@@ -63,11 +63,11 @@ export default class DataLoader {
     return null;
   }
 
-  static createRequestUrl(apiUrl, queryParameters, parameters) {
+  static createRequestUrl(apiPath, queryParameters, parameters) {
     let requestUrl = requestLocation;
 
-    if (!apiUrl.startsWith('/')) requestUrl += '/';
-    requestUrl = requestUrl + apiUrl;
+    if (!apiPath.startsWith('/')) requestUrl += '/';
+    requestUrl = requestUrl + apiPath;
 
     if (queryParameters !== null && queryParameters.length !== 0 && queryParameters[0] !== null) {
       if (!requestUrl.endsWith('/')) requestUrl += '/';
