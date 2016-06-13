@@ -130,11 +130,7 @@ const SolveTaskModal = React.createClass({
             </Text>
           </View>
           <View style={styles.containerMissionDescription}>
-            <Image
-              style={styles.icon}
-              source={require('../../assets/img/poi_name_mission.png')}
-            />
-          <Text style={styles.textMission}>{this.props.task.question}</Text>
+            <Text style={styles.textMission}>{this.props.task.question}</Text>
           </View>
         </View>
         <SolveTaskInput
