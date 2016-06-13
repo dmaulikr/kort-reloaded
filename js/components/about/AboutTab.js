@@ -86,8 +86,12 @@ const AboutTab = React.createClass({
             <Image style={styles.hsrlogo} source={require('../../assets/img/hsr_logo.png')} />
             <Text style={styles.textTitle}>{I18n.t('about_credits_title')}</Text>
             <Text style={styles.textSubTitle}>{I18n.t('about_credits_partner')} Liip AG</Text>
-            <Text style={styles.textSubTitle}>{I18n.t('about_credits_tiledata')}: ...</Text>
-            <Text style={styles.textSubTitle}>{I18n.t('about_credits_markers')}: ...</Text>
+            <Text style={styles.textSubTitle}>
+              {I18n.t('about_credits_tiledata')} https://github.com/manuelroth/maps
+            </Text>
+            <Text style={styles.textSubTitle}>
+              {I18n.t('about_credits_markers')} https://mapicons.mapsmarker.com/
+            </Text>
             <Text style={styles.textTitle}>{I18n.t('about_legal_title')}</Text>
             <Text style={styles.textSubTitle}>{I18n.t('about_legal_message')}</Text>
           </View>
