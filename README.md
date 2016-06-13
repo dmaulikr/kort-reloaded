@@ -1,5 +1,6 @@
+
 # Kort Reloaded
-This is a new frontend implementation of Kort (Attention: This code is not yet even beta... Contact us if you want to collaborate). The well known Kort Game as we know it is still available on http://play.kort.ch. But meanwhile, the web app only works in Firefox.
+This is a new frontend implementation of Kort. The well known Kort Game as we know it is still available on http://play.kort.ch. But meanwhile, the web app only works in Firefox.
 
 The goal of this project is to provide a native app for Android as well as iOS keeping the functionality basically the same.
 
@@ -15,7 +16,7 @@ We gladly accept any kind of contribution if you wish to help!
 
 Please note, that currently we are collecting issues internally, i.e. as a private Redmine project.
 
-If you wish to run the current version of the app you will have to set up React Native on your machine.
+If you wish to run the current version of the app you will have to set up React Native on your machine. You will also need to add values to js/constants/SecretConfig.js and add the google-services.json file in order to use Google OAuth.
 
 ## Further Resources
 This is a list of links for contributing to or digging into Kort:
