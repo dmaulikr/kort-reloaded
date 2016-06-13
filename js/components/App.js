@@ -22,7 +22,7 @@ const scenes = Actions.create(
   <Scene key="modal" component={Modal}>
     <Scene key="root" hideNavBar>
       <Scene key="appLoader" component={AppLoader} hideNavBar panHandlers={null} />
-      <Scene key="login" component={Login} hideNavBar panHandlers={null} direction="vertical" sceneStyle={{ backgroundColor: '#ffffff' }} />
+      <Scene key="login" component={Login} hideNavBar panHandlers={null} direction="vertical" sceneStyle={{ backgroundColor: '#144E87' }} />
       <Scene key="tabBar" panHandlers={null} tabs type="replace" tabBarStyle={{ flex: 1, alignItems: 'flex-start' }}>
         <Scene key="missions" component={MissionsTab} hideNavBar icon={MissionsTabIcon} />
         <Scene key="profile" component={ProfileTab} hideNavBar icon={ProfileTabIcon} sceneStyle={{ backgroundColor: '#ffffff' }} />

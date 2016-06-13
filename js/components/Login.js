@@ -102,7 +102,7 @@ const Login = React.createClass({
           <View style={styles.containerLogin}>
             <View style={styles.containerLogo}>
               <Image style={styles.kortlogo}
-                source={require('../assets/img/kort-logo.png')}
+                source={require('../assets/img/kort-logo_white.png')}
               />
             </View>
             <View style={styles.containerLoginText}>
