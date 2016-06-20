@@ -29,6 +29,7 @@ AppDelegate.m
 .gradle
 local.properties
 google-services.json
+.keystore
 
 # node.js
 #
