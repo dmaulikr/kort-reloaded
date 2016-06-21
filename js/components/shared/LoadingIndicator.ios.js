@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 });
 
 
-const Loading = () => (
+const LoadingIndicator = () => (
   <View style={styles.overlayContainer}>
     <ActivityIndicatorIOS
       animating
@@ -33,4 +33,4 @@ const Loading = () => (
   </View>
 );
 
-module.exports = Loading;
+module.exports = LoadingIndicator;

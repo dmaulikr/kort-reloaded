@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import Loading from './shared/Loading';
+import LoadingIndicator from './shared/LoadingIndicator';
 
 import AnswerActions from '../actions/AnswerActions';
 import AuthenticationActions from '../actions/AuthenticationActions';
@@ -154,7 +154,7 @@ export default class AppLoader extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Loading />
+        <LoadingIndicator />
       </View>
     );
   }

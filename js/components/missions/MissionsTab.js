@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+import LoadingIndicator from '../shared/LoadingIndicator';
 import Map from './Map';
 
 import TaskActions from '../../actions/TaskActions';
@@ -17,6 +18,14 @@ const styles = StyleSheet.create({
   },
   mapContainer: {
     flex: 1,
+  },
+  loadingBackground: {
+    width: 100,
+    height: 200,
+    top: 250,
+    left: 50,
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 });
 
@@ -39,6 +48,7 @@ const MissionsTab = React.createClass({
 
   _onTaskUpdate() {
     this.refs.map.updateAnnotations();
+    this.forceUpdate();
   },
 
   _onTaskRewardUpdate() {
@@ -53,10 +63,13 @@ const MissionsTab = React.createClass({
   },
 
   render() {
+    const loadingIndicator = (taskStore.getAll() === null) ? <LoadingIndicator /> : null;
     return (
       <View style={styles.container}>
         <View style={styles.mapContainer}>
           <Map ref="map" />
+          {loadingIndicator}
+          <View style={styles.loadingBackground} />
         </View>
       </View>
     );
