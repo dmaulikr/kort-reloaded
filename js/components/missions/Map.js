@@ -32,22 +32,14 @@ export default React.createClass({
 
   componentWillMount() {
     DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
-    locationStore.addChangeListener(this.onLocationChange);
-    taskStore.addChangeListener(this.onTasksUpdate);
   },
 
   componentDidMount() {
-    if (taskStore.getAll() !== null) this._udpateAnnotations();
+    if (taskStore.getAll() !== null) this._updateAnnotations();
   },
 
   componentWillUnmount() {
     DeviceEventEmitter.removeAllListeners();
-    locationStore.removeChangeListener(this.onTasksUpdate);
-    taskStore.removeChangeListener(this.onTasksUpdate);
-  },
-
-  onLocationChange() {
-    TaskActions.loadTasks(locationStore.getLatitude(), locationStore.getLongitude());
   },
 
   onOpenAnnotation(annotation) {
@@ -61,11 +53,7 @@ export default React.createClass({
     Actions.solveTask({ task: annotationTask });
   },
 
-  onTasksUpdate() {
-    this._updateAnnotations();
-  },
-
-  _updateAnnotations() {
+  updateAnnotations() {
     const annotations = [];
 
     for (const task of taskStore.getAll()) {
