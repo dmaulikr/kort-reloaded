@@ -30,11 +30,13 @@ export default React.createClass({
     };
   },
 
-  componentDidMount() {
+  componentWillMount() {
     DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
     locationStore.addChangeListener(this.onLocationChange);
     taskStore.addChangeListener(this.onTasksUpdate);
+  },
 
+  componentDidMount() {
     if (taskStore.getAll() !== null) this._udpateAnnotations();
   },
 
