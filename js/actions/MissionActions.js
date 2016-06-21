@@ -14,7 +14,13 @@ export default class MissionActions {
           data: taskReward,
         });
       },
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ERROR_RAISE,
+          data: error,
+          type: Config.ERROR_POST_TASK,
+        });
+      }
     );
   }
 }
