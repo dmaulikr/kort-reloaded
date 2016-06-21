@@ -13,6 +13,9 @@ module.exports = keyMirror({
   AUTHENTICATION_LOGOUT: null,
   AUTHENTICATION_LOAD_CREDENTIAL: null,
   AUTHENTICATION_VERIFY: null,
+  // Error
+  ERROR_CLEAR: null,
+  ERROR_RAISE: null,
   // Mission
   MISSION_PUT: null,
   MISSIONS_LOAD: null,

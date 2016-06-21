@@ -160,6 +160,10 @@ const German = {
   about_legal_title: 'Rechtliche Hinweise\:',
   about_legal_message: 'Halte die Richtlinien von OpenStreetMap ein und verwende z.B. keine urheberrechtlich geschützten Quellen ohne Erlaubnis.',
 
+  // Error
+  error_title_default: 'Ein Fehler ist aufgetreten',
+  error_message_default: 'Versuch es nochmals oder starte die App neu.',
+
   // PullRefresh Plugin
   pullrefresh_pullrefresh: 'Zum Aktualisieren herunterziehen',
   pullrefresh_releaserefresh: 'Zum Aktualisieren loslassen...',

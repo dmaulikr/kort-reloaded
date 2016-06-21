@@ -160,6 +160,10 @@ const English = {
   about_legal_title: 'Legal note\:',
   about_legal_message: 'Please follow the guidelines of OpenStreetMap and don\'t use copyright protected sources without permission.',
 
+  // Error
+  error_title_default: 'An error occurred',
+  error_message_default: 'Try again or restart the app.',
+
   // PullRefresh Plugin',
   pullrefresh_pullrefresh: 'Pull down to refresh',
   pullrefresh_releaserefresh: 'Release to refresh...',
