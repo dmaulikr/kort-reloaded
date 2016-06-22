@@ -2,7 +2,6 @@ language: node_js
 
 node_js:
 - 5.1
-- 4
 
 cache:
     directories:
@@ -19,7 +18,7 @@ install:
 script:
     - npm run flow
     - npm run lint
-    #- npm run test
+    - npm run test
 
 notifications:
   email:
