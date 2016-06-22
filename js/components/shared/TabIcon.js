@@ -32,7 +32,7 @@ const MissionsTabIcon = () => {
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_missions.png');
   } else {
-    icon = require('../../assets/tabIcons/ic_ios_missions.png');
+    icon = require('../../assets/tabIcons/ic_android_missions.png');
   }
 
   return <TabIcon caption={caption} icon={icon} />;
@@ -44,7 +44,7 @@ const ProfileTabIcon = () => {
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_profile.png');
   } else {
-    icon = require('../../assets/tabIcons/ic_ios_profile.png');
+    icon = require('../../assets/tabIcons/ic_android_profile.png');
   }
 
   return <TabIcon caption={caption} icon={icon} />;
@@ -56,7 +56,7 @@ const HighscoreTabIcon = () => {
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_highscore.png');
   } else {
-    icon = require('../../assets/tabIcons/ic_ios_highscore.png');
+    icon = require('../../assets/tabIcons/ic_android_highscore.png');
   }
 
   return <TabIcon caption={caption} icon={icon} />;
@@ -68,7 +68,7 @@ const AboutTabIcon = () => {
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_about.png');
   } else {
-    icon = require('../../assets/tabIcons/ic_ios_about.png');
+    icon = require('../../assets/tabIcons/ic_android_about.png');
   }
   return <TabIcon caption={caption} icon={icon} />;
 };
