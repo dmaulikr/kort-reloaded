@@ -9,7 +9,7 @@ import Config from '../constants/Config';
 
 const google = Config.GOOGLE;
 const googleWebClientId = Config.GOOGLE_WEB_CLIENT_ID;
-const googleIosClientId = Config.IOS_GOOGLE_CLIENT_ID;
+const googleIosClientId = Config.GOOGLE_IOS_CLIENT_ID;
 
 const styles = StyleSheet.create({
   container: {
