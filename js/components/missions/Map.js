@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, DeviceEventEmitter } from 'react-native';
+import { DeviceEventEmitter, Platform, StyleSheet } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { Actions } from 'react-native-router-flux';
 
@@ -31,7 +31,9 @@ export default React.createClass({
   },
 
   componentWillMount() {
-    DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
+    if (Platform.OS === 'android') {
+      DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
+    }
     locationStore.addChangeListener(this.onLocationChange);
     taskStore.addChangeListener(this.onTasksUpdate);
   },
@@ -41,7 +43,9 @@ export default React.createClass({
   },
 
   componentWillUnmount() {
-    DeviceEventEmitter.removeAllListeners();
+    if (Platform.OS === 'android') {
+      DeviceEventEmitter.removeAllListeners();
+    }
     locationStore.removeChangeListener(this.onTasksUpdate);
     taskStore.removeChangeListener(this.onTasksUpdate);
   },
@@ -52,7 +56,7 @@ export default React.createClass({
 
   onOpenAnnotation(annotation) {
     let taskId;
-    if (require('react-native').Platform.OS === 'android') {
+    if (Platform.OS === 'android') {
       taskId = annotation.src.subtitle;
     } else {
       taskId = annotation.subtitle;
