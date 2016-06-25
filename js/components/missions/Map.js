@@ -34,8 +34,6 @@ export default React.createClass({
     if (Platform.OS === 'android') {
       DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
     }
-    locationStore.addChangeListener(this.onLocationChange);
-    taskStore.addChangeListener(this.onTasksUpdate);
   },
 
   componentDidMount() {
@@ -46,12 +44,6 @@ export default React.createClass({
     if (Platform.OS === 'android') {
       DeviceEventEmitter.removeAllListeners();
     }
-    locationStore.removeChangeListener(this.onTasksUpdate);
-    taskStore.removeChangeListener(this.onTasksUpdate);
-  },
-
-  onLocationChange() {
-    TaskActions.loadTasks(locationStore.getLatitude(), locationStore.getLongitude());
   },
 
   onOpenAnnotation(annotation) {
