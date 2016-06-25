@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
 });
 
 
-const Loading = () => (
+const LoadingIndicator = () => (
   <View style={styles.overlayContainer}>
-    <ProgressBarAndroid styleAttr="Large" style={styles.spinner} />
+    <ProgressBarAndroid style={styles.spinner} />
   </View>
 );
 
-module.exports = Loading;
+module.exports = LoadingIndicator;

@@ -34,24 +34,16 @@ export default React.createClass({
     if (Platform.OS === 'android') {
       DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
     }
-    locationStore.addChangeListener(this.onLocationChange);
-    taskStore.addChangeListener(this.onTasksUpdate);
   },
 
   componentDidMount() {
-    if (taskStore.getAll() !== null) this._udpateAnnotations();
+    if (taskStore.getAll() !== null) this._updateAnnotations();
   },
 
   componentWillUnmount() {
     if (Platform.OS === 'android') {
       DeviceEventEmitter.removeAllListeners();
     }
-    locationStore.removeChangeListener(this.onTasksUpdate);
-    taskStore.removeChangeListener(this.onTasksUpdate);
-  },
-
-  onLocationChange() {
-    TaskActions.loadTasks(locationStore.getLatitude(), locationStore.getLongitude());
   },
 
   onOpenAnnotation(annotation) {
@@ -65,11 +57,7 @@ export default React.createClass({
     Actions.solveTask({ task: annotationTask });
   },
 
-  onTasksUpdate() {
-    this._updateAnnotations();
-  },
-
-  _updateAnnotations() {
+  updateAnnotations() {
     const annotations = [];
 
     for (const task of taskStore.getAll()) {
@@ -79,7 +67,7 @@ export default React.createClass({
         title: task.title,
         subtitle: task.id,
         coordinates: [parseFloat(task.latitude), parseFloat(task.longitude)],
-        annotationImage: { url: `image!${task.annotationImage}`, width: 35, height: 42 },
+        annotationImage: { url: `image!${task.annotationImage}`, width: 36, height: 36 },
       });
     }
     this.setState({ annotations });

@@ -1,5 +1,6 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import Config from '../constants/Config';
 import MissionLoader from '../data/MissionLoader';
 
 export default class MissionActions {
@@ -14,7 +15,13 @@ export default class MissionActions {
           data: taskReward,
         });
       },
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ERROR_RAISE,
+          data: error,
+          type: Config.ERROR_POST_TASK,
+        });
+      }
     );
   }
 }
