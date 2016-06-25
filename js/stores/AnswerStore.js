@@ -14,12 +14,18 @@ class AnswerStore extends Store {
   }
 
   _setAnswersForType(taskType, answers) {
+    if (this._answers === null) this._answers = new Map();
     this._answers.set(taskType, answers);
     super.emitChange();
   }
 
   getAnswersForType(taskType) {
-    return this._answers.get(taskType);
+    if (this._answers === null) return null;
+
+    const answers = this._answers.get(taskType);
+    if (answers === undefined) return null;
+
+    return answers;
   }
 
   getAllAnswers() {

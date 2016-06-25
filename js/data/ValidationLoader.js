@@ -6,6 +6,8 @@ import TaskReward from '../dto/TaskReward';
 import UserBadge from '../dto/UserBadge';
 import Validation from '../dto/Validation';
 
+import authenticationStore from '../stores/AuthenticationStore';
+
 const validationsGetRestPath = Config.VALIDATIONS_GET_PATH;
 const validationPostRestPath = Config.VALIDATION_POST_PATH;
 
@@ -21,9 +23,10 @@ export default class ValidationLoader extends DataLoader {
           rawValidation.bug_question, rawValidation.view_type, rawValidation.latitude,
           rawValidation.longitude, rawValidation.vote_koin_count, rawValidation.promo_id,
           rawValidation.extra_coins, rawValidation.fix_user_id, rawValidation.fixmessage,
-          rawValidation.upratings, rawValidation.downratings, rawValidation.required_votes,
-          rawValidation.osm_id, rawValidation.osm_type, rawValidation.geom, rawValidation.txt1,
-          rawValidation.txt2, rawValidation.txt3, rawValidation.txt4, rawValidation.txt5
+          rawValidation.falsepositive, rawValidation.upratings, rawValidation.downratings,
+          rawValidation.required_votes, rawValidation.osm_id, rawValidation.osm_type,
+          rawValidation.geom, rawValidation.txt1, rawValidation.txt2, rawValidation.txt3,
+          rawValidation.txt4, rawValidation.txt5
         )
       );
     });
@@ -35,7 +38,7 @@ export default class ValidationLoader extends DataLoader {
     return JSON.stringify({
       id: validation.id,
       fix_id: validation.id,
-      user_id: validation.userId,
+      user_id: authenticationStore.getUserId(),
       valid,
     });
   }
@@ -43,11 +46,10 @@ export default class ValidationLoader extends DataLoader {
   static _initTaskReward(rawTaskReward) {
     const badges = [];
     rawTaskReward.badges.forEach((rawBadge) => {
-      badges.push(new UserBadge(null, rawBadge.name, null, null, null, null, null, null));
+      badges.push(new UserBadge(null, rawBadge.name, null, null, null, null, true, Date.now()));
     });
 
-    return new TaskReward(badges, rawTaskReward.koint_count_new,
-      rawTaskReward.koin_count_total);
+    return new TaskReward(badges, rawTaskReward.koin_count_new, rawTaskReward.koin_count_total);
   }
 
   static getValidations(latitude, longitude, onSuccess) {
@@ -64,7 +66,7 @@ export default class ValidationLoader extends DataLoader {
     );
   }
 
-  static solveValidation(validation, valid, onSuccess, onError) {
+  static postValidation(validation, valid, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(validationPostRestPath, null, null);
     super.makePostRequest(
       requestUrl,

@@ -20,7 +20,7 @@ export default class HighscoreActions {
   }
 
   static loadRelativeHighscore(limit, page) {
-    HighscoreLoader.getAbsoluteHighscore(
+    HighscoreLoader.getRelativeHighscore(
       limit,
       page,
       HighscoreActions._dispatchHighScoreLoaded,

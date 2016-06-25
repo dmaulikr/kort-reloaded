@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(255,255,255,0.5)',
-    marginBottom: 45,
+    backgroundColor: 'rgba(255,255,255,0)',
   },
   centering: {
     alignItems: 'center',
@@ -23,7 +22,7 @@ const styles = StyleSheet.create({
 });
 
 
-const Loading = () => (
+const LoadingIndicator = () => (
   <View style={styles.overlayContainer}>
     <ActivityIndicatorIOS
       animating
@@ -34,4 +33,4 @@ const Loading = () => (
   </View>
 );
 
-module.exports = Loading;
+module.exports = LoadingIndicator;

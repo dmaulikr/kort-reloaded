@@ -16,6 +16,18 @@ class TaskStore extends Store {
   getAll() {
     return this._tasks;
   }
+
+  get(id) {
+    if (this._tasks === null) return null;
+
+    for (const task of this._tasks) {
+      if (id === task.id) {
+        return task;
+      }
+    }
+
+    return null;
+  }
 }
 
 const taskStore = new TaskStore();

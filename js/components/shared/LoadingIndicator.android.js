@@ -1,6 +1,5 @@
 import React from 'react';
-import { ProgressBarAndroid, View,
-  StyleSheet } from 'react-native';
+import { ProgressBarAndroid, View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   overlayContainer: {
@@ -11,8 +10,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(255,255,255,0.5)',
-    marginBottom: 45,
+    backgroundColor: 'rgba(255,255,255,0)',
   },
   spinner: {
     width: 60,
@@ -22,10 +20,10 @@ const styles = StyleSheet.create({
 });
 
 
-const Loading = () => (
+const LoadingIndicator = () => (
   <View style={styles.overlayContainer}>
-    <ProgressBarAndroid styleAttr="Large" style={styles.spinner} />
+    <ProgressBarAndroid style={styles.spinner} />
   </View>
 );
 
-module.exports = Loading;
+module.exports = LoadingIndicator;

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
-
 import React from 'react';
 import { Image, Platform, StyleSheet, Text, View } from 'react-native';
+import I18n from 'react-native-i18n';
 
 const styles = StyleSheet.create({
   tabIcon: {
@@ -27,48 +27,48 @@ TabIcon.propTypes = {
 };
 
 const MissionsTabIcon = () => {
-  const caption = 'Missions';
+  const caption = I18n.t('tab_bugmap');
   let icon;
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_missions.png');
   } else {
-    icon = require('../../assets/tabIcons/ic_ios_missions.png');
+    icon = require('../../assets/tabIcons/ic_android_missions.png');
   }
 
   return <TabIcon caption={caption} icon={icon} />;
 };
 
 const ProfileTabIcon = () => {
-  const caption = 'Profile';
+  const caption = I18n.t('tab_profile');
   let icon;
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_profile.png');
   } else {
-    icon = require('../../assets/tabIcons/ic_ios_profile.png');
+    icon = require('../../assets/tabIcons/ic_android_profile.png');
   }
 
   return <TabIcon caption={caption} icon={icon} />;
 };
 
 const HighscoreTabIcon = () => {
-  const caption = 'Highscore';
+  const caption = I18n.t('tab_highscore');
   let icon;
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_highscore.png');
   } else {
-    icon = require('../../assets/tabIcons/ic_ios_highscore.png');
+    icon = require('../../assets/tabIcons/ic_android_highscore.png');
   }
 
   return <TabIcon caption={caption} icon={icon} />;
 };
 
 const AboutTabIcon = () => {
-  const caption = 'About';
+  const caption = I18n.t('tab_about');
   let icon;
   if (Platform.OS === 'android') {
     icon = require('../../assets/tabIcons/ic_android_about.png');
   } else {
-    icon = require('../../assets/tabIcons/ic_ios_about.png');
+    icon = require('../../assets/tabIcons/ic_android_about.png');
   }
   return <TabIcon caption={caption} icon={icon} />;
 };

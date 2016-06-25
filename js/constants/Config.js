@@ -9,8 +9,18 @@ export default {
   GOOGLE_IOS_CLIENT_ID: SecretConfig.GOOGLE_IOS_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID: SecretConfig.GOOGLE_WEB_CLIENT_ID,
 
+  // Errors
+  ERROR_POST_TASK: 'POST_TASK',
+
   // Highscore
   HIGHSCORE_LIMIT: 7435885969,
+  HIGHSCORE_PREFETCH_LIMIT: 10,
+
+  // Kort
+  KORT_GITHUB: 'https://github.com/kort/kort-reloaded',
+  KORT_USERVOICE: 'kort.uservoice.com',
+  KORT_VERSION: '0.2',
+  KORT_WEBSITE: 'www.kort.ch',
 
   // Kort API
   SERVER: 'https://kort-dev.herokuapp.com',
@@ -22,7 +32,7 @@ export default {
   HIGHSCORE_ABSOLUTE_PATH: '/highscore/absolute',
   HIGHSCORE_RELATIVE_PATH: '/highscore/relative',
   MISSION_PATH: '/mission',
-  MISSION_PUTPATH: '/mission/fix',
+  MISSION_POST_PATH: '/mission/fix',
   MISSIONS_GET_PATH: '/mission/position',
   VALIDATION_PATH: '/validation',
   VALIDATION_POST_PATH: '/validation/vote',
@@ -60,8 +70,8 @@ export default {
   TASK_TYPE_MISSING_CUISINE: 'missing_cuisine',
 
   // Tasks
-  MISSIONS_LIMIT: 10,
-  VALIDATIONS_LIMIT: 1000,
+  MISSIONS_LIMIT: 7,
+  VALIDATIONS_LIMIT: 50,
   RADIUS: 5000,
 
   // Modal View taskTypes

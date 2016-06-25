@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
-
 import React from 'react';
 import { BackAndroid } from 'react-native';
+import I18n from 'react-native-i18n';
 import { Actions, Modal, Scene, Router, Reducer } from 'react-native-router-flux';
 
 import Login from './Login';
@@ -16,20 +16,22 @@ import ProfileModal from './highscore/ProfileModal';
 import AppLoader from './AppLoader';
 import { MissionsTabIcon, ProfileTabIcon, HighscoreTabIcon, AboutTabIcon } from './shared/TabIcon';
 
+import Translations from '../constants/i18n/Translations';
+
 const scenes = Actions.create(
   <Scene key="modal" component={Modal}>
     <Scene key="root" hideNavBar>
-      <Scene key="appLoader" component={AppLoader} title="Loading Data" hideNavBar panHandlers={null} />
-      <Scene key="login" component={Login} title="Login" hideNavBar panHandlers={null} direction="vertical" sceneStyle={{ backgroundColor: '#87ceeb' }} />
+      <Scene key="appLoader" component={AppLoader} hideNavBar panHandlers={null} />
+      <Scene key="login" component={Login} hideNavBar panHandlers={null} direction="vertical" sceneStyle={{ backgroundColor: '#144E87' }} />
       <Scene key="tabBar" panHandlers={null} tabs type="replace" tabBarStyle={{ flex: 1, alignItems: 'flex-start' }}>
-        <Scene key="missions" component={MissionsTab} title="Missions" hideNavBar icon={MissionsTabIcon} />
-        <Scene key="profile" component={ProfileTab} title="Profile" hideNavBar icon={ProfileTabIcon} sceneStyle={{ backgroundColor: '#e0ffff' }} />
-        <Scene key="highscore" component={HighscoreTab} title="Highscore" hideNavBar icon={HighscoreTabIcon} sceneStyle={{ backgroundColor: '#e0ffff' }} />
-        <Scene key="about" component={AboutTab} title="About" hideNavBar icon={AboutTabIcon} sceneStyle={{ backgroundColor: '#e0ffff' }} />
+        <Scene key="missions" component={MissionsTab} hideNavBar icon={MissionsTabIcon} />
+        <Scene key="profile" component={ProfileTab} hideNavBar icon={ProfileTabIcon} sceneStyle={{ backgroundColor: '#ffffff' }} />
+        <Scene key="highscore" component={HighscoreTab} hideNavBar icon={HighscoreTabIcon} sceneStyle={{ backgroundColor: '#ffffff' }} />
+        <Scene key="about" component={AboutTab} hideNavBar icon={AboutTabIcon} sceneStyle={{ backgroundColor: '#ffffff' }} />
       </Scene>
       <Scene key="solveTask" panHandlers={null} component={SolveTaskModal} direction="vertical" />
       <Scene key="taskReward" panHandlers={null} component={TaskRewardModal} direction="vertical" />
-      <Scene key="profileModal" hideNavBar={false} panHandlers={null} component={ProfileModal} direction="vertical" />
+      <Scene key="profileModal" hideNavBar={false} panHandlers={null} component={ProfileModal} direction="horizontal" />
     </Scene>
   </Scene>
 );
@@ -45,6 +47,14 @@ const reducerCreate = params => {
 const App = React.createClass({
   componentWillMount() {
     BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+
+    this._configureI18n();
+  },
+
+  _configureI18n() {
+    I18n.fallbacks = true;
+    I18n.defaultLocale = 'en';
+    I18n.translations = Translations;
   },
 
   render() {

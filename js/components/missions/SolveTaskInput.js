@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Item, Text, Switch, Picker } from 'react-native';
+import { StyleSheet, View, TextInput, Text, Switch, Picker } from 'react-native';
+import I18n from 'react-native-i18n';
 
 import Config from '../../constants/Config';
 
@@ -24,113 +25,110 @@ const styles = StyleSheet.create({
 
 const select = Config.SELECT;
 const text = Config.TEXT;
+const Item = Picker.Item;
 
-const MissionModalInput = React.createClass({
+const SolveTaskInput = React.createClass({
   propTypes: {
     missionType: React.PropTypes.any.isRequired,
-    selectableAnswers: React.PropTypes.arrayOf(React.PropTypes.string),
     viewType: React.PropTypes.any.isRequired,
   },
 
   getInitialState() {
     return {
       unableToSolve: false,
-      txtUnableToSolve: 'Unable to solve',
-      selected: 'key0',
       selectableAnswers: null,
-      answer: '',
+      answerValue: null,
     };
   },
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.viewType === select) {
-      answerStore.addChangeListener(this._getAnswerSelection);
-
-      this._getAnswerSelection();
+      answerStore.addChangeListener(this._onAnswersChange);
+      this._updateSelectableAnswers();
     }
   },
 
   componentWillUnmount() {
     if (this.props.viewType === select) {
-      answerStore.removeChangeListener(this._getAnswerSelection);
+      answerStore.removeChangeListener(this._onAnswersChange);
     }
   },
 
-  /*
-  * Picker
-  */
-  onValueChange(key, value) {
-    const newState = {};
-    newState[key] = value;
-    this.setState(newState);
-
-    for (const answer of answerStore.getAnswersForType(this.props.missionType)) {
-      if (answer.id === value) {
-        this.setState({ answer: answer.title });
-      }
-    }
-  },
-
-  _getAnswerSelection() {
+  _updateSelectableAnswers() {
     const answers = answerStore.getAnswersForType(this.props.missionType);
-
-    if (answers) this.setState({ selectableAnswers: answers });
+    this.setState({ selectableAnswers: answers });
+    if (answers !== null) this.setState({ answerValue: answers[0].value });
   },
 
-  render() {
-    let inputField;
+  _onAnswersChange() {
+    this._updateSelectableAnswers();
+  },
 
-    if (this.state.unableToSolve) {
-      inputField = <View />;
-    } else {
-      const selectableTypeAnswers = [];
-      switch (this.props.viewType) {
-        case select:
-          for (const answer of answerStore.getAnswersForType(this.props.missionType)) {
-            selectableTypeAnswers.push(<Item label={answer.title} value={answer.id} />);
-          }
-          inputField = (
-            <Picker
-              style={styles.picker}
-              selectedValue={this.state.selected}
-              onValueChange={(answer) => this.setState({ answer })}
-            >
-              {selectableTypeAnswers}
-            </Picker>
-          );
-          break;
-        case text:
-          inputField = (
-            <TextInput
-              style={styles.textInput}
-              autoCapitalize="words"
-              placeholder="Mission type"
-              onChangeText={(answer) => this.setState({ answer })}
-              value={this.state.answer}
-            />
-          );
-          break;
-        default:
-          inputField = <View />;
-          break;
+  _renderPickerInputField() {
+    const answerItems = [];
+
+    if (this.state.selectableAnswers !== null) {
+      for (const answer of this.state.selectableAnswers) {
+        answerItems.push(<Item key={answer.id} label={answer.title} value={answer.value} />);
       }
     }
 
     return (
+      <Picker
+        style={styles.picker}
+        selectedValue={this.state.answerValue}
+        onValueChange={(answer) => this.setState({ answerValue: answer })}
+      >
+        {answerItems}
+      </Picker>
+    );
+  },
+
+  _renderTextInputField() {
+    return (
+      <TextInput
+        style={styles.textInput}
+        autoCapitalize="words"
+        onChangeText={(answer) => this.setState({ answerValue: answer })}
+        value={this.state.answerValue}
+      />
+    );
+  },
+
+  _renderInputField() {
+    const emptyInputField = <View />;
+
+    if (this.state.unableToSolve) {
+      this.state.answerValue = '-';
+      return emptyInputField;
+    }
+
+    switch (this.props.viewType) {
+      case select:
+        return this._renderPickerInputField();
+      case text:
+        return this._renderTextInputField();
+      default:
+        return emptyInputField;
+    }
+  },
+
+  render() {
+    return (
       <View>
         <View style={styles.containerSolve}>
-          <Text style={styles.text}>{this.state.txtUnableToSolve}</Text>
+          <Text style={styles.text}>{I18n.t('fix_form_falsepositive_toggle_label')}</Text>
           <Switch
-            onValueChange={(value) => this.setState({ unableToSolve: value, answer: '' })}
+            onValueChange={(value) => this.setState({ unableToSolve: value })}
             value={this.state.unableToSolve}
           />
         </View>
         <View>
-          {inputField}
+          {this._renderInputField()}
         </View>
       </View>
     );
   },
 });
 
-module.exports = MissionModalInput;
+module.exports = SolveTaskInput;

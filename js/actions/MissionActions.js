@@ -1,23 +1,27 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import Config from '../constants/Config';
 import MissionLoader from '../data/MissionLoader';
 
 export default class MissionActions {
-  static loadMissions(latitude, longitude) {
-    MissionLoader.getMissions(latitude, longitude, (missions) => {
-      AppDispatcher.dispatch({
-        actionType: ActionTypes.MISSIONS_LOAD,
-        data: missions,
-      });
-    });
-  }
-
   static solveMission(mission, message, isUnsolvable) {
-    MissionLoader.postMission(mission, message, isUnsolvable, (taskFixUpdate) => {
-      AppDispatcher.dispatch({
-        actionType: ActionTypes.MISSION_PUT,
-        data: taskFixUpdate,
-      });
-    });
+    MissionLoader.postMission(
+      mission,
+      message,
+      isUnsolvable,
+      (taskReward) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.MISSION_PUT,
+          data: taskReward,
+        });
+      },
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ERROR_RAISE,
+          data: error,
+          type: Config.ERROR_POST_TASK,
+        });
+      }
+    );
   }
 }

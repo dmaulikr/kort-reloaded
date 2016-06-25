@@ -2,6 +2,8 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import UserLoader from '../data/UserLoader';
 
+import authenticationStore from '../stores/AuthenticationStore';
+
 export default class AuthenticationActions {
   static verifyUser(provider, idToken) {
     UserLoader.verifyUser(provider, idToken, (userCredential) => {
@@ -18,9 +20,9 @@ export default class AuthenticationActions {
     });
   }
 
-  static logOutUser(userId) {
+  static logOutUser() {
     UserLoader.logoutUser(
-      userId,
+      authenticationStore.getUserId(),
       (logoutInfo) => {
         AppDispatcher.dispatch({
           actionType: ActionTypes.AUTHENTICATION_LOGOUT,

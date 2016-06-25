@@ -1,9 +1,19 @@
+import I18n from 'react-native-i18n';
+
+import AvailableDbLanguages from '../constants/i18n/AvailableDbLanguages';
 import Config from '../constants/Config';
 import authenticationStore from '../stores/AuthenticationStore';
 
 const Buffer = require('buffer').Buffer;
 
+function getLanguageCode() {
+  let code = I18n.currentLocale().substring(0, 2);
+  if (AvailableDbLanguages.indexOf(code) === -1) code = 'en';
+  return code;
+}
+
 const requestLocation = `${Config.SERVER}${Config.API_PATH}`;
+const languageCode = getLanguageCode();
 
 export default class DataLoader {
   static _getQueryParametersString(queryParameters) {
@@ -17,9 +27,11 @@ export default class DataLoader {
 
   static _getParametersString(parameters) {
     let parametersString;
-    parametersString = `?${parameters[0]}`;
-    for (let i = 1; i < parameters.length; i++) {
-      parametersString += `&${parameters[i]}`;
+    parametersString = `?lang=${languageCode}`;
+    if (parameters !== null && parameters.length !== 0 && parameters[0] !== null) {
+      for (let i = 0; i < parameters.length; i++) {
+        parametersString += `&${parameters[i]}`;
+      }
     }
     return parametersString;
   }
@@ -53,20 +65,18 @@ export default class DataLoader {
     return null;
   }
 
-  static createRequestUrl(apiUrl, queryParameters, parameters) {
+  static createRequestUrl(apiPath, queryParameters, parameters) {
     let requestUrl = requestLocation;
 
-    if (!apiUrl.startsWith('/')) requestUrl += '/';
-    requestUrl = requestUrl + apiUrl;
+    if (!apiPath.startsWith('/')) requestUrl += '/';
+    requestUrl = requestUrl + apiPath;
 
     if (queryParameters !== null && queryParameters.length !== 0 && queryParameters[0] !== null) {
       if (!requestUrl.endsWith('/')) requestUrl += '/';
       requestUrl += DataLoader._getQueryParametersString(queryParameters);
     }
 
-    if (parameters !== null && parameters.length !== 0 && parameters[0] !== null) {
-      requestUrl += DataLoader._getParametersString(parameters);
-    }
+    requestUrl += DataLoader._getParametersString(parameters);
 
     return requestUrl;
   }
@@ -92,15 +102,14 @@ export default class DataLoader {
   }
 
   static _makePutOrPostRequest(requestUrl, jsonBody, onSuccess, onError, requestMethod) {
-    if (requestMethod !== 'PUT' || requestMethod !== 'POST') {
+    if (requestMethod !== 'PUT' && requestMethod !== 'POST') {
       throw new Error('Request method needs to be of type \'PUT\' or \'POST\'.');
     }
 
     const headers = this._createHeaders(requestMethod);
-
     fetch(requestUrl, {
       headers,
-      requestMethod,
+      method: requestMethod,
       body: jsonBody,
     })
       .then((response) => response.json())

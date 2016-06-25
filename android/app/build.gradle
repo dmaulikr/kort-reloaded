@@ -97,10 +97,19 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file(KORT_RELEASE_STORE_FILE)
+            storePassword KORT_RELEASE_STORE_PASSWORD
+            keyAlias KORT_RELEASE_KEY_ALIAS
+            keyPassword KORT_RELEASE_KEY_PASSWORD
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -119,6 +128,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-i18n')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"

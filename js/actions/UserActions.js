@@ -40,7 +40,7 @@ export default class UserActions {
     });
   }
 
-  static loadCurrentUser() {
+  static loadOwnUser() {
     const userCredential = authenticationStore.getUserCredential();
     UserActions.loadUser(userCredential.userId, userCredential.secret);
   }

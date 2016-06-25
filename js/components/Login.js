@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import I18n from 'react-native-i18n';
 import { Actions } from 'react-native-router-flux';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
 import AuthenticationActions from '../actions/AuthenticationActions';
-import authenticationStore from '../stores/AuthenticationStore';
 import Config from '../constants/Config';
 
 const google = Config.GOOGLE;
 const googleWebClientId = Config.GOOGLE_WEB_CLIENT_ID;
-const googleIosClientId = Config.IOS_GOOGLE_CLIENT_ID;
+const googleIosClientId = Config.GOOGLE_IOS_CLIENT_ID;
 
 const styles = StyleSheet.create({
   container: {
@@ -70,32 +70,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onAuthenticationUpdate = this.onAuthenticationUpdate.bind(this);
-  }
-
+const Login = React.createClass({
   componentDidMount() {
-    authenticationStore.addChangeListener(this.onAuthenticationUpdate);
-
     this.configureGoogleSignIn();
-  }
-
-  componentWillUnmount() {
-    authenticationStore.removeChangeListener(this.onAuthenticationUpdate);
-  }
-
-  onAuthenticationUpdate() {
-    if (authenticationStore.isLoggedIn()) Actions.pop();
-  }
-
+  },
   configureGoogleSignIn() {
     GoogleSignin.configure({
       webClientId: googleWebClientId,
       iosClientId: googleIosClientId,
     });
-  }
+  },
 
   signInGoogle() {
     GoogleSignin.signIn()
@@ -104,7 +88,8 @@ export default class Login extends React.Component {
       console.log('WRONG SIGNIN', err);
     })
     .done();
-  }
+    Actions.pop();
+  },
 
   render() {
     return (
@@ -117,33 +102,31 @@ export default class Login extends React.Component {
           <View style={styles.containerLogin}>
             <View style={styles.containerLogo}>
               <Image style={styles.kortlogo}
-                source={require('../assets/img/kort-logo.png')}
+                source={require('../assets/img/kort-logo_white.png')}
               />
             </View>
             <View style={styles.containerLoginText}>
               <View style={styles.containerLoginDescription}>
-                <Text style={styles.textIntroduction}> • Complete Missions</Text>
-                <Text style={styles.textIntroduction}> • Collect Koins</Text>
-                <Text style={styles.textIntroduction}> • Improve OpenStreetMap</Text>
+                <Text style={styles.textIntroduction}> • {I18n.t('login_kort_description_1')}</Text>
+                <Text style={styles.textIntroduction}> • {I18n.t('login_kort_description_2')}</Text>
+                <Text style={styles.textIntroduction}> • {I18n.t('login_kort_description_3')}</Text>
               </View>
             </View>
           </View>
         </ScrollView>
         <View style={styles.containerLoginButtons}>
-          <Text style={styles.textTitle}>
-            Login now to begin your mission!
-          </Text>
-          <Text style={styles.textSubTitle}>
-            Other providers will be added.
-          </Text>
+          <Text style={styles.textTitle}>{I18n.t('login_kort_introduction_4')}</Text>
           <GoogleSigninButton
             style={{ alignSelf: 'center', width: 120, height: 44, marginTop: 7 }}
             color={GoogleSigninButton.Color.Light}
             size={GoogleSigninButton.Size.Icon}
             onPress={() => { this.signInGoogle(); }}
           />
+          <Text style={styles.textSubTitle}>{I18n.t('login_oauth_providers')}</Text>
         </View>
       </View>
     );
-  }
-}
+  },
+});
+
+export default Login;
