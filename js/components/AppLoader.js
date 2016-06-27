@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, View } from 'react-native';
 import I18n from 'react-native-i18n';
 import { Actions } from 'react-native-router-flux';
 
@@ -24,15 +24,29 @@ const highscorePrefetchLimit = Config.HIGHSCORE_PREFETCH_LIMIT;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#144E87',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    padding: 20,
+  },
+  kortlogo: {
+    alignSelf: 'center',
+    marginTop: 10,
+    height: 90,
+    width: 90,
+  },
+  errorMessage: {
+    marginTop: 50,
+    fontSize: 18,
+    color: "#ffffff",
   },
 });
 
 export default class AppLoader extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = { errorMessage: null }
 
     this._isAuthenticated = false;
     this._isLocated = false;
@@ -96,7 +110,7 @@ export default class AppLoader extends React.Component {
 
   _onLocationUpdate() {
     if (locationStore.getError() !== null) {
-      this._showError(locationStore.getError());
+      this.setState({ errorMessage: locationStore.getError().message });
       LocationActions.clearError();
       return;
     }
@@ -117,18 +131,18 @@ export default class AppLoader extends React.Component {
     this._onUpdate();
   }
 
-  _showError(error) {
-    if (this._isShowingError) return;
-
-    Alert.alert(error.title, error.message,
-      [{ text: I18n.t('messagebox_ok'), onPress: () => {this._isShowingError = false;} }]
-    );
-  }
-
   render() {
+    let content;
+    if (this.state.errorMessage === null) {
+      content = <LoadingIndicator />;
+    } else {
+      content = <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>;
+    }
+
     return (
       <View style={styles.container}>
-        <LoadingIndicator />
+        <Image style={styles.kortlogo} source={require('../assets/img/kort-logo_white.png')} />
+        {content}
       </View>
     );
   }
