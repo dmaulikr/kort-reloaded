@@ -1,6 +1,5 @@
 import React from 'react';
-import { Alert, Image, StyleSheet, Text, View } from 'react-native';
-import I18n from 'react-native-i18n';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import LoadingIndicator from './shared/LoadingIndicator';
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     fontSize: 18,
-    color: "#ffffff",
+    color: '#ffffff',
   },
 });
 
@@ -47,7 +46,7 @@ export default class AppLoader extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { errorMessage: null }
+    this.state = { errorMessage: null };
 
     this._isAuthenticated = false;
     this._isLocated = false;
