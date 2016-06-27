@@ -46,9 +46,8 @@ export default class TaskActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.MISSIONS_ERROR_LOAD,
           data: error,
-          type: Config.ERROR_GET_MISSIONS,
         });
       }
     );
@@ -63,9 +62,8 @@ export default class TaskActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.VALIDATIONS_ERROR_LOAD,
           data: error,
-          type: Config.ERROR_GET_VALIDATIONS,
         });
       }
     );

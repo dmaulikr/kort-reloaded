@@ -18,9 +18,8 @@ export default class HighscoreActions {
       HighscoreActions._dispatchHighScoreLoaded,
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.HIGHSCORE_ERROR_LOAD,
           data: error,
-          type: Config.ERROR_GET_HIGHSCORE,
         });
       }
     );
@@ -33,9 +32,8 @@ export default class HighscoreActions {
       HighscoreActions._dispatchHighScoreLoaded,
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.HIGHSCORE_ERROR_LOAD,
           data: error,
-          type: Config.ERROR_GET_HIGHSCORE,
         });
       }
     );

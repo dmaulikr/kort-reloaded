@@ -5,6 +5,7 @@ import Config from '../constants/Config';
 
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
+import Error from '../dto/Error';
 import UserCredential from '../dto/UserCredential';
 
 import Store from './Store';
@@ -17,6 +18,7 @@ class AuthenticationStore extends Store {
     super();
     this._userCredential = null;
     this._loggedIn = false;
+    this._error = null;
   }
 
   async _loadUserCredential() {
@@ -65,6 +67,10 @@ class AuthenticationStore extends Store {
     super.emitChange();
   }
 
+  _raiseError() {
+    this.error = new Error(I18n.t('error_title_default'), I18n.t('error_message_default'));
+  }
+
   getUserCredential() {
     return this._userCredential;
   }
@@ -84,6 +90,12 @@ class AuthenticationStore extends Store {
   isLoadingFromLocalStorage() {
     return this._loadingFromLocalStorages;
   }
+
+  getError() {
+    const error = this._error;
+    this._error = null;
+    return error;
+  }
 }
 
 const authenticationStore = new AuthenticationStore();
@@ -99,6 +111,10 @@ authenticationStore.dispatchToken = AppDispatcher.register((action) => {
     case ActionTypes.AUTHENTICATION_VERIFY:
       authenticationStore._saveUserCredential(action.data);
       authenticationStore._logInUser(action.data);
+      break;
+    case ActionTypes.AUTHENTICATION_ERROR_VERIFY:
+    case ActionTypes.AUTHENTICATION_ERROR_LOGOUT:
+      authenticationStore._raiseError();
       break;
     default:
       return;

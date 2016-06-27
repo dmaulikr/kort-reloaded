@@ -10,15 +10,14 @@ export default class ValidationActions {
       valid,
       (taskReward) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.VALIDATION_PUT,
+          actionType: ActionTypes.VALIDATION_SEND,
           data: taskReward,
         });
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.VALIDATION_ERROR_SEND,
           data: error,
-          type: Config.ERROR_POST_VALIDATION,
         });
       }
     );

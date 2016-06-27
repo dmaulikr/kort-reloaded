@@ -1,11 +1,15 @@
+import I18n from 'react-native-i18n';
+
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import Error from '../dto/Error';
 import Store from './Store';
 
 class AnswerStore extends Store {
   constructor() {
     super();
     this._answers = null;
+    this._error = null;
   }
 
   _setAllAnswers(answers) {
@@ -16,6 +20,11 @@ class AnswerStore extends Store {
   _setAnswersForType(taskType, answers) {
     if (this._answers === null) this._answers = new Map();
     this._answers.set(taskType, answers);
+    super.emitChange();
+  }
+
+  _raiseError() {
+    this._error = new Error(I18n.t('error_title_default'), I18n.t('error_message_default'));
     super.emitChange();
   }
 
@@ -31,6 +40,12 @@ class AnswerStore extends Store {
   getAllAnswers() {
     return this._answers;
   }
+
+  getError() {
+    const error = this._error;
+    this._error = null;
+    return error;
+  }
 }
 
 const answerStore = new AnswerStore();
@@ -42,6 +57,10 @@ answerStore.dispatchToken = AppDispatcher.register((action) => {
       break;
     case ActionTypes.ANSWERS_LOAD_FOR_TYPE:
       answerStore._setAnswersForType(action.taskType, action.data);
+      break;
+    case ActionTypes.ANSWERS_ERROR_LOAD:
+    case ActionTypes.ANSWERS_ERROR_LOAD_FOR_TYPE:
+      answerStore._raiseError();
       break;
     default:
       return;

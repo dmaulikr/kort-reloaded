@@ -1,5 +1,6 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import Error from '../dto/Error';
 import Store from './Store';
 
 import authenticationStore from './AuthenticationStore';
@@ -8,6 +9,7 @@ class UserStore extends Store {
   constructor() {
     super();
     this._users = null;
+    this._error = null;
   }
 
   _setUser(user) {
@@ -31,6 +33,17 @@ class UserStore extends Store {
     this._setUser(updatedUser);
   }
 
+  _raiseDefaultError() {
+    this._error = new Error(I18n.t('error_title_default'), I18n.t('error_message_default'));
+    super.emitChange();
+  }
+
+  _raiseUpdateError() {
+    this._error = new Error(I18n.t('firststeps_alert_submit_failure_title'),
+      I18n.t('firststeps_alert_submit_failure_message'));
+    super.emitChange();
+  }
+
   getUser(userId) {
     if (this._users === null) return null;
 
@@ -44,6 +57,12 @@ class UserStore extends Store {
     const ownUserId = authenticationStore.getUserId();
     return this.getUser(ownUserId);
   }
+
+  getError() {
+    const error = this._error;
+    this._error = null;
+    return error;
+  }
 }
 
 const userStore = new UserStore();
@@ -55,6 +74,12 @@ userStore.dispatchToken = AppDispatcher.register((action) => {
       break;
     case ActionTypes.USER_UPDATE:
       userStore._updateOwnUser(action.data);
+      break;
+    case ActionTypes.USER_ERROR_LOAD:
+      userStore._raiseDefaultError();
+      break;
+    case ActionTypes.USER_ERROR_UPDATE:
+      userStore._raiseUpdateError();
       break;
     default:
       return;

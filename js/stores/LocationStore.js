@@ -1,6 +1,7 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Config from '../constants/Config';
+import Error from '../dto/Error';
 import LocationActions from '../actions/LocationActions';
 import Store from './Store';
 
@@ -11,48 +12,36 @@ class LocationStore extends Store {
     super();
     this._position = null;
     this._isWatching = false;
+    this._error = null;
 
     this._onPositionChange = this._onPositionChange.bind(this);
   }
 
   _onPositionChange(position) {
     this._position = position;
-    console.log('LCTN', 'onPositionChange');
     super.emitChange();
-  }
-
-  _handleLocationError(positionError) {
-    console.log('LCTN', positionError.code);
-    switch (positionError.code) {
-      case 1:
-        console.log('LCTN', positionError);
-        LocationActions.raiseLocationDeniedError();
-        break;
-      case 2:
-      case 3:
-        console.log('LCTN', positionError);
-        LocationActions.raisePositionUnavailableError();
-        break;
-      default:
-        return;
-    }
   }
 
   _startWatchingLocation() {
     this._isWatching = true;
     navigator.geolocation.getCurrentPosition(
       this._onPositionChange,
-      (error) => LocationActions.raiseLocationDeniedError()
+      (error) => this._raiseLocationError()
     );
     this._locationWatchId = navigator.geolocation.watchPosition(
       this._onPositionChange,
-      (error) => LocationActions.raiseLocationDeniedError(),
+      (error) => this._raiseLocationError(),
       { enableHighAccurracy: true, distanceFilter }
     );
   }
 
   _stopWatchingLocation() {
     navigator.geolocation.clearWatch(this.locationWatchId);
+  }
+
+  _raiseLocationError() {
+    this._error = new Error(I18n.t('error_title_default'), I18n.t('geolocationerror_introduction'));
+    super.emitChange();
   }
 
   getPosition() {
@@ -71,6 +60,12 @@ class LocationStore extends Store {
 
   isWatching() {
     return this._isWatching;
+  }
+
+  getError() {
+    const error = this._error;
+    this._error = null;
+    return error;
   }
 }
 

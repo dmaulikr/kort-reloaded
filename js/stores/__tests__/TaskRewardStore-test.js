@@ -23,12 +23,12 @@ describe('TaskRewardStore', () => {
   };
 
   const actionTaskRewardLoadedUponValidation = {
-    actionType: ActionTypes.VALIDATION_PUT,
+    actionType: ActionTypes.VALIDATION_SEND,
     data: createTaskReward(),
   };
 
   const actionDifferentTaskRewardLoaded = {
-    actionType: ActionTypes.MISSION_PUT,
+    actionType: ActionTypes.MISSION_SEND,
     data: createDifferentTaskReward(),
   };
 

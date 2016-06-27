@@ -14,9 +14,8 @@ export default class StatisticsActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.STATISTICS_ERROR_LOAD,
           data: error,
-          type: Config.ERROR_GET_STATISTICS,
         });
       }
     );

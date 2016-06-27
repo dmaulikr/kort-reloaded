@@ -1,13 +1,13 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import PromotionActions from '../actions/PromotionActions';
+import Error from '../dto/Error';
 import Store from './Store';
 
 class PromotionStore extends Store {
   constructor() {
     super();
     this._promotions = null;
-    this._initializePromotions();
+    this._error = null;
   }
 
   _updatePromotions(promotions) {
@@ -15,12 +15,19 @@ class PromotionStore extends Store {
     super.emitChange();
   }
 
-  _initializePromotions() {
-    PromotionActions.loadPromotions();
+  _raiseError() {
+    this._error = new Error(I18n.t('error_title_default'), I18n.t('error_message_default'));
+    super.emitChange();
   }
 
   getAllPromotions() {
     return this._promotions;
+  }
+
+  getError() {
+    const error = this._error;
+    this._error = null;
+    return error;
   }
 }
 
@@ -30,6 +37,9 @@ promotionStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.PROMOTIONS_LOAD:
       promotionStore._updatePromotions(action.data);
+      break;
+    case ActionTypes.PROMOTIONS_ERROR_LOAD:
+      promotionStore._raiseError();
       break;
     default:
       return;

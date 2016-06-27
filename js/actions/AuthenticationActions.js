@@ -18,9 +18,8 @@ export default class AuthenticationActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.AUTHENTICATION_ERROR_VERIFY,
           data: error,
-          type: Config.ERROR_VERIFY_USER,
         });
       }
     );
@@ -43,9 +42,8 @@ export default class AuthenticationActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.AUTHENTICATION_ERROR_LOGOUT,
           data: error,
-          type: Config.ERROR_LOG_OUT_USER,
         });
       }
     );

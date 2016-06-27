@@ -34,9 +34,8 @@ export default class UserActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.USER_ERROR_LOAD,
           data: error,
-          type: Config.ERROR_GET_USER,
         });
       }
     );
@@ -53,9 +52,8 @@ export default class UserActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.USER_ERROR_LOAD,
           data: error,
-          type: Config.ERROR_GET_USER_BADGES,
         });
       }
     );
@@ -77,9 +75,8 @@ export default class UserActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.USER_ERROR_UPDATE,
           data: error,
-          type: Config.ERROR_UPDATE_USER,
         });
       }
     );

@@ -14,9 +14,8 @@ export default class PromotionActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.PROMOTIONS_ERROR_LOAD,
           data: error,
-          type: Config.ERROR_GET_PROMOTIONS,
         });
       }
     );

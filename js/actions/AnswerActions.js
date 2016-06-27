@@ -14,9 +14,8 @@ export default class AnswerActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.ANSWERS_ERROR_LOAD,
           data: error,
-          type: Config.ERROR_GET_ALL_ANSWERS,
         });
       }
     );
@@ -34,9 +33,8 @@ export default class AnswerActions {
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.ANSWERS_ERROR_LOAD_FOR_TYPE,
           data: error,
-          type: Config.ERROR_GET_ANSWERS_FOR_TYPE,
         });
       }
     );
