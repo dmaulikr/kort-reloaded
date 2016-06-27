@@ -40,6 +40,12 @@ const MissionsTab = React.createClass({
   },
 
   _onTaskUpdate() {
+    if (taskStore.getError() !== null) {
+      this._showError(taskStore.getError());
+      TaskActions.clearLoadError();
+      return;
+    }
+
     this.refs.map.updateAnnotations();
     this.forceUpdate();
   },

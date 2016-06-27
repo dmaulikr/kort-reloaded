@@ -18,7 +18,7 @@ describe('TaskRewardStore', () => {
   }
 
   const actionTaskRewardLoadedUponMission = {
-    actionType: ActionTypes.MISSION_PUT,
+    actionType: ActionTypes.MISSION_SEND,
     data: createTaskReward(),
   };
 
