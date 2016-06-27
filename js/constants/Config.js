@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import SecretConfig from './SecretConfig';
 
 export default {
@@ -9,21 +11,18 @@ export default {
   GOOGLE_IOS_CLIENT_ID: SecretConfig.GOOGLE_IOS_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID: SecretConfig.GOOGLE_WEB_CLIENT_ID,
 
-  // Errors
-  ERROR_POST_TASK: 'POST_TASK',
-
   // Highscore
   HIGHSCORE_LIMIT: 7435885969,
   HIGHSCORE_PREFETCH_LIMIT: 10,
 
   // Kort
+  KORT_VERSION: '0.2',
   KORT_GITHUB: 'https://github.com/kort/kort-reloaded',
   KORT_USERVOICE: 'kort.uservoice.com',
-  KORT_VERSION: '0.2',
   KORT_WEBSITE: 'www.kort.ch',
 
   // Kort API
-  SERVER: 'https://kort-dev.herokuapp.com',
+  SERVER: 'https://kort.herokuapp.com',
   PROD_SERVER: 'https://kort.herokuapp.com',
   DEV_SERVER: 'https://kort-dev.herokuapp.com',
   API_PATH: '/server/webservices',

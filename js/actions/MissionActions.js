@@ -1,6 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import Config from '../constants/Config';
 import MissionLoader from '../data/MissionLoader';
 
 export default class MissionActions {
@@ -11,15 +10,14 @@ export default class MissionActions {
       isUnsolvable,
       (taskReward) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.MISSION_PUT,
+          actionType: ActionTypes.MISSION_SEND,
           data: taskReward,
         });
       },
       (error) => {
         AppDispatcher.dispatch({
-          actionType: ActionTypes.ERROR_RAISE,
+          actionType: ActionTypes.MISSION_ERROR_SEND,
           data: error,
-          type: Config.ERROR_POST_TASK,
         });
       }
     );

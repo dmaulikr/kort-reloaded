@@ -88,15 +88,21 @@ export default class DataLoader {
     }
 
     fetch(requestUrl, { headers: authorizationHeader })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          onError(new Error(`Bad Request.\n
+            URL: ${requestUrl}\n
+            Status: ${response.status}\n
+            Status Text: ${response.statusText}`));
+          return null;
+        }
+
+        return response.json();
+      })
       .then((responseData) => responseData)
       .then((data) => onSuccess(data))
       .catch((error) => {
-        if (onError != null) {
-          onError(error);
-        } else {
-          console.log(`url: ${requestUrl}, error: ${error}`);
-        }
+        if (onError !== null) onError(error);
       })
       .done();
   }
@@ -112,15 +118,22 @@ export default class DataLoader {
       method: requestMethod,
       body: jsonBody,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          onError(new Error(`Bad Request.\n
+            URL: ${requestUrl}\n
+            Body: ${jsonBody}\n
+            Status: ${response.status}\n
+            Status Text: ${response.statusText}`));
+          return null;
+        }
+
+        return response.json();
+      })
       .then((responseData) => responseData)
       .then((data) => onSuccess(data))
       .catch((error) => {
-        if (onError != null) {
-          onError(error);
-        } else {
-          console.log(error);
-        }
+        if (onError != null) onError(error);
       })
       .done();
   }

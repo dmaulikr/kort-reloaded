@@ -60,7 +60,7 @@ export default class UserLoader extends DataLoader {
     });
   }
 
-  static verifyUser(provider, idToken, onSuccess) {
+  static verifyUser(provider, idToken, onSuccess, onError) {
     const idTokenParameter = `id_token=${idToken}`;
     const requestUrl = super.createRequestUrl(
       verifyUserRestPath, [provider], [idTokenParameter]);
@@ -68,22 +68,22 @@ export default class UserLoader extends DataLoader {
       requestUrl,
       false,
       (rawUserCredential) => onSuccess(UserLoader._initUserCredential(rawUserCredential)),
-      null
+      onError
     );
   }
 
-  static getUser(userSecret, onSuccess) {
+  static getUser(userSecret, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(
       userRestPath, [userSecret], null);
     super.makeGetRequest(
       requestUrl,
       true,
       (rawUser) => onSuccess(UserLoader._initUser(rawUser)),
-      null
+      onError
     );
   }
 
-  static getUserBadges(id, onSuccess) {
+  static getUserBadges(id, onSuccess, onError) {
     const userBadgesParameter = `${id}/badges`;
     const requestUrl = super.createRequestUrl(
       userRestPath, [userBadgesParameter], null);
@@ -91,7 +91,7 @@ export default class UserLoader extends DataLoader {
       requestUrl,
       true,
       (rawUserBadges) => onSuccess(UserLoader._initUserBadges(rawUserBadges)),
-      null
+      onError
     );
   }
 
@@ -106,11 +106,7 @@ export default class UserLoader extends DataLoader {
       .then((responseData) => responseData)
       .then((data) => onSuccess(data))
       .catch((error) => {
-        if (onError != null) {
-          onError(error);
-        } else {
-          console.log(error);
-        }
+        if (onError !== null) onError(error);
       })
       .done();
   }

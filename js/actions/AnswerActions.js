@@ -11,7 +11,12 @@ export default class AnswerActions {
           data: answers,
         });
       },
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ANSWERS_ERROR_LOAD,
+          data: error,
+        });
+      }
     );
   }
 
@@ -25,7 +30,16 @@ export default class AnswerActions {
           taskType,
         });
       },
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ANSWERS_ERROR_LOAD_FOR_TYPE,
+          data: error,
+        });
+      }
     );
+  }
+
+  static clearError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.ANSWERS_CLEAR_ERROR });
   }
 }

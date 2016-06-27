@@ -4,7 +4,6 @@ import Mapbox from 'react-native-mapbox-gl';
 import { Actions } from 'react-native-router-flux';
 
 import Config from '../../constants/Config';
-import TaskActions from '../../actions/TaskActions';
 
 import locationStore from '../../stores/LocationStore';
 import taskStore from '../../stores/TaskStore';
