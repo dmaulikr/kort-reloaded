@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import I18n from 'react-native-i18n';
 
 import ActionTypes from '../constants/ActionTypes';
 import Config from '../constants/Config';
@@ -71,6 +72,10 @@ class AuthenticationStore extends Store {
     this.error = new Error(I18n.t('error_title_default'), I18n.t('error_message_default'));
   }
 
+  _clearError() {
+    this._error = null;
+  }
+
   getUserCredential() {
     return this._userCredential;
   }
@@ -92,9 +97,7 @@ class AuthenticationStore extends Store {
   }
 
   getError() {
-    const error = this._error;
-    this._error = null;
-    return error;
+    return this._error;
   }
 }
 
@@ -115,6 +118,9 @@ authenticationStore.dispatchToken = AppDispatcher.register((action) => {
     case ActionTypes.AUTHENTICATION_ERROR_VERIFY:
     case ActionTypes.AUTHENTICATION_ERROR_LOGOUT:
       authenticationStore._raiseError();
+      break;
+    case ActionTypes.AUTHENTICATION_CLEAR_ERROR:
+      authenticationStore._clearError();
       break;
     default:
       return;

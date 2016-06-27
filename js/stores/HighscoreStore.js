@@ -1,3 +1,5 @@
+import I18n from 'react-native-i18n';
+
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Error from '../dto/Error';
@@ -20,14 +22,16 @@ class HighscoreStore extends Store {
     super.emitChange();
   }
 
+  _clearError() {
+    this._error = null;
+  }
+
   getHighscore() {
     return this._highscore;
   }
 
   getError() {
-    const error = this._error;
-    this._error = null;
-    return error;
+    return this._error;
   }
 }
 
@@ -40,6 +44,9 @@ highscoreStore.dispatchToken = AppDispatcher.register((action) => {
       break;
     case ActionTypes.HIGHSCORE_ERROR_LOAD:
       highscoreStore._raiseError();
+      break;
+    case ActionTypes.HIGHSCORE_CLEAR_ERROR:
+      highscoreStore._clearError();
       break;
     default:
       return;

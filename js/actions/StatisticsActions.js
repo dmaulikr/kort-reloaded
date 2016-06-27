@@ -1,6 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import Config from '../constants/Config';
 import StatisticsLoader from '../data/StatisticsLoader';
 
 export default class StatisticsActions {
@@ -19,5 +18,9 @@ export default class StatisticsActions {
         });
       }
     );
+  }
+
+  static clearError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.STATISTICS_CLEAR_ERROR });
   }
 }

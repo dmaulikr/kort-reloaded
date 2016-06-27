@@ -8,7 +8,6 @@ import LoadingIndicator from './shared/LoadingIndicator';
 import AnswerActions from '../actions/AnswerActions';
 import AuthenticationActions from '../actions/AuthenticationActions';
 import HighscoreActions from '../actions/HighscoreActions';
-import ErrorActions from '../actions/ErrorActions';
 import LocationActions from '../actions/LocationActions';
 import StatisticsActions from '../actions/StatisticsActions';
 import TaskActions from '../actions/TaskActions';
@@ -17,7 +16,6 @@ import UserActions from '../actions/UserActions';
 import Config from '../constants/Config';
 
 import authenticationStore from '../stores/AuthenticationStore';
-import errorStore from '../stores/ErrorStore';
 import locationStore from '../stores/LocationStore';
 
 const highscoreLimit = Config.HIGHSCORE_LIMIT;
@@ -53,8 +51,6 @@ export default class AppLoader extends React.Component {
     LocationActions.startLocating();
     authenticationStore.addChangeListener(this._onAuthenticationUpdate);
     AuthenticationActions.loadCredential();
-
-    errorStore.addChangeListener(this._onErrorUpdate);
   }
 
   componentWillUnmount() {
@@ -99,8 +95,9 @@ export default class AppLoader extends React.Component {
   }
 
   _onLocationUpdate() {
-    if (locationStore.isWatching === false) {
-      LocationActions.raiseLocationDeniedError();
+    if (locationStore.getError() !== null) {
+      this._showError(locationStore.getError());
+      LocationActions.clearError();
       return;
     }
 
@@ -120,31 +117,12 @@ export default class AppLoader extends React.Component {
     this._onUpdate();
   }
 
-  _onErrorUpdate() {
-    if (this._isShowingError === true) return;
+  _showError(error) {
+    if (this._isShowingError) return;
 
-    switch (errorStore.getErrorType()) {
-      case Config.ERROR_GET_ALL_ANSWERS:
-      case Config.ERROR_GET_ANSWERS_FOR_TYPE:
-      case Config.ERROR_GET_HIGHSCORE:
-      case Config.ERROR_GET_STATISTICS:
-      case Config.ERROR_GET_USER:
-      case Config.ERROR_GET_PROMOTIONS:
-      case Config.ERROR_LOCATION_DENIED:
-      case Config.ERROR_POSITION_UNAVAILABLE:
-        Alert.alert(
-          errorStore.getTitle(),
-          errorStore.getMessage(),
-          [{
-            text: I18n.t('messagebox_ok'),
-            onPress: () => {
-              ErrorActions.clearError();
-              this._isShowingError = false;
-            },
-          }]
-        );
-        break;
-    }
+    Alert.alert(error.title, error.message,
+      [{ text: I18n.t('messagebox_ok'), onPress: () => {this._isShowingError = false;} }]
+    );
   }
 
   render() {

@@ -6,12 +6,10 @@ import { Actions } from 'react-native-router-flux';
 import LoadingIndicator from '../shared/LoadingIndicator';
 import Map from './Map';
 
-import ErrorActions from '../../actions/ErrorActions';
 import TaskActions from '../../actions/TaskActions';
 
 import Config from '../../constants/Config';
 
-import errorStore from '../../stores/ErrorStore';
 import locationStore from '../../stores/LocationStore';
 import taskStore from '../../stores/TaskStore';
 import taskRewardStore from '../../stores/TaskRewardStore';
@@ -28,27 +26,15 @@ const styles = StyleSheet.create({
 
 const MissionsTab = React.createClass({
   componentWillMount() {
-    errorStore.addChangeListener(this._onErrorUpdate);
     locationStore.addChangeListener(this._onLocationUpdate);
     taskStore.addChangeListener(this._onTaskUpdate);
     taskRewardStore.addChangeListener(this._onTaskRewardUpdate);
   },
 
   componentWillUnmount() {
-    errorStore.removeChangeListener(this._onErrorUpdate);
     locationStore.removeChangeListener(this._onLocationUpdate);
     taskStore.removeChangeListener(this._onTaskUpdate);
     taskRewardStore.removeChangeListener(this._onTaskRewardUpdate);
-  },
-
-  _onErrorUpdate() {
-    if (errorStore.getErrorType() === Config.ERROR_POST_MISSION
-        || errorStore.getErrorType() === Config.ERROR_POST_VALIDATION) {
-      Alert.alert(
-        errorStore.getTitle(),
-        errorStore.getMessage(),
-        [{ text: I18n.t('messagebox_ok'), onPress: () => ErrorActions.clearError() }]);
-    }
   },
 
   _onLocationUpdate() {
@@ -61,6 +47,12 @@ const MissionsTab = React.createClass({
   },
 
   _onTaskRewardUpdate() {
+    if (taskRewardStore.getError() !== null) {
+      this._showError(taskRewardStore.getError());
+      TaskActions.clearSendError();
+      return;
+    }
+
     TaskActions.loadTasks(locationStore.getLatitude(), locationStore.getLongitude());
 
     const taskReward = taskRewardStore.getTaskReward();
@@ -69,6 +61,12 @@ const MissionsTab = React.createClass({
       receivedKoins: taskReward.receivedKoins,
       newKoinsTotal: taskReward.newKoinsTotal,
     });
+  },
+
+  _showError(error) {
+    Alert.alert(error.title, error.message,
+      [{ text: I18n.t('messagebox_ok'), onPress: () => {this._isShowingError = false;} }]
+    );
   },
 
   render() {

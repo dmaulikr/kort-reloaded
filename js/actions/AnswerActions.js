@@ -1,7 +1,6 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import AnswerLoader from '../data/AnswerLoader';
-import Config from '../constants/Config';
 
 export default class AnswerActions {
   static loadAllAnswers() {
@@ -38,5 +37,9 @@ export default class AnswerActions {
         });
       }
     );
+  }
+
+  static clearError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.ANSWERS_CLEAR_ERROR });
   }
 }

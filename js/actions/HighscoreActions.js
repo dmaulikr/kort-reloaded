@@ -1,6 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import Config from '../constants/Config';
 import HighscoreLoader from '../data/HighscoreLoader';
 
 export default class HighscoreActions {
@@ -37,5 +36,9 @@ export default class HighscoreActions {
         });
       }
     );
+  }
+
+  static clearError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.HIGHSCORE_CLEAR_ERROR });
   }
 }

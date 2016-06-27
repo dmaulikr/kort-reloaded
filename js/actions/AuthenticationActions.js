@@ -1,6 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import Config from '../constants/Config';
 import UserLoader from '../data/UserLoader';
 
 import authenticationStore from '../stores/AuthenticationStore';
@@ -47,5 +46,9 @@ export default class AuthenticationActions {
         });
       }
     );
+  }
+
+  static clearError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.AUTHENTICATION_CLEAR_ERROR });
   }
 }

@@ -1,6 +1,5 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import ActionTypes from '../constants/ActionTypes';
-import Config from '../constants/Config';
 import MissionLoader from '../data/MissionLoader';
 import ValidationLoader from '../data/ValidationLoader';
 
@@ -67,5 +66,13 @@ export default class TaskActions {
         });
       }
     );
+  }
+
+  static clearLoadError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.TASKS_CLEAR_LOAD_ERROR });
+  }
+
+  static clearSendError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.TASKS_CLEAR_SEND_ERROR });
   }
 }

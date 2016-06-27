@@ -28,6 +28,10 @@ class AnswerStore extends Store {
     super.emitChange();
   }
 
+  _clearError() {
+    this._error = null;
+  }
+
   getAnswersForType(taskType) {
     if (this._answers === null) return null;
 
@@ -42,9 +46,7 @@ class AnswerStore extends Store {
   }
 
   getError() {
-    const error = this._error;
-    this._error = null;
-    return error;
+    return this._error;
   }
 }
 
@@ -61,6 +63,9 @@ answerStore.dispatchToken = AppDispatcher.register((action) => {
     case ActionTypes.ANSWERS_ERROR_LOAD:
     case ActionTypes.ANSWERS_ERROR_LOAD_FOR_TYPE:
       answerStore._raiseError();
+      break;
+    case ActionTypes.ANSWERS_CLEAR_ERROR:
+      answerStore._clearError();
       break;
     default:
       return;

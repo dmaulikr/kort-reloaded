@@ -1,3 +1,5 @@
+import I18n from 'react-native-i18n';
+
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Config from '../constants/Config';
@@ -44,6 +46,10 @@ class LocationStore extends Store {
     super.emitChange();
   }
 
+  _clearError() {
+    this._error = null;
+  }
+
   getPosition() {
     return this._position;
   }
@@ -63,9 +69,7 @@ class LocationStore extends Store {
   }
 
   getError() {
-    const error = this._error;
-    this._error = null;
-    return error;
+    return this._error;
   }
 }
 
@@ -78,6 +82,9 @@ locationStore.dispatchToken = AppDispatcher.register((action) => {
       break;
     case ActionTypes.LOCATION_STOP_LOCATING:
       locationStore._stopWatchingLocation();
+      break;
+    case ActionTypes.LOCATION_CLEAR_ERROR:
+      locationStore._clearError();
       break;
     default:
       return;

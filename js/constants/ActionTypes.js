@@ -2,20 +2,24 @@ import keyMirror from 'keymirror';
 
 module.exports = keyMirror({
   // Answer
+  ANSWERS_CLEAR_ERROR: null,
   ANSWERS_ERROR_LOAD: null,
   ANSWERS_ERROR_LOAD_FOR_TYPE: null,
   ANSWERS_LOAD: null,
   ANSWERS_LOAD_FOR_TYPE: null,
   // Authentication
+  AUTHENTICATION_CLEAR_ERROR: null,
   AUTHENTICATION_ERROR_LOGOUT: null,
   AUTHENTICATION_ERROR_VERIFY: null,
   AUTHENTICATION_LOGOUT: null,
   AUTHENTICATION_LOAD_CREDENTIAL: null,
   AUTHENTICATION_VERIFY: null,
   // Highscore
+  HIGHSCORE_CLEAR_ERROR: null,
   HIGHSCORE_ERROR_LOAD: null,
   HIGHSCORE_LOAD: null,
   // Location
+  LOCATION_CLEAR_ERROR: null,
   LOCATION_START_LOCATING: null,
   LOCATION_STOP_LOCATING: null,
   // Mission
@@ -24,14 +28,19 @@ module.exports = keyMirror({
   MISSION_SEND: null,
   MISSIONS_LOAD: null,
   // Promotion
+  PROMOTIONS_CLEAR_ERROR: null,
   PROMOTIONS_ERROR_LOAD: null,
   PROMOTIONS_LOAD: null,
   // Statistics
+  STATISTICS_CLEAR_ERROR: null,
   STATISTICS_ERROR_LOAD: null,
   STATISTICS_LOAD: null,
   // Task
+  TASK_CLEAR_SEND_ERROR: null,
+  TASKS_CLEAR_LOAD_ERROR: null,
   TASKS_LOAD: null,
   // User
+  USER_CLEAR_ERROR: null,
   USER_ERROR_LOAD: null,
   USER_ERROR_UPDATE: null,
   USER_LOAD: null,

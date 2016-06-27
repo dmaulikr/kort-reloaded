@@ -1,3 +1,5 @@
+import I18n from 'react-native-i18n';
+
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Error from '../dto/Error';
@@ -20,6 +22,10 @@ class TaskStore extends Store {
     super.emitChange();
   }
 
+  _clearError() {
+    this._error = null;
+  }
+
   getAll() {
     return this._tasks;
   }
@@ -37,9 +43,7 @@ class TaskStore extends Store {
   }
 
   getError() {
-    const error = this._error;
-    this._error = null;
-    return error;
+    return this._error;
   }
 }
 
@@ -53,6 +57,9 @@ taskStore.dispatchToken = AppDispatcher.register((action) => {
     case ActionTypes.MISSIONS_ERROR_LOAD:
     case ActionTypes.VALIDATIONS_ERROR_LOAD:
       taskStore._raiseError();
+      break;
+    case ActionTypes.TASKS_CLEAR_LOAD_ERROR:
+      taskStore._clearError();
       break;
     default:
       return;

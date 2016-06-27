@@ -1,6 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import Config from '../constants/Config';
 import MissionLoader from '../data/MissionLoader';
 
 export default class MissionActions {

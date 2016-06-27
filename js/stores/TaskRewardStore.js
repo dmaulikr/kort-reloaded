@@ -1,3 +1,5 @@
+import I18n from 'react-native-i18n';
+
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Error from '../dto/Error';
@@ -21,14 +23,16 @@ class TaskRewardStore extends Store {
     super.emitChange();
   }
 
+  _clearError() {
+    this._error = null;
+  }
+
   getTaskReward() {
     return this._taskReward;
   }
 
   getError() {
-    const error = this._error;
-    this._error = null;
-    return error;
+    return this._error;
   }
 }
 
@@ -43,6 +47,10 @@ taskRewardStore.dispatchToken = AppDispatcher.register((action) => {
     case ActionTypes.MISSION_ERROR_SEND:
     case ActionTypes.VALIDATION_ERROR_SEND:
       taskRewardStore._raiseError();
+      break;
+    case ActionTypes.MISSION_CLEAR_SEND_ERROR:
+    case ActionTypes.VALIDATION_CLEAR_SEND_ERROR:
+      taskRewardStore._clearError();
       break;
     default:
       return;

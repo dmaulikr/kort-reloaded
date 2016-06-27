@@ -1,3 +1,5 @@
+import I18n from 'react-native-i18n';
+
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Error from '../dto/Error';
@@ -20,14 +22,16 @@ class StatisticsStore extends Store {
     super.emitChange();
   }
 
+  _clearError() {
+    this._error = null;
+  }
+
   getStatistics() {
     return this._statistics;
   }
 
   getError() {
-    const error = this._error;
-    this._error = null;
-    return error;
+    return this._error;
   }
 }
 
@@ -40,6 +44,9 @@ statisticsStore.dispatchToken = AppDispatcher.register((action) => {
       break;
     case ActionTypes.STATISTICS_ERROR_LOAD:
       statisticsStore._raiseError();
+      break;
+    case ActionTypes.STATISTICS_CLEAR_ERROR:
+      statisticsStore._clearError();
       break;
     default:
       return;

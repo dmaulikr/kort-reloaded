@@ -1,6 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import Config from '../constants/Config';
 import PromotionLoader from '../data/PromotionLoader';
 
 export default class PromotionActions {
@@ -19,5 +18,9 @@ export default class PromotionActions {
         });
       }
     );
+  }
+
+  static clearError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.PROMOTIONS_CLEAR_ERROR });
   }
 }

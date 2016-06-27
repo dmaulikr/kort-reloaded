@@ -1,3 +1,5 @@
+import I18n from 'react-native-i18n';
+
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Error from '../dto/Error';
@@ -44,6 +46,10 @@ class UserStore extends Store {
     super.emitChange();
   }
 
+  _clearError() {
+    this._error = null;
+  }
+
   getUser(userId) {
     if (this._users === null) return null;
 
@@ -59,9 +65,7 @@ class UserStore extends Store {
   }
 
   getError() {
-    const error = this._error;
-    this._error = null;
-    return error;
+    return this._error;
   }
 }
 
@@ -80,6 +84,9 @@ userStore.dispatchToken = AppDispatcher.register((action) => {
       break;
     case ActionTypes.USER_ERROR_UPDATE:
       userStore._raiseUpdateError();
+      break;
+    case ActionTypes.USER_CLEAR_ERROR:
+      userStore._clearError();
       break;
     default:
       return;

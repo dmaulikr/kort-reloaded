@@ -1,3 +1,5 @@
+import I18n from 'react-native-i18n';
+
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Error from '../dto/Error';
@@ -20,14 +22,16 @@ class PromotionStore extends Store {
     super.emitChange();
   }
 
+  _clearError() {
+    this._error = null;
+  }
+
   getAllPromotions() {
     return this._promotions;
   }
 
   getError() {
-    const error = this._error;
-    this._error = null;
-    return error;
+    return this._error;
   }
 }
 
@@ -40,6 +44,9 @@ promotionStore.dispatchToken = AppDispatcher.register((action) => {
       break;
     case ActionTypes.PROMOTIONS_ERROR_LOAD:
       promotionStore._raiseError();
+      break;
+    case ActionTypes.PROMOTIONS_CLEAR_ERROR:
+      promotionStore._clearError();
       break;
     default:
       return;
