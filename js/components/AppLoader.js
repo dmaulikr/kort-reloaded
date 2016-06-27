@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#144E87',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    padding: 20,
   },
   kortlogo: {
     alignSelf: 'center',
@@ -37,6 +36,8 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     marginTop: 50,
+    marginLeft: 30,
+    marginRight: 30,
     fontSize: 18,
     color: "#ffffff",
   },
