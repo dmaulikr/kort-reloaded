@@ -4,7 +4,6 @@ import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Config from '../constants/Config';
 import Error from '../dto/Error';
-import LocationActions from '../actions/LocationActions';
 import Store from './Store';
 
 const distanceFilter = Config.LOCATION_DISTANCE_FILTER;
@@ -28,11 +27,11 @@ class LocationStore extends Store {
     this._isWatching = true;
     navigator.geolocation.getCurrentPosition(
       this._onPositionChange,
-      (error) => this._raiseLocationError()
+      () => this._raiseLocationError()
     );
     this._locationWatchId = navigator.geolocation.watchPosition(
       this._onPositionChange,
-      (error) => this._raiseLocationError(),
+      () => this._raiseLocationError(),
       { enableHighAccurracy: true, distanceFilter }
     );
   }

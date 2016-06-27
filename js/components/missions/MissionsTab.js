@@ -8,8 +8,6 @@ import Map from './Map';
 
 import TaskActions from '../../actions/TaskActions';
 
-import Config from '../../constants/Config';
-
 import locationStore from '../../stores/LocationStore';
 import taskStore from '../../stores/TaskStore';
 import taskRewardStore from '../../stores/TaskRewardStore';
