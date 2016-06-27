@@ -1,5 +1,6 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import Config from '../constants/Config';
 import StatisticsLoader from '../data/StatisticsLoader';
 
 export default class StatisticsActions {
@@ -11,7 +12,13 @@ export default class StatisticsActions {
           data: statistics,
         });
       },
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ERROR_RAISE,
+          data: error,
+          type: Config.ERROR_GET_STATISTICS,
+        });
+      }
     );
   }
 }

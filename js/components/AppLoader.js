@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
+import I18n from 'react-native-i18n';
 import { Actions } from 'react-native-router-flux';
 
 import LoadingIndicator from './shared/LoadingIndicator';
@@ -7,6 +8,7 @@ import LoadingIndicator from './shared/LoadingIndicator';
 import AnswerActions from '../actions/AnswerActions';
 import AuthenticationActions from '../actions/AuthenticationActions';
 import HighscoreActions from '../actions/HighscoreActions';
+import ErrorActions from '../actions/ErrorActions';
 import LocationActions from '../actions/LocationActions';
 import StatisticsActions from '../actions/StatisticsActions';
 import TaskActions from '../actions/TaskActions';
@@ -15,13 +17,8 @@ import UserActions from '../actions/UserActions';
 import Config from '../constants/Config';
 
 import authenticationStore from '../stores/AuthenticationStore';
+import errorStore from '../stores/ErrorStore';
 import locationStore from '../stores/LocationStore';
-
-import answerStore from '../stores/AnswerStore';
-import highscoreStore from '../stores/HighscoreStore';
-import statisticsStore from '../stores/StatisticsStore';
-import taskStore from '../stores/TaskStore';
-import userStore from '../stores/UserStore';
 
 const highscoreLimit = Config.HIGHSCORE_LIMIT;
 const highscorePrefetchLimit = Config.HIGHSCORE_PREFETCH_LIMIT;
@@ -44,6 +41,7 @@ export default class AppLoader extends React.Component {
     this._hasStartedDataLoading = false;
     this._hasStartedTaskLoading = false;
     this._hasJumpedToMap = false;
+    this._isShowingError = false;
 
     this._loadTasks = this._loadTasks.bind(this);
     this._onLocationUpdate = this._onLocationUpdate.bind(this);
@@ -56,11 +54,7 @@ export default class AppLoader extends React.Component {
     authenticationStore.addChangeListener(this._onAuthenticationUpdate);
     AuthenticationActions.loadCredential();
 
-    answerStore.addChangeListener(this._onAnswerUpdate);
-    highscoreStore.addChangeListener(this._onHighscoreUpdate);
-    statisticsStore.addChangeListener(this._onStatisticsUpdate);
-    userStore.addChangeListener(this._onUserUpdate);
-    taskStore.addChangeListener(this._onTaskUpdate);
+    errorStore.addChangeListener(this._onErrorUpdate);
   }
 
   componentWillUnmount() {
@@ -68,7 +62,6 @@ export default class AppLoader extends React.Component {
   }
 
   _loadData() {
-    console.log('LOADER:', 'begin loading data');
     this._hasStartedDataLoading = true;
 
     AnswerActions.loadAllAnswers();
@@ -79,7 +72,6 @@ export default class AppLoader extends React.Component {
   }
 
   _loadTasks() {
-    console.log('LOADER:', 'begin loading tasks');
     this._hasStartedTaskLoading = true;
 
     const latitude = locationStore.getLatitude();
@@ -101,7 +93,6 @@ export default class AppLoader extends React.Component {
     }
 
     if (!this._hasJumpedToMap && this._hasStartedTaskLoading && this._hasStartedDataLoading) {
-      console.log('LOADER:', 'onAuthenticationUpdate loads tabBar');
       Actions.tabBar();
       this._hasJumpedToMap = true;
     }
@@ -109,12 +100,11 @@ export default class AppLoader extends React.Component {
 
   _onLocationUpdate() {
     if (locationStore.isWatching === false) {
-      alert('enable location');
+      LocationActions.raiseLocationDeniedError();
       return;
     }
 
     if (locationStore.getPosition() !== null) {
-      console.log('LOADER:', 'position loaded');
       this._isLocated = true;
       this._onUpdate();
     }
@@ -126,29 +116,35 @@ export default class AppLoader extends React.Component {
       return;
     }
 
-    console.log('LOADER:', 'user authenticated');
     this._isAuthenticated = true;
     this._onUpdate();
   }
 
-  _onAnswerUpdate() {
-    if (answerStore.getAllAnswers() !== null) console.log('LOADER:', 'answers loaded');
-  }
+  _onErrorUpdate() {
+    if (this._isShowingError === true) return;
 
-  _onHighscoreUpdate() {
-    if (highscoreStore.getHighscore() !== null) console.log('LOADER:', 'highscore loaded');
-  }
-
-  _onStatisticsUpdate() {
-    if (statisticsStore.getStatistics() !== null) console.log('LOADER:', 'statistics loaded');
-  }
-
-  _onUserUpdate() {
-    if (userStore.getUser() !== null) console.log('LOADER:', 'user loaded');
-  }
-
-  _onTaskUpdate() {
-    if (taskStore.getAll() !== null) console.log('LOADER:', 'tasks loaded');
+    switch (errorStore.getErrorType()) {
+      case Config.ERROR_GET_ALL_ANSWERS:
+      case Config.ERROR_GET_ANSWERS_FOR_TYPE:
+      case Config.ERROR_GET_HIGHSCORE:
+      case Config.ERROR_GET_STATISTICS:
+      case Config.ERROR_GET_USER:
+      case Config.ERROR_GET_PROMOTIONS:
+      case Config.ERROR_LOCATION_DENIED:
+      case Config.ERROR_POSITION_UNAVAILABLE:
+        Alert.alert(
+          errorStore.getTitle(),
+          errorStore.getMessage(),
+          [{
+            text: I18n.t('messagebox_ok'),
+            onPress: () => {
+              ErrorActions.clearError();
+              this._isShowingError = false;
+            },
+          }]
+        );
+        break;
+    }
   }
 
   render() {

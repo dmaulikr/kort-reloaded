@@ -42,8 +42,8 @@ const MissionsTab = React.createClass({
   },
 
   _onErrorUpdate() {
-    const error = errorStore.getError();
-    if (errorStore.getErrorType() === Config.ERROR_POST_TASK) {
+    if (errorStore.getErrorType() === Config.ERROR_POST_MISSION
+        || errorStore.getErrorType() === Config.ERROR_POST_VALIDATION) {
       Alert.alert(
         errorStore.getTitle(),
         errorStore.getMessage(),

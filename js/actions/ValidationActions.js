@@ -18,7 +18,7 @@ export default class ValidationActions {
         AppDispatcher.dispatch({
           actionType: ActionTypes.ERROR_RAISE,
           data: error,
-          type: Config.ERROR_POST_TASK,
+          type: Config.ERROR_POST_VALIDATION,
         });
       }
     );

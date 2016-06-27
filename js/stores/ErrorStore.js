@@ -16,9 +16,15 @@ class ErrorStore extends Store {
 
   _setDescriptionFor(type) {
     switch (type) {
-      case Config.ERROR_POST_TASK:
+      case Config.ERROR_POST_MISSION:
+      case Config.ERROR_POST_VALIDATION:
         this._title = I18n.t('fix_alert_submit_failure_title');
         this._message = I18n.t('fix_alert_submit_failure_message');
+        break;
+      case Config.ERROR_LOCATION_DENIED:
+      case Config.ERROR_POSITION_UNAVAILABLE:
+        this._title = I18n.t('error_title_default');
+        this._message = I18n.t('geolocationerror_introduction');
         break;
       default:
         this._title = I18n.t('error_title_default');
@@ -26,8 +32,7 @@ class ErrorStore extends Store {
     }
   }
 
-  _setError(error, type) {
-    this._lastError = error;
+  _setError(type) {
     this._errorType = type;
     this._setDescriptionFor(type);
     super.emitChange();
@@ -62,7 +67,7 @@ const errorStore = new ErrorStore();
 errorStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.actionType) {
     case ActionTypes.ERROR_RAISE:
-      errorStore._setError(action.data, action.type);
+      errorStore._setError(action.type);
       break;
     case ActionTypes.ERROR_CLEAR:
       errorStore._clearError();

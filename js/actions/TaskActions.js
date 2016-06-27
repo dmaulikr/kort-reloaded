@@ -1,9 +1,9 @@
+import AppDispatcher from '../dispatcher/AppDispatcher';
 import ActionTypes from '../constants/ActionTypes';
-
+import Config from '../constants/Config';
 import MissionLoader from '../data/MissionLoader';
 import ValidationLoader from '../data/ValidationLoader';
 
-import AppDispatcher from '../dispatcher/AppDispatcher';
 
 function _onMissionsLoaded(missions) {
   AppDispatcher.dispatch({
@@ -32,22 +32,42 @@ export default class TaskActions {
     let missionsLoaded = false;
     let validationsLoaded = false;
 
-    MissionLoader.getMissions(latitude, longitude, (missions) => {
-      _onMissionsLoaded(missions);
+    MissionLoader.getMissions(
+      latitude,
+      longitude,
+      (missions) => {
+        _onMissionsLoaded(missions);
 
-      tasks = tasks.concat(missions);
-      missionsLoaded = true;
-      if (validationsLoaded) {
-        _onTasksLoaded(tasks);
+        tasks = tasks.concat(missions);
+        missionsLoaded = true;
+        if (validationsLoaded) {
+          _onTasksLoaded(tasks);
+        }
+      },
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ERROR_RAISE,
+          data: error,
+          type: Config.ERROR_GET_MISSIONS,
+        });
       }
-    });
-    ValidationLoader.getValidations(latitude, longitude, (validations) => {
-      _onValidationsLoaded(validations);
-      tasks = tasks.concat(validations);
-      validationsLoaded = true;
-      if (missionsLoaded) {
-        _onTasksLoaded(tasks);
+    );
+    ValidationLoader.getValidations(latitude, longitude,
+      (validations) => {
+        _onValidationsLoaded(validations);
+        tasks = tasks.concat(validations);
+        validationsLoaded = true;
+        if (missionsLoaded) {
+          _onTasksLoaded(tasks);
+        }
+      },
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ERROR_RAISE,
+          data: error,
+          type: Config.ERROR_GET_VALIDATIONS,
+        });
       }
-    });
+    );
   }
 }

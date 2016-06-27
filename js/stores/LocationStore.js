@@ -1,6 +1,7 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Config from '../constants/Config';
+import LocationActions from '../actions/LocationActions';
 import Store from './Store';
 
 const distanceFilter = Config.LOCATION_DISTANCE_FILTER;
@@ -16,19 +17,38 @@ class LocationStore extends Store {
 
   _onPositionChange(position) {
     this._position = position;
+    console.log('LCTN', 'onPositionChange');
     super.emitChange();
+  }
+
+  _handleLocationError(positionError) {
+    console.log('LCTN', positionError.code);
+    switch (positionError.code) {
+      case 1:
+        console.log('LCTN', positionError);
+        LocationActions.raiseLocationDeniedError();
+        break;
+      case 2:
+      case 3:
+        console.log('LCTN', positionError);
+        LocationActions.raisePositionUnavailableError();
+        break;
+      default:
+        return;
+    }
   }
 
   _startWatchingLocation() {
     this._isWatching = true;
-    navigator.geolocation.getCurrentPosition(this._onPositionChange);
+    navigator.geolocation.getCurrentPosition(
+      this._onPositionChange,
+      (error) => LocationActions.raiseLocationDeniedError()
+    );
     this._locationWatchId = navigator.geolocation.watchPosition(
       this._onPositionChange,
-      (error) => {
-        this.isWatching = false;
-        super.emitChange();
-      },
-      { enableHighAccurracy: true, distanceFilter });
+      (error) => LocationActions.raiseLocationDeniedError(),
+      { enableHighAccurracy: true, distanceFilter }
+    );
   }
 
   _stopWatchingLocation() {

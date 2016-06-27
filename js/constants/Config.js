@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import SecretConfig from './SecretConfig';
 
 export default {
@@ -10,20 +12,34 @@ export default {
   GOOGLE_WEB_CLIENT_ID: SecretConfig.GOOGLE_WEB_CLIENT_ID,
 
   // Errors
-  ERROR_POST_TASK: 'POST_TASK',
+  ERROR_GET_ALL_ANSWERS: 'Error when trying to load all answers.',
+  ERROR_GET_ANSWERS_FOR_TYPE: 'Error when trying to load answers for specific type.',
+  ERROR_GET_HIGHSCORE: 'Error when trying to load highscore.',
+  ERROR_GET_MISSIONS: 'Error when trying to load missions.',
+  ERROR_GET_STATISTICS: 'Error when trying to load statistics.',
+  ERROR_GET_USER: 'Error when trying to load user.',
+  ERROR_GET_USER_BADGES: 'Error when trying to load user badges.',
+  ERROR_GET_VALIDATIONS: 'Error when trying to load missions.',
+  ERROR_GET_PROMOTIONS: 'Error when trying to load promotions.',
+  ERROR_LOCATION_DENIED: 'Location could not be loaded because user denied permission.',
+  ERROR_LOG_OUT_USER: 'Error when trying to log out user.',
+  ERROR_POSITION_UNAVAILABLE: 'The acquisition of the geolocation failed because at least one internal source of position returned an internal error or the time allowed to acquire the geolocation was exceeded.',
+  ERROR_POST_MISSION: 'Error when trying to submit a solved mission.',
+  ERROR_UPDATE_USER: 'Error when trying to update user.',
+  ERROR_VERIFY_USER: 'Error when trying to verify user.',
 
   // Highscore
   HIGHSCORE_LIMIT: 7435885969,
   HIGHSCORE_PREFETCH_LIMIT: 10,
 
   // Kort
+  KORT_VERSION: '0.2',
   KORT_GITHUB: 'https://github.com/kort/kort-reloaded',
   KORT_USERVOICE: 'kort.uservoice.com',
-  KORT_VERSION: '0.2',
   KORT_WEBSITE: 'www.kort.ch',
 
   // Kort API
-  SERVER: 'https://kort-dev.herokuapp.com',
+  SERVER: 'https://kort.herokuapp.com',
   PROD_SERVER: 'https://kort.herokuapp.com',
   DEV_SERVER: 'https://kort-dev.herokuapp.com',
   API_PATH: '/server/webservices',

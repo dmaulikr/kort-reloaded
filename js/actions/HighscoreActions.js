@@ -1,5 +1,6 @@
 import ActionTypes from '../constants/ActionTypes';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import Config from '../constants/Config';
 import HighscoreLoader from '../data/HighscoreLoader';
 
 export default class HighscoreActions {
@@ -15,7 +16,13 @@ export default class HighscoreActions {
       limit,
       page,
       HighscoreActions._dispatchHighScoreLoaded,
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ERROR_RAISE,
+          data: error,
+          type: Config.ERROR_GET_HIGHSCORE,
+        });
+      }
     );
   }
 
@@ -24,7 +31,13 @@ export default class HighscoreActions {
       limit,
       page,
       HighscoreActions._dispatchHighScoreLoaded,
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.ERROR_RAISE,
+          data: error,
+          type: Config.ERROR_GET_HIGHSCORE,
+        });
+      }
     );
   }
 }

@@ -62,7 +62,7 @@ export default class MissionLoader extends DataLoader {
     return new TaskReward(badges, rawTaskReward.koin_count_new, rawTaskReward.koin_count_total);
   }
 
-  static getMissions(latitude, longitude, onSuccess) {
+  static getMissions(latitude, longitude, onSuccess, onError) {
     const parameters = [];
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
@@ -72,7 +72,7 @@ export default class MissionLoader extends DataLoader {
       requestUrl,
       true,
       (rawMissions) => onSuccess(MissionLoader._initMissions(rawMissions)),
-      null
+      onError
     );
   }
 
