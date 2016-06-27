@@ -1,9 +1,8 @@
+import AppDispatcher from '../dispatcher/AppDispatcher';
 import ActionTypes from '../constants/ActionTypes';
-
 import MissionLoader from '../data/MissionLoader';
 import ValidationLoader from '../data/ValidationLoader';
 
-import AppDispatcher from '../dispatcher/AppDispatcher';
 
 function _onMissionsLoaded(missions) {
   AppDispatcher.dispatch({
@@ -32,22 +31,48 @@ export default class TaskActions {
     let missionsLoaded = false;
     let validationsLoaded = false;
 
-    MissionLoader.getMissions(latitude, longitude, (missions) => {
-      _onMissionsLoaded(missions);
+    MissionLoader.getMissions(
+      latitude,
+      longitude,
+      (missions) => {
+        _onMissionsLoaded(missions);
 
-      tasks = tasks.concat(missions);
-      missionsLoaded = true;
-      if (validationsLoaded) {
-        _onTasksLoaded(tasks);
+        tasks = tasks.concat(missions);
+        missionsLoaded = true;
+        if (validationsLoaded) {
+          _onTasksLoaded(tasks);
+        }
+      },
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.MISSIONS_ERROR_LOAD,
+          data: error,
+        });
       }
-    });
-    ValidationLoader.getValidations(latitude, longitude, (validations) => {
-      _onValidationsLoaded(validations);
-      tasks = tasks.concat(validations);
-      validationsLoaded = true;
-      if (missionsLoaded) {
-        _onTasksLoaded(tasks);
+    );
+    ValidationLoader.getValidations(latitude, longitude,
+      (validations) => {
+        _onValidationsLoaded(validations);
+        tasks = tasks.concat(validations);
+        validationsLoaded = true;
+        if (missionsLoaded) {
+          _onTasksLoaded(tasks);
+        }
+      },
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.VALIDATIONS_ERROR_LOAD,
+          data: error,
+        });
       }
-    });
+    );
+  }
+
+  static clearLoadError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.TASKS_CLEAR_LOAD_ERROR });
+  }
+
+  static clearSendError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.TASKS_CLEAR_SEND_ERROR });
   }
 }

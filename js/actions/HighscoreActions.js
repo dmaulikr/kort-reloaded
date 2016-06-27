@@ -15,7 +15,12 @@ export default class HighscoreActions {
       limit,
       page,
       HighscoreActions._dispatchHighScoreLoaded,
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.HIGHSCORE_ERROR_LOAD,
+          data: error,
+        });
+      }
     );
   }
 
@@ -24,7 +29,16 @@ export default class HighscoreActions {
       limit,
       page,
       HighscoreActions._dispatchHighScoreLoaded,
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.HIGHSCORE_ERROR_LOAD,
+          data: error,
+        });
+      }
     );
+  }
+
+  static clearError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.HIGHSCORE_CLEAR_ERROR });
   }
 }
