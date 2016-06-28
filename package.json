@@ -43,7 +43,6 @@
   "jest": {
     "scriptPreprocessor": "node_modules/babel-jest",
     "preprocessCachingDisabled": true,
-	"collectCoverage": true,
 	"verbose": true,
     "globals": {
       "__DEV__": true
