@@ -74,6 +74,7 @@ const Login = React.createClass({
   componentDidMount() {
     this.configureGoogleSignIn();
   },
+
   configureGoogleSignIn() {
     GoogleSignin.configure({
       webClientId: googleWebClientId,
@@ -117,9 +118,9 @@ const Login = React.createClass({
         <View style={styles.containerLoginButtons}>
           <Text style={styles.textTitle}>{I18n.t('login_kort_introduction_4')}</Text>
           <GoogleSigninButton
-            style={{ alignSelf: 'center', width: 120, height: 44, marginTop: 7 }}
+            style={{ alignSelf: 'center', width: 300, height: 60, marginTop: 7 }}
             color={GoogleSigninButton.Color.Light}
-            size={GoogleSigninButton.Size.Icon}
+            size={GoogleSigninButton.Size.Wide}
             onPress={() => { this.signInGoogle(); }}
           />
           <Text style={styles.textSubTitle}>{I18n.t('login_oauth_providers')}</Text>
