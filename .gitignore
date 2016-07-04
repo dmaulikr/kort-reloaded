@@ -27,6 +27,7 @@ GoogleService-Info.plist
 # Android/IJ
 #
 .idea
+.gradle
 local.properties
 google-services.json
 *.keystore
