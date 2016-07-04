@@ -72,7 +72,9 @@ const styles = StyleSheet.create({
 
 const Login = React.createClass({
   componentDidMount() {
-    this.configureGoogleSignIn();
+    GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
+      this.configureGoogleSignIn();
+    });
   },
 
   configureGoogleSignIn() {
