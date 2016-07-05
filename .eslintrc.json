@@ -1,14 +1,24 @@
 {
-    "extends": "airbnb",
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-      "max-len": [2, 100, 2, {
-        "ignoreUrls": true,
-        "ignoreComments": false,
-        "ignorePattern": "\\s*accessToken={'\\w*"
-      }],
-      "react/prefer-es6-class": [0, "always"]
-    }
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": [
+      "react",
+      "react-native"
+  ],
+  "ecmaFeatures": {
+      "classes": true,
+      "jsx": true
+  },
+  "rules": {
+	  "eqeqeq": ["error", "smart"],
+    "no-alert": 0,
+	  "no-unused-vars": "warn",
+    "one-var-declaration-per-line": ["error", "initializations"],
+    "react/prefer-es6-class": [0, "always"],
+    "react/prop-types": 1
+  },
+  "env": {
+	  "node": true,
+	  "jest": true
+  }
 }

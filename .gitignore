@@ -21,14 +21,27 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+AppDelegate.m
+GoogleService-Info.plist
 
 # Android/IJ
 #
 .idea
 .gradle
 local.properties
+google-services.json
+*.keystore
 
 # node.js
 #
 node_modules/
 npm-debug.log
+
+# js
+#
+SecretConfig.js
+
+# vs code
+#
+.vscode/
+tsconfig.json
