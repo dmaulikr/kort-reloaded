@@ -30,7 +30,7 @@ class AuthenticationStore extends Store {
         const userCredential = new UserCredential(userId, secret);
         this._logInUser(userCredential);
       } else {
-        super.emitChange();
+        this._raiseError();
       }
     } catch (error) {
       console.log(error);
@@ -70,6 +70,7 @@ class AuthenticationStore extends Store {
 
   _raiseError() {
     this.error = new Error(I18n.t('error_title_default'), I18n.t('error_message_default'));
+    super.emitChange();
   }
 
   _clearError() {

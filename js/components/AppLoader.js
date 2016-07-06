@@ -126,7 +126,6 @@ export default class AppLoader extends React.Component {
       Actions.login();
       return;
     }
-
     this._isAuthenticated = true;
     this._onUpdate();
   }
