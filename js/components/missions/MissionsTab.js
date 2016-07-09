@@ -3,7 +3,7 @@ import { Alert, StyleSheet, View } from 'react-native';
 import I18n from 'react-native-i18n';
 import { Actions } from 'react-native-router-flux';
 
-import LoadingIndicator from '../shared/LoadingIndicator';
+import LoadingIndicatorMap from '../shared/LoadingIndicatorMap';
 import Map from './Map';
 
 import TaskActions from '../../actions/TaskActions';
@@ -74,7 +74,7 @@ const MissionsTab = React.createClass({
   },
 
   render() {
-    const loadingIndicator = (taskStore.getAll() === null) ? <LoadingIndicator /> : null;
+    const loadingIndicator = (taskStore.getAll() === null) ? <LoadingIndicatorMap /> : null;
     return (
       <View style={styles.container}>
         <View style={styles.mapContainer}>
