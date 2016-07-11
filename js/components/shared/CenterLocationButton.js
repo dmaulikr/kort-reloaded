@@ -49,7 +49,7 @@ const CenterLocationButton = React.createClass({
         onPress = {this.props.onPress}
         onShowUnderlay = {this._onHighlight}
         style = {[styles.button, this.props.style]}
-        underlayColor="#008000"
+        underlayColor = {colorStyle}
       >
         <Image style = { styles.icon }
           source = { require('../../assets/location/ic_my_location.png') }
