@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
     width: 200,
   },
   containerButton: {
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -140,8 +143,12 @@ const SolveTaskModal = React.createClass({
           unableToSolve={this.state.unableToSolve}
         />
         <View style={styles.containerButton}>
-          <Button onPress={Actions.pop}>{I18n.t('messagebox_cancel')}</Button>
-          <Button onPress={this.solveTask}>{I18n.t('fix_form_button_submit')}</Button>
+          <View style={{flex: 1, padding: 5,}}>
+            <Button onPress={Actions.pop}>{I18n.t('messagebox_cancel')}</Button>
+          </View>
+          <View style={{flex: 1, padding: 5,}}>
+            <Button onPress={this.solveTask}>{I18n.t('fix_form_button_submit')}</Button>
+          </View>
         </View>
       </View>
     );
