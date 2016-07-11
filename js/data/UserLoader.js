@@ -64,6 +64,7 @@ export default class UserLoader extends DataLoader {
     const idTokenParameter = `id_token=${idToken}`;
     const requestUrl = super.createRequestUrl(
       verifyUserRestPath, [provider], [idTokenParameter]);
+    console.log('LOGIN REQUEST URL', requestUrl);
     super.makeGetRequest(
       requestUrl,
       false,
