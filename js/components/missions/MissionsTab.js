@@ -118,11 +118,11 @@ const MissionsTab = React.createClass({
               <View style={styles.innerModalContainerMissionComplete}>
                 <Image style={styles.icon} source={require('../../assets/img/koin_no_value.png')} />
                 <Text style={styles.textMission}>
-                  {I18n.t('reward_alert_koins_new', { koin_count_new: receivedKoins })}{'\n'}
-                  {I18n.t('reward_alert_koins_total', { koin_count_total: newKoinsTotal })}
+                  {I18n.t('reward_alert_koins_new')}{'\n'}
+                  {I18n.t('reward_alert_koins_total')}
                 </Text>
                 </View>
-                <Button onPress={Actions.pop}>{I18n.t('messagebox_ok')}</Button>
+                <Button onPress={this._setModalVisible.bind(this, false)}>{I18n.t('messagebox_ok')}</Button>
             </View>
           </View>
         </Modal>
