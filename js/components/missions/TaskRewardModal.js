@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     width: 46,
   },
   textTitle: {
-    fontSize: 14,
+    textAlign: 'center',
+    fontSize: 18,
     marginTop: 5,
   },
   textMission: {

@@ -5,9 +5,6 @@ import { Actions } from 'react-native-router-flux';
 
 import Config from '../../constants/Config';
 
-import locationStore from '../../stores/LocationStore';
-import taskStore from '../../stores/TaskStore';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -25,7 +22,6 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      annotations: [],
     };
   },
 
@@ -73,10 +69,9 @@ export default React.createClass({
   },
 
   render() {
-    console.log('COORDINATES FORMAT: ', locationStore.getPosition().coords);
     return (
       <Mapbox
-        centerCoordinate={locationStore.getPosition().coords}
+        centerCoordinate={this.props.coordinates}
         annotations={this.state.annotations}
         style={styles.container}
         direction={0}
