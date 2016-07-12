@@ -46,6 +46,7 @@ export default {
   MAP_REF: 'OpenStreetMap',
   STYLE_URL: 'https://raw.githubusercontent.com/osm2vectortiles/mapbox-gl-styles/master/styles/bright-v9-cdn.json',
   ZOOM_LEVEL: 13,
+  TASK_ZOOM_LEVEL: 18,
   MAPBOX_ACCESS_TOKEN: SecretConfig.MAPBOX_ACCESS_TOKEN,
 
   // Storage

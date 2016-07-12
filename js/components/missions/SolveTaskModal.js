@@ -128,6 +128,12 @@ const SolveTaskModal = React.createClass({
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.containerMap}>
+          <TaskMap
+            ref="map"
+            task={this.props.task}
+          />
+        </View>
         <View style={styles.containerTask}>
           <Text style={styles.textTitle}>{this.props.task.title}</Text>
           <View style={styles.containerMission}>
@@ -158,12 +164,6 @@ const SolveTaskModal = React.createClass({
               <Button onPress={this.solveTask}>{I18n.t('fix_form_button_submit')}</Button>
             </View>
           </View>
-        </View>
-        <View style={styles.containerMap}>
-          <TaskMap
-            ref="map"
-            coordinates={[parseFloat(this.props.task.latitude), parseFloat(this.props.task.longitude)]} 
-          />
         </View>
       </View>
     );

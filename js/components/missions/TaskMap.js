@@ -8,71 +8,48 @@ import Config from '../../constants/Config';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 45,
   },
 });
 
 const mapRef = Config.MAP_REF;
 const accessToken = Config.MAPBOX_ACCESS_TOKEN;
 const styleUrl = Config.STYLE_URL;
-const zoomLevel = Config.ZOOM_LEVEL;
+const zoomLevel = Config.TASK_ZOOM_LEVEL;
 
 export default React.createClass({
   mixins: [Mapbox.Mixin],
 
   getInitialState() {
     return {
+      annotation: [],
     };
   },
 
-  componentWillMount() {
-    if (Platform.OS === 'android') {
-      DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
-    }
-  },
-
-  componentDidMount() {
-    if (taskStore.getAll() !== null) this._updateAnnotations();
-  },
-
-  componentWillUnmount() {
-    if (Platform.OS === 'android') {
-      DeviceEventEmitter.removeAllListeners();
-    }
-  },
-
-  onOpenAnnotation(annotation) {
-    let taskId;
-    if (Platform.OS === 'android') {
-      taskId = annotation.src.subtitle;
-    } else {
-      taskId = annotation.subtitle;
-    }
-    const annotationTask = taskStore.get(taskId);
-    Actions.solveTask({ task: annotationTask });
-  },
-
   updateAnnotations() {
-    const annotations = [];
-
-    for (const task of taskStore.getAll()) {
-      annotations.push({
-        id: task.id,
-        type: 'point',
-        title: task.title,
-        subtitle: task.id,
-        coordinates: [parseFloat(task.latitude), parseFloat(task.longitude)],
-        annotationImage: { url: `image!${task.annotationImage}`, width: 36, height: 36 },
-      });
-    }
-    this.setState({ annotations });
+    annotation.push({
+      id: this.props.task.id,
+      type: 'point',
+      title: this.props.task.title,
+      subtitle: this.props.task.id,
+      coordinates: [parseFloat(this.props.task.latitude), parseFloat(this.props.task.longitude)],
+      annotationImage: { url: `image!${this.props.task.annotationImage}`, width: 36, height: 36 },
+    });
+    this.setState({ annotation });
   },
 
   render() {
+    const coordinates = {
+      speed: 0,
+      heading: 0,
+      accuracy: 20,
+      longitude: parseFloat(this.props.task.longitude),
+      altitude: 0,
+      latitude: parseFloat(this.props.task.latitude)
+    };
     return (
       <Mapbox
-        centerCoordinate={this.props.coordinates}
-        annotations={this.state.annotations}
+        centerCoordinate={coordinates}
+        annotations={this.state.annotation}
         style={styles.container}
         direction={0}
         rotateEnabled
@@ -83,7 +60,6 @@ export default React.createClass({
         ref={mapRef}
         accessToken={accessToken}
         styleURL={styleUrl}
-        onOpenAnnotation={this.onOpenAnnotation}
       />
     );
   },
