@@ -73,7 +73,6 @@ export default React.createClass({
   },
 
   render() {
-    console.log('COORDINATES FORMAT: ', locationStore.getPosition().coords);
     return (
       <Mapbox
         centerCoordinate={locationStore.getPosition().coords}

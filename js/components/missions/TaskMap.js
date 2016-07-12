@@ -1,7 +1,6 @@
 import React from 'react';
-import { DeviceEventEmitter, Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
-import { Actions } from 'react-native-router-flux';
 
 import Config from '../../constants/Config';
 
@@ -17,6 +16,10 @@ const styleUrl = Config.STYLE_URL;
 const zoomLevel = Config.TASK_ZOOM_LEVEL;
 
 export default React.createClass({
+  propTypes: {
+    task: React.PropTypes.object.isRequired,
+  },
+
   mixins: [Mapbox.Mixin],
 
   getInitialState() {
@@ -26,6 +29,8 @@ export default React.createClass({
   },
 
   updateAnnotations() {
+    const annotation = [];
+
     annotation.push({
       id: this.props.task.id,
       type: 'point',
@@ -44,7 +49,7 @@ export default React.createClass({
       accuracy: 20,
       longitude: parseFloat(this.props.task.longitude),
       altitude: 0,
-      latitude: parseFloat(this.props.task.latitude)
+      latitude: parseFloat(this.props.task.latitude),
     };
     return (
       <Mapbox
