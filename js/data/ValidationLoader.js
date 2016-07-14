@@ -18,17 +18,19 @@ export default class ValidationLoader extends DataLoader {
   static _initValidations(rawValidations) {
     const validations = [];
     rawValidations.return.forEach((rawValidation) => {
-      validations.push(
-        new Validation(rawValidation.id, rawValidation.type, rawValidation.title,
-          rawValidation.bug_question, rawValidation.view_type, rawValidation.latitude,
-          rawValidation.longitude, rawValidation.vote_koin_count, rawValidation.promo_id,
-          rawValidation.extra_coins, rawValidation.fix_user_id, rawValidation.fixmessage,
-          rawValidation.falsepositive, rawValidation.upratings, rawValidation.downratings,
-          rawValidation.required_votes, rawValidation.osm_id, rawValidation.osm_type,
-          rawValidation.geom, rawValidation.txt1, rawValidation.txt2, rawValidation.txt3,
-          rawValidation.txt4, rawValidation.txt5
-        )
-      );
+      if (rawValidation.fix_user_id === authenticationStore.getUserId()) {
+        validations.push(
+          new Validation(rawValidation.id, rawValidation.type, rawValidation.title,
+            rawValidation.bug_question, rawValidation.view_type, rawValidation.latitude,
+            rawValidation.longitude, rawValidation.vote_koin_count, rawValidation.promo_id,
+            rawValidation.extra_coins, rawValidation.fix_user_id, rawValidation.fixmessage,
+            rawValidation.falsepositive, rawValidation.upratings, rawValidation.downratings,
+            rawValidation.required_votes, rawValidation.osm_id, rawValidation.osm_type,
+            rawValidation.geom, rawValidation.txt1, rawValidation.txt2, rawValidation.txt3,
+            rawValidation.txt4, rawValidation.txt5
+          )
+        );
+      }
     });
 
     return validations;
@@ -52,7 +54,7 @@ export default class ValidationLoader extends DataLoader {
     return new TaskReward(badges, rawTaskReward.koin_count_new, rawTaskReward.koin_count_total);
   }
 
-  static getValidations(latitude, longitude, onSuccess) {
+  static getValidations(latitude, longitude, onSuccess, onError) {
     const parameters = [];
     if (limit !== null) parameters.push(`limit=${limit}`);
     if (radius !== null) parameters.push(`radius=${radius}`);
@@ -62,7 +64,7 @@ export default class ValidationLoader extends DataLoader {
       requestUrl,
       true,
       (rawValidations) => onSuccess(ValidationLoader._initValidations(rawValidations)),
-      null
+      onError
     );
   }
 

@@ -1,9 +1,9 @@
+/* eslint-disable max-len */
+
 import SecretConfig from './SecretConfig';
 
 export default {
   // Auth
-  TEST_USER_ID: SecretConfig.TEST_USER_ID,
-  TEST_SECRET: SecretConfig.TEST_SECRET,
   // Google
   GOOGLE: 'google',
   GOOGLE_IOS_CLIENT_ID: SecretConfig.GOOGLE_IOS_CLIENT_ID,
@@ -14,13 +14,13 @@ export default {
   HIGHSCORE_PREFETCH_LIMIT: 10,
 
   // Kort
+  KORT_VERSION: '0.2',
   KORT_GITHUB: 'https://github.com/kort/kort-reloaded',
   KORT_USERVOICE: 'kort.uservoice.com',
-  KORT_VERSION: '0.2',
   KORT_WEBSITE: 'www.kort.ch',
 
   // Kort API
-  SERVER: 'https://kort-dev.herokuapp.com',
+  SERVER: 'https://kort.herokuapp.com',
   PROD_SERVER: 'https://kort.herokuapp.com',
   DEV_SERVER: 'https://kort-dev.herokuapp.com',
   API_PATH: '/server/webservices',
@@ -46,6 +46,7 @@ export default {
   MAP_REF: 'OpenStreetMap',
   STYLE_URL: 'https://raw.githubusercontent.com/osm2vectortiles/mapbox-gl-styles/master/styles/bright-v9-cdn.json',
   ZOOM_LEVEL: 13,
+  TASK_ZOOM_LEVEL: 18,
   MAPBOX_ACCESS_TOKEN: SecretConfig.MAPBOX_ACCESS_TOKEN,
 
   // Storage

@@ -24,10 +24,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.googleusercontent.apps.963836018928-8r1oggadkfjohvnmrkc744i3nkeu4av9</string>
+			<string>com.googleusercontent.apps.653755350671-logql7d6ds7afu8mqul37c09qbe2cslv</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.963836018928-8r1oggadkfjohvnmrkc744i3nkeu4av9</string>
+				<string>com.googleusercontent.apps.653755350671-logql7d6ds7afu8mqul37c09qbe2cslv</string>
 			</array>
 		</dict>
 		<dict>
@@ -38,6 +38,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ch.hsr.mmelchio.Kort</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>ch.hsr.kort</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ch.hsr.kort</string>
 			</array>
 		</dict>
 	</array>
@@ -55,7 +65,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Kort uses your location to find missions around you.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

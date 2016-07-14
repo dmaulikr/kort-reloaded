@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import Loading from './shared/Loading';
+import LoadingIndicator from './shared/LoadingIndicator';
 
 import AnswerActions from '../actions/AnswerActions';
 import AuthenticationActions from '../actions/AuthenticationActions';
@@ -17,21 +17,28 @@ import Config from '../constants/Config';
 import authenticationStore from '../stores/AuthenticationStore';
 import locationStore from '../stores/LocationStore';
 
-import answerStore from '../stores/AnswerStore';
-import highscoreStore from '../stores/HighscoreStore';
-import statisticsStore from '../stores/StatisticsStore';
-import taskStore from '../stores/TaskStore';
-import userStore from '../stores/UserStore';
-
 const highscoreLimit = Config.HIGHSCORE_LIMIT;
 const highscorePrefetchLimit = Config.HIGHSCORE_PREFETCH_LIMIT;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#144E87',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  kortlogo: {
+    alignSelf: 'center',
+    marginTop: 10,
+    height: 90,
+    width: 90,
+  },
+  errorMessage: {
+    marginTop: 50,
+    marginLeft: 30,
+    marginRight: 30,
+    fontSize: 18,
+    color: '#ffffff',
   },
 });
 
@@ -39,11 +46,14 @@ export default class AppLoader extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = { errorMessage: null };
+
     this._isAuthenticated = false;
     this._isLocated = false;
     this._hasStartedDataLoading = false;
     this._hasStartedTaskLoading = false;
     this._hasJumpedToMap = false;
+    this._isShowingError = false;
 
     this._loadTasks = this._loadTasks.bind(this);
     this._onLocationUpdate = this._onLocationUpdate.bind(this);
@@ -55,12 +65,6 @@ export default class AppLoader extends React.Component {
     LocationActions.startLocating();
     authenticationStore.addChangeListener(this._onAuthenticationUpdate);
     AuthenticationActions.loadCredential();
-
-    answerStore.addChangeListener(this._onAnswerUpdate);
-    highscoreStore.addChangeListener(this._onHighscoreUpdate);
-    statisticsStore.addChangeListener(this._onStatisticsUpdate);
-    userStore.addChangeListener(this._onUserUpdate);
-    taskStore.addChangeListener(this._onTaskUpdate);
   }
 
   componentWillUnmount() {
@@ -68,7 +72,6 @@ export default class AppLoader extends React.Component {
   }
 
   _loadData() {
-    console.log('LOADER:', 'begin loading data');
     this._hasStartedDataLoading = true;
 
     AnswerActions.loadAllAnswers();
@@ -79,7 +82,6 @@ export default class AppLoader extends React.Component {
   }
 
   _loadTasks() {
-    console.log('LOADER:', 'begin loading tasks');
     this._hasStartedTaskLoading = true;
 
     const latitude = locationStore.getLatitude();
@@ -101,20 +103,19 @@ export default class AppLoader extends React.Component {
     }
 
     if (!this._hasJumpedToMap && this._hasStartedTaskLoading && this._hasStartedDataLoading) {
-      console.log('LOADER:', 'onAuthenticationUpdate loads tabBar');
       Actions.tabBar();
       this._hasJumpedToMap = true;
     }
   }
 
   _onLocationUpdate() {
-    if (locationStore.isWatching === false) {
-      alert('enable location');
+    if (locationStore.getError() !== null) {
+      this.setState({ errorMessage: locationStore.getError().message });
+      LocationActions.clearError();
       return;
     }
 
     if (locationStore.getPosition() !== null) {
-      console.log('LOADER:', 'position loaded');
       this._isLocated = true;
       this._onUpdate();
     }
@@ -125,36 +126,22 @@ export default class AppLoader extends React.Component {
       Actions.login();
       return;
     }
-
-    console.log('LOADER:', 'user authenticated');
     this._isAuthenticated = true;
     this._onUpdate();
   }
 
-  _onAnswerUpdate() {
-    if (answerStore.getAllAnswers() !== null) console.log('LOADER:', 'answers loaded');
-  }
-
-  _onHighscoreUpdate() {
-    if (highscoreStore.getHighscore() !== null) console.log('LOADER:', 'highscore loaded');
-  }
-
-  _onStatisticsUpdate() {
-    if (statisticsStore.getStatistics() !== null) console.log('LOADER:', 'statistics loaded');
-  }
-
-  _onUserUpdate() {
-    if (userStore.getUser() !== null) console.log('LOADER:', 'user loaded');
-  }
-
-  _onTaskUpdate() {
-    if (taskStore.getAll() !== null) console.log('LOADER:', 'tasks loaded');
-  }
-
   render() {
+    let content;
+    if (this.state.errorMessage === null) {
+      content = <LoadingIndicator />;
+    } else {
+      content = <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>;
+    }
+
     return (
       <View style={styles.container}>
-        <Loading />
+        <Image style={styles.kortlogo} source={require('../assets/img/kort-logo_white.png')} />
+        {content}
       </View>
     );
   }

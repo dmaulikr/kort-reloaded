@@ -11,7 +11,16 @@ export default class StatisticsActions {
           data: statistics,
         });
       },
-      null
+      (error) => {
+        AppDispatcher.dispatch({
+          actionType: ActionTypes.STATISTICS_ERROR_LOAD,
+          data: error,
+        });
+      }
     );
+  }
+
+  static clearError() {
+    AppDispatcher.dispatch({ actionType: ActionTypes.STATISTICS_CLEAR_ERROR });
   }
 }

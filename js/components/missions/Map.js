@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, DeviceEventEmitter } from 'react-native';
+import { DeviceEventEmitter, Platform, StyleSheet } from 'react-native';
 import Mapbox from 'react-native-mapbox-gl';
 import { Actions } from 'react-native-router-flux';
 
 import Config from '../../constants/Config';
-import TaskActions from '../../actions/TaskActions';
 
 import locationStore from '../../stores/LocationStore';
 import taskStore from '../../stores/TaskStore';
@@ -30,27 +29,25 @@ export default React.createClass({
     };
   },
 
-  componentDidMount() {
-    DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
-    locationStore.addChangeListener(this.onLocationChange);
-    taskStore.addChangeListener(this.onTasksUpdate);
+  componentWillMount() {
+    if (Platform.OS === 'android') {
+      DeviceEventEmitter.addListener('onOpenAnnotation', this.onOpenAnnotation);
+    }
+  },
 
-    if (taskStore.getAll() !== null) this._udpateAnnotations();
+  componentDidMount() {
+    if (taskStore.getAll() !== null) this._updateAnnotations();
   },
 
   componentWillUnmount() {
-    DeviceEventEmitter.removeAllListeners();
-    locationStore.removeChangeListener(this.onTasksUpdate);
-    taskStore.removeChangeListener(this.onTasksUpdate);
-  },
-
-  onLocationChange() {
-    TaskActions.loadTasks(locationStore.getLatitude(), locationStore.getLongitude());
+    if (Platform.OS === 'android') {
+      DeviceEventEmitter.removeAllListeners();
+    }
   },
 
   onOpenAnnotation(annotation) {
     let taskId;
-    if (require('react-native').Platform.OS === 'android') {
+    if (Platform.OS === 'android') {
       taskId = annotation.src.subtitle;
     } else {
       taskId = annotation.subtitle;
@@ -59,11 +56,7 @@ export default React.createClass({
     Actions.solveTask({ task: annotationTask });
   },
 
-  onTasksUpdate() {
-    this._updateAnnotations();
-  },
-
-  _updateAnnotations() {
+  updateAnnotations() {
     const annotations = [];
 
     for (const task of taskStore.getAll()) {
@@ -73,7 +66,7 @@ export default React.createClass({
         title: task.title,
         subtitle: task.id,
         coordinates: [parseFloat(task.latitude), parseFloat(task.longitude)],
-        annotationImage: { url: `image!${task.annotationImage}`, width: 35, height: 42 },
+        annotationImage: { url: `image!${task.annotationImage}`, width: 36, height: 36 },
       });
     }
     this.setState({ annotations });
