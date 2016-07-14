@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 import SolveTaskInput from './SolveTaskInput';
 import Button from '../shared/Button';
+import TaskMap from './TaskMap';
 
 import MissionActions from '../../actions/MissionActions';
 import ValidationActions from '../../actions/ValidationActions';
@@ -14,11 +15,17 @@ import Validation from '../../dto/Validation';
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  containerTask: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     paddingHorizontal: 14,
     backgroundColor: '#ffffff',
+  },
+  containerMap: {
+    flex: 1,
   },
   containerMission: {
     flexDirection: 'column',
@@ -121,33 +128,41 @@ const SolveTaskModal = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.textTitle}>{this.props.task.title}</Text>
-        <View style={styles.containerMission}>
-          <View style={styles.containerMissionDescription}>
-            <Image
-              style={styles.icon}
-              source={require('../../assets/img/koin_no_value.png')}
-            />
-            <Text style ={styles.textMission}>
-              {I18n.t('fix_form_koins_earn', { fix_koin_count: this.props.task.fixKoinCount })}
-            </Text>
-          </View>
-          <View style={styles.containerMissionDescription}>
-            <Text style={styles.textMission}>{this.props.task.question}</Text>
-          </View>
+        <View style={styles.containerMap}>
+          <TaskMap
+            ref="map"
+            task={this.props.task}
+          />
         </View>
-        <SolveTaskInput
-          ref="input"
-          viewType={this.props.task.viewType}
-          missionType={this.props.task.type}
-          unableToSolve={this.state.unableToSolve}
-        />
-        <View style={styles.containerButton}>
-          <View style={ { flex: 1, padding: 5 } }>
-            <Button onPress={Actions.pop}>{I18n.t('messagebox_cancel')}</Button>
+        <View style={styles.containerTask}>
+          <Text style={styles.textTitle}>{this.props.task.title}</Text>
+          <View style={styles.containerMission}>
+            <View style={styles.containerMissionDescription}>
+              <Image
+                style={styles.icon}
+                source={require('../../assets/img/koin_no_value.png')}
+              />
+              <Text style ={styles.textMission}>
+                {I18n.t('fix_form_koins_earn', { fix_koin_count: this.props.task.fixKoinCount })}
+              </Text>
+            </View>
+            <View style={styles.containerMissionDescription}>
+              <Text style={styles.textMission}>{this.props.task.question}</Text>
+            </View>
           </View>
-          <View style={ { flex: 1, padding: 5 } }>
-            <Button onPress={this.solveTask}>{I18n.t('fix_form_button_submit')}</Button>
+          <SolveTaskInput
+            ref="input"
+            viewType={this.props.task.viewType}
+            missionType={this.props.task.type}
+            unableToSolve={this.state.unableToSolve}
+          />
+          <View style={styles.containerButton}>
+            <View style={ { flex: 1, padding: 5 } }>
+              <Button onPress={Actions.pop}>{I18n.t('messagebox_cancel')}</Button>
+            </View>
+            <View style={ { flex: 1, padding: 5 } }>
+              <Button onPress={this.solveTask}>{I18n.t('fix_form_button_submit')}</Button>
+            </View>
           </View>
         </View>
       </View>
