@@ -136,7 +136,7 @@ const SolveTaskModal = React.createClass({
       type_of_track_unknown_mission: require('image!type_of_track_unknown_mission'),
       undefined_mission: require('image!undefined_mission'),
     };
-    var annotationImage = annotationImages[this.props.task.annotationImage];
+    const annotationImage = annotationImages[this.props.task.annotationImage];
 
     return (
       <View style={styles.container}>
