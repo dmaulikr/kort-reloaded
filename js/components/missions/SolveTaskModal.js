@@ -126,6 +126,18 @@ const SolveTaskModal = React.createClass({
   },
 
   render() {
+    const annotationImages = {
+      language_unknown_mission: require('image!language_unknown_mission'),
+      missing_cuisine_mission: require('image!missing_cuisine_mission'),
+      missing_maxspeed_mission: require('image!missing_maxspeed_mission'),
+      motorway_ref_mission: require('image!motorway_ref_mission'),
+      poi_name_mission: require('image!poi_name_mission'),
+      religion_mission: require('image!religion_mission'),
+      type_of_track_unknown_mission: require('image!type_of_track_unknown_mission'),
+      undefined_mission: require('image!undefined_mission'),
+    };
+    var annotationImage = annotationImages[this.props.task.annotationImage];
+
     return (
       <View style={styles.container}>
         <View style={styles.containerMap}>
@@ -147,7 +159,13 @@ const SolveTaskModal = React.createClass({
               </Text>
             </View>
             <View style={styles.containerMissionDescription}>
-              <Text style={styles.textMission}>{this.props.task.question}</Text>
+              <Image
+                style={styles.icon}
+                source={annotationImage}
+              />
+              <Text style={styles.textMission}>
+                {this.props.task.question}
+              </Text>
             </View>
           </View>
           <SolveTaskInput
