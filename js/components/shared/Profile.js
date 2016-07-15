@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     padding: 10,
+    marginTop: -20,
   },
   containerKoins: {
     flexDirection: 'column',
@@ -117,7 +118,7 @@ const Profile = React.createClass({
   },
 
   render() {
-    let name, userName, oauthProvider, solveCount, collectedKoins, ranking; // eslint-disable-line one-var, max-len
+    let name, userName, picUrl, oauthProvider, solveCount, collectedKoins, ranking; // eslint-disable-line one-var, max-len
     if (this.state.user === null) {
       name = '';
       userName = '';
@@ -128,6 +129,7 @@ const Profile = React.createClass({
     } else {
       name = (this.state.user.name === null) ? '' : this.state.user.name;
       userName = this.state.user.userName;
+      picUrl = this.state.user.picUrl;
       oauthProvider = (this.state.user.oauthProvider === null) ? '' : this.state.user.oauthProvider;
       solveCount = this.state.user.solveCount;
       collectedKoins = `${this.state.user.koinCount} ${I18n.t('profile_content_koins_title')}`;
@@ -169,17 +171,17 @@ const Profile = React.createClass({
             <View style={styles.containerProfile}>
               <Image
                 style={{ width: 64, height: 64, padding: 64 }}
-                source={{ uri: this.state.picUrl }}
+                source={{ uri: picUrl }}
               />
               <View style={styles.containerProfileDescription}>
                 <Text style={styles.textSubTitle}>{I18n.t('profile_content_username')}</Text>
                 <Text style={styles.textSubTitle}>{userName}</Text>
                 {oauthProviderInfo}
-                {logoutButton}
                 <Text style={styles.textSubTitle}>{I18n.t('profile_content_fixes')}</Text>
                 <Text style={styles.textSubTitle}>{solveCount}</Text>
               </View>
             </View>
+            {logoutButton}
             <Text style={styles.textSubTitle}>{I18n.t('profile_content_koins_header')}</Text>
             <View style={styles.containerKoins}>
               <View style={styles.containerKoinsDescription}>
