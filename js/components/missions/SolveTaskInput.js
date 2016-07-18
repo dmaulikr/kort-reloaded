@@ -96,7 +96,7 @@ const SolveTaskInput = React.createClass({
   },
 
   _renderInputField() {
-    const emptyInputField = <View style={{height: 50}}/>;
+    const emptyInputField = <View style={{ height: 50 }} />;
 
     if (this.state.unableToSolve) {
       this.state.answerValue = '-';
