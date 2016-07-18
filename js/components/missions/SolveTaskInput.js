@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     paddingTop: 7,
   },
   textInput: {
-    height: 45,
+    height: 40,
     marginTop: 10,
   },
   picker: {
@@ -96,7 +96,7 @@ const SolveTaskInput = React.createClass({
   },
 
   _renderInputField() {
-    const emptyInputField = <View />;
+    const emptyInputField = <View style={{height: 50}}/>;
 
     if (this.state.unableToSolve) {
       this.state.answerValue = '-';
