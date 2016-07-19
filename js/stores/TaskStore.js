@@ -13,6 +13,29 @@ class TaskStore extends Store {
   }
 
   _setTasks(tasks) {
+    tasks.push({
+      id: '11164111',
+      type: 'poi_name',
+      title: 'Objekt ohne Namen',
+      question: 'Wie heisst diese/s Café?',
+      viewType: 'text',
+      latitude: '47.4330700000000000',
+      longitude: '9.3818100000000000',
+      fixKoinCount: '15',
+      promoId: null,
+      promoExtraKoins: null,
+      osmId: '4092637290',
+      osmType: 'node',
+      geom: '0101000020E6100000A4614216B3BF2240076D286B8AB64740',
+      txt1: 'cafe',
+      txt2: '',
+      txt3: '',
+      txt4: '',
+      txt5: '',
+      annotationImage: 'poi_name_mission',
+      answerPlaceholder: 'Name',
+      schema: '95'
+    });
     this._tasks = tasks;
     super.emitChange();
   }

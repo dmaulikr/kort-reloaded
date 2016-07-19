@@ -13,6 +13,8 @@ import ValidationActions from '../../actions/ValidationActions';
 import Mission from '../../dto/Mission';
 import Validation from '../../dto/Validation';
 
+import AppDispatcher from '../../dispatcher/AppDispatcher';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -91,7 +93,17 @@ const SolveTaskModal = React.createClass({
   solveMission() {
     const input = this.refs.input.state;
     Actions.pop();
-    MissionActions.solveMission(this.props.task, input.answerValue, input.unableToSolve);
+    //MissionActions.solveMission(this.props.task, input.answerValue, input.unableToSolve);
+    //***
+    // const taskReward = {
+    //   badges: [],
+    //   receivedKoins: '15',
+    //   newKoinsTotal: '950',
+    // };
+    // AppDispatcher.dispatch({
+    //   actionType: ActionTypes.MISSION_SEND,
+    //   data: taskReward,
+    // });
   },
 
   solveValidation() {
@@ -114,7 +126,17 @@ const SolveTaskModal = React.createClass({
     }
 
     Actions.pop();
-    ValidationActions.solveValidation(validation, valid);
+    //ValidationActions.solveValidation(validation, valid);
+    //***
+    // const taskReward = {
+    //   badges: [],
+    //   receivedKoins: '15',
+    //   newKoinsTotal: '950',
+    // };
+    // AppDispatcher.dispatch({
+    //   actionType: ActionTypes.VALIDATION_SEND,
+    //   data: taskReward,
+    // });
   },
 
   solveTask() {
