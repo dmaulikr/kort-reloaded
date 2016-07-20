@@ -46,7 +46,7 @@ export default {
   MAP_REF: 'OpenStreetMap',
   STYLE_URL: 'https://raw.githubusercontent.com/osm2vectortiles/mapbox-gl-styles/master/styles/bright-v9-cdn.json',
   ZOOM_LEVEL: 13,
-  TASK_ZOOM_LEVEL: 18,
+  TASK_ZOOM_LEVEL: 16,
   MAPBOX_ACCESS_TOKEN: SecretConfig.MAPBOX_ACCESS_TOKEN,
 
   // Storage
@@ -68,7 +68,7 @@ export default {
   TASK_TYPE_MISSING_CUISINE: 'missing_cuisine',
 
   // Tasks
-  MISSIONS_LIMIT: 7,
+  MISSIONS_LIMIT: 50,
   VALIDATIONS_LIMIT: 50,
   RADIUS: 5000,
 

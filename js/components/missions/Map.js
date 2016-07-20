@@ -36,7 +36,7 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    if (taskStore.getAll() !== null) this._updateAnnotations();
+    if (taskStore.getAll() !== null) this.updateAnnotations();
   },
 
   componentWillUnmount() {
