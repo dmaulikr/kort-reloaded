@@ -99,8 +99,8 @@ const SolveTaskModal = React.createClass({
     //***
     const taskReward = {
       badges: [],
-      receivedKoins: '15',
-      newKoinsTotal: '950',
+      receivedKoins: '10',
+      newKoinsTotal: '2050',
     };
     AppDispatcher.dispatch({
       actionType: ActionTypes.MISSION_SEND,
