@@ -5,6 +5,13 @@ import UserLoader from '../data/UserLoader';
 import authenticationStore from '../stores/AuthenticationStore';
 
 export default class AuthenticationActions {
+
+  /**
+   * Verifies the user.
+   * @param {string} provider The id of the user.
+   * @param {string} idToken The id token of the user.
+   * @returns {void}
+   */
   static verifyUser(provider, idToken) {
     UserLoader.verifyUser(
       provider,
@@ -30,6 +37,10 @@ export default class AuthenticationActions {
     });
   }
 
+  /**
+   * Logs out the user.
+   * @returns {void}
+   */
   static logOutUser() {
     UserLoader.logoutUser(
       authenticationStore.getUserId(),

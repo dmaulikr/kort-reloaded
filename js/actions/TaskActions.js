@@ -26,6 +26,13 @@ function _onTasksLoaded(tasks) {
 }
 
 export default class TaskActions {
+
+  /**
+   * Loads all tasks for the given coordinates.
+   * @param {number} latitude The latitude of the coordinates.
+   * @param {number} longitude The longitude of the coordinates.
+   * @returns {void}
+   */
   static loadTasks(latitude, longitude) {
     let tasks = [];
     let missionsLoaded = false;

@@ -17,6 +17,12 @@ class AnswerStore extends Store {
     super.emitChange();
   }
 
+  /**
+   * Defines the possible answers for a task type.
+   * @param {Object} taskType The type of the task.
+   * @param {Object} answers The answers for a task.
+   * @returns {void}
+   */
   _setAnswersForType(taskType, answers) {
     if (this._answers === null) this._answers = new Map();
     this._answers.set(taskType, answers);
@@ -32,6 +38,11 @@ class AnswerStore extends Store {
     this._error = null;
   }
 
+  /**
+   * Get the answers for a task type.
+   * @param {Object} taskType The type of the task.
+   * @returns {Object} The possible answers for the task type.
+   */
   getAnswersForType(taskType) {
     if (this._answers === null) return null;
 

@@ -22,6 +22,11 @@ class AuthenticationStore extends Store {
     this._error = null;
   }
 
+  /**
+   * Loads the user credentials from the AsyncStorage or
+   * creates a new UserCredential Object and loggs in the user.
+   * @returns {void}
+   */
   async _loadUserCredential() {
     try {
       const userId = await AsyncStorage.getItem(userIdStorageKey);
@@ -61,6 +66,10 @@ class AuthenticationStore extends Store {
     super.emitChange();
   }
 
+  /**
+   * Loggs out the user and removes the user credentials.
+   * @returns {void}
+   */
   _logOutUser() {
     this._removeUserCredential();
     this._userCredential = null;
