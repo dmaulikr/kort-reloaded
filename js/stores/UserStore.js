@@ -20,6 +20,11 @@ class UserStore extends Store {
     super.emitChange();
   }
 
+  /**
+   * Updates the user.
+   * @param {Object} userWithUpdateInfo The updated user Object.
+   * @returns {void}
+   */
   _updateOwnUser(userWithUpdateInfo) {
     if (this._users === null) return;
 

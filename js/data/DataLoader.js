@@ -36,6 +36,10 @@ export default class DataLoader {
     return parametersString;
   }
 
+  /**
+   * Creates an authorization hash with the user id and secret for the authorization header.
+   * @returns {string} The authorization hash.
+   */
   static _createAuthorizationHash() {
     const userLoggedIn = authenticationStore.isLoggedIn();
     if (!userLoggedIn) {
@@ -49,6 +53,11 @@ export default class DataLoader {
     return hash;
   }
 
+  /**
+   * Creates the authorization header depending on the request and attaches the authorization hash.
+   * @param {string} requestMethod The type of the request.
+   * @returns {string} The authorization header.
+   */
   static _createHeaders(requestMethod) {
     const authorizationHash = DataLoader._createAuthorizationHash();
 
@@ -65,6 +74,13 @@ export default class DataLoader {
     return null;
   }
 
+  /**
+   * Creates the request url for the backend endpoints.
+   * @param {string} apiPath The endpoint path of the request.
+   * @param {string} queryParameters The query parameters of the request.
+   * @param {string} parameters The parameters of the request.
+   * @returns {string} The request url.
+   */
   static createRequestUrl(apiPath, queryParameters, parameters) {
     let requestUrl = requestLocation;
 
@@ -81,6 +97,14 @@ export default class DataLoader {
     return requestUrl;
   }
 
+  /**
+   * Gets the data from the backend with the fetch API.
+   * @param {string} requestUrl The endpoint path of the request.
+   * @param {boolean} authorized The indicator if the client is authorized.
+   * @callback onSuccess
+   * @callback onError
+   * @returns {string} The json response.
+   */
   static makeGetRequest(requestUrl, authorized, onSuccess, onError) {
     let authorizationHeader = {};
     if (authorized === true) {
@@ -107,6 +131,15 @@ export default class DataLoader {
       .done();
   }
 
+  /**
+   * Puts or posts the data to the request url endpoint for the backend.
+   * @param {string} requestUrl The endpoint path of the request.
+   * @param {string} jsonBody The json body.
+   * @callback onSuccess
+   * @callback onError
+   * @param {string} requestMethod The query parameters of the request.
+   * @returns {string} The json response.
+   */
   static _makePutOrPostRequest(requestUrl, jsonBody, onSuccess, onError, requestMethod) {
     if (requestMethod !== 'PUT' && requestMethod !== 'POST') {
       throw new Error('Request method needs to be of type \'PUT\' or \'POST\'.');

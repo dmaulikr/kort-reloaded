@@ -60,6 +60,14 @@ export default class UserLoader extends DataLoader {
     });
   }
 
+  /**
+   * Verifies the user through the backend.
+   * @param {string} provider The used provider for the login.
+   * @param {string} idToken The id user token.
+   * @callback onSuccess
+   * @callback onError
+   * @returns {void}
+   */
   static verifyUser(provider, idToken, onSuccess, onError) {
     const idTokenParameter = `id_token=${idToken}`;
     const requestUrl = super.createRequestUrl(
@@ -95,6 +103,13 @@ export default class UserLoader extends DataLoader {
     );
   }
 
+  /**
+   * Log out the user in the backend.
+   * @param {string} userId The id of the user.
+   * @callback onSuccess
+   * @callback onError
+   * @returns {void}
+   */
   static logoutUser(userId, onSuccess, onError) {
     const userLogoutParameter = `${userId}/logout`;
     const requestUrl = super.createRequestUrl(
@@ -111,6 +126,13 @@ export default class UserLoader extends DataLoader {
       .done();
   }
 
+  /**
+   * Updates the user with the given user.
+   * @param {Object} user The new user which should be propagated to and updated in the database.
+   * @callback onSuccess
+   * @callback onError
+   * @returns {void}
+   */
   static updateUser(user, onSuccess, onError) {
     const requestUrl = super.createRequestUrl(
       userRestPath, [user.id], null);

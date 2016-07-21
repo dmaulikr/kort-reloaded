@@ -9,6 +9,10 @@ import Store from './Store';
 const distanceFilter = Config.LOCATION_DISTANCE_FILTER;
 
 class LocationStore extends Store {
+  /**
+   * Represents the current location.
+   * @constructor
+   */
   constructor() {
     super();
     this._position = null;
@@ -18,11 +22,20 @@ class LocationStore extends Store {
     this._onPositionChange = this._onPositionChange.bind(this);
   }
 
+  /**
+   * Updates the location.
+   * @param {Object} position The current location that needs to be propageted.
+   * @returns {void}
+   */
   _onPositionChange(position) {
     this._position = position;
     super.emitChange();
   }
 
+  /**
+   * Starts location tracking on the device.
+   * @returns {void}
+   */
   _startWatchingLocation() {
     this._isWatching = true;
     navigator.geolocation.getCurrentPosition(

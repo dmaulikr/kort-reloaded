@@ -30,6 +30,11 @@ class TaskStore extends Store {
     return this._tasks;
   }
 
+  /**
+   * Get the taks with the specific id.
+   * @param {number} id The id of a task.
+   * @returns {Object} The taks with the corresponding id or null, if no task was found.
+   */
   get(id) {
     if (this._tasks === null) return null;
 
