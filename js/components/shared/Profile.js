@@ -118,16 +118,14 @@ const Profile = React.createClass({
   },
 
   render() {
-    let name, userName, picUrl, oauthProvider, solveCount, collectedKoins, ranking; // eslint-disable-line one-var, max-len
+    let userName, picUrl, oauthProvider, solveCount, collectedKoins, ranking; // eslint-disable-line one-var, max-len
     if (this.state.user === null) {
-      name = '';
       userName = '';
       oauthProvider = '';
       solveCount = '';
       collectedKoins = '';
       ranking = '';
     } else {
-      name = (this.state.user.name === null) ? '' : this.state.user.name;
       userName = this.state.user.userName;
       picUrl = this.state.user.picUrl;
       oauthProvider = (this.state.user.oauthProvider === null) ? '' : this.state.user.oauthProvider;
@@ -136,7 +134,7 @@ const Profile = React.createClass({
       ranking = `${this.state.user.ranking}. ${I18n.t('profile_content_ranking_title')}`;
     }
 
-    let logoutButton, editUserButton; // eslint-disable-line one-var
+    let logoutButton;
     if (this.props.isViewOnly) {
       logoutButton = null;
     } else {
@@ -147,7 +145,7 @@ const Profile = React.createClass({
       );
     }
 
-    let nameInfo, oauthProviderInfo; // eslint-disable-line one-var
+    let oauthProviderInfo;
     if (this.props.isOwnProfile) {
       oauthProviderInfo = (
         <View>
@@ -156,7 +154,6 @@ const Profile = React.createClass({
         </View>
       );
     } else {
-      nameInfo = null;
       oauthProvider = null;
     }
 

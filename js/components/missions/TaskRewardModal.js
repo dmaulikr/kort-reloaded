@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const TaskRewardModal = ({ badges, receivedKoins, newKoinsTotal }) => (
+const TaskRewardModal = ({ receivedKoins, newKoinsTotal }) => (
   <View style={styles.container}>
     <View style={styles.innerContainer}>
       <Text style={styles.textTitle}>{I18n.t('reward_alert_title')}</Text>
@@ -59,7 +59,6 @@ const TaskRewardModal = ({ badges, receivedKoins, newKoinsTotal }) => (
 );
 
 TaskRewardModal.propTypes = {
-  badges: React.PropTypes.array,
   receivedKoins: React.PropTypes.any.isRequired,
   newKoinsTotal: React.PropTypes.any.isRequired,
 };
