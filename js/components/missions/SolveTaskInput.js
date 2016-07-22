@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
+const number = Config.NUMBER;
 const select = Config.SELECT;
 const text = Config.TEXT;
 const Item = Picker.Item;
@@ -95,6 +96,17 @@ const SolveTaskInput = React.createClass({
     );
   },
 
+  _renderNumberInputField() {
+    return (
+      <TextInput
+        style={styles.textInput}
+        keyboardType="numeric"
+        onChangeText={(answer) => this.setState({ answerValue: answer })}
+        value={this.state.answerValue}
+      />
+    );
+  },
+
   _renderInputField() {
     const emptyInputField = <View style={{ height: 50 }} />;
 
@@ -104,6 +116,8 @@ const SolveTaskInput = React.createClass({
     }
 
     switch (this.props.viewType) {
+      case number:
+        return this._renderNumberInputField();
       case select:
         return this._renderPickerInputField();
       case text:

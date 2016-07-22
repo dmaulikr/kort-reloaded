@@ -66,13 +66,13 @@ export default {
   TASK_TYPE_MISSING_TRACK_TYPE: 'missing_track_type',
   TASK_TYPE_WAY_WITHOUT_TAGS: 'way_wo_tags',
   TASK_TYPE_MISSING_CUISINE: 'missing_cuisine',
+  // View Types
+  NUMBER: 'number',
+  SELECT: 'select',
+  TEXT: 'text',
 
   // Tasks
   MISSIONS_LIMIT: 7,
   VALIDATIONS_LIMIT: 50,
   RADIUS: 5000,
-
-  // Modal View taskTypes
-  SELECT: 'select',
-  TEXT: 'text',
 };
