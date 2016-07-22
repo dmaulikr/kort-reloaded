@@ -7,9 +7,9 @@ The goal of this project is to provide a native app for Android as well as iOS k
 Kort Reloaded is implemented with React Native (https://facebook.github.io/react-native).
 
 ## Release
-The implementation is estimated to be finished by the end of June 2016.
+As of today, there's only a beta version available for Android: https://github.com/kort/kort-reloaded/releases/tag/v0.2-beta.
 
-It might require additional time for the apps to be deployed to the app stores of the the respective platforms.
+More work will be required for the apps to be published in the Android Play Store and Apple App Store.
 
 ## Hands On
 We gladly accept any kind of contribution if you wish to help!
