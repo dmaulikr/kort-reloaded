@@ -1,6 +1,8 @@
 
 # Kort Reloaded
-This is a new frontend implementation of Kort. The well known Kort Game as we know it is still available on http://play.kort.ch. But meanwhile, the web app only works in Firefox.
+This is/was a new frontend implementation of Kort. The well known Kort Game as we know it is still available on http://play.kort.ch. But meanwhile, the web app only works in Firefox.
+
+**NOTE - This repo has been abandoned in favour of Kort Native!**
 
 The goal of this project is to provide a native app for Android as well as iOS keeping the functionality basically the same.
 
